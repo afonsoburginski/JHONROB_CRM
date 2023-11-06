@@ -1,10 +1,12 @@
 import './globals.css';
 
 import { Analytics } from '@vercel/analytics/react';
-import Nav from './components/nav';import { Suspense } from 'react';
+import Nav from './components/nav';
+import { Suspense } from 'react';
+
 
 export const metadata = {
-  title: 'Gerenciador de Proposta',
+  title: 'JHONROB CRM',
   description:
     'A user admin dashboard configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, ESLint, and Prettier.'
 };
