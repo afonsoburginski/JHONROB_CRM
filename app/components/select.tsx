@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import Select from 'react-select';
-import { Data, productOptions, capacityOptions, potencyOptions, dimensionOptions, colourOptions } from '../data'
+import { Data, productOptions, modelOptions, capacityOptions, dimensionOptions, potencyOptions, colourOptions } from '../data'
 
 export default function SelectForm() {
   const [isClearable, setIsClearable] = useState(true);
@@ -33,6 +33,21 @@ export default function SelectForm() {
         </div>
 
         <div className='grid-cols-1 w-full'>
+          <label>Modelo</label>
+          <Select
+            className="basic-single grid-cols-3 w-full"
+            classNamePrefix="select"
+            isDisabled={isDisabled}
+            isLoading={isLoading}
+            isClearable={isClearable}
+            isRtl={isRtl}
+            isSearchable={isSearchable}
+            name="color"
+            options={modelOptions}
+          />
+        </div>
+
+        <div className='grid-cols-1 w-full'>
           <label>Capacidade</label>
           <Select
             className="basic-single grid-cols-3 w-full"
@@ -47,16 +62,26 @@ export default function SelectForm() {
           />
         </div>
 
-        {/* <div className='grid-cols-1 w-full'>
-          <label>Capacidade</label>
+      </div>
+
+      {/* Segunda Linha */}
+      
+
+      <div className='flex grid-cols-4 gap-5'>
+        <div className='grid-cols-1 w-full'>
+          <label>Altura</label>
           <Select
-            isMulti
-            name="colors"
-            options={colourOptions}
-            className="basic-multi-select grid-cols-2 w-full"
+            className="basic-single grid-cols-4 w-full"
             classNamePrefix="select"
-            />
-        </div> */}
+            isDisabled={isDisabled}
+            isLoading={isLoading}
+            isClearable={isClearable}
+            isRtl={isRtl}
+            isSearchable={isSearchable}
+            name="color"
+            options={dimensionOptions}
+          />
+        </div>
 
         <div className='grid-cols-1 w-full'>
           <label>Potência</label>
@@ -72,28 +97,8 @@ export default function SelectForm() {
             options={potencyOptions}
           />
         </div>
-
         <div className='grid-cols-1 w-full'>
-          <label>Dimensões</label>
-          <Select
-            className="basic-single grid-cols-4 w-full"
-            classNamePrefix="select"
-            isDisabled={isDisabled}
-            isLoading={isLoading}
-            isClearable={isClearable}
-            isRtl={isRtl}
-            isSearchable={isSearchable}
-            name="color"
-            options={dimensionOptions}
-          />
-        </div>
-      </div>
-
-      {/* Segunda Linha */}
-      
-      <div className='flex grid-cols-4 gap-5'>
-        <div className='grid-cols-1 w-full'>
-          <label>Produto</label>
+          <label>Saída de Produto</label>
           <Select
             className="basic-single grid-cols-1 w-full"
             classNamePrefix="select"
@@ -108,24 +113,9 @@ export default function SelectForm() {
         </div>
 
         <div className='grid-cols-1 w-full'>
-          <label>Produto</label>
+          <label>Entrada de produto</label>
           <Select
             className="basic-single grid-cols-3 w-full"
-            classNamePrefix="select"
-            isDisabled={isDisabled}
-            isLoading={isLoading}
-            isClearable={isClearable}
-            isRtl={isRtl}
-            isSearchable={isSearchable}
-            name="color"
-            options={productOptions}
-          />
-        </div>
-
-        <div className='grid-cols-1 w-full'>
-          <label>Produto</label>
-          <Select
-            className="basic-single grid-cols-4 w-full"
             classNamePrefix="select"
             isDisabled={isDisabled}
             isLoading={isLoading}

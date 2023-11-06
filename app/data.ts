@@ -7,29 +7,46 @@ export interface Data {
 
 //opções de produtos
 export const productOptions: readonly Data[] = [
+  { value: 'el-2015', label: 'EL-2015' },
+  { value: 'el-5015', label: 'EL-5015' },
+  { value: 'el-6018', label: 'EL-6018' },
+  { value: 'el-6023', label: 'EL-6023' },
+  { value: 'el-6028', label: 'EL-6028' },
   { value: 'el-6034', label: 'EL-6034' },
-  { value: 'el-6034f', label: 'EL-6034F' },
+  { value: 'el-8040', label: 'EL-8040' },
+  { value: 'el-10060', label: 'EL-10060' },
 ];
 
+//opções de modelo
+export const modelOptions: readonly Data[] = [
+  { value: 'simple', label: 'Simples', isFixed: true },
+  { value: 'duplo', label: 'Duplo', isFixed: true },
+  { value: 'convetional', label: 'Convecional', isFixed: true },
+  { value: 'closed', label: 'Forçado', isFixed: true },
+];
+
+//opções de capacidade
 export const capacityOptions: readonly Data[] = [
-  { value: '180', label: '180' },
-  { value: '220', label: '220' },
-  { value: '300', label: '300' },
-  { value: '350', label: '350' },
+  { value: '180', label: '180 (T/H)' },
+  { value: '220', label: '220 (T/H)' },
+  { value: '300', label: '300 (T/H)' },
+  { value: '350', label: '350 (T/H)' },
 ];
 
+//opções de tamanho/altura/dimensão
+export const dimensionOptions: readonly Data[] = [
+  { value: '12,7xL15', label: '12,7 M' },
+  { value: '18,7', label: '18,7 M' },
+  { value: '24,2', label: '24,2 M' },
+  { value: '31,7', label: '31,7 M' },
+];
+
+//opções de potência
 export const potencyOptions: readonly Data[] = [
   { value: '15,0cv', label: '15,0cv' },
   { value: '20,0cv', label: '20,0cv' },
   { value: '25,0cv', label: '25,0cv' },
   { value: '30,0cv', label: '30,0cv' },
-];
-
-export const dimensionOptions: readonly Data[] = [
-  { value: 'A12,7xL15', label: 'A12,7xL15' },
-  { value: 'A18,7xL15', label: 'A18,7xL15' },
-  { value: 'A24,2xL15', label: 'A24,2xL15' },
-  { value: 'A31,7xL15', label: 'A31,7xL15' },
 ];
 
 //opções de cores
@@ -47,84 +64,39 @@ export const colourOptions: readonly Data[] = [
 ];
 
 
-export interface FlavourOption {
-  readonly value: string;
-  readonly label: string;
-  readonly rating: string;
-}
-
-export const flavourOptions: readonly FlavourOption[] = [
-  { value: 'vanilla', label: 'Vanilla', rating: 'safe' },
-  { value: 'chocolate', label: 'Chocolate', rating: 'good' },
-  { value: 'strawberry', label: 'Strawberry', rating: 'wild' },
-  { value: 'salted-caramel', label: 'Salted Caramel', rating: 'crazy' },
-];
-
+//ESTADOS DO BRASIL
 export interface StateOption {
   readonly value: string;
   readonly label: string;
 }
 
 export const stateOptions: readonly StateOption[] = [
-  { value: 'AL', label: 'Alabama' },
-  { value: 'AK', label: 'Alaska' },
-  { value: 'AS', label: 'American Samoa' },
-  { value: 'AZ', label: 'Arizona' },
-  { value: 'AR', label: 'Arkansas' },
-  { value: 'CA', label: 'California' },
-  { value: 'CO', label: 'Colorado' },
-  { value: 'CT', label: 'Connecticut' },
-  { value: 'DE', label: 'Delaware' },
-  { value: 'DC', label: 'District Of Columbia' },
-  { value: 'FM', label: 'Federated States Of Micronesia' },
-  { value: 'FL', label: 'Florida' },
-  { value: 'GA', label: 'Georgia' },
-  { value: 'GU', label: 'Guam' },
-  { value: 'HI', label: 'Hawaii' },
-  { value: 'ID', label: 'Idaho' },
-  { value: 'IL', label: 'Illinois' },
-  { value: 'IN', label: 'Indiana' },
-  { value: 'IA', label: 'Iowa' },
-  { value: 'KS', label: 'Kansas' },
-  { value: 'KY', label: 'Kentucky' },
-  { value: 'LA', label: 'Louisiana' },
-  { value: 'ME', label: 'Maine' },
-  { value: 'MH', label: 'Marshall Islands' },
-  { value: 'MD', label: 'Maryland' },
-  { value: 'MA', label: 'Massachusetts' },
-  { value: 'MI', label: 'Michigan' },
-  { value: 'MN', label: 'Minnesota' },
-  { value: 'MS', label: 'Mississippi' },
-  { value: 'MO', label: 'Missouri' },
-  { value: 'MT', label: 'Montana' },
-  { value: 'NE', label: 'Nebraska' },
-  { value: 'NV', label: 'Nevada' },
-  { value: 'NH', label: 'New Hampshire' },
-  { value: 'NJ', label: 'New Jersey' },
-  { value: 'NM', label: 'New Mexico' },
-  { value: 'NY', label: 'New York' },
-  { value: 'NC', label: 'North Carolina' },
-  { value: 'ND', label: 'North Dakota' },
-  { value: 'MP', label: 'Northern Mariana Islands' },
-  { value: 'OH', label: 'Ohio' },
-  { value: 'OK', label: 'Oklahoma' },
-  { value: 'OR', label: 'Oregon' },
-  { value: 'PW', label: 'Palau' },
-  { value: 'PA', label: 'Pennsylvania' },
-  { value: 'PR', label: 'Puerto Rico' },
-  { value: 'RI', label: 'Rhode Island' },
-  { value: 'SC', label: 'South Carolina' },
-  { value: 'SD', label: 'South Dakota' },
-  { value: 'TN', label: 'Tennessee' },
-  { value: 'TX', label: 'Texas' },
-  { value: 'UT', label: 'Utah' },
-  { value: 'VT', label: 'Vermont' },
-  { value: 'VI', label: 'Virgin Islands' },
-  { value: 'VA', label: 'Virginia' },
-  { value: 'WA', label: 'Washington' },
-  { value: 'WV', label: 'West Virginia' },
-  { value: 'WI', label: 'Wisconsin' },
-  { value: 'WY', label: 'Wyoming' },
+  { value: 'AC', label: 'Acre' },
+  { value: 'AL', label: 'Alagoas' },
+  { value: 'AP', label: 'Amapá' },
+  { value: 'AM', label: 'Amazonas' },
+  { value: 'BA', label: 'Bahia' },
+  { value: 'CE', label: 'Ceará' },
+  { value: 'DF', label: 'Distrito Federal' },
+  { value: 'ES', label: 'Espírito Santo' },
+  { value: 'GO', label: 'Goiás' },
+  { value: 'MA', label: 'Maranhão ' },
+  { value: 'MT', label: 'Mato Grosso' },
+  { value: 'MS', label: 'Mato Grosso do Sul' },
+  { value: 'MG', label: 'Minas Gerais' },
+  { value: 'PA', label: 'Pará' },
+  { value: 'PB', label: 'Paraíba' },
+  { value: 'PR', label: 'Pernambuco' },
+  { value: 'PE', label: 'Piauí' },
+  { value: 'PI', label: 'Rio de Janeiro' },
+  { value: 'RJ', label: 'Rio Grande do Norte' },
+  { value: 'RN', label: 'Rio Grande do Sul' },
+  { value: 'RS', label: 'Rondônia' },
+  { value: 'RO', label: 'Roraima ' },
+  { value: 'SC', label: 'Santa Catarina' },
+  { value: 'SP', label: 'São Paulo' },
+  { value: 'SE', label: 'Sergipe' },
+  { value: 'TO', label: 'Tocantins' },
 ];
 
 export const optionLength = [
@@ -167,9 +139,5 @@ export const groupedOptions: readonly GroupedOption[] = [
   {
     label: 'Colours',
     options: colourOptions,
-  },
-  {
-    label: 'Flavours',
-    options: flavourOptions,
   },
 ];

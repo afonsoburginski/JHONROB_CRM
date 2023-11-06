@@ -20,9 +20,9 @@ export default function UsersTable({ users }: { users: User[] }) {
     <Table>
       <TableHead>
         <TableRow>
-          <TableHeaderCell>Name</TableHeaderCell>
-          <TableHeaderCell>Username</TableHeaderCell>
-          <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell>Id</TableHeaderCell>
+          <TableHeaderCell>Nome</TableHeaderCell>
+          <TableHeaderCell>CPF/CNPJ</TableHeaderCell>
         </TableRow>
       </TableHead>
       <TableBody>

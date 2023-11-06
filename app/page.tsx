@@ -1,7 +1,5 @@
 import React from 'react';
-import Select from 'react-select';
 import Search from './components/search';
-import { sql } from '@vercel/postgres';
 import { Card, Title, Text } from '@tremor/react';
 import SelectForm from './components/select'
 
@@ -13,6 +11,8 @@ export default async function IndexPage() {
       <Text>Gerenciador de Proposta</Text>
       <Search />
       <Card className="mt-6">
+      {/* O formulário funciona com regra de condicionamento opções
+          Ou simplesmente, conditional Selection */}
       <SelectForm/>
   
 
