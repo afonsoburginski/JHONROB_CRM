@@ -4,6 +4,8 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import { Data, productOptions, modelOptions, capacityOptions, dimensionOptions, potencyOptions, colourOptions } from '../data'
+import { SelectEstado } from './selectEstado';
+import { SelectCidade } from './selectCidade';
 
 export default function SelectForm() {
   const [isClearable, setIsClearable] = useState(true);
@@ -11,13 +13,19 @@ export default function SelectForm() {
   const [isDisabled, setIsDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isRtl, setIsRtl] = useState(false);
+  
+  const [selectedUf, setSelectedUf] = useState("");
+  console.log(selectedUf);
 
   return (
     <>
     <form className='flex flex-col w-full max-w-screen-xl gap-5'>
       {/* Primeira linha */}
       <div className='flex grid-cols-4 gap-5'>
+
         <div className='grid-cols-1 w-full'>
+        <SelectEstado onChange={setSelectedUf} />
+        <SelectCidade uf={selectedUf} />
           <label>Produto</label>
           <Select
             className="basic-single grid-cols-1 w-full"

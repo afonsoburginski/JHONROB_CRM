@@ -7,22 +7,22 @@ export interface Data {
 
 //opções de produtos
 export const productOptions: readonly Data[] = [
-  { value: 'el-2015', label: 'EL-2015' },
-  { value: 'el-5015', label: 'EL-5015' },
-  { value: 'el-6018', label: 'EL-6018' },
-  { value: 'el-6023', label: 'EL-6023' },
-  { value: 'el-6028', label: 'EL-6028' },
-  { value: 'el-6034', label: 'EL-6034' },
-  { value: 'el-8040', label: 'EL-8040' },
-  { value: 'el-10060', label: 'EL-10060' },
+  { value: '1', label: 'EL-2015' },
+  { value: '1', label: 'EL-5015' },
+  { value: '2', label: 'EL-6018' },
+  { value: '2', label: 'EL-6023' },
+  { value: '2', label: 'EL-6028' },
+  { value: '2', label: 'EL-6034' },
+  { value: '2', label: 'EL-8040' },
+  { value: '2', label: 'EL-10060' },
 ];
 
 //opções de modelo
 export const modelOptions: readonly Data[] = [
-  { value: 'simple', label: 'Simples', isFixed: true },
-  { value: 'duplo', label: 'Duplo', isFixed: true },
-  { value: 'convetional', label: 'Convecional', isFixed: true },
-  { value: 'closed', label: 'Forçado', isFixed: true },
+  { value: '1', label: 'Simples', isFixed: true },
+  { value: '2', label: 'Duplo', isFixed: true },
+  { value: '3', label: 'Convecional', isFixed: true },
+  { value: '4', label: 'Forçado', isFixed: true },
 ];
 
 //opções de capacidade

@@ -1,7 +1,7 @@
 import React from 'react';
 import Search from './components/search';
 import { Card, Title, Text } from '@tremor/react';
-import SelectForm from './components/select'
+import SelectForm from './components/selectForm'
 
 export default async function IndexPage() {
 
