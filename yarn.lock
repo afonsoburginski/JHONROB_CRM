@@ -607,7 +607,7 @@
   dependencies:
     server-only "^0.0.1"
 
-"@vercel/postgres@^0.5.0":
+"@vercel/postgres@^0.5.1":
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/@vercel/postgres/-/postgres-0.5.1.tgz#af986133f5ec53b4839561fc3cc2a5fb1867868d"
   integrity sha512-JKl8QOBIDnifhkxAhIKtY0A5Tb8oWBf2nzZhm0OH7Ffjsl0hGVnDL2w1/FCfpX8xna3JAWM034NGuhZfTFdmiw==
