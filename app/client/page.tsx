@@ -1,6 +1,7 @@
 import { sql } from '@vercel/postgres';
 import { Card, Title, Text } from '@tremor/react';
-import SelectForm from './components/selectForm';
+import Search from '../components/search';
+import UsersTable from '../components/table';
 
 interface User {
   id: number;
@@ -24,10 +25,11 @@ export default async function IndexPage({
 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
-      <Title>Gerenciador de Proposta</Title>
-      <Text>Gerenciador de Proposta.</Text>
+      <Title>Users</Title>
+      <Text>A list of users retrieved from a Postgres database.</Text>
+      <Search />
       <Card className="mt-6">
-        <SelectForm/>
+        <UsersTable users={users} />
       </Card>
     </main>
   );
