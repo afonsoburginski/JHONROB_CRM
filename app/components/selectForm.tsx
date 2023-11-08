@@ -18,22 +18,22 @@ export default function SelectForm() {
   const [capacityList, setCapacitylList] = useState([]);
 
   // handle change event of the product dropdown
-  // const handleProductChange = (obj: React.SetStateAction<null>) => {
-  //   setProduct(obj);
-  //   setModelList(obj?.model ?? []);
-  //   setCapacitylList(obj?.capacity ?? []);
-  //   setModel(null);
-  //   setCapacity(null);
-  // };
+  const handleProductChange = (obj: React.SetStateAction<null>) => {
+    setProduct(obj);
+    setModelList(obj?.model ?? []);
+    setCapacitylList(obj?.capacity ?? []);
+    setModel(null);
+    setCapacity(null);
+  };
 
-  // // handle change event of the Model dropdown
-  // const handleModelChange = (obj: React.SetStateAction<null>) => {
-  //   setModel(obj);
-  // };
+  // handle change event of the Model dropdown
+  const handleModelChange = (obj: React.SetStateAction<null>) => {
+    setModel(obj);
+  };
 
-  // const handleCapacityChange = (obj: React.SetStateAction<null>) => {
-  //   setCapacity(obj);
-  // };
+  const handleCapacityChange = (obj: React.SetStateAction<null>) => {
+    setCapacity(obj);
+  };
   
   return (
     <>
