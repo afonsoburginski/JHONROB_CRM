@@ -5,36 +5,97 @@ export interface productOptions {
     readonly isDisabled?: boolean;
   }
 
-export const model = [
+export const products = [
   {
     id: 1,
-    title: 'EL-6034',
-    capacitys: [
+    title: 'Produto A',
+    models: [
       {
         id: 1,
-        title: '180',
-        height: [
+        title: 'Simples',
+        capacities: [
           {
             id: 1,
-            title: '12,7',
-            power: '15,0cv',
+            title: 'Capacidade 1',
+            heights: [
+              {
+                id: 1,
+                title: 'Altura 1',
+                power: '15,0cv',
+              },
+            ],
           },
-        ]
+          {
+            id: 2,
+            title: 'Capacidade 2',
+            heights: [
+              {
+                id: 2,
+                title: 'Altura 2',
+                power: '15,0cv',
+              },
+            ],
+          },
+        ],
       },
       {
         id: 2,
-        title: '220',
-        height: [
+        title: 'Duplo',
+        capacities: [
           {
-            id: 2,
-            title: '13,7',
-            power: '15,0cv',
+            id: 3,
+            title: 'Capacidade 3',
+            heights: [
+              {
+                id: 3,
+                title: 'Altura 3',
+                power: '15,0cv',
+              },
+            ],
           },
-        ]
+          {
+            id: 4,
+            title: 'Capacidade 4',
+            heights: [
+              {
+                id: 4,
+                title: 'Altura 4',
+                power: '15,0cv',
+              },
+            ],
+          },
+        ],
       },
-    ] //insert the new values here
-  }
+    ],
+  },
+  // Adicione mais produtos conforme necessário
 ];
+
+export const inputsAndOutputs = [
+  {
+    id: 1,
+    title: 'Entrada 1',
+    type: 'input',
+  },
+  {
+    id: 2,
+    title: 'Entrada 2',
+    type: 'input',
+  },
+  {
+    id: 3,
+    title: 'Saída 1',
+    type: 'output',
+  },
+  {
+    id: 4,
+    title: 'Saída 2',
+    type: 'output',
+  },
+  // Adicione mais entradas e saídas conforme necessário
+];
+
+  
 
   
   // export const productOptions = [
