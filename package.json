@@ -10,6 +10,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
+    "@prisma/client": "^5.5.2",
     "@tremor/react": "^3.10.0",
     "@types/js-cookie": "^3.0.5",
     "@types/node": "20.8.9",
@@ -27,8 +28,6 @@
     "postcss": "^8.4.31",
     "prettier": "^3.0.3",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-select": "^5.8.0",
     "reactstrap": "^9.2.0",
     "server-only": "^0.0.1",
@@ -40,5 +39,13 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "none"
+  },
+  "devDependencies": {
+    "prisma": "^5.5.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
   }
 }

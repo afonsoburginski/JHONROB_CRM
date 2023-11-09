@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment } from 'react';
+import { Fragment } from 'react'
 import { usePathname } from 'next/navigation';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -10,7 +10,7 @@ import Image from 'next/image';
 const navigation = [
   { name: 'Dashboard', href: '/dashboard' },
   { name: 'Gerenciador', href: '/' },
-  { name: 'Clientes', href: '/client' }
+  { name: 'Contratos', href: '/contracts' }
 ];
 
 function classNames(...classes: string[]) {

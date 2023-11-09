@@ -1,0 +1,49 @@
+// schema.prisma
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+// Use a URL do banco de dados do Postgres do seu arquivo .env
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+// Defina seus modelos aqui
+// ...
+
+// Exemplo de modelo de produto
+model Product {
+  id    Int      @id @default(autoincrement())
+  title String
+  models Model[]
+}
+
+// Exemplo de modelo de modelo
+model Model {
+  id        Int        @id @default(autoincrement())
+  title     String
+  productId Int        @map("product_id")
+  product   Product    @relation(fields: [productId], references: [id])
+  capacities Capacity[]
+}
+
+// Exemplo de modelo de capacidade
+model Capacity {
+  id      Int     @id @default(autoincrement())
+  title   String
+  modelId Int     @map("model_id")
+  model   Model   @relation(fields: [modelId], references: [id])
+  heights Height[]
+}
+
+// Exemplo de modelo de altura
+model Height {
+  id         Int     @id @default(autoincrement())
+  title      String
+  power      String
+  capacityId Int     @map("capacity_id")
+  capacity   Capacity @relation(fields: [capacityId], references: [id])
+}
