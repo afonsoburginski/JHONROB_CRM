@@ -45,20 +45,14 @@ export default function SelectFormClient() {
   const [inputsAndOutputs, setInputsAndOutputs] = useState([]);
 
   useEffect(() => {
-    const getProducts = async () => {
+    const getData = async () => {
       const response = await fetch('http://localhost:3000/api/products');
-      const products = await response.json();
-      setProducts(products);
+      const data = await response.json();
+      setProducts(data.products);
+      setInputsAndOutputs(data.inputsAndOutputs);
     };
   
-    const getInputsAndOutputs = async () => {
-      const response = await fetch('http://localhost:3000/api/products'); // Substitua '/api/inputsAndOutputs' pela URL da sua API
-      const inputsAndOutputs = await response.json();
-      setInputsAndOutputs(inputsAndOutputs);
-    };
-  
-    getProducts();
-    getInputsAndOutputs();
+    getData();
   }, []);
 
   const handleProductChange = (selectedOption: any) => {
@@ -247,7 +241,7 @@ export default function SelectFormClient() {
           </div>
         </div>
         <div className='flex justify-end items-end grid-cols-3 w-full'>
-          <button className='bg-white hover:bg-gray-100 text-gray-800 font-normal py-1 px-4 border border-gray-400 rounded shadow' onClick={handleSave}>
+          <button className='bg-white hover:bg-gray-100 text-gray-800 font-normal py-1 px-4 border border-gray-400 rounded' onClick={handleSave}>
             Adicionar
           </button>
         </div>

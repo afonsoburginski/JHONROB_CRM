@@ -1,6 +1,15 @@
-// ContractsTable.tsx
+'use client'
 import React from 'react';
 import { Table, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
+
+interface Contract {
+  title: string;
+  model: string;
+  capacity: string;
+  height: string;
+  power: string;
+  // Adicione outras propriedades conforme necessário
+}
 
 interface ContractsTableProps {
   contracts: Contract[];

@@ -5,6 +5,7 @@ import ContractsTable from './contractsTable';
 
 interface Contract {
   id: number;
+  title: string; // Adicione esta linha
   productName: string;
   model: string;
   capacity: string;
