@@ -1,5 +1,4 @@
-import React from 'react';
-import { sql } from '@vercel/postgres';
+import { Client } from 'pg';
 import { Card, Title, Text } from '@tremor/react';
 import Search from '../components/search';
 import ContractsTable from './contractsTable';
@@ -21,29 +20,53 @@ export default async function ContractsPage({
   searchParams: { q: string };
 }) {
   const search = searchParams.q ?? '';
-  const result = await sql`
-    SELECT 
-      id, 
-      product_name as productName,
-      model,
-      capacity,
-      height,
-      power,
-      input,
-      output
-    FROM contracts
-    WHERE product_name ILIKE ${'%' + search + '%'};
-  `;
-  const contracts = result.rows as Contract[];
 
-  return (
-    <main className="p-4 md:p-10 mx-auto max-w-7xl">
-      <Title>Contratos</Title>
-      <Text>Lista detalhada de contratos</Text>
-      <Search />
-      <Card className="mt-6">
-        <ContractsTable contracts={contracts} />
-      </Card>
-    </main>
-  );
+  // Configurar a conexão com o PostgreSQL no Docker
+  const client = new Client({
+    user: 'prisma', // Usuário do banco de dados
+    host: 'localhost', // Endereço do seu contêiner PostgreSQL
+    database: 'prismadb', // Nome do seu banco de dados
+    password: 'prisma', // Senha do banco de dados
+    port: 5433, // Porta exposta no seu contêiner Docker
+  });
+
+  await client.connect();
+
+  try {
+    // Executar uma consulta SQL parametrizada no banco de dados
+    const result = await client.query(
+      `SELECT 
+        id, 
+        product_name as productName,
+        model,
+        capacity,
+        height,
+        power,
+        input,
+        output
+      FROM contracts
+      WHERE product_name ILIKE $1;`,
+      [`%${search}%`]
+    );
+
+    // Manipular os resultados da consulta conforme necessário
+    const contracts = result.rows as Contract[];
+
+    // Retorna o conteúdo da página com base nos resultados da consulta
+    return (
+      <main className="p-4 md:p-10 mx-auto max-w-7xl">
+        <Title>Contratos</Title>
+        <Text>Lista detalhada de contratos</Text>
+        <Search />
+        <Card className="mt-6">
+          <ContractsTable contracts={contracts} />
+        </Card>
+      </main>
+    );
+  } catch (error) {
+    console.error('Erro ao executar a consulta:', error);
+  } finally {
+    // Fecha a conexão com o banco de dados, independentemente de ter ocorrido um erro ou não
+    await client.end();
+  }
 }

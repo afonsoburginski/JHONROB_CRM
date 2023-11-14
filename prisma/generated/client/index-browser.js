@@ -107,6 +107,19 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.ContractScalarFieldEnum = {
+  id: 'id',
+  clientId: 'clientId',
+  productId: 'productId',
+  inputId: 'inputId',
+  outputId: 'outputId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ClientScalarFieldEnum = {
+  id: 'id'
+};
+
 exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   title: 'title'
@@ -131,9 +144,26 @@ exports.Prisma.HeightScalarFieldEnum = {
   capacityId: 'capacityId'
 };
 
+exports.Prisma.InputOutputScalarFieldEnum = {
+  id: 'id',
+  title: 'title'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  username: 'username',
+  email: 'email'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 exports.Prisma.QueryMode = {
@@ -143,10 +173,14 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
+  Contract: 'Contract',
+  Client: 'Client',
   Product: 'Product',
   Model: 'Model',
   Capacity: 'Capacity',
-  Height: 'Height'
+  Height: 'Height',
+  InputOutput: 'InputOutput',
+  User: 'User'
 };
 
 /**

@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react';
 import Nav from './components/nav';
 import Toast from './toast';
 import { Suspense } from 'react';
+import { SelectedProductProvider } from './contexts/selectedProductContext'; // Importe o SelectedProductProvider
 
 export const metadata = {
   title: 'JHONROB CRM',
@@ -22,7 +23,9 @@ export default function RootLayout({
         <Suspense>
           <Nav />
         </Suspense>
-        {children}
+        <SelectedProductProvider> {/* Adicione o SelectedProductProvider aqui */}
+          {children}
+        </SelectedProductProvider>
         <Analytics />
         <Toast />
       </body>

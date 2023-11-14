@@ -1,74 +1,36 @@
+// ContractsTable.tsx
 import React from 'react';
-import {
-  Table,
-  TableHead,
-  TableRow,
-  TableHeaderCell,
-  TableBody,
-  TableCell,
-  Text
-} from '@tremor/react';
-
-interface Contract {
-  id: number;
-  productName: string;
-  model: string;
-  capacity: string;
-  height: string;
-  power: string;
-  input: string;
-  output: string;
-}
+import { Table, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
 
 interface ContractsTableProps {
   contracts: Contract[];
 }
 
-const ContractsTable: React.FC<ContractsTableProps> = ({ contracts }) => {
-  return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableHeaderCell>ID</TableHeaderCell>
-          <TableHeaderCell>Produto</TableHeaderCell>
-          <TableHeaderCell>Modelo</TableHeaderCell>
-          <TableHeaderCell>Capacidade</TableHeaderCell>
-          <TableHeaderCell>Altura</TableHeaderCell>
-          <TableHeaderCell>Power</TableHeaderCell>
-          <TableHeaderCell>Entrada</TableHeaderCell>
-          <TableHeaderCell>Saída</TableHeaderCell>
+const ContractsTable: React.FC<ContractsTableProps> = ({ contracts }) => (
+  <Table>
+    <TableHead>
+      <TableRow>
+        <TableHeaderCell>Produto</TableHeaderCell>
+        <TableHeaderCell>Modelo</TableHeaderCell>
+        <TableHeaderCell>Capacidade</TableHeaderCell>
+        <TableHeaderCell>Altura</TableHeaderCell>
+        <TableHeaderCell>Power</TableHeaderCell>
+        {/* Adicione outras colunas conforme necessário */}
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {contracts.map((contract, index) => (
+        <TableRow key={index}>
+          <TableCell>{contract.title}</TableCell>
+          <TableCell>{contract.model}</TableCell>
+          <TableCell>{contract.capacity}</TableCell>
+          <TableCell>{contract.height}</TableCell>
+          <TableCell>{contract.power}</TableCell>
+          {/* Adicione outras células conforme necessário */}
         </TableRow>
-      </TableHead>
-      <TableBody>
-        {contracts.map((contract) => (
-          <TableRow key={contract.id}>
-            <TableCell>{contract.id}</TableCell>
-            <TableCell>
-              <Text>{contract.productName}</Text>
-            </TableCell>
-            <TableCell>
-              <Text>{contract.model}</Text>
-            </TableCell>
-            <TableCell>
-              <Text>{contract.capacity}</Text>
-            </TableCell>
-            <TableCell>
-              <Text>{contract.height}</Text>
-            </TableCell>
-            <TableCell>
-              <Text>{contract.power}</Text>
-            </TableCell>
-            <TableCell>
-              <Text>{contract.input}</Text>
-            </TableCell>
-            <TableCell>
-              <Text>{contract.output}</Text>
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  );
-};
+      ))}
+    </TableBody>
+  </Table>
+);
 
 export default ContractsTable;

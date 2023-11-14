@@ -12,4 +12,4 @@ if (process.env.NODE_ENV === 'production') {
   prisma = (global as any).prisma;
 }
 
-export { prisma };  // Alteração nesta linha
+export { prisma };

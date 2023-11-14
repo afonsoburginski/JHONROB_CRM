@@ -1,37 +1,31 @@
-import { sql } from '@vercel/postgres';
+
 import { Card, Title, Text } from '@tremor/react';
-import SelectForm from './components/selectForm';
+import SelectedProducts from './components/selectedProducts';
+import { Product } from '../prisma/generated/client';
+import { SelectedProductProvider } from './contexts/selectedProductContext';
+import SelectFormClient from './components/selectForm.client'; // Importe o componente SelectFormClient
 
-interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-}
+const IndexPage: React.FC = () => {
+  const handleProductSelect = (product: Product) => {
+    console.log('Produto selecionado no IndexPage:', product);
+  };
 
-export default async function IndexPage({
-  searchParams
-}: {
-  searchParams: { q: string };
-}) {
-  const search = searchParams.q ?? '';
-  const result = await sql`
-    SELECT id, name, username, email 
-    FROM users 
-    WHERE name ILIKE ${'%' + search + '%'};
-  `;
-  const users = result.rows as User[];
+  console.log('SelectedProductProvider', SelectedProductProvider);
 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
       <Title>Gerenciador de Proposta</Title>
       <Text>Gerenciador de Proposta.</Text>
       <Card className="mt-6">
-        <SelectForm/>
+        <SelectedProductProvider>
+          <SelectFormClient />
+        </SelectedProductProvider>
       </Card>
       <Card className="mt-6">
-        aaaaaaaaaaaa
+        <SelectedProducts selectedProducts={[]} inputsAndOutputs={[]} />
       </Card>
     </main>
   );
-}
+};
+
+export default IndexPage;

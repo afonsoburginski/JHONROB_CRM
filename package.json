@@ -5,7 +5,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma:generate": "npx prisma generate",
+    "migrate": "npx prisma migrate dev",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
@@ -17,7 +20,6 @@
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "@vercel/analytics": "^1.1.1",
-    "@vercel/postgres": "^0.5.1",
     "autoprefixer": "^10.4.16",
     "eslint": "8.52.0",
     "eslint-config-next": "14.0.0",
@@ -25,6 +27,7 @@
     "jspdf": "^2.5.1",
     "next": "14.0.0",
     "next-auth": "5.0.0-beta.3",
+    "pg": "^8.11.3",
     "postcss": "^8.4.31",
     "prettier": "^3.0.3",
     "prop-types": "^15.8.1",
@@ -41,11 +44,13 @@
     "trailingComma": "none"
   },
   "devDependencies": {
-    "prisma": "^5.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "prisma": {
-    "schema": "prisma/schema.prisma"
-  }
+  "name": "jhonrob_crm",
+  "description": "<picture>\r   <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://user-images.githubusercontent.com/9113740/201498864-2a900c64-d88f-4ed4-b5cf-770bcb57e1f5.png\">\r   <source media=\"(prefers-color-scheme: light)\" srcset=\"https://user-images.githubusercontent.com/9113740/201498152-b171abb8-9225-487a-821c-6ff49ee48579.png\">\r   <img alt=\"Shows all of the tools in the stack for this template, also listed in the README file.\" src=\"https://user-images.githubusercontent.com/9113740/201498152-b171abb8-9225-487a-821c-6ff49ee48579.png\">\r </picture>",
+  "version": "1.0.0",
+  "main": "next.config.js",
+  "keywords": [],
+  "author": ""
 }

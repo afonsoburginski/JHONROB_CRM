@@ -1,49 +1,78 @@
-// schema.prisma
 generator client {
   provider = "prisma-client-js"
   output   = "./generated/client"
 }
-
-// Use a URL do banco de dados do Postgres do seu arquivo .env
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  url      = env("DATABASE_URL")
 }
 
+
 // Defina seus modelos aqui
-// ...
+model Contract {
+  id        Int         @id @default(autoincrement())
+  client    Client?     @relation(fields: [clientId], references: [id])
+  clientId  Int?
+  product   Product     @relation(fields: [productId], references: [id])
+  productId Int
+  input     InputOutput @relation("ContractInput", fields: [inputId], references: [id])
+  inputId   Int
+  output    InputOutput @relation("ContractOutput", fields: [outputId], references: [id])
+  outputId  Int
+  createdAt DateTime    @default(now())
+}
+
+model Client {
+  id        Int        @id @default(autoincrement())
+  // Outros campos do modelo Client
+  contracts Contract[]
+}
 
 // Exemplo de modelo de produto
 model Product {
-  id    Int      @id @default(autoincrement())
-  title String
-  models Model[]
+  id        Int        @id @default(autoincrement())
+  title     String
+  contracts Contract[]
+  models    Model[]
 }
 
 // Exemplo de modelo de modelo
 model Model {
-  id        Int        @id @default(autoincrement())
-  title     String
-  productId Int        @map("product_id")
-  product   Product    @relation(fields: [productId], references: [id])
+  id         Int        @id @default(autoincrement())
+  title      String
+  productId  Int        @map("product_id")
+  product    Product    @relation(fields: [productId], references: [id])
   capacities Capacity[]
 }
 
 // Exemplo de modelo de capacidade
 model Capacity {
-  id      Int     @id @default(autoincrement())
+  id      Int      @id @default(autoincrement())
   title   String
-  modelId Int     @map("model_id")
-  model   Model   @relation(fields: [modelId], references: [id])
+  modelId Int      @map("model_id")
+  model   Model    @relation(fields: [modelId], references: [id])
   heights Height[]
 }
 
 // Exemplo de modelo de altura
 model Height {
-  id         Int     @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   title      String
   power      String
-  capacityId Int     @map("capacity_id")
+  capacityId Int      @map("capacity_id")
   capacity   Capacity @relation(fields: [capacityId], references: [id])
+}
+
+model InputOutput {
+  id                Int        @id @default(autoincrement())
+  title             String
+  contractsAsInput  Contract[] @relation("ContractInput")
+  contractsAsOutput Contract[] @relation("ContractOutput")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  username String
+  email    String
 }
