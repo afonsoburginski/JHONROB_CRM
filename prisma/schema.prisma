@@ -29,7 +29,6 @@ model Product {
   id            Int            @id @default(autoincrement())
   title         String
   models        Model[]
-  inputOutputs  InputOutput[]
 }
 
 // Exemplo de modelo de modelo
@@ -61,9 +60,8 @@ model Height {
 
 model InputOutput {
   id        Int      @id @default(autoincrement())
-  title     String
-  productId Int
-  product   Product  @relation(fields: [productId], references: [id])
+  input     String
+  output    String
 
   @@map(name: "input_outputs")
 }

@@ -1,7 +1,6 @@
 //page.tsx
 import { Card, Title, Text } from '@tremor/react';
 import SelectedProducts from './components/selectedProducts';
-import { Product } from '../prisma/generated/client';
 import { SelectedProductProvider } from './contexts/selectedProductContext';
 import SelectFormClient from './components/selectForm.client'; // Importe o componente SelectFormClient
 

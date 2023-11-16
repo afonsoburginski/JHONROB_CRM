@@ -1,7 +1,8 @@
+//selectedProducts.tsx
 'use client';
-
 import React from 'react';
-import { Table, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
+import { Table, Title, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
+import { useSelectedProduct } from '../contexts/selectedProductContext'; // Adicione esta linha
 
 interface Product {
   title: string;
@@ -9,56 +10,43 @@ interface Product {
   capacity: string;
   height: string;
   power: string;
+  input: string; // Adicione esta linha
+  output: string; // Adicione esta linha
 }
 
-interface InputOutput {
-  title: string;
-  type: string;
-}
-
-interface SelectedProductsProps {
-  selectedProducts: Product[];
-  inputsAndOutputs: InputOutput[];
-}
-
-const SelectedProducts: React.FC<SelectedProductsProps> = ({ selectedProducts, inputsAndOutputs }) => {
-  const getInputInfo = (product: Product): string => {
-    const inputInfo = inputsAndOutputs.find((io) => io.type === 'input');
-    return inputInfo ? inputInfo.title : 'N/A';
-  };
-
-  const getOutputInfo = (product: Product): string => {
-    const outputInfo = inputsAndOutputs.find((io) => io.type === 'output');
-    return outputInfo ? outputInfo.title : 'N/A';
-  };
+const SelectedProducts: React.FC = () => { // Remova SelectedProductsProps daqui
+  const { selectedProducts } = useSelectedProduct(); // Adicione esta linha
 
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableHeaderCell>Produto</TableHeaderCell>
-          <TableHeaderCell>Modelo</TableHeaderCell>
-          <TableHeaderCell>Capacidade</TableHeaderCell>
-          <TableHeaderCell>Altura</TableHeaderCell>
-          <TableHeaderCell>Potência</TableHeaderCell>
-          <TableHeaderCell>Entrada</TableHeaderCell>
-          <TableHeaderCell>Saída</TableHeaderCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {selectedProducts.map((product, index) => (
-          <TableRow key={index}>
-            <TableCell>{product.title}</TableCell>
-            <TableCell>{product.model}</TableCell>
-            <TableCell>{product.capacity}</TableCell>
-            <TableCell>{product.height}</TableCell>
-            <TableCell>{product.power}</TableCell>
-            <TableCell>{getInputInfo(product)}</TableCell>
-            <TableCell>{getOutputInfo(product)}</TableCell>
+    <>
+      <Title>Itens da Venda</Title> 
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Produto</TableHeaderCell>
+            <TableHeaderCell>Modelo</TableHeaderCell>
+            <TableHeaderCell>Capacidade</TableHeaderCell>
+            <TableHeaderCell>Altura</TableHeaderCell>
+            <TableHeaderCell>Potência</TableHeaderCell>
+            <TableHeaderCell>Entrada</TableHeaderCell>
+            <TableHeaderCell>Saída</TableHeaderCell>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHead>
+        <TableBody>
+          {selectedProducts.map((product, index) => (
+            <TableRow key={index}>
+              <TableCell>{product.title}</TableCell>
+              <TableCell>{product.model}</TableCell>
+              <TableCell>{product.capacity}</TableCell>
+              <TableCell>{product.height}</TableCell>
+              <TableCell>{product.power}</TableCell>
+              <TableCell>{product.input}</TableCell>
+              <TableCell>{product.output}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
   );
 };
 

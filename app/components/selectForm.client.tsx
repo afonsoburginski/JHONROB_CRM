@@ -29,16 +29,16 @@ interface Height {
 }
 
 interface InputOutput {
+  id: string;
   title: string;
   type: string;
+  input: string;
+  output: string;
 }
 
 export default function SelectFormClient() {
-  console.log('Renderizando SelectFormClient')
-  
   const [products, setProducts] = useState<Product[]>([]);
-  const { selectedProduct, setSelectedProduct } = useSelectedProduct();
-  console.log('selectedProduct após a inicialização')
+  const {selectedProduct, setSelectedProduct } = useSelectedProduct();
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [selectedCapacity, setSelectedCapacity] = useState<Capacity | null>(null);
   const [selectedHeight, setSelectedHeight] = useState<Height | null>(null);
@@ -46,15 +46,16 @@ export default function SelectFormClient() {
   const [selectedInput, setSelectedInput] = useState<InputOutput | null>(null);
   const [selectedOutput, setSelectedOutput] = useState<InputOutput | null>(null);
   const [inputsAndOutputs, setInputsAndOutputs] = useState<InputOutput[]>([]);
+  const { addProductToTable } = useSelectedProduct();
 
   useEffect(() => {
     console.log('Executando useEffect')
     const getData = async () => {
       const response = await fetch('http://localhost:3000/api/products');
-      const data = await response.json();
-      console.log('Dados recebidos:', data)
-      setProducts(data);
-      setInputsAndOutputs(data.inputsAndOutputs);
+      const { products: productsData, inputOutputs } = await response.json();
+      console.log('Dados recebidos:', productsData, inputOutputs)
+      setProducts(productsData);
+      setInputsAndOutputs(inputOutputs);
     };
   
     getData();
@@ -95,58 +96,46 @@ export default function SelectFormClient() {
     setSelectedPower(selectedOption.value);
   };
   
-  const handleInputChange = (selectedOption: any) => {
-    setSelectedInput(selectedOption.value);
+  const handleInputChange = (selectedOption) => {
+    console.log(selectedOption); // Adicione esta linha
+    setSelectedInput(selectedOption);
   };
   
   const handleOutputChange = (selectedOption: any) => {
-    setSelectedOutput(selectedOption.value);
+    console.log('selectedOption:', selectedOption); // Adicione esta linha
+    setSelectedOutput(selectedOption);
   };
 
-  const handleSave = async () => {
+  const handleSave = async (event: React.FormEvent) => {
+    event.preventDefault();
+  
     if (!selectedProduct || !selectedModel || !selectedCapacity || !selectedHeight || !selectedPower || !selectedInput || !selectedOutput) {
-      console.error('Todos os campos devem ser preenchidos antes de salvar o produto');
+      setErrorMessage('Todos os campos devem ser preenchidos antes de salvar o produto');
       return;
     }
-
-    try {
-      const savedProduct: Product = {
-        id: selectedProduct.id,
-        title: selectedProduct.title,
-        models: [
-          {
-            id: selectedModel.id,
-            title: selectedModel.title,
-            capacities: [
-              {
-                id: selectedCapacity.id,
-                title: selectedCapacity.title,
-                heights: [
-                  {
-                    id: selectedHeight.id,
-                    title: selectedHeight.title,
-                    powers: [selectedPower],
-                    inputs: [selectedInput],
-                    outputs: [selectedOutput],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      };
-
-      console.log('Produto salvo:', savedProduct);
-      setSelectedProduct(null);
-      setSelectedModel(null);
-      setSelectedCapacity(null);
-      setSelectedHeight(null);
-      setSelectedPower(null);
-      setSelectedInput(null);
-      setSelectedOutput(null);
-    } catch (error) {
-      console.error('Erro ao salvar o produto:', error);
-    }
+  
+    console.log('selectedPower:', selectedPower); // Adicione esta linha
+    console.log('selectedInput:', selectedInput); // Adicione esta linha
+    console.log('selectedOutput:', selectedOutput); // Adicione esta linha
+  
+    const savedProduct = {
+      title: selectedProduct.title,
+      model: selectedModel.title,
+      capacity: selectedCapacity.title,
+      height: selectedHeight.title,
+      power: selectedPower,
+      input: selectedInput.label, // Altere esta linha
+      output: selectedOutput.label, // Altere esta linha
+    };
+  
+    addProductToTable(savedProduct);
+    setSelectedProduct(null);
+    setSelectedModel(null);
+    setSelectedCapacity(null);
+    setSelectedHeight(null);
+    setSelectedPower(null);
+    setSelectedInput(null);
+    setSelectedOutput(null);
   };
 
   return (
@@ -167,7 +156,7 @@ export default function SelectFormClient() {
               value={selectedModel ? { value: selectedModel.id, label: selectedModel.title } : null}
               onChange={handleModelChange}
               options={(selectedProduct?.models || []).map((model) => ({ value: model.id, label: model.title }))}
-              // isDisabled={!selectedProduct}
+              isDisabled={!selectedProduct}
             />
           </div>
           <div className='grid-cols-1 w-full'>
@@ -203,24 +192,24 @@ export default function SelectFormClient() {
           <div className='grid-cols-1 w-full'>
             <label>Entrada</label>
             <Select
-              value={selectedInput ? { value: selectedInput, label: selectedInput } : null}
-              options={(inputsAndOutputs || []).filter(io => io.type === 'input').map((item) => ({ value: item.title, label: item.title }))}
+              value={selectedInput}
               onChange={handleInputChange}
+              options={inputsAndOutputs.map((item) => ({ value: item.input, label: item.input }))}
               isDisabled={!selectedPower}
             />
           </div>
           <div className='grid-cols-1 w-full'>
             <label>Saída</label>
             <Select
-              value={selectedOutput ? { value: selectedOutput, label: selectedOutput } : null}
+              value={selectedOutput}
               onChange={handleOutputChange}
-              options={(inputsAndOutputs || []).filter(io => io.type === 'output').map((item) => ({ value: item.title, label: item.title }))}
+              options={inputsAndOutputs.map((item) => ({ value: item.output, label: item.output }))}
               isDisabled={!selectedPower}
             />
           </div>
         </div>
         <div className='flex justify-end items-end grid-cols-3 w-full'>
-          <button className='bg-white hover:bg-gray-100 text-gray-800 font-normal py-1 px-4 border border-gray-400 rounded' onClick={handleSave}>
+          <button className='bg-white hover:bg-gray-100 text-gray-800 font-normal py-1 px-4 border border-gray-400 rounded'  onClick={handleSave}>
             Adicionar
           </button>
         </div>

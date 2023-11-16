@@ -7,72 +7,61 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-// Defina seus modelos aqui
-model Contract {
-  id        Int         @id @default(autoincrement())
-  client    Client?     @relation(fields: [clientId], references: [id])
-  clientId  Int?
-  product   Product     @relation(fields: [productId], references: [id])
-  productId Int
-  input     InputOutput @relation("ContractInput", fields: [inputId], references: [id])
-  inputId   Int
-  output    InputOutput @relation("ContractOutput", fields: [outputId], references: [id])
-  outputId  Int
-  createdAt DateTime    @default(now())
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  username String
+  email    String
 }
-
 model Client {
   id        Int        @id @default(autoincrement())
-  // Outros campos do modelo Client
-  contracts Contract[]
+  name      String
+  email     String
+  phone     String
+  address   String
+  city      String
+  state     String
+  zip       String
 }
 
 // Exemplo de modelo de produto
 model Product {
-  id        Int        @id @default(autoincrement())
-  title     String
-  contracts Contract[]
-  models    Model[]
+  id            Int            @id @default(autoincrement())
+  title         String
+  models        Model[]
 }
 
 // Exemplo de modelo de modelo
 model Model {
   id         Int        @id @default(autoincrement())
   title      String
-  productId  Int        @map("product_id")
-  product    Product    @relation(fields: [productId], references: [id])
+  productId  Int
+  product    Product   @relation(fields: [productId], references: [id])
   capacities Capacity[]
 }
 
 // Exemplo de modelo de capacidade
 model Capacity {
-  id      Int      @id @default(autoincrement())
-  title   String
-  modelId Int      @map("model_id")
-  model   Model    @relation(fields: [modelId], references: [id])
-  heights Height[]
+  id       Int      @id @default(autoincrement())
+  title    String
+  modelId  Int
+  model    Model   @relation(fields: [modelId], references: [id])
+  heights  Height[]
 }
 
 // Exemplo de modelo de altura
 model Height {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   title      String
   power      String
-  capacityId Int      @map("capacity_id")
+  capacityId Int
   capacity   Capacity @relation(fields: [capacityId], references: [id])
 }
 
 model InputOutput {
-  id                Int        @id @default(autoincrement())
-  title             String
-  contractsAsInput  Contract[] @relation("ContractInput")
-  contractsAsOutput Contract[] @relation("ContractOutput")
-}
+  id        Int      @id @default(autoincrement())
+  input     String
+  output    String
 
-model User {
-  id       Int      @id @default(autoincrement())
-  name     String
-  username String
-  email    String
+  @@map(name: "input_outputs")
 }

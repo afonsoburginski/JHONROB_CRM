@@ -8,9 +8,8 @@ interface Contract {
   capacity: string;
   height: string;
   power: string;
-  // Adicione outras propriedades conforme necessário
+  input: string; // Nova propriedade
 }
-
 interface ContractsTableProps {
   contracts: Contract[];
 }
@@ -24,7 +23,7 @@ const ContractsTable: React.FC<ContractsTableProps> = ({ contracts }) => (
         <TableHeaderCell>Capacidade</TableHeaderCell>
         <TableHeaderCell>Altura</TableHeaderCell>
         <TableHeaderCell>Power</TableHeaderCell>
-        {/* Adicione outras colunas conforme necessário */}
+        <TableHeaderCell>Entrada</TableHeaderCell> {/* Nova coluna */}
       </TableRow>
     </TableHead>
     <TableBody>
@@ -35,7 +34,7 @@ const ContractsTable: React.FC<ContractsTableProps> = ({ contracts }) => (
           <TableCell>{contract.capacity}</TableCell>
           <TableCell>{contract.height}</TableCell>
           <TableCell>{contract.power}</TableCell>
-          {/* Adicione outras células conforme necessário */}
+          <TableCell>{contract.input}</TableCell> {/* Nova célula */}
         </TableRow>
       ))}
     </TableBody>

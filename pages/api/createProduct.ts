@@ -1,3 +1,4 @@
+//createProduct.ts
 import { prisma } from '../../app/prisma';
 import type { NextApiRequest, NextApiResponse } from 'next'
 

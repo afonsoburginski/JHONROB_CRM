@@ -151,8 +151,8 @@ exports.Prisma.HeightScalarFieldEnum = {
 
 exports.Prisma.InputOutputScalarFieldEnum = {
   id: 'id',
-  title: 'title',
-  productId: 'productId'
+  input: 'input',
+  output: 'output'
 };
 
 exports.Prisma.SortOrder = {

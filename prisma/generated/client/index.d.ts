@@ -1349,12 +1349,10 @@ export namespace Prisma {
 
   export type ProductCountOutputType = {
     models: number
-    inputOutputs: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     models?: boolean | ProductCountOutputTypeCountModelsArgs
-    inputOutputs?: boolean | ProductCountOutputTypeCountInputOutputsArgs
   }
 
   // Custom InputTypes
@@ -1375,14 +1373,6 @@ export namespace Prisma {
    */
   export type ProductCountOutputTypeCountModelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ModelWhereInput
-  }
-
-
-  /**
-   * ProductCountOutputType without action
-   */
-  export type ProductCountOutputTypeCountInputOutputsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: InputOutputWhereInput
   }
 
 
@@ -3464,7 +3454,6 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     models?: boolean | Product$modelsArgs<ExtArgs>
-    inputOutputs?: boolean | Product$inputOutputsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -3475,7 +3464,6 @@ export namespace Prisma {
 
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     models?: boolean | Product$modelsArgs<ExtArgs>
-    inputOutputs?: boolean | Product$inputOutputsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3484,7 +3472,6 @@ export namespace Prisma {
     name: "Product"
     objects: {
       models: Prisma.$ModelPayload<ExtArgs>[]
-      inputOutputs: Prisma.$InputOutputPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3856,8 +3843,6 @@ export namespace Prisma {
 
     models<T extends Product$modelsArgs<ExtArgs> = {}>(args?: Subset<T, Product$modelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    inputOutputs<T extends Product$inputOutputsArgs<ExtArgs> = {}>(args?: Subset<T, Product$inputOutputsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InputOutputPayload<ExtArgs>, T, 'findMany'> | Null>;
-
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4217,27 +4202,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[]
-  }
-
-
-  /**
-   * Product.inputOutputs
-   */
-  export type Product$inputOutputsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the InputOutput
-     */
-    select?: InputOutputSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: InputOutputInclude<ExtArgs> | null
-    where?: InputOutputWhereInput
-    orderBy?: InputOutputOrderByWithRelationInput | InputOutputOrderByWithRelationInput[]
-    cursor?: InputOutputWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: InputOutputScalarFieldEnum | InputOutputScalarFieldEnum[]
   }
 
 
@@ -7140,60 +7104,56 @@ export namespace Prisma {
 
   export type InputOutputAvgAggregateOutputType = {
     id: number | null
-    productId: number | null
   }
 
   export type InputOutputSumAggregateOutputType = {
     id: number | null
-    productId: number | null
   }
 
   export type InputOutputMinAggregateOutputType = {
     id: number | null
-    title: string | null
-    productId: number | null
+    input: string | null
+    output: string | null
   }
 
   export type InputOutputMaxAggregateOutputType = {
     id: number | null
-    title: string | null
-    productId: number | null
+    input: string | null
+    output: string | null
   }
 
   export type InputOutputCountAggregateOutputType = {
     id: number
-    title: number
-    productId: number
+    input: number
+    output: number
     _all: number
   }
 
 
   export type InputOutputAvgAggregateInputType = {
     id?: true
-    productId?: true
   }
 
   export type InputOutputSumAggregateInputType = {
     id?: true
-    productId?: true
   }
 
   export type InputOutputMinAggregateInputType = {
     id?: true
-    title?: true
-    productId?: true
+    input?: true
+    output?: true
   }
 
   export type InputOutputMaxAggregateInputType = {
     id?: true
-    title?: true
-    productId?: true
+    input?: true
+    output?: true
   }
 
   export type InputOutputCountAggregateInputType = {
     id?: true
-    title?: true
-    productId?: true
+    input?: true
+    output?: true
     _all?: true
   }
 
@@ -7285,8 +7245,8 @@ export namespace Prisma {
 
   export type InputOutputGroupByOutputType = {
     id: number
-    title: string
-    productId: number
+    input: string
+    output: string
     _count: InputOutputCountAggregateOutputType | null
     _avg: InputOutputAvgAggregateOutputType | null
     _sum: InputOutputSumAggregateOutputType | null
@@ -7310,31 +7270,24 @@ export namespace Prisma {
 
   export type InputOutputSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
-    productId?: boolean
-    product?: boolean | ProductDefaultArgs<ExtArgs>
+    input?: boolean
+    output?: boolean
   }, ExtArgs["result"]["inputOutput"]>
 
   export type InputOutputSelectScalar = {
     id?: boolean
-    title?: boolean
-    productId?: boolean
-  }
-
-  export type InputOutputInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductDefaultArgs<ExtArgs>
+    input?: boolean
+    output?: boolean
   }
 
 
   export type $InputOutputPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "InputOutput"
-    objects: {
-      product: Prisma.$ProductPayload<ExtArgs>
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      title: string
-      productId: number
+      input: string
+      output: string
     }, ExtArgs["result"]["inputOutput"]>
     composites: {}
   }
@@ -7700,7 +7653,6 @@ export namespace Prisma {
   export interface Prisma__InputOutputClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7731,8 +7683,8 @@ export namespace Prisma {
    */ 
   interface InputOutputFieldRefs {
     readonly id: FieldRef<"InputOutput", 'Int'>
-    readonly title: FieldRef<"InputOutput", 'String'>
-    readonly productId: FieldRef<"InputOutput", 'Int'>
+    readonly input: FieldRef<"InputOutput", 'String'>
+    readonly output: FieldRef<"InputOutput", 'String'>
   }
     
 
@@ -7746,10 +7698,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the InputOutput
      */
     select?: InputOutputSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: InputOutputInclude<ExtArgs> | null
     /**
      * Filter, which InputOutput to fetch.
      */
@@ -7766,10 +7714,6 @@ export namespace Prisma {
      */
     select?: InputOutputSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: InputOutputInclude<ExtArgs> | null
-    /**
      * Filter, which InputOutput to fetch.
      */
     where: InputOutputWhereUniqueInput
@@ -7784,10 +7728,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the InputOutput
      */
     select?: InputOutputSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: InputOutputInclude<ExtArgs> | null
     /**
      * Filter, which InputOutput to fetch.
      */
@@ -7834,10 +7774,6 @@ export namespace Prisma {
      */
     select?: InputOutputSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: InputOutputInclude<ExtArgs> | null
-    /**
      * Filter, which InputOutput to fetch.
      */
     where?: InputOutputWhereInput
@@ -7883,10 +7819,6 @@ export namespace Prisma {
      */
     select?: InputOutputSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: InputOutputInclude<ExtArgs> | null
-    /**
      * Filter, which InputOutputs to fetch.
      */
     where?: InputOutputWhereInput
@@ -7927,10 +7859,6 @@ export namespace Prisma {
      */
     select?: InputOutputSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: InputOutputInclude<ExtArgs> | null
-    /**
      * The data needed to create a InputOutput.
      */
     data: XOR<InputOutputCreateInput, InputOutputUncheckedCreateInput>
@@ -7957,10 +7885,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the InputOutput
      */
     select?: InputOutputSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: InputOutputInclude<ExtArgs> | null
     /**
      * The data needed to update a InputOutput.
      */
@@ -7996,10 +7920,6 @@ export namespace Prisma {
      */
     select?: InputOutputSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: InputOutputInclude<ExtArgs> | null
-    /**
      * The filter to search for the InputOutput to update in case it exists.
      */
     where: InputOutputWhereUniqueInput
@@ -8022,10 +7942,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the InputOutput
      */
     select?: InputOutputSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: InputOutputInclude<ExtArgs> | null
     /**
      * Filter which InputOutput to delete.
      */
@@ -8052,10 +7968,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the InputOutput
      */
     select?: InputOutputSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: InputOutputInclude<ExtArgs> | null
   }
 
 
@@ -8136,8 +8048,8 @@ export namespace Prisma {
 
   export const InputOutputScalarFieldEnum: {
     id: 'id',
-    title: 'title',
-    productId: 'productId'
+    input: 'input',
+    output: 'output'
   };
 
   export type InputOutputScalarFieldEnum = (typeof InputOutputScalarFieldEnum)[keyof typeof InputOutputScalarFieldEnum]
@@ -8334,14 +8246,12 @@ export namespace Prisma {
     id?: IntFilter<"Product"> | number
     title?: StringFilter<"Product"> | string
     models?: ModelListRelationFilter
-    inputOutputs?: InputOutputListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
     models?: ModelOrderByRelationAggregateInput
-    inputOutputs?: InputOutputOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -8351,7 +8261,6 @@ export namespace Prisma {
     NOT?: ProductWhereInput | ProductWhereInput[]
     title?: StringFilter<"Product"> | string
     models?: ModelListRelationFilter
-    inputOutputs?: InputOutputListRelationFilter
   }, "id">
 
   export type ProductOrderByWithAggregationInput = {
@@ -8529,16 +8438,14 @@ export namespace Prisma {
     OR?: InputOutputWhereInput[]
     NOT?: InputOutputWhereInput | InputOutputWhereInput[]
     id?: IntFilter<"InputOutput"> | number
-    title?: StringFilter<"InputOutput"> | string
-    productId?: IntFilter<"InputOutput"> | number
-    product?: XOR<ProductRelationFilter, ProductWhereInput>
+    input?: StringFilter<"InputOutput"> | string
+    output?: StringFilter<"InputOutput"> | string
   }
 
   export type InputOutputOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrder
-    productId?: SortOrder
-    product?: ProductOrderByWithRelationInput
+    input?: SortOrder
+    output?: SortOrder
   }
 
   export type InputOutputWhereUniqueInput = Prisma.AtLeast<{
@@ -8546,15 +8453,14 @@ export namespace Prisma {
     AND?: InputOutputWhereInput | InputOutputWhereInput[]
     OR?: InputOutputWhereInput[]
     NOT?: InputOutputWhereInput | InputOutputWhereInput[]
-    title?: StringFilter<"InputOutput"> | string
-    productId?: IntFilter<"InputOutput"> | number
-    product?: XOR<ProductRelationFilter, ProductWhereInput>
+    input?: StringFilter<"InputOutput"> | string
+    output?: StringFilter<"InputOutput"> | string
   }, "id">
 
   export type InputOutputOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrder
-    productId?: SortOrder
+    input?: SortOrder
+    output?: SortOrder
     _count?: InputOutputCountOrderByAggregateInput
     _avg?: InputOutputAvgOrderByAggregateInput
     _max?: InputOutputMaxOrderByAggregateInput
@@ -8567,8 +8473,8 @@ export namespace Prisma {
     OR?: InputOutputScalarWhereWithAggregatesInput[]
     NOT?: InputOutputScalarWhereWithAggregatesInput | InputOutputScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"InputOutput"> | number
-    title?: StringWithAggregatesFilter<"InputOutput"> | string
-    productId?: IntWithAggregatesFilter<"InputOutput"> | number
+    input?: StringWithAggregatesFilter<"InputOutput"> | string
+    output?: StringWithAggregatesFilter<"InputOutput"> | string
   }
 
   export type UserCreateInput = {
@@ -8694,27 +8600,23 @@ export namespace Prisma {
   export type ProductCreateInput = {
     title: string
     models?: ModelCreateNestedManyWithoutProductInput
-    inputOutputs?: InputOutputCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
     id?: number
     title: string
     models?: ModelUncheckedCreateNestedManyWithoutProductInput
-    inputOutputs?: InputOutputUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     models?: ModelUpdateManyWithoutProductNestedInput
-    inputOutputs?: InputOutputUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     models?: ModelUncheckedUpdateManyWithoutProductNestedInput
-    inputOutputs?: InputOutputUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
@@ -8861,41 +8763,42 @@ export namespace Prisma {
   }
 
   export type InputOutputCreateInput = {
-    title: string
-    product: ProductCreateNestedOneWithoutInputOutputsInput
+    input: string
+    output: string
   }
 
   export type InputOutputUncheckedCreateInput = {
     id?: number
-    title: string
-    productId: number
+    input: string
+    output: string
   }
 
   export type InputOutputUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    product?: ProductUpdateOneRequiredWithoutInputOutputsNestedInput
+    input?: StringFieldUpdateOperationsInput | string
+    output?: StringFieldUpdateOperationsInput | string
   }
 
   export type InputOutputUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    productId?: IntFieldUpdateOperationsInput | number
+    input?: StringFieldUpdateOperationsInput | string
+    output?: StringFieldUpdateOperationsInput | string
   }
 
   export type InputOutputCreateManyInput = {
     id?: number
-    title: string
-    productId: number
+    input: string
+    output: string
   }
 
   export type InputOutputUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
+    input?: StringFieldUpdateOperationsInput | string
+    output?: StringFieldUpdateOperationsInput | string
   }
 
   export type InputOutputUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    productId?: IntFieldUpdateOperationsInput | number
+    input?: StringFieldUpdateOperationsInput | string
+    output?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -9034,17 +8937,7 @@ export namespace Prisma {
     none?: ModelWhereInput
   }
 
-  export type InputOutputListRelationFilter = {
-    every?: InputOutputWhereInput
-    some?: InputOutputWhereInput
-    none?: InputOutputWhereInput
-  }
-
   export type ModelOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type InputOutputOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9195,30 +9088,28 @@ export namespace Prisma {
 
   export type InputOutputCountOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
-    productId?: SortOrder
+    input?: SortOrder
+    output?: SortOrder
   }
 
   export type InputOutputAvgOrderByAggregateInput = {
     id?: SortOrder
-    productId?: SortOrder
   }
 
   export type InputOutputMaxOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
-    productId?: SortOrder
+    input?: SortOrder
+    output?: SortOrder
   }
 
   export type InputOutputMinOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
-    productId?: SortOrder
+    input?: SortOrder
+    output?: SortOrder
   }
 
   export type InputOutputSumOrderByAggregateInput = {
     id?: SortOrder
-    productId?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -9240,25 +9131,11 @@ export namespace Prisma {
     connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
   }
 
-  export type InputOutputCreateNestedManyWithoutProductInput = {
-    create?: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput> | InputOutputCreateWithoutProductInput[] | InputOutputUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: InputOutputCreateOrConnectWithoutProductInput | InputOutputCreateOrConnectWithoutProductInput[]
-    createMany?: InputOutputCreateManyProductInputEnvelope
-    connect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
-  }
-
   export type ModelUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<ModelCreateWithoutProductInput, ModelUncheckedCreateWithoutProductInput> | ModelCreateWithoutProductInput[] | ModelUncheckedCreateWithoutProductInput[]
     connectOrCreate?: ModelCreateOrConnectWithoutProductInput | ModelCreateOrConnectWithoutProductInput[]
     createMany?: ModelCreateManyProductInputEnvelope
     connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-  }
-
-  export type InputOutputUncheckedCreateNestedManyWithoutProductInput = {
-    create?: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput> | InputOutputCreateWithoutProductInput[] | InputOutputUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: InputOutputCreateOrConnectWithoutProductInput | InputOutputCreateOrConnectWithoutProductInput[]
-    createMany?: InputOutputCreateManyProductInputEnvelope
-    connect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
   }
 
   export type ModelUpdateManyWithoutProductNestedInput = {
@@ -9275,20 +9152,6 @@ export namespace Prisma {
     deleteMany?: ModelScalarWhereInput | ModelScalarWhereInput[]
   }
 
-  export type InputOutputUpdateManyWithoutProductNestedInput = {
-    create?: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput> | InputOutputCreateWithoutProductInput[] | InputOutputUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: InputOutputCreateOrConnectWithoutProductInput | InputOutputCreateOrConnectWithoutProductInput[]
-    upsert?: InputOutputUpsertWithWhereUniqueWithoutProductInput | InputOutputUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: InputOutputCreateManyProductInputEnvelope
-    set?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
-    disconnect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
-    delete?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
-    connect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
-    update?: InputOutputUpdateWithWhereUniqueWithoutProductInput | InputOutputUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: InputOutputUpdateManyWithWhereWithoutProductInput | InputOutputUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: InputOutputScalarWhereInput | InputOutputScalarWhereInput[]
-  }
-
   export type ModelUncheckedUpdateManyWithoutProductNestedInput = {
     create?: XOR<ModelCreateWithoutProductInput, ModelUncheckedCreateWithoutProductInput> | ModelCreateWithoutProductInput[] | ModelUncheckedCreateWithoutProductInput[]
     connectOrCreate?: ModelCreateOrConnectWithoutProductInput | ModelCreateOrConnectWithoutProductInput[]
@@ -9301,20 +9164,6 @@ export namespace Prisma {
     update?: ModelUpdateWithWhereUniqueWithoutProductInput | ModelUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: ModelUpdateManyWithWhereWithoutProductInput | ModelUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: ModelScalarWhereInput | ModelScalarWhereInput[]
-  }
-
-  export type InputOutputUncheckedUpdateManyWithoutProductNestedInput = {
-    create?: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput> | InputOutputCreateWithoutProductInput[] | InputOutputUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: InputOutputCreateOrConnectWithoutProductInput | InputOutputCreateOrConnectWithoutProductInput[]
-    upsert?: InputOutputUpsertWithWhereUniqueWithoutProductInput | InputOutputUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: InputOutputCreateManyProductInputEnvelope
-    set?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
-    disconnect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
-    delete?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
-    connect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
-    update?: InputOutputUpdateWithWhereUniqueWithoutProductInput | InputOutputUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: InputOutputUpdateManyWithWhereWithoutProductInput | InputOutputUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: InputOutputScalarWhereInput | InputOutputScalarWhereInput[]
   }
 
   export type ProductCreateNestedOneWithoutModelsInput = {
@@ -9443,20 +9292,6 @@ export namespace Prisma {
     update?: XOR<XOR<CapacityUpdateToOneWithWhereWithoutHeightsInput, CapacityUpdateWithoutHeightsInput>, CapacityUncheckedUpdateWithoutHeightsInput>
   }
 
-  export type ProductCreateNestedOneWithoutInputOutputsInput = {
-    create?: XOR<ProductCreateWithoutInputOutputsInput, ProductUncheckedCreateWithoutInputOutputsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutInputOutputsInput
-    connect?: ProductWhereUniqueInput
-  }
-
-  export type ProductUpdateOneRequiredWithoutInputOutputsNestedInput = {
-    create?: XOR<ProductCreateWithoutInputOutputsInput, ProductUncheckedCreateWithoutInputOutputsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutInputOutputsInput
-    upsert?: ProductUpsertWithoutInputOutputsInput
-    connect?: ProductWhereUniqueInput
-    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutInputOutputsInput, ProductUpdateWithoutInputOutputsInput>, ProductUncheckedUpdateWithoutInputOutputsInput>
-  }
-
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9547,25 +9382,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type InputOutputCreateWithoutProductInput = {
-    title: string
-  }
-
-  export type InputOutputUncheckedCreateWithoutProductInput = {
-    id?: number
-    title: string
-  }
-
-  export type InputOutputCreateOrConnectWithoutProductInput = {
-    where: InputOutputWhereUniqueInput
-    create: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput>
-  }
-
-  export type InputOutputCreateManyProductInputEnvelope = {
-    data: InputOutputCreateManyProductInput | InputOutputCreateManyProductInput[]
-    skipDuplicates?: boolean
-  }
-
   export type ModelUpsertWithWhereUniqueWithoutProductInput = {
     where: ModelWhereUniqueInput
     update: XOR<ModelUpdateWithoutProductInput, ModelUncheckedUpdateWithoutProductInput>
@@ -9591,40 +9407,13 @@ export namespace Prisma {
     productId?: IntFilter<"Model"> | number
   }
 
-  export type InputOutputUpsertWithWhereUniqueWithoutProductInput = {
-    where: InputOutputWhereUniqueInput
-    update: XOR<InputOutputUpdateWithoutProductInput, InputOutputUncheckedUpdateWithoutProductInput>
-    create: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput>
-  }
-
-  export type InputOutputUpdateWithWhereUniqueWithoutProductInput = {
-    where: InputOutputWhereUniqueInput
-    data: XOR<InputOutputUpdateWithoutProductInput, InputOutputUncheckedUpdateWithoutProductInput>
-  }
-
-  export type InputOutputUpdateManyWithWhereWithoutProductInput = {
-    where: InputOutputScalarWhereInput
-    data: XOR<InputOutputUpdateManyMutationInput, InputOutputUncheckedUpdateManyWithoutProductInput>
-  }
-
-  export type InputOutputScalarWhereInput = {
-    AND?: InputOutputScalarWhereInput | InputOutputScalarWhereInput[]
-    OR?: InputOutputScalarWhereInput[]
-    NOT?: InputOutputScalarWhereInput | InputOutputScalarWhereInput[]
-    id?: IntFilter<"InputOutput"> | number
-    title?: StringFilter<"InputOutput"> | string
-    productId?: IntFilter<"InputOutput"> | number
-  }
-
   export type ProductCreateWithoutModelsInput = {
     title: string
-    inputOutputs?: InputOutputCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutModelsInput = {
     id?: number
     title: string
-    inputOutputs?: InputOutputUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutModelsInput = {
@@ -9666,13 +9455,11 @@ export namespace Prisma {
 
   export type ProductUpdateWithoutModelsInput = {
     title?: StringFieldUpdateOperationsInput | string
-    inputOutputs?: InputOutputUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutModelsInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    inputOutputs?: InputOutputUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type CapacityUpsertWithWhereUniqueWithoutModelInput = {
@@ -9823,50 +9610,7 @@ export namespace Prisma {
     modelId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type ProductCreateWithoutInputOutputsInput = {
-    title: string
-    models?: ModelCreateNestedManyWithoutProductInput
-  }
-
-  export type ProductUncheckedCreateWithoutInputOutputsInput = {
-    id?: number
-    title: string
-    models?: ModelUncheckedCreateNestedManyWithoutProductInput
-  }
-
-  export type ProductCreateOrConnectWithoutInputOutputsInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutInputOutputsInput, ProductUncheckedCreateWithoutInputOutputsInput>
-  }
-
-  export type ProductUpsertWithoutInputOutputsInput = {
-    update: XOR<ProductUpdateWithoutInputOutputsInput, ProductUncheckedUpdateWithoutInputOutputsInput>
-    create: XOR<ProductCreateWithoutInputOutputsInput, ProductUncheckedCreateWithoutInputOutputsInput>
-    where?: ProductWhereInput
-  }
-
-  export type ProductUpdateToOneWithWhereWithoutInputOutputsInput = {
-    where?: ProductWhereInput
-    data: XOR<ProductUpdateWithoutInputOutputsInput, ProductUncheckedUpdateWithoutInputOutputsInput>
-  }
-
-  export type ProductUpdateWithoutInputOutputsInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    models?: ModelUpdateManyWithoutProductNestedInput
-  }
-
-  export type ProductUncheckedUpdateWithoutInputOutputsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    models?: ModelUncheckedUpdateManyWithoutProductNestedInput
-  }
-
   export type ModelCreateManyProductInput = {
-    id?: number
-    title: string
-  }
-
-  export type InputOutputCreateManyProductInput = {
     id?: number
     title: string
   }
@@ -9883,20 +9627,6 @@ export namespace Prisma {
   }
 
   export type ModelUncheckedUpdateManyWithoutProductInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type InputOutputUpdateWithoutProductInput = {
-    title?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type InputOutputUncheckedUpdateWithoutProductInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type InputOutputUncheckedUpdateManyWithoutProductInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
   }
