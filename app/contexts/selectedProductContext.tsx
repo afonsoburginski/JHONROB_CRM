@@ -1,5 +1,6 @@
+//selectedProductContext.tsx
 'use client'
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 interface Product {
     id: number;
@@ -11,9 +12,17 @@ interface SelectedProductContextData {
   setSelectedProduct: (product: Product) => void;
 }
 
-const SelectedProductContext = createContext<SelectedProductContextData | undefined>(undefined);
+// Inclua um valor inicial para o selectedProduct no contexto
+const SelectedProductContext = createContext<SelectedProductContextData>({
+  selectedProduct: null,
+  setSelectedProduct: () => {},
+});
 
-export const SelectedProductProvider: React.FC = ({ children }) => {
+interface SelectedProductProviderProps {
+  children: ReactNode;
+}
+
+export const SelectedProductProvider: React.FC<SelectedProductProviderProps> = ({ children }) => {
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
     const selectProduct = (product: Product) => {

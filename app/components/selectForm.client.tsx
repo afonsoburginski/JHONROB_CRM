@@ -1,8 +1,8 @@
+//selectForm.client.tsx
 'use client'
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
-import { fetchProducts, fetchInputOutputOptions } from '../data';
 
 interface Product {
   id: string;
@@ -34,21 +34,26 @@ interface InputOutput {
 }
 
 export default function SelectFormClient() {
-  const [products, setProducts] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [selectedModel, setSelectedModel] = useState(null);
-  const [selectedCapacity, setSelectedCapacity] = useState(null);
-  const [selectedHeight, setSelectedHeight] = useState(null);
-  const [selectedPower, setSelectedPower] = useState(null);
-  const [selectedInput, setSelectedInput] = useState(null);
-  const [selectedOutput, setSelectedOutput] = useState(null);
-  const [inputsAndOutputs, setInputsAndOutputs] = useState([]);
+  console.log('Renderizando SelectFormClient')
+  
+  const [products, setProducts] = useState<Product[]>([]);
+  const { selectedProduct, setSelectedProduct } = useSelectedProduct();
+  console.log('selectedProduct após a inicialização')
+  const [selectedModel, setSelectedModel] = useState<Model | null>(null);
+  const [selectedCapacity, setSelectedCapacity] = useState<Capacity | null>(null);
+  const [selectedHeight, setSelectedHeight] = useState<Height | null>(null);
+  const [selectedPower, setSelectedPower] = useState<string | null>(null);
+  const [selectedInput, setSelectedInput] = useState<InputOutput | null>(null);
+  const [selectedOutput, setSelectedOutput] = useState<InputOutput | null>(null);
+  const [inputsAndOutputs, setInputsAndOutputs] = useState<InputOutput[]>([]);
 
   useEffect(() => {
+    console.log('Executando useEffect')
     const getData = async () => {
       const response = await fetch('http://localhost:3000/api/products');
       const data = await response.json();
-      setProducts(data.products);
+      console.log('Dados recebidos:', data)
+      setProducts(data);
       setInputsAndOutputs(data.inputsAndOutputs);
     };
   
@@ -56,7 +61,9 @@ export default function SelectFormClient() {
   }, []);
 
   const handleProductChange = (selectedOption: any) => {
-    setSelectedProduct(selectedOption);
+    console.log('handleProductChange chamado com:', selectedOption)
+    const selectedProduct = products.find(product => product.id === selectedOption.value);
+    setSelectedProduct(selectedProduct || null);
     setSelectedModel(null);
     setSelectedCapacity(null);
     setSelectedHeight(null);
@@ -64,61 +71,63 @@ export default function SelectFormClient() {
   };
   
   const handleModelChange = (selectedOption: any) => {
-    setSelectedModel(selectedOption);
+    const selectedModel = selectedProduct?.models.find(model => model.id === selectedOption.value);
+    setSelectedModel(selectedModel);
     setSelectedCapacity(null);
     setSelectedHeight(null);
     setSelectedPower(null);
   };
   
   const handleCapacityChange = (selectedOption: any) => {
-    setSelectedCapacity(selectedOption);
+    const selectedCapacity = selectedModel?.capacities.find(capacity => capacity.id === selectedOption.value);
+    setSelectedCapacity(selectedCapacity);
     setSelectedHeight(null);
     setSelectedPower(null);
   };
   
   const handleHeightChange = (selectedOption: any) => {
-    setSelectedHeight(selectedOption);
-  
-    const selectedPower = selectedOption?.power || null;
-    setSelectedPower(selectedPower?.value || null);
+    const selectedHeight = selectedCapacity?.heights.find(height => height.id === selectedOption.value);
+    setSelectedHeight(selectedHeight);
+    setSelectedPower(selectedHeight?.power || null);
   };
   
   const handlePowerChange = (selectedOption: any) => {
-    setSelectedPower(selectedOption?.value || null);
-    setSelectedPower(selectedOption);
+    setSelectedPower(selectedOption.value);
+  };
+  
+  const handleInputChange = (selectedOption: any) => {
+    setSelectedInput(selectedOption.value);
+  };
+  
+  const handleOutputChange = (selectedOption: any) => {
+    setSelectedOutput(selectedOption.value);
   };
 
-  const productOptions = products.map((product) => ({
-    value: product,
-    label: product.title,
-  }));
-  
-  const inputOptions = inputsAndOutputs
-    .filter((item) => item.type === 'input')
-    .map((input) => ({ value: input.id, label: input.title }));
-  
-  const outputOptions = inputsAndOutputs
-    .filter((item) => item.type === 'output')
-    .map((output) => ({ value: output.id, label: output.title }));
-
   const handleSave = async () => {
+    if (!selectedProduct || !selectedModel || !selectedCapacity || !selectedHeight || !selectedPower || !selectedInput || !selectedOutput) {
+      console.error('Todos os campos devem ser preenchidos antes de salvar o produto');
+      return;
+    }
+
     try {
       const savedProduct: Product = {
-        id: '',
-        title: selectedProduct?.title || '',
+        id: selectedProduct.id,
+        title: selectedProduct.title,
         models: [
           {
-            id: '',
-            title: selectedModel?.title || '',
+            id: selectedModel.id,
+            title: selectedModel.title,
             capacities: [
               {
-                id: '',
-                title: selectedCapacity?.title || '',
+                id: selectedCapacity.id,
+                title: selectedCapacity.title,
                 heights: [
                   {
-                    id: '',
-                    title: selectedHeight?.title || '',
-                    powers: [selectedPower || ''],
+                    id: selectedHeight.id,
+                    title: selectedHeight.title,
+                    powers: [selectedPower],
+                    inputs: [selectedInput],
+                    outputs: [selectedOutput],
                   },
                 ],
               },
@@ -126,7 +135,7 @@ export default function SelectFormClient() {
           },
         ],
       };
-  
+
       console.log('Produto salvo:', savedProduct);
       setSelectedProduct(null);
       setSelectedModel(null);
@@ -139,57 +148,34 @@ export default function SelectFormClient() {
       console.error('Erro ao salvar o produto:', error);
     }
   };
-  
-  const { setSelectedProduct: setSelectedProductContext } = useSelectedProduct();
-  const handleProductSelect = (product: Product) => {
-    setSelectedProductContext(product);
-    setSelectedProduct(product);
-    setSelectedModel(null);
-    setSelectedCapacity(null);
-    setSelectedHeight(null);
-    setSelectedPower(null);
-    setSelectedInput(null);
-    setSelectedOutput(null);
-    handleSave();
-  };
 
   return (
     <>
       <form className='flex flex-col w-full max-w-screen-xl gap-5'>
         <div className='flex grid-cols-4 gap-5'>
-
           <div className='grid-cols-1 w-full'>
             <label>Produto</label>
             <Select
-              value={selectedProduct}
+              value={selectedProduct ? { value: selectedProduct.id, label: selectedProduct.title } : null}
               onChange={handleProductChange}
-              options={productOptions.map((item) => ({
-                value: item,
-                label: item.title,
-              }))}
+              options={products?.map((item) => ({ value: item.id, label: item.title }))}
             />
           </div>
           <div className='grid-cols-1 w-full'>
             <label>Modelo</label>
             <Select
-              value={selectedModel}
+              value={selectedModel ? { value: selectedModel.id, label: selectedModel.title } : null}
               onChange={handleModelChange}
-              options={selectedProduct ? selectedProduct.models.map((model) => ({
-                value: model,
-                label: model.title,
-              })) : []}
-              isDisabled={!selectedProduct}
+              options={(selectedProduct?.models || []).map((model) => ({ value: model.id, label: model.title }))}
+              // isDisabled={!selectedProduct}
             />
           </div>
           <div className='grid-cols-1 w-full'>
             <label>Capacidade</label>
             <Select
-              value={selectedCapacity}
+              value={selectedCapacity ? { value: selectedCapacity.id, label: selectedCapacity.title } : null}
               onChange={handleCapacityChange}
-              options={selectedModel ? selectedModel.capacities.map((capacity) => ({
-                value: capacity,
-                label: capacity.title,
-              })) : []}
+              options={(selectedModel?.capacities || []).map((capacity) => ({ value: capacity.id, label: capacity.title }))}
               isDisabled={!selectedModel}
             />
           </div>
@@ -199,44 +185,37 @@ export default function SelectFormClient() {
           <div className='grid-cols-1 w-full'>
             <label>Altura</label>
             <Select
-              value={selectedHeight}
+              value={selectedHeight ? { value: selectedHeight.id, label: selectedHeight.title } : null}
               onChange={handleHeightChange}
-              options={selectedCapacity ? selectedCapacity.heights.map((height) => ({
-                value: height,
-                label: height.title,
-                powers: height.powers,
-              })) : []}
+              options={(selectedCapacity?.heights || []).map((height) => ({ value: height.id, label: height.title }))}
               isDisabled={!selectedCapacity}
             />
           </div>
           <div className='grid-cols-1 w-full'>
             <label>Potência</label>
             <Select
-              value={selectedPower}
+              value={selectedPower ? { value: selectedPower, label: selectedPower } : null}
               onChange={handlePowerChange}
-              options={selectedHeight ? selectedHeight.powers.map((power) => ({
-                value: power,
-                label: power,
-              })) : []}
+              options={(selectedHeight?.powers || []).map((power) => ({ value: power, label: power }))}
               isDisabled={!selectedHeight}
             />
           </div>
           <div className='grid-cols-1 w-full'>
             <label>Entrada</label>
             <Select
-              value={selectedInput}
-              options={inputOptions}
-              onChange={(selectedOption) => setSelectedInput(selectedOption)}
+              value={selectedInput ? { value: selectedInput, label: selectedInput } : null}
+              options={(inputsAndOutputs || []).filter(io => io.type === 'input').map((item) => ({ value: item.title, label: item.title }))}
+              onChange={handleInputChange}
               isDisabled={!selectedPower}
             />
           </div>
           <div className='grid-cols-1 w-full'>
             <label>Saída</label>
             <Select
-              value={selectedOutput}
-              options={outputOptions}
-              onChange={(selectedOption) => setSelectedOutput(selectedOption)}
-              isDisabled={!selectedInput}
+              value={selectedOutput ? { value: selectedOutput, label: selectedOutput } : null}
+              onChange={handleOutputChange}
+              options={(inputsAndOutputs || []).filter(io => io.type === 'output').map((item) => ({ value: item.title, label: item.title }))}
+              isDisabled={!selectedPower}
             />
           </div>
         </div>

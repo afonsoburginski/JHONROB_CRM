@@ -14,10 +14,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Contract
+ * Model User
  * 
  */
-export type Contract = $Result.DefaultSelection<Prisma.$ContractPayload>
+export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
  * Model Client
  * 
@@ -48,11 +48,6 @@ export type Height = $Result.DefaultSelection<Prisma.$HeightPayload>
  * 
  */
 export type InputOutput = $Result.DefaultSelection<Prisma.$InputOutputPayload>
-/**
- * Model User
- * 
- */
-export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -61,8 +56,8 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Contracts
- * const contracts = await prisma.contract.findMany()
+ * // Fetch zero or more Users
+ * const users = await prisma.user.findMany()
  * ```
  *
  * 
@@ -82,8 +77,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Contracts
-   * const contracts = await prisma.contract.findMany()
+   * // Fetch zero or more Users
+   * const users = await prisma.user.findMany()
    * ```
    *
    * 
@@ -177,14 +172,14 @@ export class PrismaClient<
   $extends: $Extensions.ExtendsHook<'extends', Prisma.TypeMapCb, ExtArgs>
 
       /**
-   * `prisma.contract`: Exposes CRUD operations for the **Contract** model.
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Contracts
-    * const contracts = await prisma.contract.findMany()
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
     * ```
     */
-  get contract(): Prisma.ContractDelegate<ExtArgs>;
+  get user(): Prisma.UserDelegate<ExtArgs>;
 
   /**
    * `prisma.client`: Exposes CRUD operations for the **Client** model.
@@ -245,16 +240,6 @@ export class PrismaClient<
     * ```
     */
   get inputOutput(): Prisma.InputOutputDelegate<ExtArgs>;
-
-  /**
-   * `prisma.user`: Exposes CRUD operations for the **User** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Users
-    * const users = await prisma.user.findMany()
-    * ```
-    */
-  get user(): Prisma.UserDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -725,14 +710,13 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Contract: 'Contract',
+    User: 'User',
     Client: 'Client',
     Product: 'Product',
     Model: 'Model',
     Capacity: 'Capacity',
     Height: 'Height',
-    InputOutput: 'InputOutput',
-    User: 'User'
+    InputOutput: 'InputOutput'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -749,73 +733,73 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'contract' | 'client' | 'product' | 'model' | 'capacity' | 'height' | 'inputOutput' | 'user'
+      modelProps: 'user' | 'client' | 'product' | 'model' | 'capacity' | 'height' | 'inputOutput'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
-      Contract: {
-        payload: Prisma.$ContractPayload<ExtArgs>
-        fields: Prisma.ContractFieldRefs
+      User: {
+        payload: Prisma.$UserPayload<ExtArgs>
+        fields: Prisma.UserFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ContractFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ContractPayload> | null
+            args: Prisma.UserFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ContractFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           findFirst: {
-            args: Prisma.ContractFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ContractPayload> | null
+            args: Prisma.UserFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ContractFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           findMany: {
-            args: Prisma.ContractFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ContractPayload>[]
+            args: Prisma.UserFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
           }
           create: {
-            args: Prisma.ContractCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+            args: Prisma.UserCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           createMany: {
-            args: Prisma.ContractCreateManyArgs<ExtArgs>,
+            args: Prisma.UserCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.ContractDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+            args: Prisma.UserDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           update: {
-            args: Prisma.ContractUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+            args: Prisma.UserUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           deleteMany: {
-            args: Prisma.ContractDeleteManyArgs<ExtArgs>,
+            args: Prisma.UserDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.ContractUpdateManyArgs<ExtArgs>,
+            args: Prisma.UserUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.ContractUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+            args: Prisma.UserUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           aggregate: {
-            args: Prisma.ContractAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateContract>
+            args: Prisma.UserAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateUser>
           }
           groupBy: {
-            args: Prisma.ContractGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<ContractGroupByOutputType>[]
+            args: Prisma.UserGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<UserGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ContractCountArgs<ExtArgs>,
-            result: $Utils.Optional<ContractCountAggregateOutputType> | number
+            args: Prisma.UserCountArgs<ExtArgs>,
+            result: $Utils.Optional<UserCountAggregateOutputType> | number
           }
         }
       }
@@ -1215,72 +1199,6 @@ export namespace Prisma {
           }
         }
       }
-      User: {
-        payload: Prisma.$UserPayload<ExtArgs>
-        fields: Prisma.UserFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.UserFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          findFirst: {
-            args: Prisma.UserFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          findMany: {
-            args: Prisma.UserFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
-          }
-          create: {
-            args: Prisma.UserCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          createMany: {
-            args: Prisma.UserCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.UserDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          update: {
-            args: Prisma.UserUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          deleteMany: {
-            args: Prisma.UserDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.UserUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.UserUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          aggregate: {
-            args: Prisma.UserAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateUser>
-          }
-          groupBy: {
-            args: Prisma.UserGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<UserGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.UserCountArgs<ExtArgs>,
-            result: $Utils.Optional<UserCountAggregateOutputType> | number
-          }
-        }
-      }
     }
   } & {
     other: {
@@ -1426,51 +1344,17 @@ export namespace Prisma {
 
 
   /**
-   * Count Type ClientCountOutputType
-   */
-
-  export type ClientCountOutputType = {
-    contracts: number
-  }
-
-  export type ClientCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contracts?: boolean | ClientCountOutputTypeCountContractsArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * ClientCountOutputType without action
-   */
-  export type ClientCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ClientCountOutputType
-     */
-    select?: ClientCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * ClientCountOutputType without action
-   */
-  export type ClientCountOutputTypeCountContractsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ContractWhereInput
-  }
-
-
-
-  /**
    * Count Type ProductCountOutputType
    */
 
   export type ProductCountOutputType = {
-    contracts: number
     models: number
+    inputOutputs: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contracts?: boolean | ProductCountOutputTypeCountContractsArgs
     models?: boolean | ProductCountOutputTypeCountModelsArgs
+    inputOutputs?: boolean | ProductCountOutputTypeCountInputOutputsArgs
   }
 
   // Custom InputTypes
@@ -1489,16 +1373,16 @@ export namespace Prisma {
   /**
    * ProductCountOutputType without action
    */
-  export type ProductCountOutputTypeCountContractsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ContractWhereInput
+  export type ProductCountOutputTypeCountModelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModelWhereInput
   }
 
 
   /**
    * ProductCountOutputType without action
    */
-  export type ProductCountOutputTypeCountModelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ModelWhereInput
+  export type ProductCountOutputTypeCountInputOutputsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InputOutputWhereInput
   }
 
 
@@ -1572,467 +1456,371 @@ export namespace Prisma {
 
 
   /**
-   * Count Type InputOutputCountOutputType
-   */
-
-  export type InputOutputCountOutputType = {
-    contractsAsInput: number
-    contractsAsOutput: number
-  }
-
-  export type InputOutputCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contractsAsInput?: boolean | InputOutputCountOutputTypeCountContractsAsInputArgs
-    contractsAsOutput?: boolean | InputOutputCountOutputTypeCountContractsAsOutputArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * InputOutputCountOutputType without action
-   */
-  export type InputOutputCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the InputOutputCountOutputType
-     */
-    select?: InputOutputCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * InputOutputCountOutputType without action
-   */
-  export type InputOutputCountOutputTypeCountContractsAsInputArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ContractWhereInput
-  }
-
-
-  /**
-   * InputOutputCountOutputType without action
-   */
-  export type InputOutputCountOutputTypeCountContractsAsOutputArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ContractWhereInput
-  }
-
-
-
-  /**
    * Models
    */
 
   /**
-   * Model Contract
+   * Model User
    */
 
-  export type AggregateContract = {
-    _count: ContractCountAggregateOutputType | null
-    _avg: ContractAvgAggregateOutputType | null
-    _sum: ContractSumAggregateOutputType | null
-    _min: ContractMinAggregateOutputType | null
-    _max: ContractMaxAggregateOutputType | null
+  export type AggregateUser = {
+    _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
   }
 
-  export type ContractAvgAggregateOutputType = {
+  export type UserAvgAggregateOutputType = {
     id: number | null
-    clientId: number | null
-    productId: number | null
-    inputId: number | null
-    outputId: number | null
   }
 
-  export type ContractSumAggregateOutputType = {
+  export type UserSumAggregateOutputType = {
     id: number | null
-    clientId: number | null
-    productId: number | null
-    inputId: number | null
-    outputId: number | null
   }
 
-  export type ContractMinAggregateOutputType = {
+  export type UserMinAggregateOutputType = {
     id: number | null
-    clientId: number | null
-    productId: number | null
-    inputId: number | null
-    outputId: number | null
-    createdAt: Date | null
+    name: string | null
+    username: string | null
+    email: string | null
   }
 
-  export type ContractMaxAggregateOutputType = {
+  export type UserMaxAggregateOutputType = {
     id: number | null
-    clientId: number | null
-    productId: number | null
-    inputId: number | null
-    outputId: number | null
-    createdAt: Date | null
+    name: string | null
+    username: string | null
+    email: string | null
   }
 
-  export type ContractCountAggregateOutputType = {
+  export type UserCountAggregateOutputType = {
     id: number
-    clientId: number
-    productId: number
-    inputId: number
-    outputId: number
-    createdAt: number
+    name: number
+    username: number
+    email: number
     _all: number
   }
 
 
-  export type ContractAvgAggregateInputType = {
+  export type UserAvgAggregateInputType = {
     id?: true
-    clientId?: true
-    productId?: true
-    inputId?: true
-    outputId?: true
   }
 
-  export type ContractSumAggregateInputType = {
+  export type UserSumAggregateInputType = {
     id?: true
-    clientId?: true
-    productId?: true
-    inputId?: true
-    outputId?: true
   }
 
-  export type ContractMinAggregateInputType = {
+  export type UserMinAggregateInputType = {
     id?: true
-    clientId?: true
-    productId?: true
-    inputId?: true
-    outputId?: true
-    createdAt?: true
+    name?: true
+    username?: true
+    email?: true
   }
 
-  export type ContractMaxAggregateInputType = {
+  export type UserMaxAggregateInputType = {
     id?: true
-    clientId?: true
-    productId?: true
-    inputId?: true
-    outputId?: true
-    createdAt?: true
+    name?: true
+    username?: true
+    email?: true
   }
 
-  export type ContractCountAggregateInputType = {
+  export type UserCountAggregateInputType = {
     id?: true
-    clientId?: true
-    productId?: true
-    inputId?: true
-    outputId?: true
-    createdAt?: true
+    name?: true
+    username?: true
+    email?: true
     _all?: true
   }
 
-  export type ContractAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Contract to aggregate.
+     * Filter which User to aggregate.
      */
-    where?: ContractWhereInput
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Contracts to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ContractWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Contracts from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Contracts.
+     * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Contracts
+     * Count returned Users
     **/
-    _count?: true | ContractCountAggregateInputType
+    _count?: true | UserCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: ContractAvgAggregateInputType
+    _avg?: UserAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: ContractSumAggregateInputType
+    _sum?: UserSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ContractMinAggregateInputType
+    _min?: UserMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ContractMaxAggregateInputType
+    _max?: UserMaxAggregateInputType
   }
 
-  export type GetContractAggregateType<T extends ContractAggregateArgs> = {
-        [P in keyof T & keyof AggregateContract]: P extends '_count' | 'count'
+  export type GetUserAggregateType<T extends UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateContract[P]>
-      : GetScalarType<T[P], AggregateContract[P]>
+        : GetScalarType<T[P], AggregateUser[P]>
+      : GetScalarType<T[P], AggregateUser[P]>
   }
 
 
 
 
-  export type ContractGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ContractWhereInput
-    orderBy?: ContractOrderByWithAggregationInput | ContractOrderByWithAggregationInput[]
-    by: ContractScalarFieldEnum[] | ContractScalarFieldEnum
-    having?: ContractScalarWhereWithAggregatesInput
+  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum
+    having?: UserScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ContractCountAggregateInputType | true
-    _avg?: ContractAvgAggregateInputType
-    _sum?: ContractSumAggregateInputType
-    _min?: ContractMinAggregateInputType
-    _max?: ContractMaxAggregateInputType
+    _count?: UserCountAggregateInputType | true
+    _avg?: UserAvgAggregateInputType
+    _sum?: UserSumAggregateInputType
+    _min?: UserMinAggregateInputType
+    _max?: UserMaxAggregateInputType
   }
 
-  export type ContractGroupByOutputType = {
+  export type UserGroupByOutputType = {
     id: number
-    clientId: number | null
-    productId: number
-    inputId: number
-    outputId: number
-    createdAt: Date
-    _count: ContractCountAggregateOutputType | null
-    _avg: ContractAvgAggregateOutputType | null
-    _sum: ContractSumAggregateOutputType | null
-    _min: ContractMinAggregateOutputType | null
-    _max: ContractMaxAggregateOutputType | null
+    name: string
+    username: string
+    email: string
+    _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
   }
 
-  type GetContractGroupByPayload<T extends ContractGroupByArgs> = Prisma.PrismaPromise<
+  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<ContractGroupByOutputType, T['by']> &
+      PickEnumerable<UserGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ContractGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ContractGroupByOutputType[P]>
-            : GetScalarType<T[P], ContractGroupByOutputType[P]>
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
+            : GetScalarType<T[P], UserGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type ContractSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    clientId?: boolean
-    productId?: boolean
-    inputId?: boolean
-    outputId?: boolean
-    createdAt?: boolean
-    client?: boolean | Contract$clientArgs<ExtArgs>
-    product?: boolean | ProductDefaultArgs<ExtArgs>
-    input?: boolean | InputOutputDefaultArgs<ExtArgs>
-    output?: boolean | InputOutputDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["contract"]>
+    name?: boolean
+    username?: boolean
+    email?: boolean
+  }, ExtArgs["result"]["user"]>
 
-  export type ContractSelectScalar = {
+  export type UserSelectScalar = {
     id?: boolean
-    clientId?: boolean
-    productId?: boolean
-    inputId?: boolean
-    outputId?: boolean
-    createdAt?: boolean
-  }
-
-  export type ContractInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    client?: boolean | Contract$clientArgs<ExtArgs>
-    product?: boolean | ProductDefaultArgs<ExtArgs>
-    input?: boolean | InputOutputDefaultArgs<ExtArgs>
-    output?: boolean | InputOutputDefaultArgs<ExtArgs>
+    name?: boolean
+    username?: boolean
+    email?: boolean
   }
 
 
-  export type $ContractPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Contract"
-    objects: {
-      client: Prisma.$ClientPayload<ExtArgs> | null
-      product: Prisma.$ProductPayload<ExtArgs>
-      input: Prisma.$InputOutputPayload<ExtArgs>
-      output: Prisma.$InputOutputPayload<ExtArgs>
-    }
+  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "User"
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      clientId: number | null
-      productId: number
-      inputId: number
-      outputId: number
-      createdAt: Date
-    }, ExtArgs["result"]["contract"]>
+      name: string
+      username: string
+      email: string
+    }, ExtArgs["result"]["user"]>
     composites: {}
   }
 
 
-  type ContractGetPayload<S extends boolean | null | undefined | ContractDefaultArgs> = $Result.GetResult<Prisma.$ContractPayload, S>
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
 
-  type ContractCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<ContractFindManyArgs, 'select' | 'include' | 'distinct' > & {
-      select?: ContractCountAggregateInputType | true
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: UserCountAggregateInputType | true
     }
 
-  export interface ContractDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Contract'], meta: { name: 'Contract' } }
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
     /**
-     * Find zero or one Contract that matches the filter.
-     * @param {ContractFindUniqueArgs} args - Arguments to find a Contract
+     * Find zero or one User that matches the filter.
+     * @param {UserFindUniqueArgs} args - Arguments to find a User
      * @example
-     * // Get one Contract
-     * const contract = await prisma.contract.findUnique({
+     * // Get one User
+     * const user = await prisma.user.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends ContractFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, ContractFindUniqueArgs<ExtArgs>>
-    ): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+    findUnique<T extends UserFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Contract that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one User that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {ContractFindUniqueOrThrowArgs} args - Arguments to find a Contract
+     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
      * @example
-     * // Get one Contract
-     * const contract = await prisma.contract.findUniqueOrThrow({
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends ContractFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContractFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
-     * Find the first Contract that matches the filter.
+     * Find the first User that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContractFindFirstArgs} args - Arguments to find a Contract
+     * @param {UserFindFirstArgs} args - Arguments to find a User
      * @example
-     * // Get one Contract
-     * const contract = await prisma.contract.findFirst({
+     * // Get one User
+     * const user = await prisma.user.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends ContractFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContractFindFirstArgs<ExtArgs>>
-    ): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+    findFirst<T extends UserFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
-     * Find the first Contract that matches the filter or
+     * Find the first User that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContractFindFirstOrThrowArgs} args - Arguments to find a Contract
+     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
      * @example
-     * // Get one Contract
-     * const contract = await prisma.contract.findFirstOrThrow({
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends ContractFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContractFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
-     * Find zero or more Contracts that matches the filter.
+     * Find zero or more Users that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContractFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {UserFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Contracts
-     * const contracts = await prisma.contract.findMany()
+     * // Get all Users
+     * const users = await prisma.user.findMany()
      * 
-     * // Get first 10 Contracts
-     * const contracts = await prisma.contract.findMany({ take: 10 })
+     * // Get first 10 Users
+     * const users = await prisma.user.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const contractWithIdOnly = await prisma.contract.findMany({ select: { id: true } })
+     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends ContractFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContractFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'findMany'>>
+    findMany<T extends UserFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findMany'>>
 
     /**
-     * Create a Contract.
-     * @param {ContractCreateArgs} args - Arguments to create a Contract.
+     * Create a User.
+     * @param {UserCreateArgs} args - Arguments to create a User.
      * @example
-     * // Create one Contract
-     * const Contract = await prisma.contract.create({
+     * // Create one User
+     * const User = await prisma.user.create({
      *   data: {
-     *     // ... data to create a Contract
+     *     // ... data to create a User
      *   }
      * })
      * 
     **/
-    create<T extends ContractCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, ContractCreateArgs<ExtArgs>>
-    ): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+    create<T extends UserCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, UserCreateArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
-     * Create many Contracts.
-     *     @param {ContractCreateManyArgs} args - Arguments to create many Contracts.
+     * Create many Users.
+     *     @param {UserCreateManyArgs} args - Arguments to create many Users.
      *     @example
-     *     // Create many Contracts
-     *     const contract = await prisma.contract.createMany({
+     *     // Create many Users
+     *     const user = await prisma.user.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends ContractCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContractCreateManyArgs<ExtArgs>>
+    createMany<T extends UserCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Contract.
-     * @param {ContractDeleteArgs} args - Arguments to delete one Contract.
+     * Delete a User.
+     * @param {UserDeleteArgs} args - Arguments to delete one User.
      * @example
-     * // Delete one Contract
-     * const Contract = await prisma.contract.delete({
+     * // Delete one User
+     * const User = await prisma.user.delete({
      *   where: {
-     *     // ... filter to delete one Contract
+     *     // ... filter to delete one User
      *   }
      * })
      * 
     **/
-    delete<T extends ContractDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, ContractDeleteArgs<ExtArgs>>
-    ): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+    delete<T extends UserDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, UserDeleteArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
-     * Update one Contract.
-     * @param {ContractUpdateArgs} args - Arguments to update one Contract.
+     * Update one User.
+     * @param {UserUpdateArgs} args - Arguments to update one User.
      * @example
-     * // Update one Contract
-     * const contract = await prisma.contract.update({
+     * // Update one User
+     * const user = await prisma.user.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2042,34 +1830,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends ContractUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, ContractUpdateArgs<ExtArgs>>
-    ): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+    update<T extends UserUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, UserUpdateArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
-     * Delete zero or more Contracts.
-     * @param {ContractDeleteManyArgs} args - Arguments to filter Contracts to delete.
+     * Delete zero or more Users.
+     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
      * @example
-     * // Delete a few Contracts
-     * const { count } = await prisma.contract.deleteMany({
+     * // Delete a few Users
+     * const { count } = await prisma.user.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends ContractDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContractDeleteManyArgs<ExtArgs>>
+    deleteMany<T extends UserDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Contracts.
+     * Update zero or more Users.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContractUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Contracts
-     * const contract = await prisma.contract.updateMany({
+     * // Update many Users
+     * const user = await prisma.user.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2079,59 +1867,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends ContractUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, ContractUpdateManyArgs<ExtArgs>>
+    updateMany<T extends UserUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Contract.
-     * @param {ContractUpsertArgs} args - Arguments to update or create a Contract.
+     * Create or update one User.
+     * @param {UserUpsertArgs} args - Arguments to update or create a User.
      * @example
-     * // Update or create a Contract
-     * const contract = await prisma.contract.upsert({
+     * // Update or create a User
+     * const user = await prisma.user.upsert({
      *   create: {
-     *     // ... data to create a Contract
+     *     // ... data to create a User
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Contract we want to update
+     *     // ... the filter for the User we want to update
      *   }
      * })
     **/
-    upsert<T extends ContractUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, ContractUpsertArgs<ExtArgs>>
-    ): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+    upsert<T extends UserUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, UserUpsertArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
-     * Count the number of Contracts.
+     * Count the number of Users.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContractCountArgs} args - Arguments to filter Contracts to count.
+     * @param {UserCountArgs} args - Arguments to filter Users to count.
      * @example
-     * // Count the number of Contracts
-     * const count = await prisma.contract.count({
+     * // Count the number of Users
+     * const count = await prisma.user.count({
      *   where: {
-     *     // ... the filter for the Contracts we want to count
+     *     // ... the filter for the Users we want to count
      *   }
      * })
     **/
-    count<T extends ContractCountArgs>(
-      args?: Subset<T, ContractCountArgs>,
+    count<T extends UserCountArgs>(
+      args?: Subset<T, UserCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ContractCountAggregateOutputType>
+          : GetScalarType<T['select'], UserCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Contract.
+     * Allows you to perform aggregations operations on a User.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContractAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2151,13 +1939,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ContractAggregateArgs>(args: Subset<T, ContractAggregateArgs>): Prisma.PrismaPromise<GetContractAggregateType<T>>
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
 
     /**
-     * Group by Contract.
+     * Group by User.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContractGroupByArgs} args - Group by arguments.
+     * @param {UserGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2172,14 +1960,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ContractGroupByArgs,
+      T extends UserGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ContractGroupByArgs['orderBy'] }
-        : { orderBy?: ContractGroupByArgs['orderBy'] },
+        ? { orderBy: UserGroupByArgs['orderBy'] }
+        : { orderBy?: UserGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2228,29 +2016,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ContractGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContractGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Contract model
+   * Fields of the User model
    */
-  readonly fields: ContractFieldRefs;
+  readonly fields: UserFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Contract.
+   * The delegate class that acts as a "Promise-like" for User.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ContractClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    client<T extends Contract$clientArgs<ExtArgs> = {}>(args?: Subset<T, Contract$clientArgs<ExtArgs>>): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
-
-    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    input<T extends InputOutputDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InputOutputDefaultArgs<ExtArgs>>): Prisma__InputOutputClient<$Result.GetResult<Prisma.$InputOutputPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    output<T extends InputOutputDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InputOutputDefaultArgs<ExtArgs>>): Prisma__InputOutputClient<$Result.GetResult<Prisma.$InputOutputPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2277,354 +2058,296 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Contract model
+   * Fields of the User model
    */ 
-  interface ContractFieldRefs {
-    readonly id: FieldRef<"Contract", 'Int'>
-    readonly clientId: FieldRef<"Contract", 'Int'>
-    readonly productId: FieldRef<"Contract", 'Int'>
-    readonly inputId: FieldRef<"Contract", 'Int'>
-    readonly outputId: FieldRef<"Contract", 'Int'>
-    readonly createdAt: FieldRef<"Contract", 'DateTime'>
+  interface UserFieldRefs {
+    readonly id: FieldRef<"User", 'Int'>
+    readonly name: FieldRef<"User", 'String'>
+    readonly username: FieldRef<"User", 'String'>
+    readonly email: FieldRef<"User", 'String'>
   }
     
 
   // Custom InputTypes
 
   /**
-   * Contract findUnique
+   * User findUnique
    */
-  export type ContractFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Contract
+     * Select specific fields to fetch from the User
      */
-    select?: ContractSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which User to fetch.
      */
-    include?: ContractInclude<ExtArgs> | null
-    /**
-     * Filter, which Contract to fetch.
-     */
-    where: ContractWhereUniqueInput
+    where: UserWhereUniqueInput
   }
 
 
   /**
-   * Contract findUniqueOrThrow
+   * User findUniqueOrThrow
    */
-  export type ContractFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Contract
+     * Select specific fields to fetch from the User
      */
-    select?: ContractSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which User to fetch.
      */
-    include?: ContractInclude<ExtArgs> | null
-    /**
-     * Filter, which Contract to fetch.
-     */
-    where: ContractWhereUniqueInput
+    where: UserWhereUniqueInput
   }
 
 
   /**
-   * Contract findFirst
+   * User findFirst
    */
-  export type ContractFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Contract
+     * Select specific fields to fetch from the User
      */
-    select?: ContractSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which User to fetch.
      */
-    include?: ContractInclude<ExtArgs> | null
-    /**
-     * Filter, which Contract to fetch.
-     */
-    where?: ContractWhereInput
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Contracts to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Contracts.
+     * Sets the position for searching for Users.
      */
-    cursor?: ContractWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Contracts from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Contracts.
+     * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Contracts.
+     * Filter by unique combinations of Users.
      */
-    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
 
   /**
-   * Contract findFirstOrThrow
+   * User findFirstOrThrow
    */
-  export type ContractFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Contract
+     * Select specific fields to fetch from the User
      */
-    select?: ContractSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which User to fetch.
      */
-    include?: ContractInclude<ExtArgs> | null
-    /**
-     * Filter, which Contract to fetch.
-     */
-    where?: ContractWhereInput
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Contracts to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Contracts.
+     * Sets the position for searching for Users.
      */
-    cursor?: ContractWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Contracts from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Contracts.
+     * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Contracts.
+     * Filter by unique combinations of Users.
      */
-    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
 
   /**
-   * Contract findMany
+   * User findMany
    */
-  export type ContractFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Contract
+     * Select specific fields to fetch from the User
      */
-    select?: ContractSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which Users to fetch.
      */
-    include?: ContractInclude<ExtArgs> | null
-    /**
-     * Filter, which Contracts to fetch.
-     */
-    where?: ContractWhereInput
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Contracts to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Contracts.
+     * Sets the position for listing Users.
      */
-    cursor?: ContractWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Contracts from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Contracts.
+     * Skip the first `n` Users.
      */
     skip?: number
-    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
 
   /**
-   * Contract create
+   * User create
    */
-  export type ContractCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Contract
+     * Select specific fields to fetch from the User
      */
-    select?: ContractSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * The data needed to create a User.
      */
-    include?: ContractInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Contract.
-     */
-    data: XOR<ContractCreateInput, ContractUncheckedCreateInput>
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
   }
 
 
   /**
-   * Contract createMany
+   * User createMany
    */
-  export type ContractCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Contracts.
+     * The data used to create many Users.
      */
-    data: ContractCreateManyInput | ContractCreateManyInput[]
+    data: UserCreateManyInput | UserCreateManyInput[]
     skipDuplicates?: boolean
   }
 
 
   /**
-   * Contract update
+   * User update
    */
-  export type ContractUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Contract
+     * Select specific fields to fetch from the User
      */
-    select?: ContractSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * The data needed to update a User.
      */
-    include?: ContractInclude<ExtArgs> | null
+    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
     /**
-     * The data needed to update a Contract.
+     * Choose, which User to update.
      */
-    data: XOR<ContractUpdateInput, ContractUncheckedUpdateInput>
-    /**
-     * Choose, which Contract to update.
-     */
-    where: ContractWhereUniqueInput
+    where: UserWhereUniqueInput
   }
 
 
   /**
-   * Contract updateMany
+   * User updateMany
    */
-  export type ContractUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Contracts.
+     * The data used to update Users.
      */
-    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyInput>
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
     /**
-     * Filter which Contracts to update
+     * Filter which Users to update
      */
-    where?: ContractWhereInput
+    where?: UserWhereInput
   }
 
 
   /**
-   * Contract upsert
+   * User upsert
    */
-  export type ContractUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Contract
+     * Select specific fields to fetch from the User
      */
-    select?: ContractSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * The filter to search for the User to update in case it exists.
      */
-    include?: ContractInclude<ExtArgs> | null
+    where: UserWhereUniqueInput
     /**
-     * The filter to search for the Contract to update in case it exists.
+     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
      */
-    where: ContractWhereUniqueInput
+    create: XOR<UserCreateInput, UserUncheckedCreateInput>
     /**
-     * In case the Contract found by the `where` argument doesn't exist, create a new Contract with this data.
+     * In case the User was found with the provided `where` argument, update it with this data.
      */
-    create: XOR<ContractCreateInput, ContractUncheckedCreateInput>
-    /**
-     * In case the Contract was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ContractUpdateInput, ContractUncheckedUpdateInput>
+    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
   }
 
 
   /**
-   * Contract delete
+   * User delete
    */
-  export type ContractDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Contract
+     * Select specific fields to fetch from the User
      */
-    select?: ContractSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter which User to delete.
      */
-    include?: ContractInclude<ExtArgs> | null
-    /**
-     * Filter which Contract to delete.
-     */
-    where: ContractWhereUniqueInput
+    where: UserWhereUniqueInput
   }
 
 
   /**
-   * Contract deleteMany
+   * User deleteMany
    */
-  export type ContractDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Contracts to delete
+     * Filter which Users to delete
      */
-    where?: ContractWhereInput
+    where?: UserWhereInput
   }
 
 
   /**
-   * Contract.client
+   * User without action
    */
-  export type Contract$clientArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Client
+     * Select specific fields to fetch from the User
      */
-    select?: ClientSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ClientInclude<ExtArgs> | null
-    where?: ClientWhereInput
-  }
-
-
-  /**
-   * Contract without action
-   */
-  export type ContractDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Contract
-     */
-    select?: ContractSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ContractInclude<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
   }
 
 
@@ -2651,14 +2374,35 @@ export namespace Prisma {
 
   export type ClientMinAggregateOutputType = {
     id: number | null
+    name: string | null
+    email: string | null
+    phone: string | null
+    address: string | null
+    city: string | null
+    state: string | null
+    zip: string | null
   }
 
   export type ClientMaxAggregateOutputType = {
     id: number | null
+    name: string | null
+    email: string | null
+    phone: string | null
+    address: string | null
+    city: string | null
+    state: string | null
+    zip: string | null
   }
 
   export type ClientCountAggregateOutputType = {
     id: number
+    name: number
+    email: number
+    phone: number
+    address: number
+    city: number
+    state: number
+    zip: number
     _all: number
   }
 
@@ -2673,14 +2417,35 @@ export namespace Prisma {
 
   export type ClientMinAggregateInputType = {
     id?: true
+    name?: true
+    email?: true
+    phone?: true
+    address?: true
+    city?: true
+    state?: true
+    zip?: true
   }
 
   export type ClientMaxAggregateInputType = {
     id?: true
+    name?: true
+    email?: true
+    phone?: true
+    address?: true
+    city?: true
+    state?: true
+    zip?: true
   }
 
   export type ClientCountAggregateInputType = {
     id?: true
+    name?: true
+    email?: true
+    phone?: true
+    address?: true
+    city?: true
+    state?: true
+    zip?: true
     _all?: true
   }
 
@@ -2772,6 +2537,13 @@ export namespace Prisma {
 
   export type ClientGroupByOutputType = {
     id: number
+    name: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    zip: string
     _count: ClientCountAggregateOutputType | null
     _avg: ClientAvgAggregateOutputType | null
     _sum: ClientSumAggregateOutputType | null
@@ -2795,27 +2567,39 @@ export namespace Prisma {
 
   export type ClientSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    contracts?: boolean | Client$contractsArgs<ExtArgs>
-    _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
+    name?: boolean
+    email?: boolean
+    phone?: boolean
+    address?: boolean
+    city?: boolean
+    state?: boolean
+    zip?: boolean
   }, ExtArgs["result"]["client"]>
 
   export type ClientSelectScalar = {
     id?: boolean
-  }
-
-  export type ClientInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contracts?: boolean | Client$contractsArgs<ExtArgs>
-    _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
+    name?: boolean
+    email?: boolean
+    phone?: boolean
+    address?: boolean
+    city?: boolean
+    state?: boolean
+    zip?: boolean
   }
 
 
   export type $ClientPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Client"
-    objects: {
-      contracts: Prisma.$ContractPayload<ExtArgs>[]
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      name: string
+      email: string
+      phone: string
+      address: string
+      city: string
+      state: string
+      zip: string
     }, ExtArgs["result"]["client"]>
     composites: {}
   }
@@ -3181,7 +2965,6 @@ export namespace Prisma {
   export interface Prisma__ClientClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    contracts<T extends Client$contractsArgs<ExtArgs> = {}>(args?: Subset<T, Client$contractsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3212,6 +2995,13 @@ export namespace Prisma {
    */ 
   interface ClientFieldRefs {
     readonly id: FieldRef<"Client", 'Int'>
+    readonly name: FieldRef<"Client", 'String'>
+    readonly email: FieldRef<"Client", 'String'>
+    readonly phone: FieldRef<"Client", 'String'>
+    readonly address: FieldRef<"Client", 'String'>
+    readonly city: FieldRef<"Client", 'String'>
+    readonly state: FieldRef<"Client", 'String'>
+    readonly zip: FieldRef<"Client", 'String'>
   }
     
 
@@ -3225,10 +3015,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Client
      */
     select?: ClientSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ClientInclude<ExtArgs> | null
     /**
      * Filter, which Client to fetch.
      */
@@ -3245,10 +3031,6 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ClientInclude<ExtArgs> | null
-    /**
      * Filter, which Client to fetch.
      */
     where: ClientWhereUniqueInput
@@ -3263,10 +3045,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Client
      */
     select?: ClientSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ClientInclude<ExtArgs> | null
     /**
      * Filter, which Client to fetch.
      */
@@ -3313,10 +3091,6 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ClientInclude<ExtArgs> | null
-    /**
      * Filter, which Client to fetch.
      */
     where?: ClientWhereInput
@@ -3362,10 +3136,6 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ClientInclude<ExtArgs> | null
-    /**
      * Filter, which Clients to fetch.
      */
     where?: ClientWhereInput
@@ -3406,13 +3176,9 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ClientInclude<ExtArgs> | null
-    /**
      * The data needed to create a Client.
      */
-    data?: XOR<ClientCreateInput, ClientUncheckedCreateInput>
+    data: XOR<ClientCreateInput, ClientUncheckedCreateInput>
   }
 
 
@@ -3436,10 +3202,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Client
      */
     select?: ClientSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ClientInclude<ExtArgs> | null
     /**
      * The data needed to update a Client.
      */
@@ -3475,10 +3237,6 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ClientInclude<ExtArgs> | null
-    /**
      * The filter to search for the Client to update in case it exists.
      */
     where: ClientWhereUniqueInput
@@ -3502,10 +3260,6 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ClientInclude<ExtArgs> | null
-    /**
      * Filter which Client to delete.
      */
     where: ClientWhereUniqueInput
@@ -3524,27 +3278,6 @@ export namespace Prisma {
 
 
   /**
-   * Client.contracts
-   */
-  export type Client$contractsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Contract
-     */
-    select?: ContractSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ContractInclude<ExtArgs> | null
-    where?: ContractWhereInput
-    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
-    cursor?: ContractWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
-  }
-
-
-  /**
    * Client without action
    */
   export type ClientDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3552,10 +3285,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Client
      */
     select?: ClientSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ClientInclude<ExtArgs> | null
   }
 
 
@@ -3734,8 +3463,8 @@ export namespace Prisma {
   export type ProductSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    contracts?: boolean | Product$contractsArgs<ExtArgs>
     models?: boolean | Product$modelsArgs<ExtArgs>
+    inputOutputs?: boolean | Product$inputOutputsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -3745,8 +3474,8 @@ export namespace Prisma {
   }
 
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contracts?: boolean | Product$contractsArgs<ExtArgs>
     models?: boolean | Product$modelsArgs<ExtArgs>
+    inputOutputs?: boolean | Product$inputOutputsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3754,8 +3483,8 @@ export namespace Prisma {
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
     objects: {
-      contracts: Prisma.$ContractPayload<ExtArgs>[]
       models: Prisma.$ModelPayload<ExtArgs>[]
+      inputOutputs: Prisma.$InputOutputPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4125,9 +3854,9 @@ export namespace Prisma {
   export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    contracts<T extends Product$contractsArgs<ExtArgs> = {}>(args?: Subset<T, Product$contractsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'findMany'> | Null>;
-
     models<T extends Product$modelsArgs<ExtArgs> = {}>(args?: Subset<T, Product$modelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    inputOutputs<T extends Product$inputOutputsArgs<ExtArgs> = {}>(args?: Subset<T, Product$inputOutputsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InputOutputPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4471,27 +4200,6 @@ export namespace Prisma {
 
 
   /**
-   * Product.contracts
-   */
-  export type Product$contractsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Contract
-     */
-    select?: ContractSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ContractInclude<ExtArgs> | null
-    where?: ContractWhereInput
-    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
-    cursor?: ContractWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
-  }
-
-
-  /**
    * Product.models
    */
   export type Product$modelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4509,6 +4217,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[]
+  }
+
+
+  /**
+   * Product.inputOutputs
+   */
+  export type Product$inputOutputsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InputOutput
+     */
+    select?: InputOutputSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: InputOutputInclude<ExtArgs> | null
+    where?: InputOutputWhereInput
+    orderBy?: InputOutputOrderByWithRelationInput | InputOutputOrderByWithRelationInput[]
+    cursor?: InputOutputWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InputOutputScalarFieldEnum | InputOutputScalarFieldEnum[]
   }
 
 
@@ -7411,50 +7140,60 @@ export namespace Prisma {
 
   export type InputOutputAvgAggregateOutputType = {
     id: number | null
+    productId: number | null
   }
 
   export type InputOutputSumAggregateOutputType = {
     id: number | null
+    productId: number | null
   }
 
   export type InputOutputMinAggregateOutputType = {
     id: number | null
     title: string | null
+    productId: number | null
   }
 
   export type InputOutputMaxAggregateOutputType = {
     id: number | null
     title: string | null
+    productId: number | null
   }
 
   export type InputOutputCountAggregateOutputType = {
     id: number
     title: number
+    productId: number
     _all: number
   }
 
 
   export type InputOutputAvgAggregateInputType = {
     id?: true
+    productId?: true
   }
 
   export type InputOutputSumAggregateInputType = {
     id?: true
+    productId?: true
   }
 
   export type InputOutputMinAggregateInputType = {
     id?: true
     title?: true
+    productId?: true
   }
 
   export type InputOutputMaxAggregateInputType = {
     id?: true
     title?: true
+    productId?: true
   }
 
   export type InputOutputCountAggregateInputType = {
     id?: true
     title?: true
+    productId?: true
     _all?: true
   }
 
@@ -7547,6 +7286,7 @@ export namespace Prisma {
   export type InputOutputGroupByOutputType = {
     id: number
     title: string
+    productId: number
     _count: InputOutputCountAggregateOutputType | null
     _avg: InputOutputAvgAggregateOutputType | null
     _sum: InputOutputSumAggregateOutputType | null
@@ -7571,32 +7311,30 @@ export namespace Prisma {
   export type InputOutputSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    contractsAsInput?: boolean | InputOutput$contractsAsInputArgs<ExtArgs>
-    contractsAsOutput?: boolean | InputOutput$contractsAsOutputArgs<ExtArgs>
-    _count?: boolean | InputOutputCountOutputTypeDefaultArgs<ExtArgs>
+    productId?: boolean
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inputOutput"]>
 
   export type InputOutputSelectScalar = {
     id?: boolean
     title?: boolean
+    productId?: boolean
   }
 
   export type InputOutputInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contractsAsInput?: boolean | InputOutput$contractsAsInputArgs<ExtArgs>
-    contractsAsOutput?: boolean | InputOutput$contractsAsOutputArgs<ExtArgs>
-    _count?: boolean | InputOutputCountOutputTypeDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }
 
 
   export type $InputOutputPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "InputOutput"
     objects: {
-      contractsAsInput: Prisma.$ContractPayload<ExtArgs>[]
-      contractsAsOutput: Prisma.$ContractPayload<ExtArgs>[]
+      product: Prisma.$ProductPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       title: string
+      productId: number
     }, ExtArgs["result"]["inputOutput"]>
     composites: {}
   }
@@ -7962,9 +7700,7 @@ export namespace Prisma {
   export interface Prisma__InputOutputClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    contractsAsInput<T extends InputOutput$contractsAsInputArgs<ExtArgs> = {}>(args?: Subset<T, InputOutput$contractsAsInputArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    contractsAsOutput<T extends InputOutput$contractsAsOutputArgs<ExtArgs> = {}>(args?: Subset<T, InputOutput$contractsAsOutputArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, 'findMany'> | Null>;
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7996,6 +7732,7 @@ export namespace Prisma {
   interface InputOutputFieldRefs {
     readonly id: FieldRef<"InputOutput", 'Int'>
     readonly title: FieldRef<"InputOutput", 'String'>
+    readonly productId: FieldRef<"InputOutput", 'Int'>
   }
     
 
@@ -8308,48 +8045,6 @@ export namespace Prisma {
 
 
   /**
-   * InputOutput.contractsAsInput
-   */
-  export type InputOutput$contractsAsInputArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Contract
-     */
-    select?: ContractSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ContractInclude<ExtArgs> | null
-    where?: ContractWhereInput
-    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
-    cursor?: ContractWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
-  }
-
-
-  /**
-   * InputOutput.contractsAsOutput
-   */
-  export type InputOutput$contractsAsOutputArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Contract
-     */
-    select?: ContractSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ContractInclude<ExtArgs> | null
-    where?: ContractWhereInput
-    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
-    cursor?: ContractWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
-  }
-
-
-  /**
    * InputOutput without action
    */
   export type InputOutputDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8361,899 +8056,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: InputOutputInclude<ExtArgs> | null
-  }
-
-
-
-  /**
-   * Model User
-   */
-
-  export type AggregateUser = {
-    _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
-    _min: UserMinAggregateOutputType | null
-    _max: UserMaxAggregateOutputType | null
-  }
-
-  export type UserAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type UserSumAggregateOutputType = {
-    id: number | null
-  }
-
-  export type UserMinAggregateOutputType = {
-    id: number | null
-    name: string | null
-    username: string | null
-    email: string | null
-  }
-
-  export type UserMaxAggregateOutputType = {
-    id: number | null
-    name: string | null
-    username: string | null
-    email: string | null
-  }
-
-  export type UserCountAggregateOutputType = {
-    id: number
-    name: number
-    username: number
-    email: number
-    _all: number
-  }
-
-
-  export type UserAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type UserSumAggregateInputType = {
-    id?: true
-  }
-
-  export type UserMinAggregateInputType = {
-    id?: true
-    name?: true
-    username?: true
-    email?: true
-  }
-
-  export type UserMaxAggregateInputType = {
-    id?: true
-    name?: true
-    username?: true
-    email?: true
-  }
-
-  export type UserCountAggregateInputType = {
-    id?: true
-    name?: true
-    username?: true
-    email?: true
-    _all?: true
-  }
-
-  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which User to aggregate.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Users
-    **/
-    _count?: true | UserCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: UserAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: UserMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: UserMaxAggregateInputType
-  }
-
-  export type GetUserAggregateType<T extends UserAggregateArgs> = {
-        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateUser[P]>
-      : GetScalarType<T[P], AggregateUser[P]>
-  }
-
-
-
-
-  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserWhereInput
-    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
-    by: UserScalarFieldEnum[] | UserScalarFieldEnum
-    having?: UserScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: UserCountAggregateInputType | true
-    _avg?: UserAvgAggregateInputType
-    _sum?: UserSumAggregateInputType
-    _min?: UserMinAggregateInputType
-    _max?: UserMaxAggregateInputType
-  }
-
-  export type UserGroupByOutputType = {
-    id: number
-    name: string
-    username: string
-    email: string
-    _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
-    _min: UserMinAggregateOutputType | null
-    _max: UserMaxAggregateOutputType | null
-  }
-
-  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<UserGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], UserGroupByOutputType[P]>
-            : GetScalarType<T[P], UserGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    username?: boolean
-    email?: boolean
-  }, ExtArgs["result"]["user"]>
-
-  export type UserSelectScalar = {
-    id?: boolean
-    name?: boolean
-    username?: boolean
-    email?: boolean
-  }
-
-
-  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "User"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      name: string
-      username: string
-      email: string
-    }, ExtArgs["result"]["user"]>
-    composites: {}
-  }
-
-
-  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
-
-  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' > & {
-      select?: UserCountAggregateInputType | true
-    }
-
-  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
-    /**
-     * Find zero or one User that matches the filter.
-     * @param {UserFindUniqueArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends UserFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>
-    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one User that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first User that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindFirstArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends UserFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>
-    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first User that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends UserFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more Users that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Users
-     * const users = await prisma.user.findMany()
-     * 
-     * // Get first 10 Users
-     * const users = await prisma.user.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends UserFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a User.
-     * @param {UserCreateArgs} args - Arguments to create a User.
-     * @example
-     * // Create one User
-     * const User = await prisma.user.create({
-     *   data: {
-     *     // ... data to create a User
-     *   }
-     * })
-     * 
-    **/
-    create<T extends UserCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, UserCreateArgs<ExtArgs>>
-    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many Users.
-     *     @param {UserCreateManyArgs} args - Arguments to create many Users.
-     *     @example
-     *     // Create many Users
-     *     const user = await prisma.user.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends UserCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a User.
-     * @param {UserDeleteArgs} args - Arguments to delete one User.
-     * @example
-     * // Delete one User
-     * const User = await prisma.user.delete({
-     *   where: {
-     *     // ... filter to delete one User
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends UserDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, UserDeleteArgs<ExtArgs>>
-    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one User.
-     * @param {UserUpdateArgs} args - Arguments to update one User.
-     * @example
-     * // Update one User
-     * const user = await prisma.user.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends UserUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, UserUpdateArgs<ExtArgs>>
-    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more Users.
-     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
-     * @example
-     * // Delete a few Users
-     * const { count } = await prisma.user.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends UserDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Users.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Users
-     * const user = await prisma.user.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends UserUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one User.
-     * @param {UserUpsertArgs} args - Arguments to update or create a User.
-     * @example
-     * // Update or create a User
-     * const user = await prisma.user.upsert({
-     *   create: {
-     *     // ... data to create a User
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the User we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends UserUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, UserUpsertArgs<ExtArgs>>
-    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of Users.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserCountArgs} args - Arguments to filter Users to count.
-     * @example
-     * // Count the number of Users
-     * const count = await prisma.user.count({
-     *   where: {
-     *     // ... the filter for the Users we want to count
-     *   }
-     * })
-    **/
-    count<T extends UserCountArgs>(
-      args?: Subset<T, UserCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], UserCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a User.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
-
-    /**
-     * Group by User.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends UserGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: UserGroupByArgs['orderBy'] }
-        : { orderBy?: UserGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the User model
-   */
-  readonly fields: UserFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for User.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the User model
-   */ 
-  interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'Int'>
-    readonly name: FieldRef<"User", 'String'>
-    readonly username: FieldRef<"User", 'String'>
-    readonly email: FieldRef<"User", 'String'>
-  }
-    
-
-  // Custom InputTypes
-
-  /**
-   * User findUnique
-   */
-  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where: UserWhereUniqueInput
-  }
-
-
-  /**
-   * User findUniqueOrThrow
-   */
-  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where: UserWhereUniqueInput
-  }
-
-
-  /**
-   * User findFirst
-   */
-  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Users.
-     */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-
-  /**
-   * User findFirstOrThrow
-   */
-  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Users.
-     */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-
-  /**
-   * User findMany
-   */
-  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Filter, which Users to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-
-  /**
-   * User create
-   */
-  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * The data needed to create a User.
-     */
-    data: XOR<UserCreateInput, UserUncheckedCreateInput>
-  }
-
-
-  /**
-   * User createMany
-   */
-  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Users.
-     */
-    data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * User update
-   */
-  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * The data needed to update a User.
-     */
-    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
-    /**
-     * Choose, which User to update.
-     */
-    where: UserWhereUniqueInput
-  }
-
-
-  /**
-   * User updateMany
-   */
-  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Users.
-     */
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
-    /**
-     * Filter which Users to update
-     */
-    where?: UserWhereInput
-  }
-
-
-  /**
-   * User upsert
-   */
-  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * The filter to search for the User to update in case it exists.
-     */
-    where: UserWhereUniqueInput
-    /**
-     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
-     */
-    create: XOR<UserCreateInput, UserUncheckedCreateInput>
-    /**
-     * In case the User was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
-  }
-
-
-  /**
-   * User delete
-   */
-  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Filter which User to delete.
-     */
-    where: UserWhereUniqueInput
-  }
-
-
-  /**
-   * User deleteMany
-   */
-  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Users to delete
-     */
-    where?: UserWhereInput
-  }
-
-
-  /**
-   * User without action
-   */
-  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
   }
 
 
@@ -9272,20 +8074,25 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const ContractScalarFieldEnum: {
+  export const UserScalarFieldEnum: {
     id: 'id',
-    clientId: 'clientId',
-    productId: 'productId',
-    inputId: 'inputId',
-    outputId: 'outputId',
-    createdAt: 'createdAt'
+    name: 'name',
+    username: 'username',
+    email: 'email'
   };
 
-  export type ContractScalarFieldEnum = (typeof ContractScalarFieldEnum)[keyof typeof ContractScalarFieldEnum]
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
   export const ClientScalarFieldEnum: {
-    id: 'id'
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    phone: 'phone',
+    address: 'address',
+    city: 'city',
+    state: 'state',
+    zip: 'zip'
   };
 
   export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
@@ -9329,20 +8136,11 @@ export namespace Prisma {
 
   export const InputOutputScalarFieldEnum: {
     id: 'id',
-    title: 'title'
+    title: 'title',
+    productId: 'productId'
   };
 
   export type InputOutputScalarFieldEnum = (typeof InputOutputScalarFieldEnum)[keyof typeof InputOutputScalarFieldEnum]
-
-
-  export const UserScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    username: 'username',
-    email: 'email'
-  };
-
-  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9351,14 +8149,6 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   export const QueryMode: {
@@ -9385,20 +8175,6 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -9433,75 +8209,53 @@ export namespace Prisma {
    */
 
 
-  export type ContractWhereInput = {
-    AND?: ContractWhereInput | ContractWhereInput[]
-    OR?: ContractWhereInput[]
-    NOT?: ContractWhereInput | ContractWhereInput[]
-    id?: IntFilter<"Contract"> | number
-    clientId?: IntNullableFilter<"Contract"> | number | null
-    productId?: IntFilter<"Contract"> | number
-    inputId?: IntFilter<"Contract"> | number
-    outputId?: IntFilter<"Contract"> | number
-    createdAt?: DateTimeFilter<"Contract"> | Date | string
-    client?: XOR<ClientNullableRelationFilter, ClientWhereInput> | null
-    product?: XOR<ProductRelationFilter, ProductWhereInput>
-    input?: XOR<InputOutputRelationFilter, InputOutputWhereInput>
-    output?: XOR<InputOutputRelationFilter, InputOutputWhereInput>
+  export type UserWhereInput = {
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    id?: IntFilter<"User"> | number
+    name?: StringFilter<"User"> | string
+    username?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
   }
 
-  export type ContractOrderByWithRelationInput = {
+  export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    clientId?: SortOrderInput | SortOrder
-    productId?: SortOrder
-    inputId?: SortOrder
-    outputId?: SortOrder
-    createdAt?: SortOrder
-    client?: ClientOrderByWithRelationInput
-    product?: ProductOrderByWithRelationInput
-    input?: InputOutputOrderByWithRelationInput
-    output?: InputOutputOrderByWithRelationInput
+    name?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
   }
 
-  export type ContractWhereUniqueInput = Prisma.AtLeast<{
+  export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: ContractWhereInput | ContractWhereInput[]
-    OR?: ContractWhereInput[]
-    NOT?: ContractWhereInput | ContractWhereInput[]
-    clientId?: IntNullableFilter<"Contract"> | number | null
-    productId?: IntFilter<"Contract"> | number
-    inputId?: IntFilter<"Contract"> | number
-    outputId?: IntFilter<"Contract"> | number
-    createdAt?: DateTimeFilter<"Contract"> | Date | string
-    client?: XOR<ClientNullableRelationFilter, ClientWhereInput> | null
-    product?: XOR<ProductRelationFilter, ProductWhereInput>
-    input?: XOR<InputOutputRelationFilter, InputOutputWhereInput>
-    output?: XOR<InputOutputRelationFilter, InputOutputWhereInput>
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    name?: StringFilter<"User"> | string
+    username?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
   }, "id">
 
-  export type ContractOrderByWithAggregationInput = {
+  export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    clientId?: SortOrderInput | SortOrder
-    productId?: SortOrder
-    inputId?: SortOrder
-    outputId?: SortOrder
-    createdAt?: SortOrder
-    _count?: ContractCountOrderByAggregateInput
-    _avg?: ContractAvgOrderByAggregateInput
-    _max?: ContractMaxOrderByAggregateInput
-    _min?: ContractMinOrderByAggregateInput
-    _sum?: ContractSumOrderByAggregateInput
+    name?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    _count?: UserCountOrderByAggregateInput
+    _avg?: UserAvgOrderByAggregateInput
+    _max?: UserMaxOrderByAggregateInput
+    _min?: UserMinOrderByAggregateInput
+    _sum?: UserSumOrderByAggregateInput
   }
 
-  export type ContractScalarWhereWithAggregatesInput = {
-    AND?: ContractScalarWhereWithAggregatesInput | ContractScalarWhereWithAggregatesInput[]
-    OR?: ContractScalarWhereWithAggregatesInput[]
-    NOT?: ContractScalarWhereWithAggregatesInput | ContractScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Contract"> | number
-    clientId?: IntNullableWithAggregatesFilter<"Contract"> | number | null
-    productId?: IntWithAggregatesFilter<"Contract"> | number
-    inputId?: IntWithAggregatesFilter<"Contract"> | number
-    outputId?: IntWithAggregatesFilter<"Contract"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"Contract"> | Date | string
+  export type UserScalarWhereWithAggregatesInput = {
+    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    OR?: UserScalarWhereWithAggregatesInput[]
+    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"User"> | number
+    name?: StringWithAggregatesFilter<"User"> | string
+    username?: StringWithAggregatesFilter<"User"> | string
+    email?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type ClientWhereInput = {
@@ -9509,12 +8263,24 @@ export namespace Prisma {
     OR?: ClientWhereInput[]
     NOT?: ClientWhereInput | ClientWhereInput[]
     id?: IntFilter<"Client"> | number
-    contracts?: ContractListRelationFilter
+    name?: StringFilter<"Client"> | string
+    email?: StringFilter<"Client"> | string
+    phone?: StringFilter<"Client"> | string
+    address?: StringFilter<"Client"> | string
+    city?: StringFilter<"Client"> | string
+    state?: StringFilter<"Client"> | string
+    zip?: StringFilter<"Client"> | string
   }
 
   export type ClientOrderByWithRelationInput = {
     id?: SortOrder
-    contracts?: ContractOrderByRelationAggregateInput
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
+    zip?: SortOrder
   }
 
   export type ClientWhereUniqueInput = Prisma.AtLeast<{
@@ -9522,11 +8288,24 @@ export namespace Prisma {
     AND?: ClientWhereInput | ClientWhereInput[]
     OR?: ClientWhereInput[]
     NOT?: ClientWhereInput | ClientWhereInput[]
-    contracts?: ContractListRelationFilter
+    name?: StringFilter<"Client"> | string
+    email?: StringFilter<"Client"> | string
+    phone?: StringFilter<"Client"> | string
+    address?: StringFilter<"Client"> | string
+    city?: StringFilter<"Client"> | string
+    state?: StringFilter<"Client"> | string
+    zip?: StringFilter<"Client"> | string
   }, "id">
 
   export type ClientOrderByWithAggregationInput = {
     id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
+    zip?: SortOrder
     _count?: ClientCountOrderByAggregateInput
     _avg?: ClientAvgOrderByAggregateInput
     _max?: ClientMaxOrderByAggregateInput
@@ -9539,6 +8318,13 @@ export namespace Prisma {
     OR?: ClientScalarWhereWithAggregatesInput[]
     NOT?: ClientScalarWhereWithAggregatesInput | ClientScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Client"> | number
+    name?: StringWithAggregatesFilter<"Client"> | string
+    email?: StringWithAggregatesFilter<"Client"> | string
+    phone?: StringWithAggregatesFilter<"Client"> | string
+    address?: StringWithAggregatesFilter<"Client"> | string
+    city?: StringWithAggregatesFilter<"Client"> | string
+    state?: StringWithAggregatesFilter<"Client"> | string
+    zip?: StringWithAggregatesFilter<"Client"> | string
   }
 
   export type ProductWhereInput = {
@@ -9547,15 +8333,15 @@ export namespace Prisma {
     NOT?: ProductWhereInput | ProductWhereInput[]
     id?: IntFilter<"Product"> | number
     title?: StringFilter<"Product"> | string
-    contracts?: ContractListRelationFilter
     models?: ModelListRelationFilter
+    inputOutputs?: InputOutputListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
-    contracts?: ContractOrderByRelationAggregateInput
     models?: ModelOrderByRelationAggregateInput
+    inputOutputs?: InputOutputOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -9564,8 +8350,8 @@ export namespace Prisma {
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
     title?: StringFilter<"Product"> | string
-    contracts?: ContractListRelationFilter
     models?: ModelListRelationFilter
+    inputOutputs?: InputOutputListRelationFilter
   }, "id">
 
   export type ProductOrderByWithAggregationInput = {
@@ -9744,15 +8530,15 @@ export namespace Prisma {
     NOT?: InputOutputWhereInput | InputOutputWhereInput[]
     id?: IntFilter<"InputOutput"> | number
     title?: StringFilter<"InputOutput"> | string
-    contractsAsInput?: ContractListRelationFilter
-    contractsAsOutput?: ContractListRelationFilter
+    productId?: IntFilter<"InputOutput"> | number
+    product?: XOR<ProductRelationFilter, ProductWhereInput>
   }
 
   export type InputOutputOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
-    contractsAsInput?: ContractOrderByRelationAggregateInput
-    contractsAsOutput?: ContractOrderByRelationAggregateInput
+    productId?: SortOrder
+    product?: ProductOrderByWithRelationInput
   }
 
   export type InputOutputWhereUniqueInput = Prisma.AtLeast<{
@@ -9761,13 +8547,14 @@ export namespace Prisma {
     OR?: InputOutputWhereInput[]
     NOT?: InputOutputWhereInput | InputOutputWhereInput[]
     title?: StringFilter<"InputOutput"> | string
-    contractsAsInput?: ContractListRelationFilter
-    contractsAsOutput?: ContractListRelationFilter
+    productId?: IntFilter<"InputOutput"> | number
+    product?: XOR<ProductRelationFilter, ProductWhereInput>
   }, "id">
 
   export type InputOutputOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
+    productId?: SortOrder
     _count?: InputOutputCountOrderByAggregateInput
     _avg?: InputOutputAvgOrderByAggregateInput
     _max?: InputOutputMaxOrderByAggregateInput
@@ -9781,167 +8568,153 @@ export namespace Prisma {
     NOT?: InputOutputScalarWhereWithAggregatesInput | InputOutputScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"InputOutput"> | number
     title?: StringWithAggregatesFilter<"InputOutput"> | string
+    productId?: IntWithAggregatesFilter<"InputOutput"> | number
   }
 
-  export type UserWhereInput = {
-    AND?: UserWhereInput | UserWhereInput[]
-    OR?: UserWhereInput[]
-    NOT?: UserWhereInput | UserWhereInput[]
-    id?: IntFilter<"User"> | number
-    name?: StringFilter<"User"> | string
-    username?: StringFilter<"User"> | string
-    email?: StringFilter<"User"> | string
+  export type UserCreateInput = {
+    name: string
+    username: string
+    email: string
   }
 
-  export type UserOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-  }
-
-  export type UserWhereUniqueInput = Prisma.AtLeast<{
+  export type UserUncheckedCreateInput = {
     id?: number
-    AND?: UserWhereInput | UserWhereInput[]
-    OR?: UserWhereInput[]
-    NOT?: UserWhereInput | UserWhereInput[]
-    name?: StringFilter<"User"> | string
-    username?: StringFilter<"User"> | string
-    email?: StringFilter<"User"> | string
-  }, "id">
-
-  export type UserOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-    _count?: UserCountOrderByAggregateInput
-    _avg?: UserAvgOrderByAggregateInput
-    _max?: UserMaxOrderByAggregateInput
-    _min?: UserMinOrderByAggregateInput
-    _sum?: UserSumOrderByAggregateInput
+    name: string
+    username: string
+    email: string
   }
 
-  export type UserScalarWhereWithAggregatesInput = {
-    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    OR?: UserScalarWhereWithAggregatesInput[]
-    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"User"> | number
-    name?: StringWithAggregatesFilter<"User"> | string
-    username?: StringWithAggregatesFilter<"User"> | string
-    email?: StringWithAggregatesFilter<"User"> | string
+  export type UserUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ContractCreateInput = {
-    createdAt?: Date | string
-    client?: ClientCreateNestedOneWithoutContractsInput
-    product: ProductCreateNestedOneWithoutContractsInput
-    input: InputOutputCreateNestedOneWithoutContractsAsInputInput
-    output: InputOutputCreateNestedOneWithoutContractsAsOutputInput
-  }
-
-  export type ContractUncheckedCreateInput = {
-    id?: number
-    clientId?: number | null
-    productId: number
-    inputId: number
-    outputId: number
-    createdAt?: Date | string
-  }
-
-  export type ContractUpdateInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    client?: ClientUpdateOneWithoutContractsNestedInput
-    product?: ProductUpdateOneRequiredWithoutContractsNestedInput
-    input?: InputOutputUpdateOneRequiredWithoutContractsAsInputNestedInput
-    output?: InputOutputUpdateOneRequiredWithoutContractsAsOutputNestedInput
-  }
-
-  export type ContractUncheckedUpdateInput = {
+  export type UserUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    clientId?: NullableIntFieldUpdateOperationsInput | number | null
-    productId?: IntFieldUpdateOperationsInput | number
-    inputId?: IntFieldUpdateOperationsInput | number
-    outputId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ContractCreateManyInput = {
+  export type UserCreateManyInput = {
     id?: number
-    clientId?: number | null
-    productId: number
-    inputId: number
-    outputId: number
-    createdAt?: Date | string
+    name: string
+    username: string
+    email: string
   }
 
-  export type ContractUpdateManyMutationInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type UserUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ContractUncheckedUpdateManyInput = {
+  export type UserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    clientId?: NullableIntFieldUpdateOperationsInput | number | null
-    productId?: IntFieldUpdateOperationsInput | number
-    inputId?: IntFieldUpdateOperationsInput | number
-    outputId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClientCreateInput = {
-    contracts?: ContractCreateNestedManyWithoutClientInput
+    name: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    zip: string
   }
 
   export type ClientUncheckedCreateInput = {
     id?: number
-    contracts?: ContractUncheckedCreateNestedManyWithoutClientInput
+    name: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    zip: string
   }
 
   export type ClientUpdateInput = {
-    contracts?: ContractUpdateManyWithoutClientNestedInput
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zip?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClientUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    contracts?: ContractUncheckedUpdateManyWithoutClientNestedInput
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zip?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClientCreateManyInput = {
     id?: number
+    name: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    zip: string
   }
 
   export type ClientUpdateManyMutationInput = {
-
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zip?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClientUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zip?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductCreateInput = {
     title: string
-    contracts?: ContractCreateNestedManyWithoutProductInput
     models?: ModelCreateNestedManyWithoutProductInput
+    inputOutputs?: InputOutputCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
     id?: number
     title: string
-    contracts?: ContractUncheckedCreateNestedManyWithoutProductInput
     models?: ModelUncheckedCreateNestedManyWithoutProductInput
+    inputOutputs?: InputOutputUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
-    contracts?: ContractUpdateManyWithoutProductNestedInput
     models?: ModelUpdateManyWithoutProductNestedInput
+    inputOutputs?: InputOutputUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    contracts?: ContractUncheckedUpdateManyWithoutProductNestedInput
     models?: ModelUncheckedUpdateManyWithoutProductNestedInput
+    inputOutputs?: InputOutputUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
@@ -10089,33 +8862,30 @@ export namespace Prisma {
 
   export type InputOutputCreateInput = {
     title: string
-    contractsAsInput?: ContractCreateNestedManyWithoutInputInput
-    contractsAsOutput?: ContractCreateNestedManyWithoutOutputInput
+    product: ProductCreateNestedOneWithoutInputOutputsInput
   }
 
   export type InputOutputUncheckedCreateInput = {
     id?: number
     title: string
-    contractsAsInput?: ContractUncheckedCreateNestedManyWithoutInputInput
-    contractsAsOutput?: ContractUncheckedCreateNestedManyWithoutOutputInput
+    productId: number
   }
 
   export type InputOutputUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
-    contractsAsInput?: ContractUpdateManyWithoutInputNestedInput
-    contractsAsOutput?: ContractUpdateManyWithoutOutputNestedInput
+    product?: ProductUpdateOneRequiredWithoutInputOutputsNestedInput
   }
 
   export type InputOutputUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    contractsAsInput?: ContractUncheckedUpdateManyWithoutInputNestedInput
-    contractsAsOutput?: ContractUncheckedUpdateManyWithoutOutputNestedInput
+    productId?: IntFieldUpdateOperationsInput | number
   }
 
   export type InputOutputCreateManyInput = {
     id?: number
     title: string
+    productId: number
   }
 
   export type InputOutputUpdateManyMutationInput = {
@@ -10125,52 +8895,7 @@ export namespace Prisma {
   export type InputOutputUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type UserCreateInput = {
-    name: string
-    username: string
-    email: string
-  }
-
-  export type UserUncheckedCreateInput = {
-    id?: number
-    name: string
-    username: string
-    email: string
-  }
-
-  export type UserUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type UserUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type UserCreateManyInput = {
-    id?: number
-    name: string
-    username: string
-    email: string
-  }
-
-  export type UserUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type UserUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    productId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -10184,89 +8909,48 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type ClientNullableRelationFilter = {
-    is?: ClientWhereInput | null
-    isNot?: ClientWhereInput | null
-  }
-
-  export type ProductRelationFilter = {
-    is?: ProductWhereInput
-    isNot?: ProductWhereInput
-  }
-
-  export type InputOutputRelationFilter = {
-    is?: InputOutputWhereInput
-    isNot?: InputOutputWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
-  export type ContractCountOrderByAggregateInput = {
+  export type UserCountOrderByAggregateInput = {
     id?: SortOrder
-    clientId?: SortOrder
-    productId?: SortOrder
-    inputId?: SortOrder
-    outputId?: SortOrder
-    createdAt?: SortOrder
+    name?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
   }
 
-  export type ContractAvgOrderByAggregateInput = {
+  export type UserAvgOrderByAggregateInput = {
     id?: SortOrder
-    clientId?: SortOrder
-    productId?: SortOrder
-    inputId?: SortOrder
-    outputId?: SortOrder
   }
 
-  export type ContractMaxOrderByAggregateInput = {
+  export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
-    clientId?: SortOrder
-    productId?: SortOrder
-    inputId?: SortOrder
-    outputId?: SortOrder
-    createdAt?: SortOrder
+    name?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
   }
 
-  export type ContractMinOrderByAggregateInput = {
+  export type UserMinOrderByAggregateInput = {
     id?: SortOrder
-    clientId?: SortOrder
-    productId?: SortOrder
-    inputId?: SortOrder
-    outputId?: SortOrder
-    createdAt?: SortOrder
+    name?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
   }
 
-  export type ContractSumOrderByAggregateInput = {
+  export type UserSumOrderByAggregateInput = {
     id?: SortOrder
-    clientId?: SortOrder
-    productId?: SortOrder
-    inputId?: SortOrder
-    outputId?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -10285,67 +8969,7 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type ContractListRelationFilter = {
-    every?: ContractWhereInput
-    some?: ContractWhereInput
-    none?: ContractWhereInput
-  }
-
-  export type ContractOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type ClientCountOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type ClientAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type ClientMaxOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type ClientMinOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type ClientSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type StringFilter<$PrismaModel = never> = {
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
     notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -10357,7 +8981,51 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
-    not?: NestedStringFilter<$PrismaModel> | string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type ClientCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
+    zip?: SortOrder
+  }
+
+  export type ClientAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ClientMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
+    zip?: SortOrder
+  }
+
+  export type ClientMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
+    zip?: SortOrder
+  }
+
+  export type ClientSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type ModelListRelationFilter = {
@@ -10366,7 +9034,17 @@ export namespace Prisma {
     none?: ModelWhereInput
   }
 
+  export type InputOutputListRelationFilter = {
+    every?: InputOutputWhereInput
+    some?: InputOutputWhereInput
+    none?: InputOutputWhereInput
+  }
+
   export type ModelOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InputOutputOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10393,22 +9071,9 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
+  export type ProductRelationFilter = {
+    is?: ProductWhereInput
+    isNot?: ProductWhereInput
   }
 
   export type CapacityListRelationFilter = {
@@ -10531,115 +9196,33 @@ export namespace Prisma {
   export type InputOutputCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    productId?: SortOrder
   }
 
   export type InputOutputAvgOrderByAggregateInput = {
     id?: SortOrder
+    productId?: SortOrder
   }
 
   export type InputOutputMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    productId?: SortOrder
   }
 
   export type InputOutputMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    productId?: SortOrder
   }
 
   export type InputOutputSumOrderByAggregateInput = {
     id?: SortOrder
+    productId?: SortOrder
   }
 
-  export type UserCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-  }
-
-  export type UserAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type UserMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-  }
-
-  export type UserMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-  }
-
-  export type UserSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type ClientCreateNestedOneWithoutContractsInput = {
-    create?: XOR<ClientCreateWithoutContractsInput, ClientUncheckedCreateWithoutContractsInput>
-    connectOrCreate?: ClientCreateOrConnectWithoutContractsInput
-    connect?: ClientWhereUniqueInput
-  }
-
-  export type ProductCreateNestedOneWithoutContractsInput = {
-    create?: XOR<ProductCreateWithoutContractsInput, ProductUncheckedCreateWithoutContractsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutContractsInput
-    connect?: ProductWhereUniqueInput
-  }
-
-  export type InputOutputCreateNestedOneWithoutContractsAsInputInput = {
-    create?: XOR<InputOutputCreateWithoutContractsAsInputInput, InputOutputUncheckedCreateWithoutContractsAsInputInput>
-    connectOrCreate?: InputOutputCreateOrConnectWithoutContractsAsInputInput
-    connect?: InputOutputWhereUniqueInput
-  }
-
-  export type InputOutputCreateNestedOneWithoutContractsAsOutputInput = {
-    create?: XOR<InputOutputCreateWithoutContractsAsOutputInput, InputOutputUncheckedCreateWithoutContractsAsOutputInput>
-    connectOrCreate?: InputOutputCreateOrConnectWithoutContractsAsOutputInput
-    connect?: InputOutputWhereUniqueInput
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
-  export type ClientUpdateOneWithoutContractsNestedInput = {
-    create?: XOR<ClientCreateWithoutContractsInput, ClientUncheckedCreateWithoutContractsInput>
-    connectOrCreate?: ClientCreateOrConnectWithoutContractsInput
-    upsert?: ClientUpsertWithoutContractsInput
-    disconnect?: ClientWhereInput | boolean
-    delete?: ClientWhereInput | boolean
-    connect?: ClientWhereUniqueInput
-    update?: XOR<XOR<ClientUpdateToOneWithWhereWithoutContractsInput, ClientUpdateWithoutContractsInput>, ClientUncheckedUpdateWithoutContractsInput>
-  }
-
-  export type ProductUpdateOneRequiredWithoutContractsNestedInput = {
-    create?: XOR<ProductCreateWithoutContractsInput, ProductUncheckedCreateWithoutContractsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutContractsInput
-    upsert?: ProductUpsertWithoutContractsInput
-    connect?: ProductWhereUniqueInput
-    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutContractsInput, ProductUpdateWithoutContractsInput>, ProductUncheckedUpdateWithoutContractsInput>
-  }
-
-  export type InputOutputUpdateOneRequiredWithoutContractsAsInputNestedInput = {
-    create?: XOR<InputOutputCreateWithoutContractsAsInputInput, InputOutputUncheckedCreateWithoutContractsAsInputInput>
-    connectOrCreate?: InputOutputCreateOrConnectWithoutContractsAsInputInput
-    upsert?: InputOutputUpsertWithoutContractsAsInputInput
-    connect?: InputOutputWhereUniqueInput
-    update?: XOR<XOR<InputOutputUpdateToOneWithWhereWithoutContractsAsInputInput, InputOutputUpdateWithoutContractsAsInputInput>, InputOutputUncheckedUpdateWithoutContractsAsInputInput>
-  }
-
-  export type InputOutputUpdateOneRequiredWithoutContractsAsOutputNestedInput = {
-    create?: XOR<InputOutputCreateWithoutContractsAsOutputInput, InputOutputUncheckedCreateWithoutContractsAsOutputInput>
-    connectOrCreate?: InputOutputCreateOrConnectWithoutContractsAsOutputInput
-    upsert?: InputOutputUpsertWithoutContractsAsOutputInput
-    connect?: InputOutputWhereUniqueInput
-    update?: XOR<XOR<InputOutputUpdateToOneWithWhereWithoutContractsAsOutputInput, InputOutputUpdateWithoutContractsAsOutputInput>, InputOutputUncheckedUpdateWithoutContractsAsOutputInput>
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -10650,63 +9233,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type ContractCreateNestedManyWithoutClientInput = {
-    create?: XOR<ContractCreateWithoutClientInput, ContractUncheckedCreateWithoutClientInput> | ContractCreateWithoutClientInput[] | ContractUncheckedCreateWithoutClientInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutClientInput | ContractCreateOrConnectWithoutClientInput[]
-    createMany?: ContractCreateManyClientInputEnvelope
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-  }
-
-  export type ContractUncheckedCreateNestedManyWithoutClientInput = {
-    create?: XOR<ContractCreateWithoutClientInput, ContractUncheckedCreateWithoutClientInput> | ContractCreateWithoutClientInput[] | ContractUncheckedCreateWithoutClientInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutClientInput | ContractCreateOrConnectWithoutClientInput[]
-    createMany?: ContractCreateManyClientInputEnvelope
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-  }
-
-  export type ContractUpdateManyWithoutClientNestedInput = {
-    create?: XOR<ContractCreateWithoutClientInput, ContractUncheckedCreateWithoutClientInput> | ContractCreateWithoutClientInput[] | ContractUncheckedCreateWithoutClientInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutClientInput | ContractCreateOrConnectWithoutClientInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutClientInput | ContractUpsertWithWhereUniqueWithoutClientInput[]
-    createMany?: ContractCreateManyClientInputEnvelope
-    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutClientInput | ContractUpdateWithWhereUniqueWithoutClientInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutClientInput | ContractUpdateManyWithWhereWithoutClientInput[]
-    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
-  }
-
-  export type ContractUncheckedUpdateManyWithoutClientNestedInput = {
-    create?: XOR<ContractCreateWithoutClientInput, ContractUncheckedCreateWithoutClientInput> | ContractCreateWithoutClientInput[] | ContractUncheckedCreateWithoutClientInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutClientInput | ContractCreateOrConnectWithoutClientInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutClientInput | ContractUpsertWithWhereUniqueWithoutClientInput[]
-    createMany?: ContractCreateManyClientInputEnvelope
-    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutClientInput | ContractUpdateWithWhereUniqueWithoutClientInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutClientInput | ContractUpdateManyWithWhereWithoutClientInput[]
-    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
-  }
-
-  export type ContractCreateNestedManyWithoutProductInput = {
-    create?: XOR<ContractCreateWithoutProductInput, ContractUncheckedCreateWithoutProductInput> | ContractCreateWithoutProductInput[] | ContractUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutProductInput | ContractCreateOrConnectWithoutProductInput[]
-    createMany?: ContractCreateManyProductInputEnvelope
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-  }
-
   export type ModelCreateNestedManyWithoutProductInput = {
     create?: XOR<ModelCreateWithoutProductInput, ModelUncheckedCreateWithoutProductInput> | ModelCreateWithoutProductInput[] | ModelUncheckedCreateWithoutProductInput[]
     connectOrCreate?: ModelCreateOrConnectWithoutProductInput | ModelCreateOrConnectWithoutProductInput[]
@@ -10714,11 +9240,11 @@ export namespace Prisma {
     connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
   }
 
-  export type ContractUncheckedCreateNestedManyWithoutProductInput = {
-    create?: XOR<ContractCreateWithoutProductInput, ContractUncheckedCreateWithoutProductInput> | ContractCreateWithoutProductInput[] | ContractUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutProductInput | ContractCreateOrConnectWithoutProductInput[]
-    createMany?: ContractCreateManyProductInputEnvelope
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+  export type InputOutputCreateNestedManyWithoutProductInput = {
+    create?: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput> | InputOutputCreateWithoutProductInput[] | InputOutputUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: InputOutputCreateOrConnectWithoutProductInput | InputOutputCreateOrConnectWithoutProductInput[]
+    createMany?: InputOutputCreateManyProductInputEnvelope
+    connect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
   }
 
   export type ModelUncheckedCreateNestedManyWithoutProductInput = {
@@ -10728,22 +9254,11 @@ export namespace Prisma {
     connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
-  export type ContractUpdateManyWithoutProductNestedInput = {
-    create?: XOR<ContractCreateWithoutProductInput, ContractUncheckedCreateWithoutProductInput> | ContractCreateWithoutProductInput[] | ContractUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutProductInput | ContractCreateOrConnectWithoutProductInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutProductInput | ContractUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: ContractCreateManyProductInputEnvelope
-    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutProductInput | ContractUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutProductInput | ContractUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  export type InputOutputUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput> | InputOutputCreateWithoutProductInput[] | InputOutputUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: InputOutputCreateOrConnectWithoutProductInput | InputOutputCreateOrConnectWithoutProductInput[]
+    createMany?: InputOutputCreateManyProductInputEnvelope
+    connect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
   }
 
   export type ModelUpdateManyWithoutProductNestedInput = {
@@ -10760,18 +9275,18 @@ export namespace Prisma {
     deleteMany?: ModelScalarWhereInput | ModelScalarWhereInput[]
   }
 
-  export type ContractUncheckedUpdateManyWithoutProductNestedInput = {
-    create?: XOR<ContractCreateWithoutProductInput, ContractUncheckedCreateWithoutProductInput> | ContractCreateWithoutProductInput[] | ContractUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutProductInput | ContractCreateOrConnectWithoutProductInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutProductInput | ContractUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: ContractCreateManyProductInputEnvelope
-    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutProductInput | ContractUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutProductInput | ContractUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  export type InputOutputUpdateManyWithoutProductNestedInput = {
+    create?: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput> | InputOutputCreateWithoutProductInput[] | InputOutputUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: InputOutputCreateOrConnectWithoutProductInput | InputOutputCreateOrConnectWithoutProductInput[]
+    upsert?: InputOutputUpsertWithWhereUniqueWithoutProductInput | InputOutputUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: InputOutputCreateManyProductInputEnvelope
+    set?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
+    disconnect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
+    delete?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
+    connect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
+    update?: InputOutputUpdateWithWhereUniqueWithoutProductInput | InputOutputUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: InputOutputUpdateManyWithWhereWithoutProductInput | InputOutputUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: InputOutputScalarWhereInput | InputOutputScalarWhereInput[]
   }
 
   export type ModelUncheckedUpdateManyWithoutProductNestedInput = {
@@ -10786,6 +9301,20 @@ export namespace Prisma {
     update?: ModelUpdateWithWhereUniqueWithoutProductInput | ModelUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: ModelUpdateManyWithWhereWithoutProductInput | ModelUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: ModelScalarWhereInput | ModelScalarWhereInput[]
+  }
+
+  export type InputOutputUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput> | InputOutputCreateWithoutProductInput[] | InputOutputUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: InputOutputCreateOrConnectWithoutProductInput | InputOutputCreateOrConnectWithoutProductInput[]
+    upsert?: InputOutputUpsertWithWhereUniqueWithoutProductInput | InputOutputUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: InputOutputCreateManyProductInputEnvelope
+    set?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
+    disconnect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
+    delete?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
+    connect?: InputOutputWhereUniqueInput | InputOutputWhereUniqueInput[]
+    update?: InputOutputUpdateWithWhereUniqueWithoutProductInput | InputOutputUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: InputOutputUpdateManyWithWhereWithoutProductInput | InputOutputUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: InputOutputScalarWhereInput | InputOutputScalarWhereInput[]
   }
 
   export type ProductCreateNestedOneWithoutModelsInput = {
@@ -10914,88 +9443,18 @@ export namespace Prisma {
     update?: XOR<XOR<CapacityUpdateToOneWithWhereWithoutHeightsInput, CapacityUpdateWithoutHeightsInput>, CapacityUncheckedUpdateWithoutHeightsInput>
   }
 
-  export type ContractCreateNestedManyWithoutInputInput = {
-    create?: XOR<ContractCreateWithoutInputInput, ContractUncheckedCreateWithoutInputInput> | ContractCreateWithoutInputInput[] | ContractUncheckedCreateWithoutInputInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutInputInput | ContractCreateOrConnectWithoutInputInput[]
-    createMany?: ContractCreateManyInputInputEnvelope
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+  export type ProductCreateNestedOneWithoutInputOutputsInput = {
+    create?: XOR<ProductCreateWithoutInputOutputsInput, ProductUncheckedCreateWithoutInputOutputsInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutInputOutputsInput
+    connect?: ProductWhereUniqueInput
   }
 
-  export type ContractCreateNestedManyWithoutOutputInput = {
-    create?: XOR<ContractCreateWithoutOutputInput, ContractUncheckedCreateWithoutOutputInput> | ContractCreateWithoutOutputInput[] | ContractUncheckedCreateWithoutOutputInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutOutputInput | ContractCreateOrConnectWithoutOutputInput[]
-    createMany?: ContractCreateManyOutputInputEnvelope
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-  }
-
-  export type ContractUncheckedCreateNestedManyWithoutInputInput = {
-    create?: XOR<ContractCreateWithoutInputInput, ContractUncheckedCreateWithoutInputInput> | ContractCreateWithoutInputInput[] | ContractUncheckedCreateWithoutInputInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutInputInput | ContractCreateOrConnectWithoutInputInput[]
-    createMany?: ContractCreateManyInputInputEnvelope
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-  }
-
-  export type ContractUncheckedCreateNestedManyWithoutOutputInput = {
-    create?: XOR<ContractCreateWithoutOutputInput, ContractUncheckedCreateWithoutOutputInput> | ContractCreateWithoutOutputInput[] | ContractUncheckedCreateWithoutOutputInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutOutputInput | ContractCreateOrConnectWithoutOutputInput[]
-    createMany?: ContractCreateManyOutputInputEnvelope
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-  }
-
-  export type ContractUpdateManyWithoutInputNestedInput = {
-    create?: XOR<ContractCreateWithoutInputInput, ContractUncheckedCreateWithoutInputInput> | ContractCreateWithoutInputInput[] | ContractUncheckedCreateWithoutInputInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutInputInput | ContractCreateOrConnectWithoutInputInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutInputInput | ContractUpsertWithWhereUniqueWithoutInputInput[]
-    createMany?: ContractCreateManyInputInputEnvelope
-    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutInputInput | ContractUpdateWithWhereUniqueWithoutInputInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutInputInput | ContractUpdateManyWithWhereWithoutInputInput[]
-    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
-  }
-
-  export type ContractUpdateManyWithoutOutputNestedInput = {
-    create?: XOR<ContractCreateWithoutOutputInput, ContractUncheckedCreateWithoutOutputInput> | ContractCreateWithoutOutputInput[] | ContractUncheckedCreateWithoutOutputInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutOutputInput | ContractCreateOrConnectWithoutOutputInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutOutputInput | ContractUpsertWithWhereUniqueWithoutOutputInput[]
-    createMany?: ContractCreateManyOutputInputEnvelope
-    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutOutputInput | ContractUpdateWithWhereUniqueWithoutOutputInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutOutputInput | ContractUpdateManyWithWhereWithoutOutputInput[]
-    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
-  }
-
-  export type ContractUncheckedUpdateManyWithoutInputNestedInput = {
-    create?: XOR<ContractCreateWithoutInputInput, ContractUncheckedCreateWithoutInputInput> | ContractCreateWithoutInputInput[] | ContractUncheckedCreateWithoutInputInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutInputInput | ContractCreateOrConnectWithoutInputInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutInputInput | ContractUpsertWithWhereUniqueWithoutInputInput[]
-    createMany?: ContractCreateManyInputInputEnvelope
-    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutInputInput | ContractUpdateWithWhereUniqueWithoutInputInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutInputInput | ContractUpdateManyWithWhereWithoutInputInput[]
-    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
-  }
-
-  export type ContractUncheckedUpdateManyWithoutOutputNestedInput = {
-    create?: XOR<ContractCreateWithoutOutputInput, ContractUncheckedCreateWithoutOutputInput> | ContractCreateWithoutOutputInput[] | ContractUncheckedCreateWithoutOutputInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutOutputInput | ContractCreateOrConnectWithoutOutputInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutOutputInput | ContractUpsertWithWhereUniqueWithoutOutputInput[]
-    createMany?: ContractCreateManyOutputInputEnvelope
-    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutOutputInput | ContractUpdateWithWhereUniqueWithoutOutputInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutOutputInput | ContractUpdateManyWithWhereWithoutOutputInput[]
-    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  export type ProductUpdateOneRequiredWithoutInputOutputsNestedInput = {
+    create?: XOR<ProductCreateWithoutInputOutputsInput, ProductUncheckedCreateWithoutInputOutputsInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutInputOutputsInput
+    upsert?: ProductUpsertWithoutInputOutputsInput
+    connect?: ProductWhereUniqueInput
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutInputOutputsInput, ProductUpdateWithoutInputOutputsInput>, ProductUncheckedUpdateWithoutInputOutputsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -11009,26 +9468,18 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -11058,61 +9509,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
-  }
-
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -11128,230 +9524,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type ClientCreateWithoutContractsInput = {
-
-  }
-
-  export type ClientUncheckedCreateWithoutContractsInput = {
-    id?: number
-  }
-
-  export type ClientCreateOrConnectWithoutContractsInput = {
-    where: ClientWhereUniqueInput
-    create: XOR<ClientCreateWithoutContractsInput, ClientUncheckedCreateWithoutContractsInput>
-  }
-
-  export type ProductCreateWithoutContractsInput = {
-    title: string
-    models?: ModelCreateNestedManyWithoutProductInput
-  }
-
-  export type ProductUncheckedCreateWithoutContractsInput = {
-    id?: number
-    title: string
-    models?: ModelUncheckedCreateNestedManyWithoutProductInput
-  }
-
-  export type ProductCreateOrConnectWithoutContractsInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutContractsInput, ProductUncheckedCreateWithoutContractsInput>
-  }
-
-  export type InputOutputCreateWithoutContractsAsInputInput = {
-    title: string
-    contractsAsOutput?: ContractCreateNestedManyWithoutOutputInput
-  }
-
-  export type InputOutputUncheckedCreateWithoutContractsAsInputInput = {
-    id?: number
-    title: string
-    contractsAsOutput?: ContractUncheckedCreateNestedManyWithoutOutputInput
-  }
-
-  export type InputOutputCreateOrConnectWithoutContractsAsInputInput = {
-    where: InputOutputWhereUniqueInput
-    create: XOR<InputOutputCreateWithoutContractsAsInputInput, InputOutputUncheckedCreateWithoutContractsAsInputInput>
-  }
-
-  export type InputOutputCreateWithoutContractsAsOutputInput = {
-    title: string
-    contractsAsInput?: ContractCreateNestedManyWithoutInputInput
-  }
-
-  export type InputOutputUncheckedCreateWithoutContractsAsOutputInput = {
-    id?: number
-    title: string
-    contractsAsInput?: ContractUncheckedCreateNestedManyWithoutInputInput
-  }
-
-  export type InputOutputCreateOrConnectWithoutContractsAsOutputInput = {
-    where: InputOutputWhereUniqueInput
-    create: XOR<InputOutputCreateWithoutContractsAsOutputInput, InputOutputUncheckedCreateWithoutContractsAsOutputInput>
-  }
-
-  export type ClientUpsertWithoutContractsInput = {
-    update: XOR<ClientUpdateWithoutContractsInput, ClientUncheckedUpdateWithoutContractsInput>
-    create: XOR<ClientCreateWithoutContractsInput, ClientUncheckedCreateWithoutContractsInput>
-    where?: ClientWhereInput
-  }
-
-  export type ClientUpdateToOneWithWhereWithoutContractsInput = {
-    where?: ClientWhereInput
-    data: XOR<ClientUpdateWithoutContractsInput, ClientUncheckedUpdateWithoutContractsInput>
-  }
-
-  export type ClientUpdateWithoutContractsInput = {
-
-  }
-
-  export type ClientUncheckedUpdateWithoutContractsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ProductUpsertWithoutContractsInput = {
-    update: XOR<ProductUpdateWithoutContractsInput, ProductUncheckedUpdateWithoutContractsInput>
-    create: XOR<ProductCreateWithoutContractsInput, ProductUncheckedCreateWithoutContractsInput>
-    where?: ProductWhereInput
-  }
-
-  export type ProductUpdateToOneWithWhereWithoutContractsInput = {
-    where?: ProductWhereInput
-    data: XOR<ProductUpdateWithoutContractsInput, ProductUncheckedUpdateWithoutContractsInput>
-  }
-
-  export type ProductUpdateWithoutContractsInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    models?: ModelUpdateManyWithoutProductNestedInput
-  }
-
-  export type ProductUncheckedUpdateWithoutContractsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    models?: ModelUncheckedUpdateManyWithoutProductNestedInput
-  }
-
-  export type InputOutputUpsertWithoutContractsAsInputInput = {
-    update: XOR<InputOutputUpdateWithoutContractsAsInputInput, InputOutputUncheckedUpdateWithoutContractsAsInputInput>
-    create: XOR<InputOutputCreateWithoutContractsAsInputInput, InputOutputUncheckedCreateWithoutContractsAsInputInput>
-    where?: InputOutputWhereInput
-  }
-
-  export type InputOutputUpdateToOneWithWhereWithoutContractsAsInputInput = {
-    where?: InputOutputWhereInput
-    data: XOR<InputOutputUpdateWithoutContractsAsInputInput, InputOutputUncheckedUpdateWithoutContractsAsInputInput>
-  }
-
-  export type InputOutputUpdateWithoutContractsAsInputInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    contractsAsOutput?: ContractUpdateManyWithoutOutputNestedInput
-  }
-
-  export type InputOutputUncheckedUpdateWithoutContractsAsInputInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    contractsAsOutput?: ContractUncheckedUpdateManyWithoutOutputNestedInput
-  }
-
-  export type InputOutputUpsertWithoutContractsAsOutputInput = {
-    update: XOR<InputOutputUpdateWithoutContractsAsOutputInput, InputOutputUncheckedUpdateWithoutContractsAsOutputInput>
-    create: XOR<InputOutputCreateWithoutContractsAsOutputInput, InputOutputUncheckedCreateWithoutContractsAsOutputInput>
-    where?: InputOutputWhereInput
-  }
-
-  export type InputOutputUpdateToOneWithWhereWithoutContractsAsOutputInput = {
-    where?: InputOutputWhereInput
-    data: XOR<InputOutputUpdateWithoutContractsAsOutputInput, InputOutputUncheckedUpdateWithoutContractsAsOutputInput>
-  }
-
-  export type InputOutputUpdateWithoutContractsAsOutputInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    contractsAsInput?: ContractUpdateManyWithoutInputNestedInput
-  }
-
-  export type InputOutputUncheckedUpdateWithoutContractsAsOutputInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    contractsAsInput?: ContractUncheckedUpdateManyWithoutInputNestedInput
-  }
-
-  export type ContractCreateWithoutClientInput = {
-    createdAt?: Date | string
-    product: ProductCreateNestedOneWithoutContractsInput
-    input: InputOutputCreateNestedOneWithoutContractsAsInputInput
-    output: InputOutputCreateNestedOneWithoutContractsAsOutputInput
-  }
-
-  export type ContractUncheckedCreateWithoutClientInput = {
-    id?: number
-    productId: number
-    inputId: number
-    outputId: number
-    createdAt?: Date | string
-  }
-
-  export type ContractCreateOrConnectWithoutClientInput = {
-    where: ContractWhereUniqueInput
-    create: XOR<ContractCreateWithoutClientInput, ContractUncheckedCreateWithoutClientInput>
-  }
-
-  export type ContractCreateManyClientInputEnvelope = {
-    data: ContractCreateManyClientInput | ContractCreateManyClientInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ContractUpsertWithWhereUniqueWithoutClientInput = {
-    where: ContractWhereUniqueInput
-    update: XOR<ContractUpdateWithoutClientInput, ContractUncheckedUpdateWithoutClientInput>
-    create: XOR<ContractCreateWithoutClientInput, ContractUncheckedCreateWithoutClientInput>
-  }
-
-  export type ContractUpdateWithWhereUniqueWithoutClientInput = {
-    where: ContractWhereUniqueInput
-    data: XOR<ContractUpdateWithoutClientInput, ContractUncheckedUpdateWithoutClientInput>
-  }
-
-  export type ContractUpdateManyWithWhereWithoutClientInput = {
-    where: ContractScalarWhereInput
-    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutClientInput>
-  }
-
-  export type ContractScalarWhereInput = {
-    AND?: ContractScalarWhereInput | ContractScalarWhereInput[]
-    OR?: ContractScalarWhereInput[]
-    NOT?: ContractScalarWhereInput | ContractScalarWhereInput[]
-    id?: IntFilter<"Contract"> | number
-    clientId?: IntNullableFilter<"Contract"> | number | null
-    productId?: IntFilter<"Contract"> | number
-    inputId?: IntFilter<"Contract"> | number
-    outputId?: IntFilter<"Contract"> | number
-    createdAt?: DateTimeFilter<"Contract"> | Date | string
-  }
-
-  export type ContractCreateWithoutProductInput = {
-    createdAt?: Date | string
-    client?: ClientCreateNestedOneWithoutContractsInput
-    input: InputOutputCreateNestedOneWithoutContractsAsInputInput
-    output: InputOutputCreateNestedOneWithoutContractsAsOutputInput
-  }
-
-  export type ContractUncheckedCreateWithoutProductInput = {
-    id?: number
-    clientId?: number | null
-    inputId: number
-    outputId: number
-    createdAt?: Date | string
-  }
-
-  export type ContractCreateOrConnectWithoutProductInput = {
-    where: ContractWhereUniqueInput
-    create: XOR<ContractCreateWithoutProductInput, ContractUncheckedCreateWithoutProductInput>
-  }
-
-  export type ContractCreateManyProductInputEnvelope = {
-    data: ContractCreateManyProductInput | ContractCreateManyProductInput[]
-    skipDuplicates?: boolean
   }
 
   export type ModelCreateWithoutProductInput = {
@@ -11375,20 +9547,23 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ContractUpsertWithWhereUniqueWithoutProductInput = {
-    where: ContractWhereUniqueInput
-    update: XOR<ContractUpdateWithoutProductInput, ContractUncheckedUpdateWithoutProductInput>
-    create: XOR<ContractCreateWithoutProductInput, ContractUncheckedCreateWithoutProductInput>
+  export type InputOutputCreateWithoutProductInput = {
+    title: string
   }
 
-  export type ContractUpdateWithWhereUniqueWithoutProductInput = {
-    where: ContractWhereUniqueInput
-    data: XOR<ContractUpdateWithoutProductInput, ContractUncheckedUpdateWithoutProductInput>
+  export type InputOutputUncheckedCreateWithoutProductInput = {
+    id?: number
+    title: string
   }
 
-  export type ContractUpdateManyWithWhereWithoutProductInput = {
-    where: ContractScalarWhereInput
-    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutProductInput>
+  export type InputOutputCreateOrConnectWithoutProductInput = {
+    where: InputOutputWhereUniqueInput
+    create: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput>
+  }
+
+  export type InputOutputCreateManyProductInputEnvelope = {
+    data: InputOutputCreateManyProductInput | InputOutputCreateManyProductInput[]
+    skipDuplicates?: boolean
   }
 
   export type ModelUpsertWithWhereUniqueWithoutProductInput = {
@@ -11416,15 +9591,40 @@ export namespace Prisma {
     productId?: IntFilter<"Model"> | number
   }
 
+  export type InputOutputUpsertWithWhereUniqueWithoutProductInput = {
+    where: InputOutputWhereUniqueInput
+    update: XOR<InputOutputUpdateWithoutProductInput, InputOutputUncheckedUpdateWithoutProductInput>
+    create: XOR<InputOutputCreateWithoutProductInput, InputOutputUncheckedCreateWithoutProductInput>
+  }
+
+  export type InputOutputUpdateWithWhereUniqueWithoutProductInput = {
+    where: InputOutputWhereUniqueInput
+    data: XOR<InputOutputUpdateWithoutProductInput, InputOutputUncheckedUpdateWithoutProductInput>
+  }
+
+  export type InputOutputUpdateManyWithWhereWithoutProductInput = {
+    where: InputOutputScalarWhereInput
+    data: XOR<InputOutputUpdateManyMutationInput, InputOutputUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type InputOutputScalarWhereInput = {
+    AND?: InputOutputScalarWhereInput | InputOutputScalarWhereInput[]
+    OR?: InputOutputScalarWhereInput[]
+    NOT?: InputOutputScalarWhereInput | InputOutputScalarWhereInput[]
+    id?: IntFilter<"InputOutput"> | number
+    title?: StringFilter<"InputOutput"> | string
+    productId?: IntFilter<"InputOutput"> | number
+  }
+
   export type ProductCreateWithoutModelsInput = {
     title: string
-    contracts?: ContractCreateNestedManyWithoutProductInput
+    inputOutputs?: InputOutputCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutModelsInput = {
     id?: number
     title: string
-    contracts?: ContractUncheckedCreateNestedManyWithoutProductInput
+    inputOutputs?: InputOutputUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutModelsInput = {
@@ -11466,13 +9666,13 @@ export namespace Prisma {
 
   export type ProductUpdateWithoutModelsInput = {
     title?: StringFieldUpdateOperationsInput | string
-    contracts?: ContractUpdateManyWithoutProductNestedInput
+    inputOutputs?: InputOutputUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutModelsInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    contracts?: ContractUncheckedUpdateManyWithoutProductNestedInput
+    inputOutputs?: InputOutputUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type CapacityUpsertWithWhereUniqueWithoutModelInput = {
@@ -11623,125 +9823,42 @@ export namespace Prisma {
     modelId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type ContractCreateWithoutInputInput = {
-    createdAt?: Date | string
-    client?: ClientCreateNestedOneWithoutContractsInput
-    product: ProductCreateNestedOneWithoutContractsInput
-    output: InputOutputCreateNestedOneWithoutContractsAsOutputInput
+  export type ProductCreateWithoutInputOutputsInput = {
+    title: string
+    models?: ModelCreateNestedManyWithoutProductInput
   }
 
-  export type ContractUncheckedCreateWithoutInputInput = {
+  export type ProductUncheckedCreateWithoutInputOutputsInput = {
     id?: number
-    clientId?: number | null
-    productId: number
-    outputId: number
-    createdAt?: Date | string
+    title: string
+    models?: ModelUncheckedCreateNestedManyWithoutProductInput
   }
 
-  export type ContractCreateOrConnectWithoutInputInput = {
-    where: ContractWhereUniqueInput
-    create: XOR<ContractCreateWithoutInputInput, ContractUncheckedCreateWithoutInputInput>
+  export type ProductCreateOrConnectWithoutInputOutputsInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutInputOutputsInput, ProductUncheckedCreateWithoutInputOutputsInput>
   }
 
-  export type ContractCreateManyInputInputEnvelope = {
-    data: ContractCreateManyInputInput | ContractCreateManyInputInput[]
-    skipDuplicates?: boolean
+  export type ProductUpsertWithoutInputOutputsInput = {
+    update: XOR<ProductUpdateWithoutInputOutputsInput, ProductUncheckedUpdateWithoutInputOutputsInput>
+    create: XOR<ProductCreateWithoutInputOutputsInput, ProductUncheckedCreateWithoutInputOutputsInput>
+    where?: ProductWhereInput
   }
 
-  export type ContractCreateWithoutOutputInput = {
-    createdAt?: Date | string
-    client?: ClientCreateNestedOneWithoutContractsInput
-    product: ProductCreateNestedOneWithoutContractsInput
-    input: InputOutputCreateNestedOneWithoutContractsAsInputInput
+  export type ProductUpdateToOneWithWhereWithoutInputOutputsInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutInputOutputsInput, ProductUncheckedUpdateWithoutInputOutputsInput>
   }
 
-  export type ContractUncheckedCreateWithoutOutputInput = {
-    id?: number
-    clientId?: number | null
-    productId: number
-    inputId: number
-    createdAt?: Date | string
+  export type ProductUpdateWithoutInputOutputsInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    models?: ModelUpdateManyWithoutProductNestedInput
   }
 
-  export type ContractCreateOrConnectWithoutOutputInput = {
-    where: ContractWhereUniqueInput
-    create: XOR<ContractCreateWithoutOutputInput, ContractUncheckedCreateWithoutOutputInput>
-  }
-
-  export type ContractCreateManyOutputInputEnvelope = {
-    data: ContractCreateManyOutputInput | ContractCreateManyOutputInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ContractUpsertWithWhereUniqueWithoutInputInput = {
-    where: ContractWhereUniqueInput
-    update: XOR<ContractUpdateWithoutInputInput, ContractUncheckedUpdateWithoutInputInput>
-    create: XOR<ContractCreateWithoutInputInput, ContractUncheckedCreateWithoutInputInput>
-  }
-
-  export type ContractUpdateWithWhereUniqueWithoutInputInput = {
-    where: ContractWhereUniqueInput
-    data: XOR<ContractUpdateWithoutInputInput, ContractUncheckedUpdateWithoutInputInput>
-  }
-
-  export type ContractUpdateManyWithWhereWithoutInputInput = {
-    where: ContractScalarWhereInput
-    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutInputInput>
-  }
-
-  export type ContractUpsertWithWhereUniqueWithoutOutputInput = {
-    where: ContractWhereUniqueInput
-    update: XOR<ContractUpdateWithoutOutputInput, ContractUncheckedUpdateWithoutOutputInput>
-    create: XOR<ContractCreateWithoutOutputInput, ContractUncheckedCreateWithoutOutputInput>
-  }
-
-  export type ContractUpdateWithWhereUniqueWithoutOutputInput = {
-    where: ContractWhereUniqueInput
-    data: XOR<ContractUpdateWithoutOutputInput, ContractUncheckedUpdateWithoutOutputInput>
-  }
-
-  export type ContractUpdateManyWithWhereWithoutOutputInput = {
-    where: ContractScalarWhereInput
-    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutOutputInput>
-  }
-
-  export type ContractCreateManyClientInput = {
-    id?: number
-    productId: number
-    inputId: number
-    outputId: number
-    createdAt?: Date | string
-  }
-
-  export type ContractUpdateWithoutClientInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    product?: ProductUpdateOneRequiredWithoutContractsNestedInput
-    input?: InputOutputUpdateOneRequiredWithoutContractsAsInputNestedInput
-    output?: InputOutputUpdateOneRequiredWithoutContractsAsOutputNestedInput
-  }
-
-  export type ContractUncheckedUpdateWithoutClientInput = {
+  export type ProductUncheckedUpdateWithoutInputOutputsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    productId?: IntFieldUpdateOperationsInput | number
-    inputId?: IntFieldUpdateOperationsInput | number
-    outputId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ContractUncheckedUpdateManyWithoutClientInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    productId?: IntFieldUpdateOperationsInput | number
-    inputId?: IntFieldUpdateOperationsInput | number
-    outputId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ContractCreateManyProductInput = {
-    id?: number
-    clientId?: number | null
-    inputId: number
-    outputId: number
-    createdAt?: Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    models?: ModelUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ModelCreateManyProductInput = {
@@ -11749,27 +9866,9 @@ export namespace Prisma {
     title: string
   }
 
-  export type ContractUpdateWithoutProductInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    client?: ClientUpdateOneWithoutContractsNestedInput
-    input?: InputOutputUpdateOneRequiredWithoutContractsAsInputNestedInput
-    output?: InputOutputUpdateOneRequiredWithoutContractsAsOutputNestedInput
-  }
-
-  export type ContractUncheckedUpdateWithoutProductInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clientId?: NullableIntFieldUpdateOperationsInput | number | null
-    inputId?: IntFieldUpdateOperationsInput | number
-    outputId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ContractUncheckedUpdateManyWithoutProductInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clientId?: NullableIntFieldUpdateOperationsInput | number | null
-    inputId?: IntFieldUpdateOperationsInput | number
-    outputId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type InputOutputCreateManyProductInput = {
+    id?: number
+    title: string
   }
 
   export type ModelUpdateWithoutProductInput = {
@@ -11784,6 +9883,20 @@ export namespace Prisma {
   }
 
   export type ModelUncheckedUpdateManyWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InputOutputUpdateWithoutProductInput = {
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InputOutputUncheckedUpdateWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InputOutputUncheckedUpdateManyWithoutProductInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
   }
@@ -11832,77 +9945,11 @@ export namespace Prisma {
     power?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ContractCreateManyInputInput = {
-    id?: number
-    clientId?: number | null
-    productId: number
-    outputId: number
-    createdAt?: Date | string
-  }
-
-  export type ContractCreateManyOutputInput = {
-    id?: number
-    clientId?: number | null
-    productId: number
-    inputId: number
-    createdAt?: Date | string
-  }
-
-  export type ContractUpdateWithoutInputInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    client?: ClientUpdateOneWithoutContractsNestedInput
-    product?: ProductUpdateOneRequiredWithoutContractsNestedInput
-    output?: InputOutputUpdateOneRequiredWithoutContractsAsOutputNestedInput
-  }
-
-  export type ContractUncheckedUpdateWithoutInputInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clientId?: NullableIntFieldUpdateOperationsInput | number | null
-    productId?: IntFieldUpdateOperationsInput | number
-    outputId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ContractUncheckedUpdateManyWithoutInputInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clientId?: NullableIntFieldUpdateOperationsInput | number | null
-    productId?: IntFieldUpdateOperationsInput | number
-    outputId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ContractUpdateWithoutOutputInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    client?: ClientUpdateOneWithoutContractsNestedInput
-    product?: ProductUpdateOneRequiredWithoutContractsNestedInput
-    input?: InputOutputUpdateOneRequiredWithoutContractsAsInputNestedInput
-  }
-
-  export type ContractUncheckedUpdateWithoutOutputInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clientId?: NullableIntFieldUpdateOperationsInput | number | null
-    productId?: IntFieldUpdateOperationsInput | number
-    inputId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ContractUncheckedUpdateManyWithoutOutputInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clientId?: NullableIntFieldUpdateOperationsInput | number | null
-    productId?: IntFieldUpdateOperationsInput | number
-    inputId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
 
 
   /**
    * Aliases for legacy arg types
    */
-    /**
-     * @deprecated Use ClientCountOutputTypeDefaultArgs instead
-     */
-    export type ClientCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClientCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ProductCountOutputTypeDefaultArgs instead
      */
@@ -11916,13 +9963,9 @@ export namespace Prisma {
      */
     export type CapacityCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CapacityCountOutputTypeDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use InputOutputCountOutputTypeDefaultArgs instead
+     * @deprecated Use UserDefaultArgs instead
      */
-    export type InputOutputCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = InputOutputCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use ContractDefaultArgs instead
-     */
-    export type ContractArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ContractDefaultArgs<ExtArgs>
+    export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ClientDefaultArgs instead
      */
@@ -11947,10 +9990,6 @@ export namespace Prisma {
      * @deprecated Use InputOutputDefaultArgs instead
      */
     export type InputOutputArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = InputOutputDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use UserDefaultArgs instead
-     */
-    export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

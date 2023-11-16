@@ -8,7 +8,9 @@ export async function fetchProducts() {
         include: {
           capacities: {
             include: {
-              heights: true
+              heights: true,
+              input: true,
+              output: true
             }
           }
         }

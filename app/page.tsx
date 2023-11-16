@@ -1,4 +1,4 @@
-
+//page.tsx
 import { Card, Title, Text } from '@tremor/react';
 import SelectedProducts from './components/selectedProducts';
 import { Product } from '../prisma/generated/client';
@@ -6,10 +6,6 @@ import { SelectedProductProvider } from './contexts/selectedProductContext';
 import SelectFormClient from './components/selectForm.client'; // Importe o componente SelectFormClient
 
 const IndexPage: React.FC = () => {
-  const handleProductSelect = (product: Product) => {
-    console.log('Produto selecionado no IndexPage:', product);
-  };
-
   console.log('SelectedProductProvider', SelectedProductProvider);
 
   return (
@@ -17,9 +13,7 @@ const IndexPage: React.FC = () => {
       <Title>Gerenciador de Proposta</Title>
       <Text>Gerenciador de Proposta.</Text>
       <Card className="mt-6">
-        <SelectedProductProvider>
-          <SelectFormClient />
-        </SelectedProductProvider>
+        <SelectFormClient />
       </Card>
       <Card className="mt-6">
         <SelectedProducts selectedProducts={[]} inputsAndOutputs={[]} />
