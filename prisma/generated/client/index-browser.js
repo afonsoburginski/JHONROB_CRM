@@ -125,15 +125,27 @@ exports.Prisma.ClientScalarFieldEnum = {
   zip: 'zip'
 };
 
-exports.Prisma.ProductScalarFieldEnum = {
+exports.Prisma.GroupScalarFieldEnum = {
   id: 'id',
   title: 'title'
+};
+
+exports.Prisma.EquipmentScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  groupId: 'groupId'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  equipmentId: 'equipmentId'
 };
 
 exports.Prisma.ModelScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  productId: 'productId'
+  equipmentId: 'equipmentId'
 };
 
 exports.Prisma.CapacityScalarFieldEnum = {
@@ -145,8 +157,14 @@ exports.Prisma.CapacityScalarFieldEnum = {
 exports.Prisma.HeightScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  power: 'power',
+  recommended: 'recommended',
   capacityId: 'capacityId'
+};
+
+exports.Prisma.PowerScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  heightId: 'heightId'
 };
 
 exports.Prisma.InputOutputScalarFieldEnum = {
@@ -169,10 +187,13 @@ exports.Prisma.QueryMode = {
 exports.Prisma.ModelName = {
   User: 'User',
   Client: 'Client',
+  Group: 'Group',
+  Equipment: 'Equipment',
   Product: 'Product',
   Model: 'Model',
   Capacity: 'Capacity',
   Height: 'Height',
+  Power: 'Power',
   InputOutput: 'InputOutput'
 };
 

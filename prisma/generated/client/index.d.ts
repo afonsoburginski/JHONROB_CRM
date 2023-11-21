@@ -24,6 +24,16 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type Client = $Result.DefaultSelection<Prisma.$ClientPayload>
 /**
+ * Model Group
+ * 
+ */
+export type Group = $Result.DefaultSelection<Prisma.$GroupPayload>
+/**
+ * Model Equipment
+ * 
+ */
+export type Equipment = $Result.DefaultSelection<Prisma.$EquipmentPayload>
+/**
  * Model Product
  * 
  */
@@ -43,6 +53,11 @@ export type Capacity = $Result.DefaultSelection<Prisma.$CapacityPayload>
  * 
  */
 export type Height = $Result.DefaultSelection<Prisma.$HeightPayload>
+/**
+ * Model Power
+ * 
+ */
+export type Power = $Result.DefaultSelection<Prisma.$PowerPayload>
 /**
  * Model InputOutput
  * 
@@ -192,6 +207,26 @@ export class PrismaClient<
   get client(): Prisma.ClientDelegate<ExtArgs>;
 
   /**
+   * `prisma.group`: Exposes CRUD operations for the **Group** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Groups
+    * const groups = await prisma.group.findMany()
+    * ```
+    */
+  get group(): Prisma.GroupDelegate<ExtArgs>;
+
+  /**
+   * `prisma.equipment`: Exposes CRUD operations for the **Equipment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Equipment
+    * const equipment = await prisma.equipment.findMany()
+    * ```
+    */
+  get equipment(): Prisma.EquipmentDelegate<ExtArgs>;
+
+  /**
    * `prisma.product`: Exposes CRUD operations for the **Product** model.
     * Example usage:
     * ```ts
@@ -230,6 +265,16 @@ export class PrismaClient<
     * ```
     */
   get height(): Prisma.HeightDelegate<ExtArgs>;
+
+  /**
+   * `prisma.power`: Exposes CRUD operations for the **Power** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Powers
+    * const powers = await prisma.power.findMany()
+    * ```
+    */
+  get power(): Prisma.PowerDelegate<ExtArgs>;
 
   /**
    * `prisma.inputOutput`: Exposes CRUD operations for the **InputOutput** model.
@@ -712,10 +757,13 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Client: 'Client',
+    Group: 'Group',
+    Equipment: 'Equipment',
     Product: 'Product',
     Model: 'Model',
     Capacity: 'Capacity',
     Height: 'Height',
+    Power: 'Power',
     InputOutput: 'InputOutput'
   };
 
@@ -733,7 +781,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'client' | 'product' | 'model' | 'capacity' | 'height' | 'inputOutput'
+      modelProps: 'user' | 'client' | 'group' | 'equipment' | 'product' | 'model' | 'capacity' | 'height' | 'power' | 'inputOutput'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -866,6 +914,138 @@ export namespace Prisma {
           count: {
             args: Prisma.ClientCountArgs<ExtArgs>,
             result: $Utils.Optional<ClientCountAggregateOutputType> | number
+          }
+        }
+      }
+      Group: {
+        payload: Prisma.$GroupPayload<ExtArgs>
+        fields: Prisma.GroupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GroupFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GroupFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          findFirst: {
+            args: Prisma.GroupFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GroupFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          findMany: {
+            args: Prisma.GroupFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>[]
+          }
+          create: {
+            args: Prisma.GroupCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          createMany: {
+            args: Prisma.GroupCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.GroupDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          update: {
+            args: Prisma.GroupUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          deleteMany: {
+            args: Prisma.GroupDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GroupUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.GroupUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          aggregate: {
+            args: Prisma.GroupAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateGroup>
+          }
+          groupBy: {
+            args: Prisma.GroupGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<GroupGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GroupCountArgs<ExtArgs>,
+            result: $Utils.Optional<GroupCountAggregateOutputType> | number
+          }
+        }
+      }
+      Equipment: {
+        payload: Prisma.$EquipmentPayload<ExtArgs>
+        fields: Prisma.EquipmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EquipmentFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EquipmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EquipmentFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EquipmentPayload>
+          }
+          findFirst: {
+            args: Prisma.EquipmentFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EquipmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EquipmentFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EquipmentPayload>
+          }
+          findMany: {
+            args: Prisma.EquipmentFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EquipmentPayload>[]
+          }
+          create: {
+            args: Prisma.EquipmentCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EquipmentPayload>
+          }
+          createMany: {
+            args: Prisma.EquipmentCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.EquipmentDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EquipmentPayload>
+          }
+          update: {
+            args: Prisma.EquipmentUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EquipmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.EquipmentDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EquipmentUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.EquipmentUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EquipmentPayload>
+          }
+          aggregate: {
+            args: Prisma.EquipmentAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateEquipment>
+          }
+          groupBy: {
+            args: Prisma.EquipmentGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<EquipmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EquipmentCountArgs<ExtArgs>,
+            result: $Utils.Optional<EquipmentCountAggregateOutputType> | number
           }
         }
       }
@@ -1133,6 +1313,72 @@ export namespace Prisma {
           }
         }
       }
+      Power: {
+        payload: Prisma.$PowerPayload<ExtArgs>
+        fields: Prisma.PowerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PowerFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PowerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PowerFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PowerPayload>
+          }
+          findFirst: {
+            args: Prisma.PowerFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PowerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PowerFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PowerPayload>
+          }
+          findMany: {
+            args: Prisma.PowerFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PowerPayload>[]
+          }
+          create: {
+            args: Prisma.PowerCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PowerPayload>
+          }
+          createMany: {
+            args: Prisma.PowerCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.PowerDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PowerPayload>
+          }
+          update: {
+            args: Prisma.PowerUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PowerPayload>
+          }
+          deleteMany: {
+            args: Prisma.PowerDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PowerUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PowerUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PowerPayload>
+          }
+          aggregate: {
+            args: Prisma.PowerAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePower>
+          }
+          groupBy: {
+            args: Prisma.PowerGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PowerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PowerCountArgs<ExtArgs>,
+            result: $Utils.Optional<PowerCountAggregateOutputType> | number
+          }
+        }
+      }
       InputOutput: {
         payload: Prisma.$InputOutputPayload<ExtArgs>
         fields: Prisma.InputOutputFieldRefs
@@ -1344,35 +1590,79 @@ export namespace Prisma {
 
 
   /**
-   * Count Type ProductCountOutputType
+   * Count Type GroupCountOutputType
    */
 
-  export type ProductCountOutputType = {
-    models: number
+  export type GroupCountOutputType = {
+    equipments: number
   }
 
-  export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    models?: boolean | ProductCountOutputTypeCountModelsArgs
+  export type GroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    equipments?: boolean | GroupCountOutputTypeCountEquipmentsArgs
   }
 
   // Custom InputTypes
 
   /**
-   * ProductCountOutputType without action
+   * GroupCountOutputType without action
    */
-  export type ProductCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GroupCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductCountOutputType
+     * Select specific fields to fetch from the GroupCountOutputType
      */
-    select?: ProductCountOutputTypeSelect<ExtArgs> | null
+    select?: GroupCountOutputTypeSelect<ExtArgs> | null
   }
 
 
   /**
-   * ProductCountOutputType without action
+   * GroupCountOutputType without action
    */
-  export type ProductCountOutputTypeCountModelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GroupCountOutputTypeCountEquipmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EquipmentWhereInput
+  }
+
+
+
+  /**
+   * Count Type EquipmentCountOutputType
+   */
+
+  export type EquipmentCountOutputType = {
+    models: number
+    products: number
+  }
+
+  export type EquipmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    models?: boolean | EquipmentCountOutputTypeCountModelsArgs
+    products?: boolean | EquipmentCountOutputTypeCountProductsArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * EquipmentCountOutputType without action
+   */
+  export type EquipmentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentCountOutputType
+     */
+    select?: EquipmentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * EquipmentCountOutputType without action
+   */
+  export type EquipmentCountOutputTypeCountModelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ModelWhereInput
+  }
+
+
+  /**
+   * EquipmentCountOutputType without action
+   */
+  export type EquipmentCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductWhereInput
   }
 
 
@@ -1441,6 +1731,40 @@ export namespace Prisma {
    */
   export type CapacityCountOutputTypeCountHeightsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: HeightWhereInput
+  }
+
+
+
+  /**
+   * Count Type HeightCountOutputType
+   */
+
+  export type HeightCountOutputType = {
+    powers: number
+  }
+
+  export type HeightCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    powers?: boolean | HeightCountOutputTypeCountPowersArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * HeightCountOutputType without action
+   */
+  export type HeightCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeightCountOutputType
+     */
+    select?: HeightCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * HeightCountOutputType without action
+   */
+  export type HeightCountOutputTypeCountPowersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PowerWhereInput
   }
 
 
@@ -3280,6 +3604,1936 @@ export namespace Prisma {
 
 
   /**
+   * Model Group
+   */
+
+  export type AggregateGroup = {
+    _count: GroupCountAggregateOutputType | null
+    _avg: GroupAvgAggregateOutputType | null
+    _sum: GroupSumAggregateOutputType | null
+    _min: GroupMinAggregateOutputType | null
+    _max: GroupMaxAggregateOutputType | null
+  }
+
+  export type GroupAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type GroupSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type GroupMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+  }
+
+  export type GroupMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+  }
+
+  export type GroupCountAggregateOutputType = {
+    id: number
+    title: number
+    _all: number
+  }
+
+
+  export type GroupAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type GroupSumAggregateInputType = {
+    id?: true
+  }
+
+  export type GroupMinAggregateInputType = {
+    id?: true
+    title?: true
+  }
+
+  export type GroupMaxAggregateInputType = {
+    id?: true
+    title?: true
+  }
+
+  export type GroupCountAggregateInputType = {
+    id?: true
+    title?: true
+    _all?: true
+  }
+
+  export type GroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Group to aggregate.
+     */
+    where?: GroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Groups to fetch.
+     */
+    orderBy?: GroupOrderByWithRelationInput | GroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Groups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Groups
+    **/
+    _count?: true | GroupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GroupAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GroupSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GroupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GroupMaxAggregateInputType
+  }
+
+  export type GetGroupAggregateType<T extends GroupAggregateArgs> = {
+        [P in keyof T & keyof AggregateGroup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGroup[P]>
+      : GetScalarType<T[P], AggregateGroup[P]>
+  }
+
+
+
+
+  export type GroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GroupWhereInput
+    orderBy?: GroupOrderByWithAggregationInput | GroupOrderByWithAggregationInput[]
+    by: GroupScalarFieldEnum[] | GroupScalarFieldEnum
+    having?: GroupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GroupCountAggregateInputType | true
+    _avg?: GroupAvgAggregateInputType
+    _sum?: GroupSumAggregateInputType
+    _min?: GroupMinAggregateInputType
+    _max?: GroupMaxAggregateInputType
+  }
+
+  export type GroupGroupByOutputType = {
+    id: number
+    title: string
+    _count: GroupCountAggregateOutputType | null
+    _avg: GroupAvgAggregateOutputType | null
+    _sum: GroupSumAggregateOutputType | null
+    _min: GroupMinAggregateOutputType | null
+    _max: GroupMaxAggregateOutputType | null
+  }
+
+  type GetGroupGroupByPayload<T extends GroupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GroupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GroupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GroupGroupByOutputType[P]>
+            : GetScalarType<T[P], GroupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    equipments?: boolean | Group$equipmentsArgs<ExtArgs>
+    _count?: boolean | GroupCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["group"]>
+
+  export type GroupSelectScalar = {
+    id?: boolean
+    title?: boolean
+  }
+
+  export type GroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    equipments?: boolean | Group$equipmentsArgs<ExtArgs>
+    _count?: boolean | GroupCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $GroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Group"
+    objects: {
+      equipments: Prisma.$EquipmentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+    }, ExtArgs["result"]["group"]>
+    composites: {}
+  }
+
+
+  type GroupGetPayload<S extends boolean | null | undefined | GroupDefaultArgs> = $Result.GetResult<Prisma.$GroupPayload, S>
+
+  type GroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<GroupFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: GroupCountAggregateInputType | true
+    }
+
+  export interface GroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Group'], meta: { name: 'Group' } }
+    /**
+     * Find zero or one Group that matches the filter.
+     * @param {GroupFindUniqueArgs} args - Arguments to find a Group
+     * @example
+     * // Get one Group
+     * const group = await prisma.group.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends GroupFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, GroupFindUniqueArgs<ExtArgs>>
+    ): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Group that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {GroupFindUniqueOrThrowArgs} args - Arguments to find a Group
+     * @example
+     * // Get one Group
+     * const group = await prisma.group.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends GroupFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GroupFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Group that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupFindFirstArgs} args - Arguments to find a Group
+     * @example
+     * // Get one Group
+     * const group = await prisma.group.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends GroupFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, GroupFindFirstArgs<ExtArgs>>
+    ): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Group that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupFindFirstOrThrowArgs} args - Arguments to find a Group
+     * @example
+     * // Get one Group
+     * const group = await prisma.group.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends GroupFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GroupFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Groups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Groups
+     * const groups = await prisma.group.findMany()
+     * 
+     * // Get first 10 Groups
+     * const groups = await prisma.group.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const groupWithIdOnly = await prisma.group.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends GroupFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GroupFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Group.
+     * @param {GroupCreateArgs} args - Arguments to create a Group.
+     * @example
+     * // Create one Group
+     * const Group = await prisma.group.create({
+     *   data: {
+     *     // ... data to create a Group
+     *   }
+     * })
+     * 
+    **/
+    create<T extends GroupCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, GroupCreateArgs<ExtArgs>>
+    ): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Groups.
+     *     @param {GroupCreateManyArgs} args - Arguments to create many Groups.
+     *     @example
+     *     // Create many Groups
+     *     const group = await prisma.group.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends GroupCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GroupCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Group.
+     * @param {GroupDeleteArgs} args - Arguments to delete one Group.
+     * @example
+     * // Delete one Group
+     * const Group = await prisma.group.delete({
+     *   where: {
+     *     // ... filter to delete one Group
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends GroupDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, GroupDeleteArgs<ExtArgs>>
+    ): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Group.
+     * @param {GroupUpdateArgs} args - Arguments to update one Group.
+     * @example
+     * // Update one Group
+     * const group = await prisma.group.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends GroupUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, GroupUpdateArgs<ExtArgs>>
+    ): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Groups.
+     * @param {GroupDeleteManyArgs} args - Arguments to filter Groups to delete.
+     * @example
+     * // Delete a few Groups
+     * const { count } = await prisma.group.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends GroupDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GroupDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Groups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Groups
+     * const group = await prisma.group.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends GroupUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, GroupUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Group.
+     * @param {GroupUpsertArgs} args - Arguments to update or create a Group.
+     * @example
+     * // Update or create a Group
+     * const group = await prisma.group.upsert({
+     *   create: {
+     *     // ... data to create a Group
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Group we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends GroupUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, GroupUpsertArgs<ExtArgs>>
+    ): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Groups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupCountArgs} args - Arguments to filter Groups to count.
+     * @example
+     * // Count the number of Groups
+     * const count = await prisma.group.count({
+     *   where: {
+     *     // ... the filter for the Groups we want to count
+     *   }
+     * })
+    **/
+    count<T extends GroupCountArgs>(
+      args?: Subset<T, GroupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GroupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Group.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GroupAggregateArgs>(args: Subset<T, GroupAggregateArgs>): Prisma.PrismaPromise<GetGroupAggregateType<T>>
+
+    /**
+     * Group by Group.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GroupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GroupGroupByArgs['orderBy'] }
+        : { orderBy?: GroupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Group model
+   */
+  readonly fields: GroupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Group.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    equipments<T extends Group$equipmentsArgs<ExtArgs> = {}>(args?: Subset<T, Group$equipmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Group model
+   */ 
+  interface GroupFieldRefs {
+    readonly id: FieldRef<"Group", 'Int'>
+    readonly title: FieldRef<"Group", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Group findUnique
+   */
+  export type GroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter, which Group to fetch.
+     */
+    where: GroupWhereUniqueInput
+  }
+
+
+  /**
+   * Group findUniqueOrThrow
+   */
+  export type GroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter, which Group to fetch.
+     */
+    where: GroupWhereUniqueInput
+  }
+
+
+  /**
+   * Group findFirst
+   */
+  export type GroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter, which Group to fetch.
+     */
+    where?: GroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Groups to fetch.
+     */
+    orderBy?: GroupOrderByWithRelationInput | GroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Groups.
+     */
+    cursor?: GroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Groups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Groups.
+     */
+    distinct?: GroupScalarFieldEnum | GroupScalarFieldEnum[]
+  }
+
+
+  /**
+   * Group findFirstOrThrow
+   */
+  export type GroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter, which Group to fetch.
+     */
+    where?: GroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Groups to fetch.
+     */
+    orderBy?: GroupOrderByWithRelationInput | GroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Groups.
+     */
+    cursor?: GroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Groups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Groups.
+     */
+    distinct?: GroupScalarFieldEnum | GroupScalarFieldEnum[]
+  }
+
+
+  /**
+   * Group findMany
+   */
+  export type GroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter, which Groups to fetch.
+     */
+    where?: GroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Groups to fetch.
+     */
+    orderBy?: GroupOrderByWithRelationInput | GroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Groups.
+     */
+    cursor?: GroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Groups.
+     */
+    skip?: number
+    distinct?: GroupScalarFieldEnum | GroupScalarFieldEnum[]
+  }
+
+
+  /**
+   * Group create
+   */
+  export type GroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Group.
+     */
+    data: XOR<GroupCreateInput, GroupUncheckedCreateInput>
+  }
+
+
+  /**
+   * Group createMany
+   */
+  export type GroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Groups.
+     */
+    data: GroupCreateManyInput | GroupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Group update
+   */
+  export type GroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Group.
+     */
+    data: XOR<GroupUpdateInput, GroupUncheckedUpdateInput>
+    /**
+     * Choose, which Group to update.
+     */
+    where: GroupWhereUniqueInput
+  }
+
+
+  /**
+   * Group updateMany
+   */
+  export type GroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Groups.
+     */
+    data: XOR<GroupUpdateManyMutationInput, GroupUncheckedUpdateManyInput>
+    /**
+     * Filter which Groups to update
+     */
+    where?: GroupWhereInput
+  }
+
+
+  /**
+   * Group upsert
+   */
+  export type GroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Group to update in case it exists.
+     */
+    where: GroupWhereUniqueInput
+    /**
+     * In case the Group found by the `where` argument doesn't exist, create a new Group with this data.
+     */
+    create: XOR<GroupCreateInput, GroupUncheckedCreateInput>
+    /**
+     * In case the Group was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GroupUpdateInput, GroupUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Group delete
+   */
+  export type GroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter which Group to delete.
+     */
+    where: GroupWhereUniqueInput
+  }
+
+
+  /**
+   * Group deleteMany
+   */
+  export type GroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Groups to delete
+     */
+    where?: GroupWhereInput
+  }
+
+
+  /**
+   * Group.equipments
+   */
+  export type Group$equipmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Equipment
+     */
+    select?: EquipmentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EquipmentInclude<ExtArgs> | null
+    where?: EquipmentWhereInput
+    orderBy?: EquipmentOrderByWithRelationInput | EquipmentOrderByWithRelationInput[]
+    cursor?: EquipmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EquipmentScalarFieldEnum | EquipmentScalarFieldEnum[]
+  }
+
+
+  /**
+   * Group without action
+   */
+  export type GroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GroupInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Equipment
+   */
+
+  export type AggregateEquipment = {
+    _count: EquipmentCountAggregateOutputType | null
+    _avg: EquipmentAvgAggregateOutputType | null
+    _sum: EquipmentSumAggregateOutputType | null
+    _min: EquipmentMinAggregateOutputType | null
+    _max: EquipmentMaxAggregateOutputType | null
+  }
+
+  export type EquipmentAvgAggregateOutputType = {
+    id: number | null
+    groupId: number | null
+  }
+
+  export type EquipmentSumAggregateOutputType = {
+    id: number | null
+    groupId: number | null
+  }
+
+  export type EquipmentMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    groupId: number | null
+  }
+
+  export type EquipmentMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    groupId: number | null
+  }
+
+  export type EquipmentCountAggregateOutputType = {
+    id: number
+    title: number
+    groupId: number
+    _all: number
+  }
+
+
+  export type EquipmentAvgAggregateInputType = {
+    id?: true
+    groupId?: true
+  }
+
+  export type EquipmentSumAggregateInputType = {
+    id?: true
+    groupId?: true
+  }
+
+  export type EquipmentMinAggregateInputType = {
+    id?: true
+    title?: true
+    groupId?: true
+  }
+
+  export type EquipmentMaxAggregateInputType = {
+    id?: true
+    title?: true
+    groupId?: true
+  }
+
+  export type EquipmentCountAggregateInputType = {
+    id?: true
+    title?: true
+    groupId?: true
+    _all?: true
+  }
+
+  export type EquipmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Equipment to aggregate.
+     */
+    where?: EquipmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Equipment to fetch.
+     */
+    orderBy?: EquipmentOrderByWithRelationInput | EquipmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EquipmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Equipment from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Equipment.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Equipment
+    **/
+    _count?: true | EquipmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EquipmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EquipmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EquipmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EquipmentMaxAggregateInputType
+  }
+
+  export type GetEquipmentAggregateType<T extends EquipmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateEquipment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEquipment[P]>
+      : GetScalarType<T[P], AggregateEquipment[P]>
+  }
+
+
+
+
+  export type EquipmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EquipmentWhereInput
+    orderBy?: EquipmentOrderByWithAggregationInput | EquipmentOrderByWithAggregationInput[]
+    by: EquipmentScalarFieldEnum[] | EquipmentScalarFieldEnum
+    having?: EquipmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EquipmentCountAggregateInputType | true
+    _avg?: EquipmentAvgAggregateInputType
+    _sum?: EquipmentSumAggregateInputType
+    _min?: EquipmentMinAggregateInputType
+    _max?: EquipmentMaxAggregateInputType
+  }
+
+  export type EquipmentGroupByOutputType = {
+    id: number
+    title: string
+    groupId: number
+    _count: EquipmentCountAggregateOutputType | null
+    _avg: EquipmentAvgAggregateOutputType | null
+    _sum: EquipmentSumAggregateOutputType | null
+    _min: EquipmentMinAggregateOutputType | null
+    _max: EquipmentMaxAggregateOutputType | null
+  }
+
+  type GetEquipmentGroupByPayload<T extends EquipmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EquipmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EquipmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EquipmentGroupByOutputType[P]>
+            : GetScalarType<T[P], EquipmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EquipmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    groupId?: boolean
+    group?: boolean | GroupDefaultArgs<ExtArgs>
+    models?: boolean | Equipment$modelsArgs<ExtArgs>
+    products?: boolean | Equipment$productsArgs<ExtArgs>
+    _count?: boolean | EquipmentCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["equipment"]>
+
+  export type EquipmentSelectScalar = {
+    id?: boolean
+    title?: boolean
+    groupId?: boolean
+  }
+
+  export type EquipmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | GroupDefaultArgs<ExtArgs>
+    models?: boolean | Equipment$modelsArgs<ExtArgs>
+    products?: boolean | Equipment$productsArgs<ExtArgs>
+    _count?: boolean | EquipmentCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $EquipmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Equipment"
+    objects: {
+      group: Prisma.$GroupPayload<ExtArgs>
+      models: Prisma.$ModelPayload<ExtArgs>[]
+      products: Prisma.$ProductPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      groupId: number
+    }, ExtArgs["result"]["equipment"]>
+    composites: {}
+  }
+
+
+  type EquipmentGetPayload<S extends boolean | null | undefined | EquipmentDefaultArgs> = $Result.GetResult<Prisma.$EquipmentPayload, S>
+
+  type EquipmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<EquipmentFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: EquipmentCountAggregateInputType | true
+    }
+
+  export interface EquipmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Equipment'], meta: { name: 'Equipment' } }
+    /**
+     * Find zero or one Equipment that matches the filter.
+     * @param {EquipmentFindUniqueArgs} args - Arguments to find a Equipment
+     * @example
+     * // Get one Equipment
+     * const equipment = await prisma.equipment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends EquipmentFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, EquipmentFindUniqueArgs<ExtArgs>>
+    ): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Equipment that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {EquipmentFindUniqueOrThrowArgs} args - Arguments to find a Equipment
+     * @example
+     * // Get one Equipment
+     * const equipment = await prisma.equipment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends EquipmentFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, EquipmentFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Equipment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentFindFirstArgs} args - Arguments to find a Equipment
+     * @example
+     * // Get one Equipment
+     * const equipment = await prisma.equipment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends EquipmentFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, EquipmentFindFirstArgs<ExtArgs>>
+    ): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Equipment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentFindFirstOrThrowArgs} args - Arguments to find a Equipment
+     * @example
+     * // Get one Equipment
+     * const equipment = await prisma.equipment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends EquipmentFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, EquipmentFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Equipment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Equipment
+     * const equipment = await prisma.equipment.findMany()
+     * 
+     * // Get first 10 Equipment
+     * const equipment = await prisma.equipment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const equipmentWithIdOnly = await prisma.equipment.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends EquipmentFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, EquipmentFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Equipment.
+     * @param {EquipmentCreateArgs} args - Arguments to create a Equipment.
+     * @example
+     * // Create one Equipment
+     * const Equipment = await prisma.equipment.create({
+     *   data: {
+     *     // ... data to create a Equipment
+     *   }
+     * })
+     * 
+    **/
+    create<T extends EquipmentCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, EquipmentCreateArgs<ExtArgs>>
+    ): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Equipment.
+     *     @param {EquipmentCreateManyArgs} args - Arguments to create many Equipment.
+     *     @example
+     *     // Create many Equipment
+     *     const equipment = await prisma.equipment.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends EquipmentCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, EquipmentCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Equipment.
+     * @param {EquipmentDeleteArgs} args - Arguments to delete one Equipment.
+     * @example
+     * // Delete one Equipment
+     * const Equipment = await prisma.equipment.delete({
+     *   where: {
+     *     // ... filter to delete one Equipment
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends EquipmentDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, EquipmentDeleteArgs<ExtArgs>>
+    ): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Equipment.
+     * @param {EquipmentUpdateArgs} args - Arguments to update one Equipment.
+     * @example
+     * // Update one Equipment
+     * const equipment = await prisma.equipment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends EquipmentUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, EquipmentUpdateArgs<ExtArgs>>
+    ): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Equipment.
+     * @param {EquipmentDeleteManyArgs} args - Arguments to filter Equipment to delete.
+     * @example
+     * // Delete a few Equipment
+     * const { count } = await prisma.equipment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends EquipmentDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, EquipmentDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Equipment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Equipment
+     * const equipment = await prisma.equipment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends EquipmentUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, EquipmentUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Equipment.
+     * @param {EquipmentUpsertArgs} args - Arguments to update or create a Equipment.
+     * @example
+     * // Update or create a Equipment
+     * const equipment = await prisma.equipment.upsert({
+     *   create: {
+     *     // ... data to create a Equipment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Equipment we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends EquipmentUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, EquipmentUpsertArgs<ExtArgs>>
+    ): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Equipment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentCountArgs} args - Arguments to filter Equipment to count.
+     * @example
+     * // Count the number of Equipment
+     * const count = await prisma.equipment.count({
+     *   where: {
+     *     // ... the filter for the Equipment we want to count
+     *   }
+     * })
+    **/
+    count<T extends EquipmentCountArgs>(
+      args?: Subset<T, EquipmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EquipmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Equipment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EquipmentAggregateArgs>(args: Subset<T, EquipmentAggregateArgs>): Prisma.PrismaPromise<GetEquipmentAggregateType<T>>
+
+    /**
+     * Group by Equipment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EquipmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EquipmentGroupByArgs['orderBy'] }
+        : { orderBy?: EquipmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EquipmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEquipmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Equipment model
+   */
+  readonly fields: EquipmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Equipment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EquipmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    group<T extends GroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GroupDefaultArgs<ExtArgs>>): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    models<T extends Equipment$modelsArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$modelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    products<T extends Equipment$productsArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Equipment model
+   */ 
+  interface EquipmentFieldRefs {
+    readonly id: FieldRef<"Equipment", 'Int'>
+    readonly title: FieldRef<"Equipment", 'String'>
+    readonly groupId: FieldRef<"Equipment", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Equipment findUnique
+   */
+  export type EquipmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Equipment
+     */
+    select?: EquipmentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EquipmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Equipment to fetch.
+     */
+    where: EquipmentWhereUniqueInput
+  }
+
+
+  /**
+   * Equipment findUniqueOrThrow
+   */
+  export type EquipmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Equipment
+     */
+    select?: EquipmentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EquipmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Equipment to fetch.
+     */
+    where: EquipmentWhereUniqueInput
+  }
+
+
+  /**
+   * Equipment findFirst
+   */
+  export type EquipmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Equipment
+     */
+    select?: EquipmentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EquipmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Equipment to fetch.
+     */
+    where?: EquipmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Equipment to fetch.
+     */
+    orderBy?: EquipmentOrderByWithRelationInput | EquipmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Equipment.
+     */
+    cursor?: EquipmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Equipment from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Equipment.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Equipment.
+     */
+    distinct?: EquipmentScalarFieldEnum | EquipmentScalarFieldEnum[]
+  }
+
+
+  /**
+   * Equipment findFirstOrThrow
+   */
+  export type EquipmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Equipment
+     */
+    select?: EquipmentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EquipmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Equipment to fetch.
+     */
+    where?: EquipmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Equipment to fetch.
+     */
+    orderBy?: EquipmentOrderByWithRelationInput | EquipmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Equipment.
+     */
+    cursor?: EquipmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Equipment from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Equipment.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Equipment.
+     */
+    distinct?: EquipmentScalarFieldEnum | EquipmentScalarFieldEnum[]
+  }
+
+
+  /**
+   * Equipment findMany
+   */
+  export type EquipmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Equipment
+     */
+    select?: EquipmentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EquipmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Equipment to fetch.
+     */
+    where?: EquipmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Equipment to fetch.
+     */
+    orderBy?: EquipmentOrderByWithRelationInput | EquipmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Equipment.
+     */
+    cursor?: EquipmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Equipment from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Equipment.
+     */
+    skip?: number
+    distinct?: EquipmentScalarFieldEnum | EquipmentScalarFieldEnum[]
+  }
+
+
+  /**
+   * Equipment create
+   */
+  export type EquipmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Equipment
+     */
+    select?: EquipmentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EquipmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Equipment.
+     */
+    data: XOR<EquipmentCreateInput, EquipmentUncheckedCreateInput>
+  }
+
+
+  /**
+   * Equipment createMany
+   */
+  export type EquipmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Equipment.
+     */
+    data: EquipmentCreateManyInput | EquipmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Equipment update
+   */
+  export type EquipmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Equipment
+     */
+    select?: EquipmentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EquipmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Equipment.
+     */
+    data: XOR<EquipmentUpdateInput, EquipmentUncheckedUpdateInput>
+    /**
+     * Choose, which Equipment to update.
+     */
+    where: EquipmentWhereUniqueInput
+  }
+
+
+  /**
+   * Equipment updateMany
+   */
+  export type EquipmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Equipment.
+     */
+    data: XOR<EquipmentUpdateManyMutationInput, EquipmentUncheckedUpdateManyInput>
+    /**
+     * Filter which Equipment to update
+     */
+    where?: EquipmentWhereInput
+  }
+
+
+  /**
+   * Equipment upsert
+   */
+  export type EquipmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Equipment
+     */
+    select?: EquipmentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EquipmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Equipment to update in case it exists.
+     */
+    where: EquipmentWhereUniqueInput
+    /**
+     * In case the Equipment found by the `where` argument doesn't exist, create a new Equipment with this data.
+     */
+    create: XOR<EquipmentCreateInput, EquipmentUncheckedCreateInput>
+    /**
+     * In case the Equipment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EquipmentUpdateInput, EquipmentUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Equipment delete
+   */
+  export type EquipmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Equipment
+     */
+    select?: EquipmentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EquipmentInclude<ExtArgs> | null
+    /**
+     * Filter which Equipment to delete.
+     */
+    where: EquipmentWhereUniqueInput
+  }
+
+
+  /**
+   * Equipment deleteMany
+   */
+  export type EquipmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Equipment to delete
+     */
+    where?: EquipmentWhereInput
+  }
+
+
+  /**
+   * Equipment.models
+   */
+  export type Equipment$modelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Model
+     */
+    select?: ModelSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ModelInclude<ExtArgs> | null
+    where?: ModelWhereInput
+    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[]
+    cursor?: ModelWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[]
+  }
+
+
+  /**
+   * Equipment.products
+   */
+  export type Equipment$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Product
+     */
+    select?: ProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductInclude<ExtArgs> | null
+    where?: ProductWhereInput
+    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
+    cursor?: ProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
+  }
+
+
+  /**
+   * Equipment without action
+   */
+  export type EquipmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Equipment
+     */
+    select?: EquipmentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EquipmentInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Model Product
    */
 
@@ -3293,50 +5547,60 @@ export namespace Prisma {
 
   export type ProductAvgAggregateOutputType = {
     id: number | null
+    equipmentId: number | null
   }
 
   export type ProductSumAggregateOutputType = {
     id: number | null
+    equipmentId: number | null
   }
 
   export type ProductMinAggregateOutputType = {
     id: number | null
     title: string | null
+    equipmentId: number | null
   }
 
   export type ProductMaxAggregateOutputType = {
     id: number | null
     title: string | null
+    equipmentId: number | null
   }
 
   export type ProductCountAggregateOutputType = {
     id: number
     title: number
+    equipmentId: number
     _all: number
   }
 
 
   export type ProductAvgAggregateInputType = {
     id?: true
+    equipmentId?: true
   }
 
   export type ProductSumAggregateInputType = {
     id?: true
+    equipmentId?: true
   }
 
   export type ProductMinAggregateInputType = {
     id?: true
     title?: true
+    equipmentId?: true
   }
 
   export type ProductMaxAggregateInputType = {
     id?: true
     title?: true
+    equipmentId?: true
   }
 
   export type ProductCountAggregateInputType = {
     id?: true
     title?: true
+    equipmentId?: true
     _all?: true
   }
 
@@ -3429,6 +5693,7 @@ export namespace Prisma {
   export type ProductGroupByOutputType = {
     id: number
     title: string
+    equipmentId: number
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
     _sum: ProductSumAggregateOutputType | null
@@ -3453,29 +5718,30 @@ export namespace Prisma {
   export type ProductSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    models?: boolean | Product$modelsArgs<ExtArgs>
-    _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
+    equipmentId?: boolean
+    equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectScalar = {
     id?: boolean
     title?: boolean
+    equipmentId?: boolean
   }
 
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    models?: boolean | Product$modelsArgs<ExtArgs>
-    _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
+    equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
   }
 
 
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
     objects: {
-      models: Prisma.$ModelPayload<ExtArgs>[]
+      equipment: Prisma.$EquipmentPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       title: string
+      equipmentId: number
     }, ExtArgs["result"]["product"]>
     composites: {}
   }
@@ -3841,7 +6107,7 @@ export namespace Prisma {
   export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    models<T extends Product$modelsArgs<ExtArgs> = {}>(args?: Subset<T, Product$modelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, 'findMany'> | Null>;
+    equipment<T extends EquipmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EquipmentDefaultArgs<ExtArgs>>): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3873,6 +6139,7 @@ export namespace Prisma {
   interface ProductFieldRefs {
     readonly id: FieldRef<"Product", 'Int'>
     readonly title: FieldRef<"Product", 'String'>
+    readonly equipmentId: FieldRef<"Product", 'Int'>
   }
     
 
@@ -4185,27 +6452,6 @@ export namespace Prisma {
 
 
   /**
-   * Product.models
-   */
-  export type Product$modelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Model
-     */
-    select?: ModelSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ModelInclude<ExtArgs> | null
-    where?: ModelWhereInput
-    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[]
-    cursor?: ModelWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[]
-  }
-
-
-  /**
    * Product without action
    */
   export type ProductDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4235,60 +6481,60 @@ export namespace Prisma {
 
   export type ModelAvgAggregateOutputType = {
     id: number | null
-    productId: number | null
+    equipmentId: number | null
   }
 
   export type ModelSumAggregateOutputType = {
     id: number | null
-    productId: number | null
+    equipmentId: number | null
   }
 
   export type ModelMinAggregateOutputType = {
     id: number | null
     title: string | null
-    productId: number | null
+    equipmentId: number | null
   }
 
   export type ModelMaxAggregateOutputType = {
     id: number | null
     title: string | null
-    productId: number | null
+    equipmentId: number | null
   }
 
   export type ModelCountAggregateOutputType = {
     id: number
     title: number
-    productId: number
+    equipmentId: number
     _all: number
   }
 
 
   export type ModelAvgAggregateInputType = {
     id?: true
-    productId?: true
+    equipmentId?: true
   }
 
   export type ModelSumAggregateInputType = {
     id?: true
-    productId?: true
+    equipmentId?: true
   }
 
   export type ModelMinAggregateInputType = {
     id?: true
     title?: true
-    productId?: true
+    equipmentId?: true
   }
 
   export type ModelMaxAggregateInputType = {
     id?: true
     title?: true
-    productId?: true
+    equipmentId?: true
   }
 
   export type ModelCountAggregateInputType = {
     id?: true
     title?: true
-    productId?: true
+    equipmentId?: true
     _all?: true
   }
 
@@ -4381,7 +6627,7 @@ export namespace Prisma {
   export type ModelGroupByOutputType = {
     id: number
     title: string
-    productId: number
+    equipmentId: number
     _count: ModelCountAggregateOutputType | null
     _avg: ModelAvgAggregateOutputType | null
     _sum: ModelSumAggregateOutputType | null
@@ -4406,8 +6652,8 @@ export namespace Prisma {
   export type ModelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    productId?: boolean
-    product?: boolean | ProductDefaultArgs<ExtArgs>
+    equipmentId?: boolean
+    equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
     capacities?: boolean | Model$capacitiesArgs<ExtArgs>
     _count?: boolean | ModelCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["model"]>
@@ -4415,11 +6661,11 @@ export namespace Prisma {
   export type ModelSelectScalar = {
     id?: boolean
     title?: boolean
-    productId?: boolean
+    equipmentId?: boolean
   }
 
   export type ModelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductDefaultArgs<ExtArgs>
+    equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
     capacities?: boolean | Model$capacitiesArgs<ExtArgs>
     _count?: boolean | ModelCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -4428,13 +6674,13 @@ export namespace Prisma {
   export type $ModelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Model"
     objects: {
-      product: Prisma.$ProductPayload<ExtArgs>
+      equipment: Prisma.$EquipmentPayload<ExtArgs>
       capacities: Prisma.$CapacityPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       title: string
-      productId: number
+      equipmentId: number
     }, ExtArgs["result"]["model"]>
     composites: {}
   }
@@ -4800,7 +7046,7 @@ export namespace Prisma {
   export interface Prisma__ModelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    equipment<T extends EquipmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EquipmentDefaultArgs<ExtArgs>>): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     capacities<T extends Model$capacitiesArgs<ExtArgs> = {}>(args?: Subset<T, Model$capacitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CapacityPayload<ExtArgs>, T, 'findMany'> | Null>;
 
@@ -4834,7 +7080,7 @@ export namespace Prisma {
   interface ModelFieldRefs {
     readonly id: FieldRef<"Model", 'Int'>
     readonly title: FieldRef<"Model", 'String'>
-    readonly productId: FieldRef<"Model", 'Int'>
+    readonly equipmentId: FieldRef<"Model", 'Int'>
   }
     
 
@@ -6170,21 +8416,21 @@ export namespace Prisma {
   export type HeightMinAggregateOutputType = {
     id: number | null
     title: string | null
-    power: string | null
+    recommended: boolean | null
     capacityId: number | null
   }
 
   export type HeightMaxAggregateOutputType = {
     id: number | null
     title: string | null
-    power: string | null
+    recommended: boolean | null
     capacityId: number | null
   }
 
   export type HeightCountAggregateOutputType = {
     id: number
     title: number
-    power: number
+    recommended: number
     capacityId: number
     _all: number
   }
@@ -6203,21 +8449,21 @@ export namespace Prisma {
   export type HeightMinAggregateInputType = {
     id?: true
     title?: true
-    power?: true
+    recommended?: true
     capacityId?: true
   }
 
   export type HeightMaxAggregateInputType = {
     id?: true
     title?: true
-    power?: true
+    recommended?: true
     capacityId?: true
   }
 
   export type HeightCountAggregateInputType = {
     id?: true
     title?: true
-    power?: true
+    recommended?: true
     capacityId?: true
     _all?: true
   }
@@ -6311,7 +8557,7 @@ export namespace Prisma {
   export type HeightGroupByOutputType = {
     id: number
     title: string
-    power: string
+    recommended: boolean
     capacityId: number
     _count: HeightCountAggregateOutputType | null
     _avg: HeightAvgAggregateOutputType | null
@@ -6337,20 +8583,24 @@ export namespace Prisma {
   export type HeightSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    power?: boolean
+    recommended?: boolean
     capacityId?: boolean
     capacity?: boolean | CapacityDefaultArgs<ExtArgs>
+    powers?: boolean | Height$powersArgs<ExtArgs>
+    _count?: boolean | HeightCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["height"]>
 
   export type HeightSelectScalar = {
     id?: boolean
     title?: boolean
-    power?: boolean
+    recommended?: boolean
     capacityId?: boolean
   }
 
   export type HeightInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     capacity?: boolean | CapacityDefaultArgs<ExtArgs>
+    powers?: boolean | Height$powersArgs<ExtArgs>
+    _count?: boolean | HeightCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
@@ -6358,11 +8608,12 @@ export namespace Prisma {
     name: "Height"
     objects: {
       capacity: Prisma.$CapacityPayload<ExtArgs>
+      powers: Prisma.$PowerPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       title: string
-      power: string
+      recommended: boolean
       capacityId: number
     }, ExtArgs["result"]["height"]>
     composites: {}
@@ -6731,6 +8982,8 @@ export namespace Prisma {
 
     capacity<T extends CapacityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CapacityDefaultArgs<ExtArgs>>): Prisma__CapacityClient<$Result.GetResult<Prisma.$CapacityPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
+    powers<T extends Height$powersArgs<ExtArgs> = {}>(args?: Subset<T, Height$powersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PowerPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6761,7 +9014,7 @@ export namespace Prisma {
   interface HeightFieldRefs {
     readonly id: FieldRef<"Height", 'Int'>
     readonly title: FieldRef<"Height", 'String'>
-    readonly power: FieldRef<"Height", 'String'>
+    readonly recommended: FieldRef<"Height", 'Boolean'>
     readonly capacityId: FieldRef<"Height", 'Int'>
   }
     
@@ -7075,6 +9328,27 @@ export namespace Prisma {
 
 
   /**
+   * Height.powers
+   */
+  export type Height$powersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Power
+     */
+    select?: PowerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PowerInclude<ExtArgs> | null
+    where?: PowerWhereInput
+    orderBy?: PowerOrderByWithRelationInput | PowerOrderByWithRelationInput[]
+    cursor?: PowerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PowerScalarFieldEnum | PowerScalarFieldEnum[]
+  }
+
+
+  /**
    * Height without action
    */
   export type HeightDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7086,6 +9360,940 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: HeightInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Power
+   */
+
+  export type AggregatePower = {
+    _count: PowerCountAggregateOutputType | null
+    _avg: PowerAvgAggregateOutputType | null
+    _sum: PowerSumAggregateOutputType | null
+    _min: PowerMinAggregateOutputType | null
+    _max: PowerMaxAggregateOutputType | null
+  }
+
+  export type PowerAvgAggregateOutputType = {
+    id: number | null
+    heightId: number | null
+  }
+
+  export type PowerSumAggregateOutputType = {
+    id: number | null
+    heightId: number | null
+  }
+
+  export type PowerMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    heightId: number | null
+  }
+
+  export type PowerMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    heightId: number | null
+  }
+
+  export type PowerCountAggregateOutputType = {
+    id: number
+    title: number
+    heightId: number
+    _all: number
+  }
+
+
+  export type PowerAvgAggregateInputType = {
+    id?: true
+    heightId?: true
+  }
+
+  export type PowerSumAggregateInputType = {
+    id?: true
+    heightId?: true
+  }
+
+  export type PowerMinAggregateInputType = {
+    id?: true
+    title?: true
+    heightId?: true
+  }
+
+  export type PowerMaxAggregateInputType = {
+    id?: true
+    title?: true
+    heightId?: true
+  }
+
+  export type PowerCountAggregateInputType = {
+    id?: true
+    title?: true
+    heightId?: true
+    _all?: true
+  }
+
+  export type PowerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Power to aggregate.
+     */
+    where?: PowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Powers to fetch.
+     */
+    orderBy?: PowerOrderByWithRelationInput | PowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Powers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Powers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Powers
+    **/
+    _count?: true | PowerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PowerAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PowerSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PowerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PowerMaxAggregateInputType
+  }
+
+  export type GetPowerAggregateType<T extends PowerAggregateArgs> = {
+        [P in keyof T & keyof AggregatePower]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePower[P]>
+      : GetScalarType<T[P], AggregatePower[P]>
+  }
+
+
+
+
+  export type PowerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PowerWhereInput
+    orderBy?: PowerOrderByWithAggregationInput | PowerOrderByWithAggregationInput[]
+    by: PowerScalarFieldEnum[] | PowerScalarFieldEnum
+    having?: PowerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PowerCountAggregateInputType | true
+    _avg?: PowerAvgAggregateInputType
+    _sum?: PowerSumAggregateInputType
+    _min?: PowerMinAggregateInputType
+    _max?: PowerMaxAggregateInputType
+  }
+
+  export type PowerGroupByOutputType = {
+    id: number
+    title: string
+    heightId: number
+    _count: PowerCountAggregateOutputType | null
+    _avg: PowerAvgAggregateOutputType | null
+    _sum: PowerSumAggregateOutputType | null
+    _min: PowerMinAggregateOutputType | null
+    _max: PowerMaxAggregateOutputType | null
+  }
+
+  type GetPowerGroupByPayload<T extends PowerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PowerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PowerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PowerGroupByOutputType[P]>
+            : GetScalarType<T[P], PowerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PowerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    heightId?: boolean
+    height?: boolean | HeightDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["power"]>
+
+  export type PowerSelectScalar = {
+    id?: boolean
+    title?: boolean
+    heightId?: boolean
+  }
+
+  export type PowerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    height?: boolean | HeightDefaultArgs<ExtArgs>
+  }
+
+
+  export type $PowerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Power"
+    objects: {
+      height: Prisma.$HeightPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      heightId: number
+    }, ExtArgs["result"]["power"]>
+    composites: {}
+  }
+
+
+  type PowerGetPayload<S extends boolean | null | undefined | PowerDefaultArgs> = $Result.GetResult<Prisma.$PowerPayload, S>
+
+  type PowerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PowerFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: PowerCountAggregateInputType | true
+    }
+
+  export interface PowerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Power'], meta: { name: 'Power' } }
+    /**
+     * Find zero or one Power that matches the filter.
+     * @param {PowerFindUniqueArgs} args - Arguments to find a Power
+     * @example
+     * // Get one Power
+     * const power = await prisma.power.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PowerFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PowerFindUniqueArgs<ExtArgs>>
+    ): Prisma__PowerClient<$Result.GetResult<Prisma.$PowerPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Power that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PowerFindUniqueOrThrowArgs} args - Arguments to find a Power
+     * @example
+     * // Get one Power
+     * const power = await prisma.power.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PowerFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PowerFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PowerClient<$Result.GetResult<Prisma.$PowerPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Power that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PowerFindFirstArgs} args - Arguments to find a Power
+     * @example
+     * // Get one Power
+     * const power = await prisma.power.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PowerFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PowerFindFirstArgs<ExtArgs>>
+    ): Prisma__PowerClient<$Result.GetResult<Prisma.$PowerPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Power that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PowerFindFirstOrThrowArgs} args - Arguments to find a Power
+     * @example
+     * // Get one Power
+     * const power = await prisma.power.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PowerFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PowerFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PowerClient<$Result.GetResult<Prisma.$PowerPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Powers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PowerFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Powers
+     * const powers = await prisma.power.findMany()
+     * 
+     * // Get first 10 Powers
+     * const powers = await prisma.power.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const powerWithIdOnly = await prisma.power.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PowerFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PowerFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PowerPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Power.
+     * @param {PowerCreateArgs} args - Arguments to create a Power.
+     * @example
+     * // Create one Power
+     * const Power = await prisma.power.create({
+     *   data: {
+     *     // ... data to create a Power
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PowerCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PowerCreateArgs<ExtArgs>>
+    ): Prisma__PowerClient<$Result.GetResult<Prisma.$PowerPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Powers.
+     *     @param {PowerCreateManyArgs} args - Arguments to create many Powers.
+     *     @example
+     *     // Create many Powers
+     *     const power = await prisma.power.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PowerCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PowerCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Power.
+     * @param {PowerDeleteArgs} args - Arguments to delete one Power.
+     * @example
+     * // Delete one Power
+     * const Power = await prisma.power.delete({
+     *   where: {
+     *     // ... filter to delete one Power
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PowerDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PowerDeleteArgs<ExtArgs>>
+    ): Prisma__PowerClient<$Result.GetResult<Prisma.$PowerPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Power.
+     * @param {PowerUpdateArgs} args - Arguments to update one Power.
+     * @example
+     * // Update one Power
+     * const power = await prisma.power.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PowerUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PowerUpdateArgs<ExtArgs>>
+    ): Prisma__PowerClient<$Result.GetResult<Prisma.$PowerPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Powers.
+     * @param {PowerDeleteManyArgs} args - Arguments to filter Powers to delete.
+     * @example
+     * // Delete a few Powers
+     * const { count } = await prisma.power.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PowerDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PowerDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Powers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PowerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Powers
+     * const power = await prisma.power.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PowerUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PowerUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Power.
+     * @param {PowerUpsertArgs} args - Arguments to update or create a Power.
+     * @example
+     * // Update or create a Power
+     * const power = await prisma.power.upsert({
+     *   create: {
+     *     // ... data to create a Power
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Power we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PowerUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PowerUpsertArgs<ExtArgs>>
+    ): Prisma__PowerClient<$Result.GetResult<Prisma.$PowerPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Powers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PowerCountArgs} args - Arguments to filter Powers to count.
+     * @example
+     * // Count the number of Powers
+     * const count = await prisma.power.count({
+     *   where: {
+     *     // ... the filter for the Powers we want to count
+     *   }
+     * })
+    **/
+    count<T extends PowerCountArgs>(
+      args?: Subset<T, PowerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PowerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Power.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PowerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PowerAggregateArgs>(args: Subset<T, PowerAggregateArgs>): Prisma.PrismaPromise<GetPowerAggregateType<T>>
+
+    /**
+     * Group by Power.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PowerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PowerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PowerGroupByArgs['orderBy'] }
+        : { orderBy?: PowerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PowerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPowerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Power model
+   */
+  readonly fields: PowerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Power.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PowerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    height<T extends HeightDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HeightDefaultArgs<ExtArgs>>): Prisma__HeightClient<$Result.GetResult<Prisma.$HeightPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Power model
+   */ 
+  interface PowerFieldRefs {
+    readonly id: FieldRef<"Power", 'Int'>
+    readonly title: FieldRef<"Power", 'String'>
+    readonly heightId: FieldRef<"Power", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Power findUnique
+   */
+  export type PowerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Power
+     */
+    select?: PowerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PowerInclude<ExtArgs> | null
+    /**
+     * Filter, which Power to fetch.
+     */
+    where: PowerWhereUniqueInput
+  }
+
+
+  /**
+   * Power findUniqueOrThrow
+   */
+  export type PowerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Power
+     */
+    select?: PowerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PowerInclude<ExtArgs> | null
+    /**
+     * Filter, which Power to fetch.
+     */
+    where: PowerWhereUniqueInput
+  }
+
+
+  /**
+   * Power findFirst
+   */
+  export type PowerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Power
+     */
+    select?: PowerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PowerInclude<ExtArgs> | null
+    /**
+     * Filter, which Power to fetch.
+     */
+    where?: PowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Powers to fetch.
+     */
+    orderBy?: PowerOrderByWithRelationInput | PowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Powers.
+     */
+    cursor?: PowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Powers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Powers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Powers.
+     */
+    distinct?: PowerScalarFieldEnum | PowerScalarFieldEnum[]
+  }
+
+
+  /**
+   * Power findFirstOrThrow
+   */
+  export type PowerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Power
+     */
+    select?: PowerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PowerInclude<ExtArgs> | null
+    /**
+     * Filter, which Power to fetch.
+     */
+    where?: PowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Powers to fetch.
+     */
+    orderBy?: PowerOrderByWithRelationInput | PowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Powers.
+     */
+    cursor?: PowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Powers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Powers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Powers.
+     */
+    distinct?: PowerScalarFieldEnum | PowerScalarFieldEnum[]
+  }
+
+
+  /**
+   * Power findMany
+   */
+  export type PowerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Power
+     */
+    select?: PowerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PowerInclude<ExtArgs> | null
+    /**
+     * Filter, which Powers to fetch.
+     */
+    where?: PowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Powers to fetch.
+     */
+    orderBy?: PowerOrderByWithRelationInput | PowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Powers.
+     */
+    cursor?: PowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Powers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Powers.
+     */
+    skip?: number
+    distinct?: PowerScalarFieldEnum | PowerScalarFieldEnum[]
+  }
+
+
+  /**
+   * Power create
+   */
+  export type PowerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Power
+     */
+    select?: PowerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PowerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Power.
+     */
+    data: XOR<PowerCreateInput, PowerUncheckedCreateInput>
+  }
+
+
+  /**
+   * Power createMany
+   */
+  export type PowerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Powers.
+     */
+    data: PowerCreateManyInput | PowerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Power update
+   */
+  export type PowerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Power
+     */
+    select?: PowerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PowerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Power.
+     */
+    data: XOR<PowerUpdateInput, PowerUncheckedUpdateInput>
+    /**
+     * Choose, which Power to update.
+     */
+    where: PowerWhereUniqueInput
+  }
+
+
+  /**
+   * Power updateMany
+   */
+  export type PowerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Powers.
+     */
+    data: XOR<PowerUpdateManyMutationInput, PowerUncheckedUpdateManyInput>
+    /**
+     * Filter which Powers to update
+     */
+    where?: PowerWhereInput
+  }
+
+
+  /**
+   * Power upsert
+   */
+  export type PowerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Power
+     */
+    select?: PowerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PowerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Power to update in case it exists.
+     */
+    where: PowerWhereUniqueInput
+    /**
+     * In case the Power found by the `where` argument doesn't exist, create a new Power with this data.
+     */
+    create: XOR<PowerCreateInput, PowerUncheckedCreateInput>
+    /**
+     * In case the Power was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PowerUpdateInput, PowerUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Power delete
+   */
+  export type PowerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Power
+     */
+    select?: PowerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PowerInclude<ExtArgs> | null
+    /**
+     * Filter which Power to delete.
+     */
+    where: PowerWhereUniqueInput
+  }
+
+
+  /**
+   * Power deleteMany
+   */
+  export type PowerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Powers to delete
+     */
+    where?: PowerWhereInput
+  }
+
+
+  /**
+   * Power without action
+   */
+  export type PowerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Power
+     */
+    select?: PowerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PowerInclude<ExtArgs> | null
   }
 
 
@@ -8010,9 +11218,27 @@ export namespace Prisma {
   export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
 
 
-  export const ProductScalarFieldEnum: {
+  export const GroupScalarFieldEnum: {
     id: 'id',
     title: 'title'
+  };
+
+  export type GroupScalarFieldEnum = (typeof GroupScalarFieldEnum)[keyof typeof GroupScalarFieldEnum]
+
+
+  export const EquipmentScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    groupId: 'groupId'
+  };
+
+  export type EquipmentScalarFieldEnum = (typeof EquipmentScalarFieldEnum)[keyof typeof EquipmentScalarFieldEnum]
+
+
+  export const ProductScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    equipmentId: 'equipmentId'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -8021,7 +11247,7 @@ export namespace Prisma {
   export const ModelScalarFieldEnum: {
     id: 'id',
     title: 'title',
-    productId: 'productId'
+    equipmentId: 'equipmentId'
   };
 
   export type ModelScalarFieldEnum = (typeof ModelScalarFieldEnum)[keyof typeof ModelScalarFieldEnum]
@@ -8039,11 +11265,20 @@ export namespace Prisma {
   export const HeightScalarFieldEnum: {
     id: 'id',
     title: 'title',
-    power: 'power',
+    recommended: 'recommended',
     capacityId: 'capacityId'
   };
 
   export type HeightScalarFieldEnum = (typeof HeightScalarFieldEnum)[keyof typeof HeightScalarFieldEnum]
+
+
+  export const PowerScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    heightId: 'heightId'
+  };
+
+  export type PowerScalarFieldEnum = (typeof PowerScalarFieldEnum)[keyof typeof PowerScalarFieldEnum]
 
 
   export const InputOutputScalarFieldEnum: {
@@ -8101,6 +11336,13 @@ export namespace Prisma {
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -8239,19 +11481,116 @@ export namespace Prisma {
     zip?: StringWithAggregatesFilter<"Client"> | string
   }
 
+  export type GroupWhereInput = {
+    AND?: GroupWhereInput | GroupWhereInput[]
+    OR?: GroupWhereInput[]
+    NOT?: GroupWhereInput | GroupWhereInput[]
+    id?: IntFilter<"Group"> | number
+    title?: StringFilter<"Group"> | string
+    equipments?: EquipmentListRelationFilter
+  }
+
+  export type GroupOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    equipments?: EquipmentOrderByRelationAggregateInput
+  }
+
+  export type GroupWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: GroupWhereInput | GroupWhereInput[]
+    OR?: GroupWhereInput[]
+    NOT?: GroupWhereInput | GroupWhereInput[]
+    title?: StringFilter<"Group"> | string
+    equipments?: EquipmentListRelationFilter
+  }, "id">
+
+  export type GroupOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    _count?: GroupCountOrderByAggregateInput
+    _avg?: GroupAvgOrderByAggregateInput
+    _max?: GroupMaxOrderByAggregateInput
+    _min?: GroupMinOrderByAggregateInput
+    _sum?: GroupSumOrderByAggregateInput
+  }
+
+  export type GroupScalarWhereWithAggregatesInput = {
+    AND?: GroupScalarWhereWithAggregatesInput | GroupScalarWhereWithAggregatesInput[]
+    OR?: GroupScalarWhereWithAggregatesInput[]
+    NOT?: GroupScalarWhereWithAggregatesInput | GroupScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Group"> | number
+    title?: StringWithAggregatesFilter<"Group"> | string
+  }
+
+  export type EquipmentWhereInput = {
+    AND?: EquipmentWhereInput | EquipmentWhereInput[]
+    OR?: EquipmentWhereInput[]
+    NOT?: EquipmentWhereInput | EquipmentWhereInput[]
+    id?: IntFilter<"Equipment"> | number
+    title?: StringFilter<"Equipment"> | string
+    groupId?: IntFilter<"Equipment"> | number
+    group?: XOR<GroupRelationFilter, GroupWhereInput>
+    models?: ModelListRelationFilter
+    products?: ProductListRelationFilter
+  }
+
+  export type EquipmentOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    groupId?: SortOrder
+    group?: GroupOrderByWithRelationInput
+    models?: ModelOrderByRelationAggregateInput
+    products?: ProductOrderByRelationAggregateInput
+  }
+
+  export type EquipmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: EquipmentWhereInput | EquipmentWhereInput[]
+    OR?: EquipmentWhereInput[]
+    NOT?: EquipmentWhereInput | EquipmentWhereInput[]
+    title?: StringFilter<"Equipment"> | string
+    groupId?: IntFilter<"Equipment"> | number
+    group?: XOR<GroupRelationFilter, GroupWhereInput>
+    models?: ModelListRelationFilter
+    products?: ProductListRelationFilter
+  }, "id">
+
+  export type EquipmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    groupId?: SortOrder
+    _count?: EquipmentCountOrderByAggregateInput
+    _avg?: EquipmentAvgOrderByAggregateInput
+    _max?: EquipmentMaxOrderByAggregateInput
+    _min?: EquipmentMinOrderByAggregateInput
+    _sum?: EquipmentSumOrderByAggregateInput
+  }
+
+  export type EquipmentScalarWhereWithAggregatesInput = {
+    AND?: EquipmentScalarWhereWithAggregatesInput | EquipmentScalarWhereWithAggregatesInput[]
+    OR?: EquipmentScalarWhereWithAggregatesInput[]
+    NOT?: EquipmentScalarWhereWithAggregatesInput | EquipmentScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Equipment"> | number
+    title?: StringWithAggregatesFilter<"Equipment"> | string
+    groupId?: IntWithAggregatesFilter<"Equipment"> | number
+  }
+
   export type ProductWhereInput = {
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
     id?: IntFilter<"Product"> | number
     title?: StringFilter<"Product"> | string
-    models?: ModelListRelationFilter
+    equipmentId?: IntFilter<"Product"> | number
+    equipment?: XOR<EquipmentRelationFilter, EquipmentWhereInput>
   }
 
   export type ProductOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
-    models?: ModelOrderByRelationAggregateInput
+    equipmentId?: SortOrder
+    equipment?: EquipmentOrderByWithRelationInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -8260,12 +11599,14 @@ export namespace Prisma {
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
     title?: StringFilter<"Product"> | string
-    models?: ModelListRelationFilter
+    equipmentId?: IntFilter<"Product"> | number
+    equipment?: XOR<EquipmentRelationFilter, EquipmentWhereInput>
   }, "id">
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
+    equipmentId?: SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
     _max?: ProductMaxOrderByAggregateInput
@@ -8279,6 +11620,7 @@ export namespace Prisma {
     NOT?: ProductScalarWhereWithAggregatesInput | ProductScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Product"> | number
     title?: StringWithAggregatesFilter<"Product"> | string
+    equipmentId?: IntWithAggregatesFilter<"Product"> | number
   }
 
   export type ModelWhereInput = {
@@ -8287,16 +11629,16 @@ export namespace Prisma {
     NOT?: ModelWhereInput | ModelWhereInput[]
     id?: IntFilter<"Model"> | number
     title?: StringFilter<"Model"> | string
-    productId?: IntFilter<"Model"> | number
-    product?: XOR<ProductRelationFilter, ProductWhereInput>
+    equipmentId?: IntFilter<"Model"> | number
+    equipment?: XOR<EquipmentRelationFilter, EquipmentWhereInput>
     capacities?: CapacityListRelationFilter
   }
 
   export type ModelOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
-    productId?: SortOrder
-    product?: ProductOrderByWithRelationInput
+    equipmentId?: SortOrder
+    equipment?: EquipmentOrderByWithRelationInput
     capacities?: CapacityOrderByRelationAggregateInput
   }
 
@@ -8306,15 +11648,15 @@ export namespace Prisma {
     OR?: ModelWhereInput[]
     NOT?: ModelWhereInput | ModelWhereInput[]
     title?: StringFilter<"Model"> | string
-    productId?: IntFilter<"Model"> | number
-    product?: XOR<ProductRelationFilter, ProductWhereInput>
+    equipmentId?: IntFilter<"Model"> | number
+    equipment?: XOR<EquipmentRelationFilter, EquipmentWhereInput>
     capacities?: CapacityListRelationFilter
   }, "id">
 
   export type ModelOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
-    productId?: SortOrder
+    equipmentId?: SortOrder
     _count?: ModelCountOrderByAggregateInput
     _avg?: ModelAvgOrderByAggregateInput
     _max?: ModelMaxOrderByAggregateInput
@@ -8328,7 +11670,7 @@ export namespace Prisma {
     NOT?: ModelScalarWhereWithAggregatesInput | ModelScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Model"> | number
     title?: StringWithAggregatesFilter<"Model"> | string
-    productId?: IntWithAggregatesFilter<"Model"> | number
+    equipmentId?: IntWithAggregatesFilter<"Model"> | number
   }
 
   export type CapacityWhereInput = {
@@ -8387,17 +11729,19 @@ export namespace Prisma {
     NOT?: HeightWhereInput | HeightWhereInput[]
     id?: IntFilter<"Height"> | number
     title?: StringFilter<"Height"> | string
-    power?: StringFilter<"Height"> | string
+    recommended?: BoolFilter<"Height"> | boolean
     capacityId?: IntFilter<"Height"> | number
     capacity?: XOR<CapacityRelationFilter, CapacityWhereInput>
+    powers?: PowerListRelationFilter
   }
 
   export type HeightOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
-    power?: SortOrder
+    recommended?: SortOrder
     capacityId?: SortOrder
     capacity?: CapacityOrderByWithRelationInput
+    powers?: PowerOrderByRelationAggregateInput
   }
 
   export type HeightWhereUniqueInput = Prisma.AtLeast<{
@@ -8406,15 +11750,16 @@ export namespace Prisma {
     OR?: HeightWhereInput[]
     NOT?: HeightWhereInput | HeightWhereInput[]
     title?: StringFilter<"Height"> | string
-    power?: StringFilter<"Height"> | string
+    recommended?: BoolFilter<"Height"> | boolean
     capacityId?: IntFilter<"Height"> | number
     capacity?: XOR<CapacityRelationFilter, CapacityWhereInput>
+    powers?: PowerListRelationFilter
   }, "id">
 
   export type HeightOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
-    power?: SortOrder
+    recommended?: SortOrder
     capacityId?: SortOrder
     _count?: HeightCountOrderByAggregateInput
     _avg?: HeightAvgOrderByAggregateInput
@@ -8429,8 +11774,55 @@ export namespace Prisma {
     NOT?: HeightScalarWhereWithAggregatesInput | HeightScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Height"> | number
     title?: StringWithAggregatesFilter<"Height"> | string
-    power?: StringWithAggregatesFilter<"Height"> | string
+    recommended?: BoolWithAggregatesFilter<"Height"> | boolean
     capacityId?: IntWithAggregatesFilter<"Height"> | number
+  }
+
+  export type PowerWhereInput = {
+    AND?: PowerWhereInput | PowerWhereInput[]
+    OR?: PowerWhereInput[]
+    NOT?: PowerWhereInput | PowerWhereInput[]
+    id?: IntFilter<"Power"> | number
+    title?: StringFilter<"Power"> | string
+    heightId?: IntFilter<"Power"> | number
+    height?: XOR<HeightRelationFilter, HeightWhereInput>
+  }
+
+  export type PowerOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    heightId?: SortOrder
+    height?: HeightOrderByWithRelationInput
+  }
+
+  export type PowerWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PowerWhereInput | PowerWhereInput[]
+    OR?: PowerWhereInput[]
+    NOT?: PowerWhereInput | PowerWhereInput[]
+    title?: StringFilter<"Power"> | string
+    heightId?: IntFilter<"Power"> | number
+    height?: XOR<HeightRelationFilter, HeightWhereInput>
+  }, "id">
+
+  export type PowerOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    heightId?: SortOrder
+    _count?: PowerCountOrderByAggregateInput
+    _avg?: PowerAvgOrderByAggregateInput
+    _max?: PowerMaxOrderByAggregateInput
+    _min?: PowerMinOrderByAggregateInput
+    _sum?: PowerSumOrderByAggregateInput
+  }
+
+  export type PowerScalarWhereWithAggregatesInput = {
+    AND?: PowerScalarWhereWithAggregatesInput | PowerScalarWhereWithAggregatesInput[]
+    OR?: PowerScalarWhereWithAggregatesInput[]
+    NOT?: PowerScalarWhereWithAggregatesInput | PowerScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Power"> | number
+    title?: StringWithAggregatesFilter<"Power"> | string
+    heightId?: IntWithAggregatesFilter<"Power"> | number
   }
 
   export type InputOutputWhereInput = {
@@ -8597,31 +11989,114 @@ export namespace Prisma {
     zip?: StringFieldUpdateOperationsInput | string
   }
 
+  export type GroupCreateInput = {
+    title: string
+    equipments?: EquipmentCreateNestedManyWithoutGroupInput
+  }
+
+  export type GroupUncheckedCreateInput = {
+    id?: number
+    title: string
+    equipments?: EquipmentUncheckedCreateNestedManyWithoutGroupInput
+  }
+
+  export type GroupUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    equipments?: EquipmentUpdateManyWithoutGroupNestedInput
+  }
+
+  export type GroupUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    equipments?: EquipmentUncheckedUpdateManyWithoutGroupNestedInput
+  }
+
+  export type GroupCreateManyInput = {
+    id?: number
+    title: string
+  }
+
+  export type GroupUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GroupUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EquipmentCreateInput = {
+    title: string
+    group: GroupCreateNestedOneWithoutEquipmentsInput
+    models?: ModelCreateNestedManyWithoutEquipmentInput
+    products?: ProductCreateNestedManyWithoutEquipmentInput
+  }
+
+  export type EquipmentUncheckedCreateInput = {
+    id?: number
+    title: string
+    groupId: number
+    models?: ModelUncheckedCreateNestedManyWithoutEquipmentInput
+    products?: ProductUncheckedCreateNestedManyWithoutEquipmentInput
+  }
+
+  export type EquipmentUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    group?: GroupUpdateOneRequiredWithoutEquipmentsNestedInput
+    models?: ModelUpdateManyWithoutEquipmentNestedInput
+    products?: ProductUpdateManyWithoutEquipmentNestedInput
+  }
+
+  export type EquipmentUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    groupId?: IntFieldUpdateOperationsInput | number
+    models?: ModelUncheckedUpdateManyWithoutEquipmentNestedInput
+    products?: ProductUncheckedUpdateManyWithoutEquipmentNestedInput
+  }
+
+  export type EquipmentCreateManyInput = {
+    id?: number
+    title: string
+    groupId: number
+  }
+
+  export type EquipmentUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EquipmentUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    groupId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type ProductCreateInput = {
     title: string
-    models?: ModelCreateNestedManyWithoutProductInput
+    equipment: EquipmentCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateInput = {
     id?: number
     title: string
-    models?: ModelUncheckedCreateNestedManyWithoutProductInput
+    equipmentId: number
   }
 
   export type ProductUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
-    models?: ModelUpdateManyWithoutProductNestedInput
+    equipment?: EquipmentUpdateOneRequiredWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    models?: ModelUncheckedUpdateManyWithoutProductNestedInput
+    equipmentId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProductCreateManyInput = {
     id?: number
     title: string
+    equipmentId: number
   }
 
   export type ProductUpdateManyMutationInput = {
@@ -8631,38 +12106,39 @@ export namespace Prisma {
   export type ProductUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
+    equipmentId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ModelCreateInput = {
     title: string
-    product: ProductCreateNestedOneWithoutModelsInput
+    equipment: EquipmentCreateNestedOneWithoutModelsInput
     capacities?: CapacityCreateNestedManyWithoutModelInput
   }
 
   export type ModelUncheckedCreateInput = {
     id?: number
     title: string
-    productId: number
+    equipmentId: number
     capacities?: CapacityUncheckedCreateNestedManyWithoutModelInput
   }
 
   export type ModelUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
-    product?: ProductUpdateOneRequiredWithoutModelsNestedInput
+    equipment?: EquipmentUpdateOneRequiredWithoutModelsNestedInput
     capacities?: CapacityUpdateManyWithoutModelNestedInput
   }
 
   export type ModelUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    productId?: IntFieldUpdateOperationsInput | number
+    equipmentId?: IntFieldUpdateOperationsInput | number
     capacities?: CapacityUncheckedUpdateManyWithoutModelNestedInput
   }
 
   export type ModelCreateManyInput = {
     id?: number
     title: string
-    productId: number
+    equipmentId: number
   }
 
   export type ModelUpdateManyMutationInput = {
@@ -8672,7 +12148,7 @@ export namespace Prisma {
   export type ModelUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    productId?: IntFieldUpdateOperationsInput | number
+    equipmentId?: IntFieldUpdateOperationsInput | number
   }
 
   export type CapacityCreateInput = {
@@ -8719,47 +12195,89 @@ export namespace Prisma {
 
   export type HeightCreateInput = {
     title: string
-    power: string
+    recommended: boolean
     capacity: CapacityCreateNestedOneWithoutHeightsInput
+    powers?: PowerCreateNestedManyWithoutHeightInput
   }
 
   export type HeightUncheckedCreateInput = {
     id?: number
     title: string
-    power: string
+    recommended: boolean
     capacityId: number
+    powers?: PowerUncheckedCreateNestedManyWithoutHeightInput
   }
 
   export type HeightUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
-    power?: StringFieldUpdateOperationsInput | string
+    recommended?: BoolFieldUpdateOperationsInput | boolean
     capacity?: CapacityUpdateOneRequiredWithoutHeightsNestedInput
+    powers?: PowerUpdateManyWithoutHeightNestedInput
   }
 
   export type HeightUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    power?: StringFieldUpdateOperationsInput | string
+    recommended?: BoolFieldUpdateOperationsInput | boolean
     capacityId?: IntFieldUpdateOperationsInput | number
+    powers?: PowerUncheckedUpdateManyWithoutHeightNestedInput
   }
 
   export type HeightCreateManyInput = {
     id?: number
     title: string
-    power: string
+    recommended: boolean
     capacityId: number
   }
 
   export type HeightUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
-    power?: StringFieldUpdateOperationsInput | string
+    recommended?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type HeightUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    power?: StringFieldUpdateOperationsInput | string
+    recommended?: BoolFieldUpdateOperationsInput | boolean
     capacityId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PowerCreateInput = {
+    title: string
+    height: HeightCreateNestedOneWithoutPowersInput
+  }
+
+  export type PowerUncheckedCreateInput = {
+    id?: number
+    title: string
+    heightId: number
+  }
+
+  export type PowerUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    height?: HeightUpdateOneRequiredWithoutPowersNestedInput
+  }
+
+  export type PowerUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    heightId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PowerCreateManyInput = {
+    id?: number
+    title: string
+    heightId: number
+  }
+
+  export type PowerUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PowerUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    heightId?: IntFieldUpdateOperationsInput | number
   }
 
   export type InputOutputCreateInput = {
@@ -8931,42 +12449,123 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type EquipmentListRelationFilter = {
+    every?: EquipmentWhereInput
+    some?: EquipmentWhereInput
+    none?: EquipmentWhereInput
+  }
+
+  export type EquipmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GroupCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+  }
+
+  export type GroupAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type GroupMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+  }
+
+  export type GroupMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+  }
+
+  export type GroupSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type GroupRelationFilter = {
+    is?: GroupWhereInput
+    isNot?: GroupWhereInput
+  }
+
   export type ModelListRelationFilter = {
     every?: ModelWhereInput
     some?: ModelWhereInput
     none?: ModelWhereInput
   }
 
+  export type ProductListRelationFilter = {
+    every?: ProductWhereInput
+    some?: ProductWhereInput
+    none?: ProductWhereInput
+  }
+
   export type ModelOrderByRelationAggregateInput = {
     _count?: SortOrder
+  }
+
+  export type ProductOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EquipmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    groupId?: SortOrder
+  }
+
+  export type EquipmentAvgOrderByAggregateInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+  }
+
+  export type EquipmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    groupId?: SortOrder
+  }
+
+  export type EquipmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    groupId?: SortOrder
+  }
+
+  export type EquipmentSumOrderByAggregateInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+  }
+
+  export type EquipmentRelationFilter = {
+    is?: EquipmentWhereInput
+    isNot?: EquipmentWhereInput
   }
 
   export type ProductCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    equipmentId?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
     id?: SortOrder
+    equipmentId?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    equipmentId?: SortOrder
   }
 
   export type ProductMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    equipmentId?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type ProductRelationFilter = {
-    is?: ProductWhereInput
-    isNot?: ProductWhereInput
+    equipmentId?: SortOrder
   }
 
   export type CapacityListRelationFilter = {
@@ -8982,29 +12581,29 @@ export namespace Prisma {
   export type ModelCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    productId?: SortOrder
+    equipmentId?: SortOrder
   }
 
   export type ModelAvgOrderByAggregateInput = {
     id?: SortOrder
-    productId?: SortOrder
+    equipmentId?: SortOrder
   }
 
   export type ModelMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    productId?: SortOrder
+    equipmentId?: SortOrder
   }
 
   export type ModelMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    productId?: SortOrder
+    equipmentId?: SortOrder
   }
 
   export type ModelSumOrderByAggregateInput = {
     id?: SortOrder
-    productId?: SortOrder
+    equipmentId?: SortOrder
   }
 
   export type ModelRelationFilter = {
@@ -9050,15 +12649,30 @@ export namespace Prisma {
     modelId?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type CapacityRelationFilter = {
     is?: CapacityWhereInput
     isNot?: CapacityWhereInput
   }
 
+  export type PowerListRelationFilter = {
+    every?: PowerWhereInput
+    some?: PowerWhereInput
+    none?: PowerWhereInput
+  }
+
+  export type PowerOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type HeightCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    power?: SortOrder
+    recommended?: SortOrder
     capacityId?: SortOrder
   }
 
@@ -9070,20 +12684,61 @@ export namespace Prisma {
   export type HeightMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    power?: SortOrder
+    recommended?: SortOrder
     capacityId?: SortOrder
   }
 
   export type HeightMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    power?: SortOrder
+    recommended?: SortOrder
     capacityId?: SortOrder
   }
 
   export type HeightSumOrderByAggregateInput = {
     id?: SortOrder
     capacityId?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type HeightRelationFilter = {
+    is?: HeightWhereInput
+    isNot?: HeightWhereInput
+  }
+
+  export type PowerCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    heightId?: SortOrder
+  }
+
+  export type PowerAvgOrderByAggregateInput = {
+    id?: SortOrder
+    heightId?: SortOrder
+  }
+
+  export type PowerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    heightId?: SortOrder
+  }
+
+  export type PowerMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    heightId?: SortOrder
+  }
+
+  export type PowerSumOrderByAggregateInput = {
+    id?: SortOrder
+    heightId?: SortOrder
   }
 
   export type InputOutputCountOrderByAggregateInput = {
@@ -9124,52 +12779,164 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type ModelCreateNestedManyWithoutProductInput = {
-    create?: XOR<ModelCreateWithoutProductInput, ModelUncheckedCreateWithoutProductInput> | ModelCreateWithoutProductInput[] | ModelUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: ModelCreateOrConnectWithoutProductInput | ModelCreateOrConnectWithoutProductInput[]
-    createMany?: ModelCreateManyProductInputEnvelope
+  export type EquipmentCreateNestedManyWithoutGroupInput = {
+    create?: XOR<EquipmentCreateWithoutGroupInput, EquipmentUncheckedCreateWithoutGroupInput> | EquipmentCreateWithoutGroupInput[] | EquipmentUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: EquipmentCreateOrConnectWithoutGroupInput | EquipmentCreateOrConnectWithoutGroupInput[]
+    createMany?: EquipmentCreateManyGroupInputEnvelope
+    connect?: EquipmentWhereUniqueInput | EquipmentWhereUniqueInput[]
+  }
+
+  export type EquipmentUncheckedCreateNestedManyWithoutGroupInput = {
+    create?: XOR<EquipmentCreateWithoutGroupInput, EquipmentUncheckedCreateWithoutGroupInput> | EquipmentCreateWithoutGroupInput[] | EquipmentUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: EquipmentCreateOrConnectWithoutGroupInput | EquipmentCreateOrConnectWithoutGroupInput[]
+    createMany?: EquipmentCreateManyGroupInputEnvelope
+    connect?: EquipmentWhereUniqueInput | EquipmentWhereUniqueInput[]
+  }
+
+  export type EquipmentUpdateManyWithoutGroupNestedInput = {
+    create?: XOR<EquipmentCreateWithoutGroupInput, EquipmentUncheckedCreateWithoutGroupInput> | EquipmentCreateWithoutGroupInput[] | EquipmentUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: EquipmentCreateOrConnectWithoutGroupInput | EquipmentCreateOrConnectWithoutGroupInput[]
+    upsert?: EquipmentUpsertWithWhereUniqueWithoutGroupInput | EquipmentUpsertWithWhereUniqueWithoutGroupInput[]
+    createMany?: EquipmentCreateManyGroupInputEnvelope
+    set?: EquipmentWhereUniqueInput | EquipmentWhereUniqueInput[]
+    disconnect?: EquipmentWhereUniqueInput | EquipmentWhereUniqueInput[]
+    delete?: EquipmentWhereUniqueInput | EquipmentWhereUniqueInput[]
+    connect?: EquipmentWhereUniqueInput | EquipmentWhereUniqueInput[]
+    update?: EquipmentUpdateWithWhereUniqueWithoutGroupInput | EquipmentUpdateWithWhereUniqueWithoutGroupInput[]
+    updateMany?: EquipmentUpdateManyWithWhereWithoutGroupInput | EquipmentUpdateManyWithWhereWithoutGroupInput[]
+    deleteMany?: EquipmentScalarWhereInput | EquipmentScalarWhereInput[]
+  }
+
+  export type EquipmentUncheckedUpdateManyWithoutGroupNestedInput = {
+    create?: XOR<EquipmentCreateWithoutGroupInput, EquipmentUncheckedCreateWithoutGroupInput> | EquipmentCreateWithoutGroupInput[] | EquipmentUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: EquipmentCreateOrConnectWithoutGroupInput | EquipmentCreateOrConnectWithoutGroupInput[]
+    upsert?: EquipmentUpsertWithWhereUniqueWithoutGroupInput | EquipmentUpsertWithWhereUniqueWithoutGroupInput[]
+    createMany?: EquipmentCreateManyGroupInputEnvelope
+    set?: EquipmentWhereUniqueInput | EquipmentWhereUniqueInput[]
+    disconnect?: EquipmentWhereUniqueInput | EquipmentWhereUniqueInput[]
+    delete?: EquipmentWhereUniqueInput | EquipmentWhereUniqueInput[]
+    connect?: EquipmentWhereUniqueInput | EquipmentWhereUniqueInput[]
+    update?: EquipmentUpdateWithWhereUniqueWithoutGroupInput | EquipmentUpdateWithWhereUniqueWithoutGroupInput[]
+    updateMany?: EquipmentUpdateManyWithWhereWithoutGroupInput | EquipmentUpdateManyWithWhereWithoutGroupInput[]
+    deleteMany?: EquipmentScalarWhereInput | EquipmentScalarWhereInput[]
+  }
+
+  export type GroupCreateNestedOneWithoutEquipmentsInput = {
+    create?: XOR<GroupCreateWithoutEquipmentsInput, GroupUncheckedCreateWithoutEquipmentsInput>
+    connectOrCreate?: GroupCreateOrConnectWithoutEquipmentsInput
+    connect?: GroupWhereUniqueInput
+  }
+
+  export type ModelCreateNestedManyWithoutEquipmentInput = {
+    create?: XOR<ModelCreateWithoutEquipmentInput, ModelUncheckedCreateWithoutEquipmentInput> | ModelCreateWithoutEquipmentInput[] | ModelUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: ModelCreateOrConnectWithoutEquipmentInput | ModelCreateOrConnectWithoutEquipmentInput[]
+    createMany?: ModelCreateManyEquipmentInputEnvelope
     connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
   }
 
-  export type ModelUncheckedCreateNestedManyWithoutProductInput = {
-    create?: XOR<ModelCreateWithoutProductInput, ModelUncheckedCreateWithoutProductInput> | ModelCreateWithoutProductInput[] | ModelUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: ModelCreateOrConnectWithoutProductInput | ModelCreateOrConnectWithoutProductInput[]
-    createMany?: ModelCreateManyProductInputEnvelope
+  export type ProductCreateNestedManyWithoutEquipmentInput = {
+    create?: XOR<ProductCreateWithoutEquipmentInput, ProductUncheckedCreateWithoutEquipmentInput> | ProductCreateWithoutEquipmentInput[] | ProductUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutEquipmentInput | ProductCreateOrConnectWithoutEquipmentInput[]
+    createMany?: ProductCreateManyEquipmentInputEnvelope
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type ModelUncheckedCreateNestedManyWithoutEquipmentInput = {
+    create?: XOR<ModelCreateWithoutEquipmentInput, ModelUncheckedCreateWithoutEquipmentInput> | ModelCreateWithoutEquipmentInput[] | ModelUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: ModelCreateOrConnectWithoutEquipmentInput | ModelCreateOrConnectWithoutEquipmentInput[]
+    createMany?: ModelCreateManyEquipmentInputEnvelope
     connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
   }
 
-  export type ModelUpdateManyWithoutProductNestedInput = {
-    create?: XOR<ModelCreateWithoutProductInput, ModelUncheckedCreateWithoutProductInput> | ModelCreateWithoutProductInput[] | ModelUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: ModelCreateOrConnectWithoutProductInput | ModelCreateOrConnectWithoutProductInput[]
-    upsert?: ModelUpsertWithWhereUniqueWithoutProductInput | ModelUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: ModelCreateManyProductInputEnvelope
+  export type ProductUncheckedCreateNestedManyWithoutEquipmentInput = {
+    create?: XOR<ProductCreateWithoutEquipmentInput, ProductUncheckedCreateWithoutEquipmentInput> | ProductCreateWithoutEquipmentInput[] | ProductUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutEquipmentInput | ProductCreateOrConnectWithoutEquipmentInput[]
+    createMany?: ProductCreateManyEquipmentInputEnvelope
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type GroupUpdateOneRequiredWithoutEquipmentsNestedInput = {
+    create?: XOR<GroupCreateWithoutEquipmentsInput, GroupUncheckedCreateWithoutEquipmentsInput>
+    connectOrCreate?: GroupCreateOrConnectWithoutEquipmentsInput
+    upsert?: GroupUpsertWithoutEquipmentsInput
+    connect?: GroupWhereUniqueInput
+    update?: XOR<XOR<GroupUpdateToOneWithWhereWithoutEquipmentsInput, GroupUpdateWithoutEquipmentsInput>, GroupUncheckedUpdateWithoutEquipmentsInput>
+  }
+
+  export type ModelUpdateManyWithoutEquipmentNestedInput = {
+    create?: XOR<ModelCreateWithoutEquipmentInput, ModelUncheckedCreateWithoutEquipmentInput> | ModelCreateWithoutEquipmentInput[] | ModelUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: ModelCreateOrConnectWithoutEquipmentInput | ModelCreateOrConnectWithoutEquipmentInput[]
+    upsert?: ModelUpsertWithWhereUniqueWithoutEquipmentInput | ModelUpsertWithWhereUniqueWithoutEquipmentInput[]
+    createMany?: ModelCreateManyEquipmentInputEnvelope
     set?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
     disconnect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
     delete?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
     connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-    update?: ModelUpdateWithWhereUniqueWithoutProductInput | ModelUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: ModelUpdateManyWithWhereWithoutProductInput | ModelUpdateManyWithWhereWithoutProductInput[]
+    update?: ModelUpdateWithWhereUniqueWithoutEquipmentInput | ModelUpdateWithWhereUniqueWithoutEquipmentInput[]
+    updateMany?: ModelUpdateManyWithWhereWithoutEquipmentInput | ModelUpdateManyWithWhereWithoutEquipmentInput[]
     deleteMany?: ModelScalarWhereInput | ModelScalarWhereInput[]
   }
 
-  export type ModelUncheckedUpdateManyWithoutProductNestedInput = {
-    create?: XOR<ModelCreateWithoutProductInput, ModelUncheckedCreateWithoutProductInput> | ModelCreateWithoutProductInput[] | ModelUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: ModelCreateOrConnectWithoutProductInput | ModelCreateOrConnectWithoutProductInput[]
-    upsert?: ModelUpsertWithWhereUniqueWithoutProductInput | ModelUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: ModelCreateManyProductInputEnvelope
+  export type ProductUpdateManyWithoutEquipmentNestedInput = {
+    create?: XOR<ProductCreateWithoutEquipmentInput, ProductUncheckedCreateWithoutEquipmentInput> | ProductCreateWithoutEquipmentInput[] | ProductUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutEquipmentInput | ProductCreateOrConnectWithoutEquipmentInput[]
+    upsert?: ProductUpsertWithWhereUniqueWithoutEquipmentInput | ProductUpsertWithWhereUniqueWithoutEquipmentInput[]
+    createMany?: ProductCreateManyEquipmentInputEnvelope
+    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    update?: ProductUpdateWithWhereUniqueWithoutEquipmentInput | ProductUpdateWithWhereUniqueWithoutEquipmentInput[]
+    updateMany?: ProductUpdateManyWithWhereWithoutEquipmentInput | ProductUpdateManyWithWhereWithoutEquipmentInput[]
+    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  }
+
+  export type ModelUncheckedUpdateManyWithoutEquipmentNestedInput = {
+    create?: XOR<ModelCreateWithoutEquipmentInput, ModelUncheckedCreateWithoutEquipmentInput> | ModelCreateWithoutEquipmentInput[] | ModelUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: ModelCreateOrConnectWithoutEquipmentInput | ModelCreateOrConnectWithoutEquipmentInput[]
+    upsert?: ModelUpsertWithWhereUniqueWithoutEquipmentInput | ModelUpsertWithWhereUniqueWithoutEquipmentInput[]
+    createMany?: ModelCreateManyEquipmentInputEnvelope
     set?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
     disconnect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
     delete?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
     connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-    update?: ModelUpdateWithWhereUniqueWithoutProductInput | ModelUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: ModelUpdateManyWithWhereWithoutProductInput | ModelUpdateManyWithWhereWithoutProductInput[]
+    update?: ModelUpdateWithWhereUniqueWithoutEquipmentInput | ModelUpdateWithWhereUniqueWithoutEquipmentInput[]
+    updateMany?: ModelUpdateManyWithWhereWithoutEquipmentInput | ModelUpdateManyWithWhereWithoutEquipmentInput[]
     deleteMany?: ModelScalarWhereInput | ModelScalarWhereInput[]
   }
 
-  export type ProductCreateNestedOneWithoutModelsInput = {
-    create?: XOR<ProductCreateWithoutModelsInput, ProductUncheckedCreateWithoutModelsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutModelsInput
-    connect?: ProductWhereUniqueInput
+  export type ProductUncheckedUpdateManyWithoutEquipmentNestedInput = {
+    create?: XOR<ProductCreateWithoutEquipmentInput, ProductUncheckedCreateWithoutEquipmentInput> | ProductCreateWithoutEquipmentInput[] | ProductUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutEquipmentInput | ProductCreateOrConnectWithoutEquipmentInput[]
+    upsert?: ProductUpsertWithWhereUniqueWithoutEquipmentInput | ProductUpsertWithWhereUniqueWithoutEquipmentInput[]
+    createMany?: ProductCreateManyEquipmentInputEnvelope
+    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    update?: ProductUpdateWithWhereUniqueWithoutEquipmentInput | ProductUpdateWithWhereUniqueWithoutEquipmentInput[]
+    updateMany?: ProductUpdateManyWithWhereWithoutEquipmentInput | ProductUpdateManyWithWhereWithoutEquipmentInput[]
+    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  }
+
+  export type EquipmentCreateNestedOneWithoutProductsInput = {
+    create?: XOR<EquipmentCreateWithoutProductsInput, EquipmentUncheckedCreateWithoutProductsInput>
+    connectOrCreate?: EquipmentCreateOrConnectWithoutProductsInput
+    connect?: EquipmentWhereUniqueInput
+  }
+
+  export type EquipmentUpdateOneRequiredWithoutProductsNestedInput = {
+    create?: XOR<EquipmentCreateWithoutProductsInput, EquipmentUncheckedCreateWithoutProductsInput>
+    connectOrCreate?: EquipmentCreateOrConnectWithoutProductsInput
+    upsert?: EquipmentUpsertWithoutProductsInput
+    connect?: EquipmentWhereUniqueInput
+    update?: XOR<XOR<EquipmentUpdateToOneWithWhereWithoutProductsInput, EquipmentUpdateWithoutProductsInput>, EquipmentUncheckedUpdateWithoutProductsInput>
+  }
+
+  export type EquipmentCreateNestedOneWithoutModelsInput = {
+    create?: XOR<EquipmentCreateWithoutModelsInput, EquipmentUncheckedCreateWithoutModelsInput>
+    connectOrCreate?: EquipmentCreateOrConnectWithoutModelsInput
+    connect?: EquipmentWhereUniqueInput
   }
 
   export type CapacityCreateNestedManyWithoutModelInput = {
@@ -9186,12 +12953,12 @@ export namespace Prisma {
     connect?: CapacityWhereUniqueInput | CapacityWhereUniqueInput[]
   }
 
-  export type ProductUpdateOneRequiredWithoutModelsNestedInput = {
-    create?: XOR<ProductCreateWithoutModelsInput, ProductUncheckedCreateWithoutModelsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutModelsInput
-    upsert?: ProductUpsertWithoutModelsInput
-    connect?: ProductWhereUniqueInput
-    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutModelsInput, ProductUpdateWithoutModelsInput>, ProductUncheckedUpdateWithoutModelsInput>
+  export type EquipmentUpdateOneRequiredWithoutModelsNestedInput = {
+    create?: XOR<EquipmentCreateWithoutModelsInput, EquipmentUncheckedCreateWithoutModelsInput>
+    connectOrCreate?: EquipmentCreateOrConnectWithoutModelsInput
+    upsert?: EquipmentUpsertWithoutModelsInput
+    connect?: EquipmentWhereUniqueInput
+    update?: XOR<XOR<EquipmentUpdateToOneWithWhereWithoutModelsInput, EquipmentUpdateWithoutModelsInput>, EquipmentUncheckedUpdateWithoutModelsInput>
   }
 
   export type CapacityUpdateManyWithoutModelNestedInput = {
@@ -9284,12 +13051,72 @@ export namespace Prisma {
     connect?: CapacityWhereUniqueInput
   }
 
+  export type PowerCreateNestedManyWithoutHeightInput = {
+    create?: XOR<PowerCreateWithoutHeightInput, PowerUncheckedCreateWithoutHeightInput> | PowerCreateWithoutHeightInput[] | PowerUncheckedCreateWithoutHeightInput[]
+    connectOrCreate?: PowerCreateOrConnectWithoutHeightInput | PowerCreateOrConnectWithoutHeightInput[]
+    createMany?: PowerCreateManyHeightInputEnvelope
+    connect?: PowerWhereUniqueInput | PowerWhereUniqueInput[]
+  }
+
+  export type PowerUncheckedCreateNestedManyWithoutHeightInput = {
+    create?: XOR<PowerCreateWithoutHeightInput, PowerUncheckedCreateWithoutHeightInput> | PowerCreateWithoutHeightInput[] | PowerUncheckedCreateWithoutHeightInput[]
+    connectOrCreate?: PowerCreateOrConnectWithoutHeightInput | PowerCreateOrConnectWithoutHeightInput[]
+    createMany?: PowerCreateManyHeightInputEnvelope
+    connect?: PowerWhereUniqueInput | PowerWhereUniqueInput[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type CapacityUpdateOneRequiredWithoutHeightsNestedInput = {
     create?: XOR<CapacityCreateWithoutHeightsInput, CapacityUncheckedCreateWithoutHeightsInput>
     connectOrCreate?: CapacityCreateOrConnectWithoutHeightsInput
     upsert?: CapacityUpsertWithoutHeightsInput
     connect?: CapacityWhereUniqueInput
     update?: XOR<XOR<CapacityUpdateToOneWithWhereWithoutHeightsInput, CapacityUpdateWithoutHeightsInput>, CapacityUncheckedUpdateWithoutHeightsInput>
+  }
+
+  export type PowerUpdateManyWithoutHeightNestedInput = {
+    create?: XOR<PowerCreateWithoutHeightInput, PowerUncheckedCreateWithoutHeightInput> | PowerCreateWithoutHeightInput[] | PowerUncheckedCreateWithoutHeightInput[]
+    connectOrCreate?: PowerCreateOrConnectWithoutHeightInput | PowerCreateOrConnectWithoutHeightInput[]
+    upsert?: PowerUpsertWithWhereUniqueWithoutHeightInput | PowerUpsertWithWhereUniqueWithoutHeightInput[]
+    createMany?: PowerCreateManyHeightInputEnvelope
+    set?: PowerWhereUniqueInput | PowerWhereUniqueInput[]
+    disconnect?: PowerWhereUniqueInput | PowerWhereUniqueInput[]
+    delete?: PowerWhereUniqueInput | PowerWhereUniqueInput[]
+    connect?: PowerWhereUniqueInput | PowerWhereUniqueInput[]
+    update?: PowerUpdateWithWhereUniqueWithoutHeightInput | PowerUpdateWithWhereUniqueWithoutHeightInput[]
+    updateMany?: PowerUpdateManyWithWhereWithoutHeightInput | PowerUpdateManyWithWhereWithoutHeightInput[]
+    deleteMany?: PowerScalarWhereInput | PowerScalarWhereInput[]
+  }
+
+  export type PowerUncheckedUpdateManyWithoutHeightNestedInput = {
+    create?: XOR<PowerCreateWithoutHeightInput, PowerUncheckedCreateWithoutHeightInput> | PowerCreateWithoutHeightInput[] | PowerUncheckedCreateWithoutHeightInput[]
+    connectOrCreate?: PowerCreateOrConnectWithoutHeightInput | PowerCreateOrConnectWithoutHeightInput[]
+    upsert?: PowerUpsertWithWhereUniqueWithoutHeightInput | PowerUpsertWithWhereUniqueWithoutHeightInput[]
+    createMany?: PowerCreateManyHeightInputEnvelope
+    set?: PowerWhereUniqueInput | PowerWhereUniqueInput[]
+    disconnect?: PowerWhereUniqueInput | PowerWhereUniqueInput[]
+    delete?: PowerWhereUniqueInput | PowerWhereUniqueInput[]
+    connect?: PowerWhereUniqueInput | PowerWhereUniqueInput[]
+    update?: PowerUpdateWithWhereUniqueWithoutHeightInput | PowerUpdateWithWhereUniqueWithoutHeightInput[]
+    updateMany?: PowerUpdateManyWithWhereWithoutHeightInput | PowerUpdateManyWithWhereWithoutHeightInput[]
+    deleteMany?: PowerScalarWhereInput | PowerScalarWhereInput[]
+  }
+
+  export type HeightCreateNestedOneWithoutPowersInput = {
+    create?: XOR<HeightCreateWithoutPowersInput, HeightUncheckedCreateWithoutPowersInput>
+    connectOrCreate?: HeightCreateOrConnectWithoutPowersInput
+    connect?: HeightWhereUniqueInput
+  }
+
+  export type HeightUpdateOneRequiredWithoutPowersNestedInput = {
+    create?: XOR<HeightCreateWithoutPowersInput, HeightUncheckedCreateWithoutPowersInput>
+    connectOrCreate?: HeightCreateOrConnectWithoutPowersInput
+    upsert?: HeightUpsertWithoutPowersInput
+    connect?: HeightWhereUniqueInput
+    update?: XOR<XOR<HeightUpdateToOneWithWhereWithoutPowersInput, HeightUpdateWithoutPowersInput>, HeightUncheckedUpdateWithoutPowersInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -9361,41 +13188,155 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type ModelCreateWithoutProductInput = {
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type EquipmentCreateWithoutGroupInput = {
+    title: string
+    models?: ModelCreateNestedManyWithoutEquipmentInput
+    products?: ProductCreateNestedManyWithoutEquipmentInput
+  }
+
+  export type EquipmentUncheckedCreateWithoutGroupInput = {
+    id?: number
+    title: string
+    models?: ModelUncheckedCreateNestedManyWithoutEquipmentInput
+    products?: ProductUncheckedCreateNestedManyWithoutEquipmentInput
+  }
+
+  export type EquipmentCreateOrConnectWithoutGroupInput = {
+    where: EquipmentWhereUniqueInput
+    create: XOR<EquipmentCreateWithoutGroupInput, EquipmentUncheckedCreateWithoutGroupInput>
+  }
+
+  export type EquipmentCreateManyGroupInputEnvelope = {
+    data: EquipmentCreateManyGroupInput | EquipmentCreateManyGroupInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EquipmentUpsertWithWhereUniqueWithoutGroupInput = {
+    where: EquipmentWhereUniqueInput
+    update: XOR<EquipmentUpdateWithoutGroupInput, EquipmentUncheckedUpdateWithoutGroupInput>
+    create: XOR<EquipmentCreateWithoutGroupInput, EquipmentUncheckedCreateWithoutGroupInput>
+  }
+
+  export type EquipmentUpdateWithWhereUniqueWithoutGroupInput = {
+    where: EquipmentWhereUniqueInput
+    data: XOR<EquipmentUpdateWithoutGroupInput, EquipmentUncheckedUpdateWithoutGroupInput>
+  }
+
+  export type EquipmentUpdateManyWithWhereWithoutGroupInput = {
+    where: EquipmentScalarWhereInput
+    data: XOR<EquipmentUpdateManyMutationInput, EquipmentUncheckedUpdateManyWithoutGroupInput>
+  }
+
+  export type EquipmentScalarWhereInput = {
+    AND?: EquipmentScalarWhereInput | EquipmentScalarWhereInput[]
+    OR?: EquipmentScalarWhereInput[]
+    NOT?: EquipmentScalarWhereInput | EquipmentScalarWhereInput[]
+    id?: IntFilter<"Equipment"> | number
+    title?: StringFilter<"Equipment"> | string
+    groupId?: IntFilter<"Equipment"> | number
+  }
+
+  export type GroupCreateWithoutEquipmentsInput = {
+    title: string
+  }
+
+  export type GroupUncheckedCreateWithoutEquipmentsInput = {
+    id?: number
+    title: string
+  }
+
+  export type GroupCreateOrConnectWithoutEquipmentsInput = {
+    where: GroupWhereUniqueInput
+    create: XOR<GroupCreateWithoutEquipmentsInput, GroupUncheckedCreateWithoutEquipmentsInput>
+  }
+
+  export type ModelCreateWithoutEquipmentInput = {
     title: string
     capacities?: CapacityCreateNestedManyWithoutModelInput
   }
 
-  export type ModelUncheckedCreateWithoutProductInput = {
+  export type ModelUncheckedCreateWithoutEquipmentInput = {
     id?: number
     title: string
     capacities?: CapacityUncheckedCreateNestedManyWithoutModelInput
   }
 
-  export type ModelCreateOrConnectWithoutProductInput = {
+  export type ModelCreateOrConnectWithoutEquipmentInput = {
     where: ModelWhereUniqueInput
-    create: XOR<ModelCreateWithoutProductInput, ModelUncheckedCreateWithoutProductInput>
+    create: XOR<ModelCreateWithoutEquipmentInput, ModelUncheckedCreateWithoutEquipmentInput>
   }
 
-  export type ModelCreateManyProductInputEnvelope = {
-    data: ModelCreateManyProductInput | ModelCreateManyProductInput[]
+  export type ModelCreateManyEquipmentInputEnvelope = {
+    data: ModelCreateManyEquipmentInput | ModelCreateManyEquipmentInput[]
     skipDuplicates?: boolean
   }
 
-  export type ModelUpsertWithWhereUniqueWithoutProductInput = {
-    where: ModelWhereUniqueInput
-    update: XOR<ModelUpdateWithoutProductInput, ModelUncheckedUpdateWithoutProductInput>
-    create: XOR<ModelCreateWithoutProductInput, ModelUncheckedCreateWithoutProductInput>
+  export type ProductCreateWithoutEquipmentInput = {
+    title: string
   }
 
-  export type ModelUpdateWithWhereUniqueWithoutProductInput = {
-    where: ModelWhereUniqueInput
-    data: XOR<ModelUpdateWithoutProductInput, ModelUncheckedUpdateWithoutProductInput>
+  export type ProductUncheckedCreateWithoutEquipmentInput = {
+    id?: number
+    title: string
   }
 
-  export type ModelUpdateManyWithWhereWithoutProductInput = {
+  export type ProductCreateOrConnectWithoutEquipmentInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutEquipmentInput, ProductUncheckedCreateWithoutEquipmentInput>
+  }
+
+  export type ProductCreateManyEquipmentInputEnvelope = {
+    data: ProductCreateManyEquipmentInput | ProductCreateManyEquipmentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GroupUpsertWithoutEquipmentsInput = {
+    update: XOR<GroupUpdateWithoutEquipmentsInput, GroupUncheckedUpdateWithoutEquipmentsInput>
+    create: XOR<GroupCreateWithoutEquipmentsInput, GroupUncheckedCreateWithoutEquipmentsInput>
+    where?: GroupWhereInput
+  }
+
+  export type GroupUpdateToOneWithWhereWithoutEquipmentsInput = {
+    where?: GroupWhereInput
+    data: XOR<GroupUpdateWithoutEquipmentsInput, GroupUncheckedUpdateWithoutEquipmentsInput>
+  }
+
+  export type GroupUpdateWithoutEquipmentsInput = {
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GroupUncheckedUpdateWithoutEquipmentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModelUpsertWithWhereUniqueWithoutEquipmentInput = {
+    where: ModelWhereUniqueInput
+    update: XOR<ModelUpdateWithoutEquipmentInput, ModelUncheckedUpdateWithoutEquipmentInput>
+    create: XOR<ModelCreateWithoutEquipmentInput, ModelUncheckedCreateWithoutEquipmentInput>
+  }
+
+  export type ModelUpdateWithWhereUniqueWithoutEquipmentInput = {
+    where: ModelWhereUniqueInput
+    data: XOR<ModelUpdateWithoutEquipmentInput, ModelUncheckedUpdateWithoutEquipmentInput>
+  }
+
+  export type ModelUpdateManyWithWhereWithoutEquipmentInput = {
     where: ModelScalarWhereInput
-    data: XOR<ModelUpdateManyMutationInput, ModelUncheckedUpdateManyWithoutProductInput>
+    data: XOR<ModelUpdateManyMutationInput, ModelUncheckedUpdateManyWithoutEquipmentInput>
   }
 
   export type ModelScalarWhereInput = {
@@ -9404,21 +13345,92 @@ export namespace Prisma {
     NOT?: ModelScalarWhereInput | ModelScalarWhereInput[]
     id?: IntFilter<"Model"> | number
     title?: StringFilter<"Model"> | string
-    productId?: IntFilter<"Model"> | number
+    equipmentId?: IntFilter<"Model"> | number
   }
 
-  export type ProductCreateWithoutModelsInput = {
+  export type ProductUpsertWithWhereUniqueWithoutEquipmentInput = {
+    where: ProductWhereUniqueInput
+    update: XOR<ProductUpdateWithoutEquipmentInput, ProductUncheckedUpdateWithoutEquipmentInput>
+    create: XOR<ProductCreateWithoutEquipmentInput, ProductUncheckedCreateWithoutEquipmentInput>
+  }
+
+  export type ProductUpdateWithWhereUniqueWithoutEquipmentInput = {
+    where: ProductWhereUniqueInput
+    data: XOR<ProductUpdateWithoutEquipmentInput, ProductUncheckedUpdateWithoutEquipmentInput>
+  }
+
+  export type ProductUpdateManyWithWhereWithoutEquipmentInput = {
+    where: ProductScalarWhereInput
+    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutEquipmentInput>
+  }
+
+  export type ProductScalarWhereInput = {
+    AND?: ProductScalarWhereInput | ProductScalarWhereInput[]
+    OR?: ProductScalarWhereInput[]
+    NOT?: ProductScalarWhereInput | ProductScalarWhereInput[]
+    id?: IntFilter<"Product"> | number
+    title?: StringFilter<"Product"> | string
+    equipmentId?: IntFilter<"Product"> | number
+  }
+
+  export type EquipmentCreateWithoutProductsInput = {
     title: string
+    group: GroupCreateNestedOneWithoutEquipmentsInput
+    models?: ModelCreateNestedManyWithoutEquipmentInput
   }
 
-  export type ProductUncheckedCreateWithoutModelsInput = {
+  export type EquipmentUncheckedCreateWithoutProductsInput = {
     id?: number
     title: string
+    groupId: number
+    models?: ModelUncheckedCreateNestedManyWithoutEquipmentInput
   }
 
-  export type ProductCreateOrConnectWithoutModelsInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutModelsInput, ProductUncheckedCreateWithoutModelsInput>
+  export type EquipmentCreateOrConnectWithoutProductsInput = {
+    where: EquipmentWhereUniqueInput
+    create: XOR<EquipmentCreateWithoutProductsInput, EquipmentUncheckedCreateWithoutProductsInput>
+  }
+
+  export type EquipmentUpsertWithoutProductsInput = {
+    update: XOR<EquipmentUpdateWithoutProductsInput, EquipmentUncheckedUpdateWithoutProductsInput>
+    create: XOR<EquipmentCreateWithoutProductsInput, EquipmentUncheckedCreateWithoutProductsInput>
+    where?: EquipmentWhereInput
+  }
+
+  export type EquipmentUpdateToOneWithWhereWithoutProductsInput = {
+    where?: EquipmentWhereInput
+    data: XOR<EquipmentUpdateWithoutProductsInput, EquipmentUncheckedUpdateWithoutProductsInput>
+  }
+
+  export type EquipmentUpdateWithoutProductsInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    group?: GroupUpdateOneRequiredWithoutEquipmentsNestedInput
+    models?: ModelUpdateManyWithoutEquipmentNestedInput
+  }
+
+  export type EquipmentUncheckedUpdateWithoutProductsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    groupId?: IntFieldUpdateOperationsInput | number
+    models?: ModelUncheckedUpdateManyWithoutEquipmentNestedInput
+  }
+
+  export type EquipmentCreateWithoutModelsInput = {
+    title: string
+    group: GroupCreateNestedOneWithoutEquipmentsInput
+    products?: ProductCreateNestedManyWithoutEquipmentInput
+  }
+
+  export type EquipmentUncheckedCreateWithoutModelsInput = {
+    id?: number
+    title: string
+    groupId: number
+    products?: ProductUncheckedCreateNestedManyWithoutEquipmentInput
+  }
+
+  export type EquipmentCreateOrConnectWithoutModelsInput = {
+    where: EquipmentWhereUniqueInput
+    create: XOR<EquipmentCreateWithoutModelsInput, EquipmentUncheckedCreateWithoutModelsInput>
   }
 
   export type CapacityCreateWithoutModelInput = {
@@ -9442,24 +13454,28 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ProductUpsertWithoutModelsInput = {
-    update: XOR<ProductUpdateWithoutModelsInput, ProductUncheckedUpdateWithoutModelsInput>
-    create: XOR<ProductCreateWithoutModelsInput, ProductUncheckedCreateWithoutModelsInput>
-    where?: ProductWhereInput
+  export type EquipmentUpsertWithoutModelsInput = {
+    update: XOR<EquipmentUpdateWithoutModelsInput, EquipmentUncheckedUpdateWithoutModelsInput>
+    create: XOR<EquipmentCreateWithoutModelsInput, EquipmentUncheckedCreateWithoutModelsInput>
+    where?: EquipmentWhereInput
   }
 
-  export type ProductUpdateToOneWithWhereWithoutModelsInput = {
-    where?: ProductWhereInput
-    data: XOR<ProductUpdateWithoutModelsInput, ProductUncheckedUpdateWithoutModelsInput>
+  export type EquipmentUpdateToOneWithWhereWithoutModelsInput = {
+    where?: EquipmentWhereInput
+    data: XOR<EquipmentUpdateWithoutModelsInput, EquipmentUncheckedUpdateWithoutModelsInput>
   }
 
-  export type ProductUpdateWithoutModelsInput = {
+  export type EquipmentUpdateWithoutModelsInput = {
     title?: StringFieldUpdateOperationsInput | string
+    group?: GroupUpdateOneRequiredWithoutEquipmentsNestedInput
+    products?: ProductUpdateManyWithoutEquipmentNestedInput
   }
 
-  export type ProductUncheckedUpdateWithoutModelsInput = {
+  export type EquipmentUncheckedUpdateWithoutModelsInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
+    groupId?: IntFieldUpdateOperationsInput | number
+    products?: ProductUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
   export type CapacityUpsertWithWhereUniqueWithoutModelInput = {
@@ -9489,13 +13505,13 @@ export namespace Prisma {
 
   export type ModelCreateWithoutCapacitiesInput = {
     title: string
-    product: ProductCreateNestedOneWithoutModelsInput
+    equipment: EquipmentCreateNestedOneWithoutModelsInput
   }
 
   export type ModelUncheckedCreateWithoutCapacitiesInput = {
     id?: number
     title: string
-    productId: number
+    equipmentId: number
   }
 
   export type ModelCreateOrConnectWithoutCapacitiesInput = {
@@ -9505,13 +13521,15 @@ export namespace Prisma {
 
   export type HeightCreateWithoutCapacityInput = {
     title: string
-    power: string
+    recommended: boolean
+    powers?: PowerCreateNestedManyWithoutHeightInput
   }
 
   export type HeightUncheckedCreateWithoutCapacityInput = {
     id?: number
     title: string
-    power: string
+    recommended: boolean
+    powers?: PowerUncheckedCreateNestedManyWithoutHeightInput
   }
 
   export type HeightCreateOrConnectWithoutCapacityInput = {
@@ -9537,13 +13555,13 @@ export namespace Prisma {
 
   export type ModelUpdateWithoutCapacitiesInput = {
     title?: StringFieldUpdateOperationsInput | string
-    product?: ProductUpdateOneRequiredWithoutModelsNestedInput
+    equipment?: EquipmentUpdateOneRequiredWithoutModelsNestedInput
   }
 
   export type ModelUncheckedUpdateWithoutCapacitiesInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    productId?: IntFieldUpdateOperationsInput | number
+    equipmentId?: IntFieldUpdateOperationsInput | number
   }
 
   export type HeightUpsertWithWhereUniqueWithoutCapacityInput = {
@@ -9568,7 +13586,7 @@ export namespace Prisma {
     NOT?: HeightScalarWhereInput | HeightScalarWhereInput[]
     id?: IntFilter<"Height"> | number
     title?: StringFilter<"Height"> | string
-    power?: StringFilter<"Height"> | string
+    recommended?: BoolFilter<"Height"> | boolean
     capacityId?: IntFilter<"Height"> | number
   }
 
@@ -9586,6 +13604,25 @@ export namespace Prisma {
   export type CapacityCreateOrConnectWithoutHeightsInput = {
     where: CapacityWhereUniqueInput
     create: XOR<CapacityCreateWithoutHeightsInput, CapacityUncheckedCreateWithoutHeightsInput>
+  }
+
+  export type PowerCreateWithoutHeightInput = {
+    title: string
+  }
+
+  export type PowerUncheckedCreateWithoutHeightInput = {
+    id?: number
+    title: string
+  }
+
+  export type PowerCreateOrConnectWithoutHeightInput = {
+    where: PowerWhereUniqueInput
+    create: XOR<PowerCreateWithoutHeightInput, PowerUncheckedCreateWithoutHeightInput>
+  }
+
+  export type PowerCreateManyHeightInputEnvelope = {
+    data: PowerCreateManyHeightInput | PowerCreateManyHeightInput[]
+    skipDuplicates?: boolean
   }
 
   export type CapacityUpsertWithoutHeightsInput = {
@@ -9610,23 +13647,132 @@ export namespace Prisma {
     modelId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type ModelCreateManyProductInput = {
+  export type PowerUpsertWithWhereUniqueWithoutHeightInput = {
+    where: PowerWhereUniqueInput
+    update: XOR<PowerUpdateWithoutHeightInput, PowerUncheckedUpdateWithoutHeightInput>
+    create: XOR<PowerCreateWithoutHeightInput, PowerUncheckedCreateWithoutHeightInput>
+  }
+
+  export type PowerUpdateWithWhereUniqueWithoutHeightInput = {
+    where: PowerWhereUniqueInput
+    data: XOR<PowerUpdateWithoutHeightInput, PowerUncheckedUpdateWithoutHeightInput>
+  }
+
+  export type PowerUpdateManyWithWhereWithoutHeightInput = {
+    where: PowerScalarWhereInput
+    data: XOR<PowerUpdateManyMutationInput, PowerUncheckedUpdateManyWithoutHeightInput>
+  }
+
+  export type PowerScalarWhereInput = {
+    AND?: PowerScalarWhereInput | PowerScalarWhereInput[]
+    OR?: PowerScalarWhereInput[]
+    NOT?: PowerScalarWhereInput | PowerScalarWhereInput[]
+    id?: IntFilter<"Power"> | number
+    title?: StringFilter<"Power"> | string
+    heightId?: IntFilter<"Power"> | number
+  }
+
+  export type HeightCreateWithoutPowersInput = {
+    title: string
+    recommended: boolean
+    capacity: CapacityCreateNestedOneWithoutHeightsInput
+  }
+
+  export type HeightUncheckedCreateWithoutPowersInput = {
+    id?: number
+    title: string
+    recommended: boolean
+    capacityId: number
+  }
+
+  export type HeightCreateOrConnectWithoutPowersInput = {
+    where: HeightWhereUniqueInput
+    create: XOR<HeightCreateWithoutPowersInput, HeightUncheckedCreateWithoutPowersInput>
+  }
+
+  export type HeightUpsertWithoutPowersInput = {
+    update: XOR<HeightUpdateWithoutPowersInput, HeightUncheckedUpdateWithoutPowersInput>
+    create: XOR<HeightCreateWithoutPowersInput, HeightUncheckedCreateWithoutPowersInput>
+    where?: HeightWhereInput
+  }
+
+  export type HeightUpdateToOneWithWhereWithoutPowersInput = {
+    where?: HeightWhereInput
+    data: XOR<HeightUpdateWithoutPowersInput, HeightUncheckedUpdateWithoutPowersInput>
+  }
+
+  export type HeightUpdateWithoutPowersInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    recommended?: BoolFieldUpdateOperationsInput | boolean
+    capacity?: CapacityUpdateOneRequiredWithoutHeightsNestedInput
+  }
+
+  export type HeightUncheckedUpdateWithoutPowersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    recommended?: BoolFieldUpdateOperationsInput | boolean
+    capacityId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EquipmentCreateManyGroupInput = {
     id?: number
     title: string
   }
 
-  export type ModelUpdateWithoutProductInput = {
+  export type EquipmentUpdateWithoutGroupInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    models?: ModelUpdateManyWithoutEquipmentNestedInput
+    products?: ProductUpdateManyWithoutEquipmentNestedInput
+  }
+
+  export type EquipmentUncheckedUpdateWithoutGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    models?: ModelUncheckedUpdateManyWithoutEquipmentNestedInput
+    products?: ProductUncheckedUpdateManyWithoutEquipmentNestedInput
+  }
+
+  export type EquipmentUncheckedUpdateManyWithoutGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModelCreateManyEquipmentInput = {
+    id?: number
+    title: string
+  }
+
+  export type ProductCreateManyEquipmentInput = {
+    id?: number
+    title: string
+  }
+
+  export type ModelUpdateWithoutEquipmentInput = {
     title?: StringFieldUpdateOperationsInput | string
     capacities?: CapacityUpdateManyWithoutModelNestedInput
   }
 
-  export type ModelUncheckedUpdateWithoutProductInput = {
+  export type ModelUncheckedUpdateWithoutEquipmentInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     capacities?: CapacityUncheckedUpdateManyWithoutModelNestedInput
   }
 
-  export type ModelUncheckedUpdateManyWithoutProductInput = {
+  export type ModelUncheckedUpdateManyWithoutEquipmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductUpdateWithoutEquipmentInput = {
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductUncheckedUpdateWithoutEquipmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductUncheckedUpdateManyWithoutEquipmentInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
   }
@@ -9655,24 +13801,45 @@ export namespace Prisma {
   export type HeightCreateManyCapacityInput = {
     id?: number
     title: string
-    power: string
+    recommended: boolean
   }
 
   export type HeightUpdateWithoutCapacityInput = {
     title?: StringFieldUpdateOperationsInput | string
-    power?: StringFieldUpdateOperationsInput | string
+    recommended?: BoolFieldUpdateOperationsInput | boolean
+    powers?: PowerUpdateManyWithoutHeightNestedInput
   }
 
   export type HeightUncheckedUpdateWithoutCapacityInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    power?: StringFieldUpdateOperationsInput | string
+    recommended?: BoolFieldUpdateOperationsInput | boolean
+    powers?: PowerUncheckedUpdateManyWithoutHeightNestedInput
   }
 
   export type HeightUncheckedUpdateManyWithoutCapacityInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    power?: StringFieldUpdateOperationsInput | string
+    recommended?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PowerCreateManyHeightInput = {
+    id?: number
+    title: string
+  }
+
+  export type PowerUpdateWithoutHeightInput = {
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PowerUncheckedUpdateWithoutHeightInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PowerUncheckedUpdateManyWithoutHeightInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
   }
 
 
@@ -9681,9 +13848,13 @@ export namespace Prisma {
    * Aliases for legacy arg types
    */
     /**
-     * @deprecated Use ProductCountOutputTypeDefaultArgs instead
+     * @deprecated Use GroupCountOutputTypeDefaultArgs instead
      */
-    export type ProductCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ProductCountOutputTypeDefaultArgs<ExtArgs>
+    export type GroupCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GroupCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use EquipmentCountOutputTypeDefaultArgs instead
+     */
+    export type EquipmentCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = EquipmentCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ModelCountOutputTypeDefaultArgs instead
      */
@@ -9693,6 +13864,10 @@ export namespace Prisma {
      */
     export type CapacityCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CapacityCountOutputTypeDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use HeightCountOutputTypeDefaultArgs instead
+     */
+    export type HeightCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = HeightCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use UserDefaultArgs instead
      */
     export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
@@ -9700,6 +13875,14 @@ export namespace Prisma {
      * @deprecated Use ClientDefaultArgs instead
      */
     export type ClientArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClientDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GroupDefaultArgs instead
+     */
+    export type GroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GroupDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use EquipmentDefaultArgs instead
+     */
+    export type EquipmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = EquipmentDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ProductDefaultArgs instead
      */
@@ -9716,6 +13899,10 @@ export namespace Prisma {
      * @deprecated Use HeightDefaultArgs instead
      */
     export type HeightArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = HeightDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PowerDefaultArgs instead
+     */
+    export type PowerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PowerDefaultArgs<ExtArgs>
     /**
      * @deprecated Use InputOutputDefaultArgs instead
      */

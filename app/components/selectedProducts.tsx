@@ -1,21 +1,23 @@
-//selectedProducts.tsx
+// selectedProducts.tsx
 'use client';
 import React from 'react';
 import { Table, Title, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
-import { useSelectedProduct } from '../contexts/selectedProductContext'; // Adicione esta linha
+import { useSelectedProduct } from '../contexts/selectedProductContext';
 
 interface Product {
+  group: string;
+  equipment: string;
   title: string;
   model: string;
   capacity: string;
   height: string;
   power: string;
-  input: string; // Adicione esta linha
-  output: string; // Adicione esta linha
+  input: string;
+  output: string;
 }
 
-const SelectedProducts: React.FC = () => { // Remova SelectedProductsProps daqui
-  const { selectedProducts } = useSelectedProduct(); // Adicione esta linha
+const SelectedProducts: React.FC = () => {
+  const { selectedProducts } = useSelectedProduct();
 
   return (
     <>
@@ -23,6 +25,8 @@ const SelectedProducts: React.FC = () => { // Remova SelectedProductsProps daqui
       <Table>
         <TableHead>
           <TableRow>
+            <TableHeaderCell>Grupo</TableHeaderCell>
+            <TableHeaderCell>Equipamento</TableHeaderCell>
             <TableHeaderCell>Produto</TableHeaderCell>
             <TableHeaderCell>Modelo</TableHeaderCell>
             <TableHeaderCell>Capacidade</TableHeaderCell>
@@ -35,6 +39,8 @@ const SelectedProducts: React.FC = () => { // Remova SelectedProductsProps daqui
         <TableBody>
           {selectedProducts.map((product, index) => (
             <TableRow key={index}>
+              <TableCell>{product.group}</TableCell>
+              <TableCell>{product.equipment}</TableCell>
               <TableCell>{product.title}</TableCell>
               <TableCell>{product.model}</TableCell>
               <TableCell>{product.capacity}</TableCell>

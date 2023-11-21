@@ -24,38 +24,58 @@ model Client {
   zip       String
 }
 
-// Exemplo de modelo de produto
-model Product {
-  id            Int            @id @default(autoincrement())
-  title         String
-  models        Model[]
+model Group {
+  id    Int     @id @default(autoincrement())
+  title String
+  equipments Equipment[]
 }
 
-// Exemplo de modelo de modelo
-model Model {
-  id         Int        @id @default(autoincrement())
-  title      String
-  productId  Int
-  product    Product   @relation(fields: [productId], references: [id])
-  capacities Capacity[]
-}
-
-// Exemplo de modelo de capacidade
-model Capacity {
-  id       Int      @id @default(autoincrement())
+model Equipment {
+  id       Int       @id @default(autoincrement())
   title    String
-  modelId  Int
-  model    Model   @relation(fields: [modelId], references: [id])
-  heights  Height[]
+  groupId  Int
+  group    Group     @relation(fields: [groupId], references: [id])
+  models   Model[]
+  products Product[]
 }
 
-// Exemplo de modelo de altura
+model Model {
+  id           Int        @id @default(autoincrement())
+  title        String
+  equipmentId  Int
+  equipment    Equipment   @relation(fields: [equipmentId], references: [id])
+  capacities   Capacity[]
+}
+
+model Product {
+  id           Int        @id @default(autoincrement())
+  title        String
+  equipmentId  Int
+  equipment    Equipment   @relation(fields: [equipmentId], references: [id])
+}
+
+model Capacity {
+  id         Int      @id @default(autoincrement())
+  title      String
+  modelId    Int
+  model      Model    @relation(fields: [modelId], references: [id])
+  heights    Height[]
+}
+
 model Height {
   id         Int       @id @default(autoincrement())
   title      String
-  power      String
+  recommended Boolean
   capacityId Int
   capacity   Capacity @relation(fields: [capacityId], references: [id])
+  powers     Power[]
+}
+
+model Power {
+  id        Int      @id @default(autoincrement())
+  title     String
+  heightId  Int
+  height    Height  @relation(fields: [heightId], references: [id])
 }
 
 model InputOutput {
