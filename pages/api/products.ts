@@ -4,24 +4,32 @@ import { prisma } from '../../app/prisma'
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
-    const equipments = await prisma.equipment.findMany({
+    const groups = await prisma.group.findMany({
       include: {
-        models: {
+        equipments: {
           include: {
-            capacities: {
+            models: {
               include: {
-                heights: true,
-              }
-            }
-          }
+                capacities: {
+                  include: {
+                    heights: {
+                      include: {
+                        powers: true, // incluir powers
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            products: true,
+          },
         },
-        products: true, // Incluir "products"
-      }
+      },
     });
 
     const inputOutputs = await prisma.inputOutput.findMany();
 
-    res.status(200).json({ equipments, inputOutputs }) // Atualizar "products" para "equipments"
+    res.status(200).json({ groups, inputOutputs })
   } else {
     res.status(405).json({ message: 'Method not allowed' })
   }

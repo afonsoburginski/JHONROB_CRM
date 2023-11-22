@@ -40,21 +40,21 @@ CREATE TABLE "Equipment" (
 );
 
 -- CreateTable
-CREATE TABLE "Product" (
-    "id" SERIAL NOT NULL,
-    "title" TEXT NOT NULL,
-    "equipmentId" INTEGER NOT NULL,
-
-    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Model" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "equipmentId" INTEGER NOT NULL,
 
     CONSTRAINT "Model_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Product" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "equipmentId" INTEGER NOT NULL,
+
+    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -80,28 +80,42 @@ CREATE TABLE "Height" (
 CREATE TABLE "Power" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
+    "recommended" BOOLEAN NOT NULL,
     "heightId" INTEGER NOT NULL,
 
     CONSTRAINT "Power_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "input_outputs" (
+CREATE TABLE "InputOutput" (
     "id" SERIAL NOT NULL,
     "input" TEXT NOT NULL,
     "output" TEXT NOT NULL,
 
-    CONSTRAINT "input_outputs_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "InputOutput_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Propose" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "observation" TEXT,
+    "groups" JSONB NOT NULL,
+    "inputOutputs" JSONB NOT NULL,
+
+    CONSTRAINT "Propose_pkey" PRIMARY KEY ("id")
 );
 
 -- AddForeignKey
 ALTER TABLE "Equipment" ADD CONSTRAINT "Equipment_groupId_fkey" FOREIGN KEY ("groupId") REFERENCES "Group"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Product" ADD CONSTRAINT "Product_equipmentId_fkey" FOREIGN KEY ("equipmentId") REFERENCES "Equipment"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Model" ADD CONSTRAINT "Model_equipmentId_fkey" FOREIGN KEY ("equipmentId") REFERENCES "Equipment"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Model" ADD CONSTRAINT "Model_equipmentId_fkey" FOREIGN KEY ("equipmentId") REFERENCES "Equipment"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Product" ADD CONSTRAINT "Product_equipmentId_fkey" FOREIGN KEY ("equipmentId") REFERENCES "Equipment"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Capacity" ADD CONSTRAINT "Capacity_modelId_fkey" FOREIGN KEY ("modelId") REFERENCES "Model"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

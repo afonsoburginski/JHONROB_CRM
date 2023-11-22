@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
+import { checkFieldsAndShowError } from './toastify';
 
 interface Equipment {
   id: string;
@@ -55,51 +56,99 @@ export default function SelectFormClient() {
   const [equipments, setEquipments] = useState<Equipment[]>([]);
   const [selectedEquipment, setSelectedEquipment] = useState<Equipment | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
-  const { selectedProduct, setSelectedProduct } = useSelectedProduct();
+  const {selectedProduct, setSelectedProduct } = useSelectedProduct();
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
+  const [models, setModels] = useState<Model[]>([]);
   const [selectedCapacity, setSelectedCapacity] = useState<Capacity | null>(null);
   const [selectedHeight, setSelectedHeight] = useState<Height | null>(null);
   const [selectedPower, setSelectedPower] = useState<Power | null>(null);
+  const [powers, setPowers] = useState<Power[]>([]);
   const [selectedInput, setSelectedInput] = useState<InputOutput[] | null>(null);
   const [selectedOutput, setSelectedOutput] = useState<InputOutput[] | null>(null);
   const [inputsAndOutputs, setInputsAndOutputs] = useState<InputOutput[]>([]);
-  const { addProductToTable } = useSelectedProduct();
+  const {addProductToTable} = useSelectedProduct();
 
-  useEffect(() => {
-    const getGroups = async () => {
+// Primeiro useEffect para buscar os grupos da API
+useEffect(() => {
+  const getGroups = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/products');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log('Grupos recebidos:', data);
+      // Verifica se data é um array antes de atualizar o estado
+      if (Array.isArray(data.groups)) {
+        setGroups(data.groups);
+      } else {
+        console.error('A resposta da API não é um array:', data);
+      }
+    } catch (error) {
+      console.error('Ocorreu um problema ao buscar os grupos:', error);
+    }
+  };
+
+  getGroups();
+}, []);
+
+
+useEffect(() => {
+  if (groups) {
+    const allEquipments = groups.flatMap(group => group.equipments);
+    setEquipments(allEquipments);
+  }
+}, [groups]);
+
+
+useEffect(() => {
+  if (selectedEquipment) {
+    setProducts(selectedEquipment.products);
+    setModels(selectedEquipment.models);
+  } else {
+    setProducts([]);
+    setModels([]);
+  }
+}, [selectedEquipment]);
+
+useEffect(() => {
+  if (selectedHeight) {
+    setPowers(selectedHeight.powers);
+  } else {
+    setPowers([]);
+  }
+}, [selectedHeight]);
+
+useEffect(() => {
+  const fetchInputsAndOutputs = async () => {
+    if (selectedPower) {
       try {
-        const response = await fetch('http://localhost:3000/api/products');
+        const response = await fetch(`http://localhost:3000/api/products`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('Grupos recebidos:', data);
-        // Verifica se data é um array antes de atualizar o estado
-        if (Array.isArray(data)) {
-          setGroups(data);
+        console.log('Inputs and Outputs received:', data);
+        // Verifica se data.inputOutputs é um array antes de atualizar o estado
+        if (Array.isArray(data.inputOutputs)) {
+          setInputsAndOutputs(data.inputOutputs);
         } else {
           console.error('A resposta da API não é um array:', data);
         }
       } catch (error) {
-        console.error('Ocorreu um problema ao buscar os grupos:', error);
+        console.error('Ocorreu um problema ao buscar os Inputs and Outputs:', error);
       }
-    };
+    }
+  };
 
-    getGroups();
-  }, []);
+  fetchInputsAndOutputs();
+}, [selectedPower]);
 
-  useEffect(() => {
-    console.log('Equipamentos após setEquipments:', equipments);
-  }, [equipments]);
 
   const handleGroupChange = (selectedOption: any) => {
     const selectedGroup = groups.find((group) => group.id === selectedOption?.value);
     setSelectedGroup(selectedGroup);
-    if (selectedGroup && selectedGroup.equipments) {
-      setSelectedEquipment(selectedGroup.equipments[0] || null);
-    } else {
-      setSelectedEquipment(null);
-    }
+    setSelectedEquipment(null); // Adicione esta linha para limpar a seleção de equipamento
   };
 
   const handleEquipmentChange = (selectedOption: any) => {
@@ -108,11 +157,7 @@ export default function SelectFormClient() {
     setSelectedEquipment(selectedEquipment);
     if (selectedEquipment) {
       setModels(selectedEquipment.models);
-      if (selectedEquipment.models && selectedEquipment.models.length > 0) {
-        setSelectedModel(selectedEquipment.models[0]);
-      } else {
-        setSelectedModel(null);
-      }
+      setSelectedModel(null); // Limpe a seleção de modelo aqui
     } else {
       setModels([]);
       setSelectedModel(null);
@@ -129,7 +174,7 @@ export default function SelectFormClient() {
   };
 
   const handleModelChange = (selectedOption: any) => {
-    const selectedModel = selectedProduct?.models.find((model) => model.id === selectedOption.value);
+    const selectedModel = selectedEquipment?.models.find((model) => model.id === selectedOption.value);
     setSelectedModel(selectedModel);
     setSelectedCapacity(null);
     setSelectedHeight(null);
@@ -147,13 +192,23 @@ export default function SelectFormClient() {
   const handleHeightChange = (selectedOption: any) => {
     const selectedHeight = selectedCapacity?.heights.find((height) => height.id === selectedOption.value);
     setSelectedHeight(selectedHeight);
-    const recommendedPower = selectedHeight?.powers.find((power) => power.recommended);
-    setSelectedPower(recommendedPower?.id || null);
+    if (selectedHeight && selectedHeight.powers) {
+      const recommendedPower = selectedHeight.powers.find((power) => power.recommended);
+      if (recommendedPower) {
+        setSelectedPower(recommendedPower);
+      } else {
+        setSelectedPower(null);
+      }
+    } else {
+      setSelectedPower(null);
+    }
   };
 
   const handlePowerChange = (selectedOption: any) => {
-    setSelectedPower(selectedOption.value);
+    const selectedPower = selectedHeight?.powers.find((power) => power.id === selectedOption.value);
+    setSelectedPower(selectedPower || null);
   };
+  
 
   const handleInputChange = (selectedOption: InputOutput[] | null) => {
     setSelectedInput(selectedOption);
@@ -165,21 +220,24 @@ export default function SelectFormClient() {
 
   const handleSave = async (event: React.FormEvent) => {
     event.preventDefault();
-
+  
     if (
-      !selectedProduct ||
-      !selectedModel ||
-      !selectedCapacity ||
-      !selectedHeight ||
-      !selectedPower ||
-      !selectedInput ||
-      !selectedOutput
+      checkFieldsAndShowError(
+        selectedProduct,
+        selectedModel,
+        selectedCapacity,
+        selectedHeight,
+        selectedPower,
+        selectedInput,
+        selectedOutput
+      )
     ) {
-      setErrorMessage('Todos os campos devem ser preenchidos antes de salvar o produto');
       return;
     }
-
+  
     const savedProduct = {
+      group: selectedGroup?.title,
+      equipment: selectedEquipment?.title,
       title: selectedProduct.title,
       model: selectedModel.title,
       capacity: selectedCapacity.title,
@@ -188,13 +246,16 @@ export default function SelectFormClient() {
       input: selectedInput.map((io) => io.label).join(', '),
       output: selectedOutput.map((io) => io.label).join(', '),
     };
-
-    addProductToTable(savedProduct);
+  
+    addProductToTable(savedProduct); // Adicione o produto salvo à tabela
+  
     setSelectedProduct(null);
     setSelectedModel(null);
     setSelectedCapacity(null);
     setSelectedHeight(null);
-    setSelectedPower
+    setSelectedPower(null);
+    setSelectedInput(null);
+    setSelectedOutput(null);
   };
 
   return (
@@ -232,7 +293,7 @@ export default function SelectFormClient() {
             <Select
               value={selectedModel ? { value: selectedModel.id, label: selectedModel.title } : null}
               onChange={handleModelChange}
-              options={(selectedProduct?.models || []).map((model) => ({ value: model.id, label: model.title }))}
+              options={models.map((model) => ({ value: model.id, label: model.title }))}
               isDisabled={!selectedProduct}
             />
           </div>
@@ -260,9 +321,9 @@ export default function SelectFormClient() {
           <div className='grid-cols-1 w-full'>
             <label>Potência</label>
             <Select
-              value={selectedPower ? { value: selectedPower, label: (selectedHeight?.powers.find(power => power.id === selectedPower)?.title || '') + (selectedHeight?.powers.find(power => power.id === selectedPower)?.recommended ? ' (recomendado)' : '') } : null}
+              value={selectedPower ? { value: selectedPower.id, label: `${selectedPower.title} ${selectedPower.recommended ? "(recomendado)" : ""}` } : null}
               onChange={handlePowerChange}
-              options={(selectedHeight?.powers || []).map((power) => ({ value: power.id, label: power.title + (power.recommended ? ' (recomendado)' : '') }))}
+              options={powers ? powers.map((power) => ({ value: power.id, label: `${power.title} ${power.recommended ? "(recomendado)" : ""}` })) : []}
               isDisabled={!selectedHeight}
             />
           </div>

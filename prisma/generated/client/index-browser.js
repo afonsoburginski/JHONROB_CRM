@@ -136,13 +136,13 @@ exports.Prisma.EquipmentScalarFieldEnum = {
   groupId: 'groupId'
 };
 
-exports.Prisma.ProductScalarFieldEnum = {
+exports.Prisma.ModelScalarFieldEnum = {
   id: 'id',
   title: 'title',
   equipmentId: 'equipmentId'
 };
 
-exports.Prisma.ModelScalarFieldEnum = {
+exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   title: 'title',
   equipmentId: 'equipmentId'
@@ -164,6 +164,7 @@ exports.Prisma.HeightScalarFieldEnum = {
 exports.Prisma.PowerScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  recommended: 'recommended',
   heightId: 'heightId'
 };
 
@@ -173,14 +174,39 @@ exports.Prisma.InputOutputScalarFieldEnum = {
   output: 'output'
 };
 
+exports.Prisma.ProposeScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  createdAt: 'createdAt',
+  observation: 'observation',
+  groups: 'groups',
+  inputOutputs: 'inputOutputs'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 
@@ -189,12 +215,13 @@ exports.Prisma.ModelName = {
   Client: 'Client',
   Group: 'Group',
   Equipment: 'Equipment',
-  Product: 'Product',
   Model: 'Model',
+  Product: 'Product',
   Capacity: 'Capacity',
   Height: 'Height',
   Power: 'Power',
-  InputOutput: 'InputOutput'
+  InputOutput: 'InputOutput',
+  Propose: 'Propose'
 };
 
 /**

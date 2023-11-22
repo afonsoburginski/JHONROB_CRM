@@ -2,6 +2,7 @@ generator client {
   provider = "prisma-client-js"
   output   = "./generated/client"
 }
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -13,6 +14,7 @@ model User {
   username String
   email    String
 }
+
 model Client {
   id        Int        @id @default(autoincrement())
   name      String
@@ -25,18 +27,18 @@ model Client {
 }
 
 model Group {
-  id    Int     @id @default(autoincrement())
-  title String
-  equipments Equipment[]
+  id          Int          @id @default(autoincrement())
+  title       String
+  equipments  Equipment[]
 }
 
 model Equipment {
-  id       Int       @id @default(autoincrement())
-  title    String
-  groupId  Int
-  group    Group     @relation(fields: [groupId], references: [id])
-  models   Model[]
-  products Product[]
+  id         Int       @id @default(autoincrement())
+  title      String
+  groupId    Int
+  group      Group     @relation(fields: [groupId], references: [id])
+  models     Model[]
+  products   Product[]
 }
 
 model Model {
@@ -72,16 +74,33 @@ model Height {
 }
 
 model Power {
-  id        Int      @id @default(autoincrement())
-  title     String
-  heightId  Int
-  height    Height  @relation(fields: [heightId], references: [id])
+  id          Int      @id @default(autoincrement())
+  title       String
+  recommended Boolean
+  heightId    Int
+  height      Height  @relation(fields: [heightId], references: [id])
 }
 
 model InputOutput {
   id        Int      @id @default(autoincrement())
   input     String
   output    String
+}
 
-  @@map(name: "input_outputs")
+model Propose {
+  id            Int            @id @default(autoincrement())
+  title         String
+  content       String
+  createdAt     DateTime       @default(now())
+  observation   String?
+  groups        Json
+  inputOutputs  Json
+  equipment     String
+  product       String
+  model         String
+  capacity      String
+  height        String
+  power         String
+  input         String
+  output        String
 }
