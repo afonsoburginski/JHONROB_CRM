@@ -27,34 +27,35 @@ model Client {
 }
 
 model Group {
-  id          Int          @id @default(autoincrement())
-  title       String
-  equipments  Equipment[]
+  id        Int        @id @default(autoincrement())
+  title     String
+  products  Product[]
 }
 
-model Equipment {
+model Product {
   id         Int       @id @default(autoincrement())
   title      String
   groupId    Int
   group      Group     @relation(fields: [groupId], references: [id])
   models     Model[]
-  products   Product[]
+  types      Type[]
 }
 
 model Model {
   id           Int        @id @default(autoincrement())
   title        String
-  equipmentId  Int
-  equipment    Equipment   @relation(fields: [equipmentId], references: [id])
+  productId    Int
+  product      Product   @relation(fields: [productId], references: [id])
   capacities   Capacity[]
 }
 
-model Product {
+model Type {
   id           Int        @id @default(autoincrement())
   title        String
-  equipmentId  Int
-  equipment    Equipment   @relation(fields: [equipmentId], references: [id])
+  productId    Int
+  product      Product   @relation(fields: [productId], references: [id])
 }
+
 
 model Capacity {
   id         Int      @id @default(autoincrement())
@@ -93,6 +94,14 @@ model Propose {
   content       String
   createdAt     DateTime       @default(now())
   observation   String?
-  groups        Json
-  inputOutputs  Json
+  groups        String
+  inputOutputs  String
+  equipment     String         @default("")
+  product       String         @default("")
+  model         String         @default("")
+  capacity      String         @default("")
+  height        String         @default("")
+  power         String         @default("")
+  input         String         @default("")
+  output        String         @default("")
 }

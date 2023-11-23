@@ -6,7 +6,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
   if (req.method === 'GET') {
     const groups = await prisma.group.findMany({
       include: {
-        equipments: {
+        products: {
           include: {
             models: {
               include: {
@@ -21,7 +21,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                 },
               },
             },
-            products: true,
+            types: true,
           },
         },
       },

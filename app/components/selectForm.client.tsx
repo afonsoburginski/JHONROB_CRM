@@ -5,14 +5,20 @@ import Select from 'react-select';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
 import { checkFieldsAndShowError } from './toastify';
 
-interface Equipment {
+interface Group {
   id: string;
   title: string;
-  models: Model[];
   products: Product[];
 }
 
 interface Product {
+  id: string;
+  title: string;
+  models: Model[];
+  types: Type[];
+}
+
+interface Type {
   id: string;
   title: string;
 }
@@ -53,14 +59,15 @@ interface InputOutput {
 export default function SelectFormClient() {
   const [groups, setGroups] = useState<Group[]>([]);
   const [selectedGroup, setSelectedGroup] = useState<Group | null>(null);
-  const [equipments, setEquipments] = useState<Equipment[]>([]);
-  const [selectedEquipment, setSelectedEquipment] = useState<Equipment | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
-  const {selectedProduct, setSelectedProduct } = useSelectedProduct();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [types, setTypes] = useState<Type[]>([]);
+  const [selectedType, setSelectedType] = useState<Type | null>(null);
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [models, setModels] = useState<Model[]>([]);
   const [selectedCapacity, setSelectedCapacity] = useState<Capacity | null>(null);
   const [selectedHeight, setSelectedHeight] = useState<Height | null>(null);
+  const [heights, setHeights] = useState<Height[]>([]);
   const [selectedPower, setSelectedPower] = useState<Power | null>(null);
   const [powers, setPowers] = useState<Power[]>([]);
   const [selectedInput, setSelectedInput] = useState<InputOutput[] | null>(null);
@@ -68,105 +75,123 @@ export default function SelectFormClient() {
   const [inputsAndOutputs, setInputsAndOutputs] = useState<InputOutput[]>([]);
   const {addProductToTable} = useSelectedProduct();
 
-// Primeiro useEffect para buscar os grupos da API
-useEffect(() => {
-  const getGroups = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/api/products');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      console.log('Grupos recebidos:', data);
-      // Verifica se data é um array antes de atualizar o estado
-      if (Array.isArray(data.groups)) {
-        setGroups(data.groups);
-      } else {
-        console.error('A resposta da API não é um array:', data);
-      }
-    } catch (error) {
-      console.error('Ocorreu um problema ao buscar os grupos:', error);
+  // Adicione o useEffect aqui
+  useEffect(() => {
+    if (selectedCapacity) {
+      setHeights(selectedCapacity.heights);
+    } else {
+      setHeights([]);
     }
-  };
+  }, [selectedCapacity]);
 
-  getGroups();
-}, []);
-
-
-useEffect(() => {
-  if (groups) {
-    const allEquipments = groups.flatMap(group => group.equipments);
-    setEquipments(allEquipments);
-  }
-}, [groups]);
-
-
-useEffect(() => {
-  if (selectedEquipment) {
-    setProducts(selectedEquipment.products);
-    setModels(selectedEquipment.models);
-  } else {
-    setProducts([]);
-    setModels([]);
-  }
-}, [selectedEquipment]);
-
-useEffect(() => {
-  if (selectedHeight) {
-    setPowers(selectedHeight.powers);
-  } else {
-    setPowers([]);
-  }
-}, [selectedHeight]);
-
-useEffect(() => {
-  const fetchInputsAndOutputs = async () => {
-    if (selectedPower) {
+  useEffect(() => {
+    const getGroups = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/products`);
+        const response = await fetch('http://localhost:3000/api/products');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('Inputs and Outputs received:', data);
-        // Verifica se data.inputOutputs é um array antes de atualizar o estado
-        if (Array.isArray(data.inputOutputs)) {
-          setInputsAndOutputs(data.inputOutputs);
+        console.log('Grupos recebidos:', data);
+  
+        // Verifica se data.groups é um array antes de atualizar o estado
+        if (Array.isArray(data.groups)) {
+          setGroups(data.groups);
+          // Adicione um log de console para verificar os dados do grupo
+          console.log('Grupos:', data.groups);
         } else {
           console.error('A resposta da API não é um array:', data);
         }
       } catch (error) {
-        console.error('Ocorreu um problema ao buscar os Inputs and Outputs:', error);
+        console.error('Ocorreu um problema ao buscar os grupos:', error);
       }
+    };
+  
+    getGroups();
+  }, []);
+  
+  useEffect(() => {
+    if (types) {
+      const allProducts = types.flatMap(type => type.products);
+      setProducts(allProducts);
     }
-  };
-
-  fetchInputsAndOutputs();
-}, [selectedPower]);
-
+  }, [types]);
+  
+  useEffect(() => {
+    if (selectedProduct) {
+      setModels(selectedProduct.models);
+    } else {
+      setModels([]);
+    }
+  }, [selectedProduct]);
+  
+  useEffect(() => {
+    if (selectedHeight) {
+      setPowers(selectedHeight.powers);
+    } else {
+      setPowers([]);
+    }
+  }, [selectedHeight]);
+  
+  useEffect(() => {
+    const fetchInputsAndOutputs = async () => {
+      if (selectedPower) {
+        try {
+          const response = await fetch(`http://localhost:3000/api/products`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          console.log('Inputs and Outputs received:', data);
+          // Verifica se data.inputOutputs é um array antes de atualizar o estado
+          if (Array.isArray(data.inputOutputs)) {
+            setInputsAndOutputs(data.inputOutputs);
+          } else {
+            console.error('A resposta da API não é um array:', data);
+          }
+        } catch (error) {
+          console.error('Ocorreu um problema ao buscar os Inputs and Outputs:', error);
+        }
+      }
+    };
+  
+    fetchInputsAndOutputs();
+  }, [selectedPower]);
 
   const handleGroupChange = (selectedOption: any) => {
     const selectedGroup = groups.find((group) => group.id === selectedOption?.value);
-    setSelectedGroup(selectedGroup);
-    setSelectedEquipment(null); // Adicione esta linha para limpar a seleção de equipamento
-  };
-
-  const handleEquipmentChange = (selectedOption: any) => {
-    const selectedEquipment =
-      selectedGroup?.equipments.find((equipment) => equipment.id === selectedOption.value) || null;
-    setSelectedEquipment(selectedEquipment);
-    if (selectedEquipment) {
-      setModels(selectedEquipment.models);
-      setSelectedModel(null); // Limpe a seleção de modelo aqui
+    setSelectedGroup(selectedGroup || null);
+    if (selectedGroup) {
+      setProducts(selectedGroup.products);
     } else {
-      setModels([]);
-      setSelectedModel(null);
+      setProducts([]);
     }
+    setSelectedProduct(null);
+    setSelectedType(null);
+    setSelectedModel(null);
+    setSelectedCapacity(null);
+    setSelectedHeight(null);
+    setSelectedPower(null);
+  };
+  
+  const handleProductChange = (selectedOption: any) => {
+    const selectedProduct = products.find((product) => product.id === selectedOption?.value);
+    setSelectedProduct(selectedProduct || null);
+    if (selectedProduct) {
+      setTypes(selectedProduct.types);
+    } else {
+      setTypes([]);
+    }
+    setSelectedType(null); // Limpe a seleção de tipo
+    setSelectedModel(null);
+    setSelectedCapacity(null);
+    setSelectedHeight(null);
+    setSelectedPower(null);
   };
 
-  const handleProductChange = (selectedOption: any) => {
-    const selectedProduct = products.find((product) => product.id === selectedOption.value);
-    setSelectedProduct(selectedProduct || null);
+  const handleTypeChange = (selectedOption: any) => {
+    const selectedType = types.find((type) => type.id === selectedOption.value);
+    setSelectedType(selectedType || null);
     setSelectedModel(null);
     setSelectedCapacity(null);
     setSelectedHeight(null);
@@ -174,24 +199,23 @@ useEffect(() => {
   };
 
   const handleModelChange = (selectedOption: any) => {
-    const selectedModel = selectedEquipment?.models.find((model) => model.id === selectedOption.value);
-    setSelectedModel(selectedModel);
+    const selectedModel = selectedProduct?.models.find((model) => model.id === selectedOption.value);
+    setSelectedModel(selectedModel || null);
     setSelectedCapacity(null);
     setSelectedHeight(null);
     setSelectedPower(null);
   };
 
   const handleCapacityChange = (selectedOption: any) => {
-    const selectedCapacity =
-      selectedModel?.capacities.find((capacity) => capacity.id === selectedOption.value) || null;
-    setSelectedCapacity(selectedCapacity);
+    const selectedCapacity = selectedModel?.capacities.find((capacity) => capacity.id === selectedOption.value);
+    setSelectedCapacity(selectedCapacity || null);
     setSelectedHeight(null);
     setSelectedPower(null);
   };
 
   const handleHeightChange = (selectedOption: any) => {
     const selectedHeight = selectedCapacity?.heights.find((height) => height.id === selectedOption.value);
-    setSelectedHeight(selectedHeight);
+    setSelectedHeight(selectedHeight || null);
     if (selectedHeight && selectedHeight.powers) {
       const recommendedPower = selectedHeight.powers.find((power) => power.recommended);
       if (recommendedPower) {
@@ -208,7 +232,6 @@ useEffect(() => {
     const selectedPower = selectedHeight?.powers.find((power) => power.id === selectedOption.value);
     setSelectedPower(selectedPower || null);
   };
-  
 
   const handleInputChange = (selectedOption: InputOutput[] | null) => {
     setSelectedInput(selectedOption);
@@ -235,21 +258,25 @@ useEffect(() => {
       return;
     }
   
+    console.log('selectedInput:', selectedInput); // Adicione este log
+    console.log('selectedOutput:', selectedOutput); // Adicione este log
+  
     const savedProduct = {
       group: selectedGroup?.title,
-      equipment: selectedEquipment?.title,
-      title: selectedProduct.title,
-      model: selectedModel.title,
-      capacity: selectedCapacity.title,
-      height: selectedHeight.title,
-      power: selectedPower.title,
-      input: selectedInput.map((io) => io.label).join(', '),
-      output: selectedOutput.map((io) => io.label).join(', '),
+      product: selectedProduct?.title,
+      type: selectedType?.title,
+      model: selectedModel?.title,
+      capacity: selectedCapacity?.title,
+      height: selectedHeight?.title,
+      power: selectedPower?.title,
+      input: selectedInput?.map((io) => io.value), // Modificado para mapear para io.value
+      output: selectedOutput?.map((io) => io.value), // Modificado para mapear para io.value
     };
   
-    addProductToTable(savedProduct); // Adicione o produto salvo à tabela
+    addProductToTable(savedProduct);
   
     setSelectedProduct(null);
+    setSelectedType(null);
     setSelectedModel(null);
     setSelectedCapacity(null);
     setSelectedHeight(null);
@@ -266,17 +293,8 @@ useEffect(() => {
             <label>Grupo</label>
             <Select
               value={selectedGroup ? { value: selectedGroup.id, label: selectedGroup.title } : null}
+              options={groups.map(group => ({ value: group.id, label: group.title }))}
               onChange={handleGroupChange}
-              options={groups ? groups.map((group) => ({ value: group.id, label: group.title })) : []}
-            />
-          </div>
-          <div className='grid-cols-1 w-full'>
-            <label>Equipamento</label>
-            <Select
-              value={selectedEquipment ? { value: selectedEquipment.id, label: selectedEquipment.title } : null}
-              onChange={handleEquipmentChange}
-              options={(selectedGroup?.equipments || []).map((equipment) => ({ value: equipment.id, label: equipment.title }))}
-              isDisabled={!selectedGroup}
             />
           </div>
           <div className='grid-cols-1 w-full'>
@@ -284,8 +302,17 @@ useEffect(() => {
             <Select
               value={selectedProduct ? { value: selectedProduct.id, label: selectedProduct.title } : null}
               onChange={handleProductChange}
-              options={products?.map((item) => ({ value: item.id, label: item.title }))}
-              isDisabled={!selectedEquipment}
+              options={(selectedGroup?.products || []).map((product) => ({ value: product.id, label: product.title }))}
+              isDisabled={!selectedGroup}
+            />
+          </div>
+          <div className='grid-cols-1 w-full'>
+            <label>Type</label>
+            <Select
+              value={selectedType ? { value: selectedType.id, label: selectedType.title } : null}
+              onChange={handleTypeChange}
+              options={types.map((type) => ({ value: type.id, label: type.title }))}
+              isDisabled={!selectedProduct}
             />
           </div>
           <div className='grid-cols-1 w-full'>

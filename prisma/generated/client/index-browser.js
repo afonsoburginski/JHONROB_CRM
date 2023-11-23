@@ -16,12 +16,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.5.2
- * Query Engine version: aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a
+ * Prisma Client JS version: 5.6.0
+ * Query Engine version: e95e739751f42d8ca026f6b910f5a2dc5adeaeee
  */
 Prisma.prismaVersion = {
-  client: "5.5.2",
-  engine: "aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a"
+  client: "5.6.0",
+  engine: "e95e739751f42d8ca026f6b910f5a2dc5adeaeee"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -130,7 +130,7 @@ exports.Prisma.GroupScalarFieldEnum = {
   title: 'title'
 };
 
-exports.Prisma.EquipmentScalarFieldEnum = {
+exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   title: 'title',
   groupId: 'groupId'
@@ -139,13 +139,13 @@ exports.Prisma.EquipmentScalarFieldEnum = {
 exports.Prisma.ModelScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  equipmentId: 'equipmentId'
+  productId: 'productId'
 };
 
-exports.Prisma.ProductScalarFieldEnum = {
+exports.Prisma.TypeScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  equipmentId: 'equipmentId'
+  productId: 'productId'
 };
 
 exports.Prisma.CapacityScalarFieldEnum = {
@@ -181,7 +181,15 @@ exports.Prisma.ProposeScalarFieldEnum = {
   createdAt: 'createdAt',
   observation: 'observation',
   groups: 'groups',
-  inputOutputs: 'inputOutputs'
+  inputOutputs: 'inputOutputs',
+  equipment: 'equipment',
+  product: 'product',
+  model: 'model',
+  capacity: 'capacity',
+  height: 'height',
+  power: 'power',
+  input: 'input',
+  output: 'output'
 };
 
 exports.Prisma.SortOrder = {
@@ -189,19 +197,9 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.JsonNullValueInput = {
-  JsonNull: Prisma.JsonNull
-};
-
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
-};
-
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -214,9 +212,9 @@ exports.Prisma.ModelName = {
   User: 'User',
   Client: 'Client',
   Group: 'Group',
-  Equipment: 'Equipment',
-  Model: 'Model',
   Product: 'Product',
+  Model: 'Model',
+  Type: 'Type',
   Capacity: 'Capacity',
   Height: 'Height',
   Power: 'Power',

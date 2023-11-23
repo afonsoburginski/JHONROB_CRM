@@ -35,7 +35,7 @@ export default function ProposePage({ searchParams }: { searchParams: { q: strin
   }, [search]);
 
   return (
-    <main className="p-4 md:p-10 mx-auto max-w-7xl">
+    <main className="p-4 md:p-10 mx-auto max-w-max">
       <Title>Propostas</Title>
       <Text>Lista detalhada de propostas</Text>
       <Search />

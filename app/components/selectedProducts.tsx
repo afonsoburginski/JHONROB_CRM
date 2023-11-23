@@ -6,14 +6,14 @@ import { useSelectedProduct } from '../contexts/selectedProductContext';
 
 interface Product {
   group: string;
-  equipment: string;
-  title: string;
+  product: string;
+  type: string;
   model: string;
   capacity: string;
   height: string;
   power: string;
-  input: string;
-  output: string;
+  input: string[]; // Atualizado para ser um array de strings
+  output: string[]; // Atualizado para ser um array de strings
 }
 
 const SelectedProducts: React.FC = () => {
@@ -26,8 +26,8 @@ const SelectedProducts: React.FC = () => {
         <TableHead>
           <TableRow>
             <TableHeaderCell>Grupo</TableHeaderCell>
-            <TableHeaderCell>Equipamento</TableHeaderCell>
             <TableHeaderCell>Produto</TableHeaderCell>
+            <TableHeaderCell>Tipo</TableHeaderCell>
             <TableHeaderCell>Modelo</TableHeaderCell>
             <TableHeaderCell>Capacidade</TableHeaderCell>
             <TableHeaderCell>Altura</TableHeaderCell>
@@ -40,8 +40,8 @@ const SelectedProducts: React.FC = () => {
           {selectedProducts.map((product, index) => (
             <TableRow key={index}>
               <TableCell>{product.group}</TableCell>
-              <TableCell>{product.equipment}</TableCell>
-              <TableCell>{product.title}</TableCell>
+              <TableCell>{product.product}</TableCell>
+              <TableCell>{product.type}</TableCell>
               <TableCell>{product.model}</TableCell>
               <TableCell>{product.capacity}</TableCell>
               <TableCell>{product.height}</TableCell>

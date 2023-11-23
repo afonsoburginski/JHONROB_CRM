@@ -5,25 +5,22 @@ import React, { createContext, useState, useContext, ReactNode } from 'react';
 interface Product {
   id: number;
   title: string;
-  group: Group; // assumindo que cada produto tem um grupo associado
-  inputOutput: InputOutput; // assumindo que cada produto tem uma entrada/saída associada
-}
-
-interface Group {
-  id: number;
-  name: string;
-  // outros campos que um grupo pode ter
+  group: Group;
+  inputOutput: InputOutput;
+  height: string; // Adicione esta linha se 'height' pertencer ao produto
+  power: string; // Adicione esta linha se 'power' pertencer ao produto
 }
 
 interface InputOutput {
   id: number;
   name: string;
-  // outros campos que uma entrada/saída pode ter
+  power: string; // Adicione esta linha se 'power' pertencer à entrada/saída
+  height: string; // Adicione esta linha se 'height' pertencer à entrada/saída
 }
 
 interface SelectedProductContextData {
   selectedProduct: Product | null;
-  setSelectedProduct: (product: Product) => void;
+  selectProduct: (product: Product | null) => void;
   selectedProducts: Product[];
   addProductToTable: (product: Product) => void;
   selectedGroups: Group[];
@@ -32,16 +29,7 @@ interface SelectedProductContextData {
   setSelectedInputOutputs: (inputOutputs: InputOutput[]) => void;
 }
 
-const SelectedProductContext = createContext<SelectedProductContextData>({
-  selectedProduct: null,
-  setSelectedProduct: () => {},
-  selectedProducts: [],
-  addProductToTable: () => {},
-  selectedGroups: [],
-  setSelectedGroups: () => {},
-  selectedInputOutputs: [],
-  setSelectedInputOutputs: () => {},
-});
+const SelectedProductContext = createContext<SelectedProductContextData>({} as SelectedProductContextData);
 
 interface SelectedProductProviderProps {
   children: ReactNode;
@@ -53,20 +41,23 @@ export const SelectedProductProvider: React.FC<SelectedProductProviderProps> = (
   const [selectedGroups, setSelectedGroups] = useState<Group[]>([]);
   const [selectedInputOutputs, setSelectedInputOutputs] = useState<InputOutput[]>([]);
 
-  const selectProduct = (product: Product) => {
+  const selectProduct = (product: Product | null) => {
     setSelectedProduct(product);
   };
 
-  // BEGIN: ed8c6549bwf9
   const addProductToTable = (product: Product) => {
+    if (product === null) {
+      console.error('Product is null');
+      return;
+    }
+  
     setSelectedProducts(prevProducts => [...prevProducts, product]);
     setSelectedGroups(prevGroups => [...prevGroups, product.group]); // adicione o grupo do produto aos grupos selecionados
     setSelectedInputOutputs(prevInputOutputs => [...prevInputOutputs, product.inputOutput]); // adicione a entrada/saída do produto às entradas/saídas selecionadas
   };
-  // END: ed8c6549bwf9
 
   return (
-    <SelectedProductContext.Provider value={{ selectedProduct, setSelectedProduct, selectedProducts, addProductToTable, selectedGroups, setSelectedGroups, selectedInputOutputs, setSelectedInputOutputs }}>
+    <SelectedProductContext.Provider value={{ selectedProduct, selectProduct, selectedProducts, addProductToTable, selectedGroups, setSelectedGroups, selectedInputOutputs, setSelectedInputOutputs }}>
       {children}
     </SelectedProductContext.Provider>
   );

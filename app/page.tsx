@@ -1,7 +1,7 @@
 //page.tsx
 import { Card, Title, Text } from '@tremor/react';
 import SelectedProducts from './components/selectedProducts';
-import ObserveProducts from './components/observeProducts'; 
+import SendProducts from './components/sendProducts'; 
 import { SelectedProductProvider } from './contexts/selectedProductContext';
 import SelectFormClient from './components/selectForm.client'; // Importe o componente SelectFormClient
 import { ToastContainer } from 'react-toastify';
@@ -22,7 +22,7 @@ const IndexPage: React.FC = () => {
         <SelectedProducts selectedProducts={[]} inputsAndOutputs={[]} />
       </Card>
       <Card className="mt-6">
-        <ObserveProducts />
+        <SendProducts />
       </Card>
     </main>
   );
