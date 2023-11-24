@@ -2777,6 +2777,8 @@ export namespace Prisma {
     city: string | null
     state: string | null
     zip: string | null
+    cpfCnpj: string | null
+    ie: string | null
   }
 
   export type ClientMaxAggregateOutputType = {
@@ -2788,6 +2790,8 @@ export namespace Prisma {
     city: string | null
     state: string | null
     zip: string | null
+    cpfCnpj: string | null
+    ie: string | null
   }
 
   export type ClientCountAggregateOutputType = {
@@ -2799,6 +2803,8 @@ export namespace Prisma {
     city: number
     state: number
     zip: number
+    cpfCnpj: number
+    ie: number
     _all: number
   }
 
@@ -2820,6 +2826,8 @@ export namespace Prisma {
     city?: true
     state?: true
     zip?: true
+    cpfCnpj?: true
+    ie?: true
   }
 
   export type ClientMaxAggregateInputType = {
@@ -2831,6 +2839,8 @@ export namespace Prisma {
     city?: true
     state?: true
     zip?: true
+    cpfCnpj?: true
+    ie?: true
   }
 
   export type ClientCountAggregateInputType = {
@@ -2842,6 +2852,8 @@ export namespace Prisma {
     city?: true
     state?: true
     zip?: true
+    cpfCnpj?: true
+    ie?: true
     _all?: true
   }
 
@@ -2940,6 +2952,8 @@ export namespace Prisma {
     city: string
     state: string
     zip: string
+    cpfCnpj: string
+    ie: string
     _count: ClientCountAggregateOutputType | null
     _avg: ClientAvgAggregateOutputType | null
     _sum: ClientSumAggregateOutputType | null
@@ -2970,6 +2984,8 @@ export namespace Prisma {
     city?: boolean
     state?: boolean
     zip?: boolean
+    cpfCnpj?: boolean
+    ie?: boolean
   }, ExtArgs["result"]["client"]>
 
   export type ClientSelectScalar = {
@@ -2981,6 +2997,8 @@ export namespace Prisma {
     city?: boolean
     state?: boolean
     zip?: boolean
+    cpfCnpj?: boolean
+    ie?: boolean
   }
 
 
@@ -2996,6 +3014,8 @@ export namespace Prisma {
       city: string
       state: string
       zip: string
+      cpfCnpj: string
+      ie: string
     }, ExtArgs["result"]["client"]>
     composites: {}
   }
@@ -3398,6 +3418,8 @@ export namespace Prisma {
     readonly city: FieldRef<"Client", 'String'>
     readonly state: FieldRef<"Client", 'String'>
     readonly zip: FieldRef<"Client", 'String'>
+    readonly cpfCnpj: FieldRef<"Client", 'String'>
+    readonly ie: FieldRef<"Client", 'String'>
   }
     
 
@@ -11300,8 +11322,8 @@ export namespace Prisma {
     createdAt: Date | null
     observation: string | null
     groups: string | null
-    type: string | null
     product: string | null
+    type: string | null
     model: string | null
     capacity: string | null
     height: string | null
@@ -11317,8 +11339,8 @@ export namespace Prisma {
     createdAt: Date | null
     observation: string | null
     groups: string | null
-    type: string | null
     product: string | null
+    type: string | null
     model: string | null
     capacity: string | null
     height: string | null
@@ -11334,8 +11356,8 @@ export namespace Prisma {
     createdAt: number
     observation: number
     groups: number
-    type: number
     product: number
+    type: number
     model: number
     capacity: number
     height: number
@@ -11361,8 +11383,8 @@ export namespace Prisma {
     createdAt?: true
     observation?: true
     groups?: true
-    type?: true
     product?: true
+    type?: true
     model?: true
     capacity?: true
     height?: true
@@ -11378,8 +11400,8 @@ export namespace Prisma {
     createdAt?: true
     observation?: true
     groups?: true
-    type?: true
     product?: true
+    type?: true
     model?: true
     capacity?: true
     height?: true
@@ -11395,8 +11417,8 @@ export namespace Prisma {
     createdAt?: true
     observation?: true
     groups?: true
-    type?: true
     product?: true
+    type?: true
     model?: true
     capacity?: true
     height?: true
@@ -11499,8 +11521,8 @@ export namespace Prisma {
     createdAt: Date
     observation: string | null
     groups: string
-    type: string
     product: string
+    type: string
     model: string
     capacity: string
     height: string
@@ -11535,8 +11557,8 @@ export namespace Prisma {
     createdAt?: boolean
     observation?: boolean
     groups?: boolean
-    type?: boolean
     product?: boolean
+    type?: boolean
     model?: boolean
     capacity?: boolean
     height?: boolean
@@ -11552,8 +11574,8 @@ export namespace Prisma {
     createdAt?: boolean
     observation?: boolean
     groups?: boolean
-    type?: boolean
     product?: boolean
+    type?: boolean
     model?: boolean
     capacity?: boolean
     height?: boolean
@@ -11573,8 +11595,8 @@ export namespace Prisma {
       createdAt: Date
       observation: string | null
       groups: string
-      type: string
       product: string
+      type: string
       model: string
       capacity: string
       height: string
@@ -11981,8 +12003,8 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Propose", 'DateTime'>
     readonly observation: FieldRef<"Propose", 'String'>
     readonly groups: FieldRef<"Propose", 'String'>
-    readonly type: FieldRef<"Propose", 'String'>
     readonly product: FieldRef<"Propose", 'String'>
+    readonly type: FieldRef<"Propose", 'String'>
     readonly model: FieldRef<"Propose", 'String'>
     readonly capacity: FieldRef<"Propose", 'String'>
     readonly height: FieldRef<"Propose", 'String'>
@@ -12308,7 +12330,9 @@ export namespace Prisma {
     address: 'address',
     city: 'city',
     state: 'state',
-    zip: 'zip'
+    zip: 'zip',
+    cpfCnpj: 'cpfCnpj',
+    ie: 'ie'
   };
 
   export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
@@ -12394,8 +12418,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     observation: 'observation',
     groups: 'groups',
-    type: 'type',
     product: 'product',
+    type: 'type',
     model: 'model',
     capacity: 'capacity',
     height: 'height',
@@ -12563,6 +12587,8 @@ export namespace Prisma {
     city?: StringFilter<"Client"> | string
     state?: StringFilter<"Client"> | string
     zip?: StringFilter<"Client"> | string
+    cpfCnpj?: StringFilter<"Client"> | string
+    ie?: StringFilter<"Client"> | string
   }
 
   export type ClientOrderByWithRelationInput = {
@@ -12574,6 +12600,8 @@ export namespace Prisma {
     city?: SortOrder
     state?: SortOrder
     zip?: SortOrder
+    cpfCnpj?: SortOrder
+    ie?: SortOrder
   }
 
   export type ClientWhereUniqueInput = Prisma.AtLeast<{
@@ -12588,6 +12616,8 @@ export namespace Prisma {
     city?: StringFilter<"Client"> | string
     state?: StringFilter<"Client"> | string
     zip?: StringFilter<"Client"> | string
+    cpfCnpj?: StringFilter<"Client"> | string
+    ie?: StringFilter<"Client"> | string
   }, "id">
 
   export type ClientOrderByWithAggregationInput = {
@@ -12599,6 +12629,8 @@ export namespace Prisma {
     city?: SortOrder
     state?: SortOrder
     zip?: SortOrder
+    cpfCnpj?: SortOrder
+    ie?: SortOrder
     _count?: ClientCountOrderByAggregateInput
     _avg?: ClientAvgOrderByAggregateInput
     _max?: ClientMaxOrderByAggregateInput
@@ -12618,6 +12650,8 @@ export namespace Prisma {
     city?: StringWithAggregatesFilter<"Client"> | string
     state?: StringWithAggregatesFilter<"Client"> | string
     zip?: StringWithAggregatesFilter<"Client"> | string
+    cpfCnpj?: StringWithAggregatesFilter<"Client"> | string
+    ie?: StringWithAggregatesFilter<"Client"> | string
   }
 
   export type GroupWhereInput = {
@@ -13023,8 +13057,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Propose"> | Date | string
     observation?: StringNullableFilter<"Propose"> | string | null
     groups?: StringFilter<"Propose"> | string
-    type?: StringFilter<"Propose"> | string
     product?: StringFilter<"Propose"> | string
+    type?: StringFilter<"Propose"> | string
     model?: StringFilter<"Propose"> | string
     capacity?: StringFilter<"Propose"> | string
     height?: StringFilter<"Propose"> | string
@@ -13040,8 +13074,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     observation?: SortOrderInput | SortOrder
     groups?: SortOrder
-    type?: SortOrder
     product?: SortOrder
+    type?: SortOrder
     model?: SortOrder
     capacity?: SortOrder
     height?: SortOrder
@@ -13060,8 +13094,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Propose"> | Date | string
     observation?: StringNullableFilter<"Propose"> | string | null
     groups?: StringFilter<"Propose"> | string
-    type?: StringFilter<"Propose"> | string
     product?: StringFilter<"Propose"> | string
+    type?: StringFilter<"Propose"> | string
     model?: StringFilter<"Propose"> | string
     capacity?: StringFilter<"Propose"> | string
     height?: StringFilter<"Propose"> | string
@@ -13077,8 +13111,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     observation?: SortOrderInput | SortOrder
     groups?: SortOrder
-    type?: SortOrder
     product?: SortOrder
+    type?: SortOrder
     model?: SortOrder
     capacity?: SortOrder
     height?: SortOrder
@@ -13102,8 +13136,8 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Propose"> | Date | string
     observation?: StringNullableWithAggregatesFilter<"Propose"> | string | null
     groups?: StringWithAggregatesFilter<"Propose"> | string
-    type?: StringWithAggregatesFilter<"Propose"> | string
     product?: StringWithAggregatesFilter<"Propose"> | string
+    type?: StringWithAggregatesFilter<"Propose"> | string
     model?: StringWithAggregatesFilter<"Propose"> | string
     capacity?: StringWithAggregatesFilter<"Propose"> | string
     height?: StringWithAggregatesFilter<"Propose"> | string
@@ -13166,6 +13200,8 @@ export namespace Prisma {
     city: string
     state: string
     zip: string
+    cpfCnpj: string
+    ie: string
   }
 
   export type ClientUncheckedCreateInput = {
@@ -13177,6 +13213,8 @@ export namespace Prisma {
     city: string
     state: string
     zip: string
+    cpfCnpj: string
+    ie: string
   }
 
   export type ClientUpdateInput = {
@@ -13187,6 +13225,8 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zip?: StringFieldUpdateOperationsInput | string
+    cpfCnpj?: StringFieldUpdateOperationsInput | string
+    ie?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClientUncheckedUpdateInput = {
@@ -13198,6 +13238,8 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zip?: StringFieldUpdateOperationsInput | string
+    cpfCnpj?: StringFieldUpdateOperationsInput | string
+    ie?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClientCreateManyInput = {
@@ -13209,6 +13251,8 @@ export namespace Prisma {
     city: string
     state: string
     zip: string
+    cpfCnpj: string
+    ie: string
   }
 
   export type ClientUpdateManyMutationInput = {
@@ -13219,6 +13263,8 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zip?: StringFieldUpdateOperationsInput | string
+    cpfCnpj?: StringFieldUpdateOperationsInput | string
+    ie?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClientUncheckedUpdateManyInput = {
@@ -13230,6 +13276,8 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zip?: StringFieldUpdateOperationsInput | string
+    cpfCnpj?: StringFieldUpdateOperationsInput | string
+    ie?: StringFieldUpdateOperationsInput | string
   }
 
   export type GroupCreateInput = {
@@ -13575,8 +13623,8 @@ export namespace Prisma {
     createdAt?: Date | string
     observation?: string | null
     groups: string
-    type?: string
     product?: string
+    type?: string
     model?: string
     capacity?: string
     height?: string
@@ -13592,8 +13640,8 @@ export namespace Prisma {
     createdAt?: Date | string
     observation?: string | null
     groups: string
-    type?: string
     product?: string
+    type?: string
     model?: string
     capacity?: string
     height?: string
@@ -13608,8 +13656,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observation?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
     product?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     capacity?: StringFieldUpdateOperationsInput | string
     height?: StringFieldUpdateOperationsInput | string
@@ -13625,8 +13673,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observation?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
     product?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     capacity?: StringFieldUpdateOperationsInput | string
     height?: StringFieldUpdateOperationsInput | string
@@ -13642,8 +13690,8 @@ export namespace Prisma {
     createdAt?: Date | string
     observation?: string | null
     groups: string
-    type?: string
     product?: string
+    type?: string
     model?: string
     capacity?: string
     height?: string
@@ -13658,8 +13706,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observation?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
     product?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     capacity?: StringFieldUpdateOperationsInput | string
     height?: StringFieldUpdateOperationsInput | string
@@ -13675,8 +13723,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observation?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
     product?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     capacity?: StringFieldUpdateOperationsInput | string
     height?: StringFieldUpdateOperationsInput | string
@@ -13783,6 +13831,8 @@ export namespace Prisma {
     city?: SortOrder
     state?: SortOrder
     zip?: SortOrder
+    cpfCnpj?: SortOrder
+    ie?: SortOrder
   }
 
   export type ClientAvgOrderByAggregateInput = {
@@ -13798,6 +13848,8 @@ export namespace Prisma {
     city?: SortOrder
     state?: SortOrder
     zip?: SortOrder
+    cpfCnpj?: SortOrder
+    ie?: SortOrder
   }
 
   export type ClientMinOrderByAggregateInput = {
@@ -13809,6 +13861,8 @@ export namespace Prisma {
     city?: SortOrder
     state?: SortOrder
     zip?: SortOrder
+    cpfCnpj?: SortOrder
+    ie?: SortOrder
   }
 
   export type ClientSumOrderByAggregateInput = {
@@ -14174,8 +14228,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     observation?: SortOrder
     groups?: SortOrder
-    type?: SortOrder
     product?: SortOrder
+    type?: SortOrder
     model?: SortOrder
     capacity?: SortOrder
     height?: SortOrder
@@ -14195,8 +14249,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     observation?: SortOrder
     groups?: SortOrder
-    type?: SortOrder
     product?: SortOrder
+    type?: SortOrder
     model?: SortOrder
     capacity?: SortOrder
     height?: SortOrder
@@ -14212,8 +14266,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     observation?: SortOrder
     groups?: SortOrder
-    type?: SortOrder
     product?: SortOrder
+    type?: SortOrder
     model?: SortOrder
     capacity?: SortOrder
     height?: SortOrder

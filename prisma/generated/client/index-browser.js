@@ -122,7 +122,9 @@ exports.Prisma.ClientScalarFieldEnum = {
   address: 'address',
   city: 'city',
   state: 'state',
-  zip: 'zip'
+  zip: 'zip',
+  cpfCnpj: 'cpfCnpj',
+  ie: 'ie'
 };
 
 exports.Prisma.GroupScalarFieldEnum = {
@@ -181,8 +183,8 @@ exports.Prisma.ProposeScalarFieldEnum = {
   createdAt: 'createdAt',
   observation: 'observation',
   groups: 'groups',
-  type: 'type',
   product: 'product',
+  type: 'type',
   model: 'model',
   capacity: 'capacity',
   height: 'height',
