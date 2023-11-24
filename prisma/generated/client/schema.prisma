@@ -95,8 +95,7 @@ model Propose {
   createdAt     DateTime       @default(now())
   observation   String?
   groups        String
-  inputOutputs  String
-  equipment     String         @default("")
+  type          String         @default("")
   product       String         @default("")
   model         String         @default("")
   capacity      String         @default("")

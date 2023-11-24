@@ -6,30 +6,30 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
   if (req.method === 'POST') {
     console.log('Request body', req.body); // Log do corpo da requisição
 
-    const { content, observation, groups, inputOutputs, equipment, model, capacity, height, power, product, input, output } = req.body;
+    const { title, content, observation, groups, type, model, capacity, height, power, product, input, output } = req.body;
 
     // Verifique se todos os campos necessários estão presentes
-    if (!content || !observation || !groups || !inputOutputs || !equipment || !model || !capacity || !height || !power || !product || !input || !output) {
+    if (!title || !content || !observation || !groups || !type || !model || !capacity || !height || !power || !product || !input || !output) {
       res.status(400).json({ error: 'Missing required fields' });
       return;
     }
 
-    try {
-      const data = {
-        content,
-        observation,
-        groups,
-        inputOutputs,
-        equipment,
-        model,
-        capacity,
-        height,
-        power,
-        product,
-        input,
-        output,
-      };
+    const data = {
+      title,
+      content,
+      observation,
+      groups,
+      type,
+      model,
+      capacity,
+      height,
+      power,
+      product,
+      input: input.join(', '), // Converte o array para string
+      output: output.join(', '), // Converte o array para string
+    };
 
+    try {
       console.log('Data to create proposal', data); // Log dos dados para criar a proposta
 
       const proposal = await prisma.propose.create({ data });

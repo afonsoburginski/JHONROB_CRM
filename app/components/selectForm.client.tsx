@@ -275,6 +275,7 @@ export default function SelectFormClient() {
   
     addProductToTable(savedProduct);
   
+    setSelectedGroup(null); // Limpe a seleção do grupo
     setSelectedProduct(null);
     setSelectedType(null);
     setSelectedModel(null);
@@ -298,7 +299,7 @@ export default function SelectFormClient() {
             />
           </div>
           <div className='grid-cols-1 w-full'>
-            <label>Produto</label>
+            <label>Equipamento</label>
             <Select
               value={selectedProduct ? { value: selectedProduct.id, label: selectedProduct.title } : null}
               onChange={handleProductChange}
@@ -307,7 +308,7 @@ export default function SelectFormClient() {
             />
           </div>
           <div className='grid-cols-1 w-full'>
-            <label>Type</label>
+            <label>Produto</label>
             <Select
               value={selectedType ? { value: selectedType.id, label: selectedType.title } : null}
               onChange={handleTypeChange}

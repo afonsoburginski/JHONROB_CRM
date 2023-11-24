@@ -11300,8 +11300,7 @@ export namespace Prisma {
     createdAt: Date | null
     observation: string | null
     groups: string | null
-    inputOutputs: string | null
-    equipment: string | null
+    type: string | null
     product: string | null
     model: string | null
     capacity: string | null
@@ -11318,8 +11317,7 @@ export namespace Prisma {
     createdAt: Date | null
     observation: string | null
     groups: string | null
-    inputOutputs: string | null
-    equipment: string | null
+    type: string | null
     product: string | null
     model: string | null
     capacity: string | null
@@ -11336,8 +11334,7 @@ export namespace Prisma {
     createdAt: number
     observation: number
     groups: number
-    inputOutputs: number
-    equipment: number
+    type: number
     product: number
     model: number
     capacity: number
@@ -11364,8 +11361,7 @@ export namespace Prisma {
     createdAt?: true
     observation?: true
     groups?: true
-    inputOutputs?: true
-    equipment?: true
+    type?: true
     product?: true
     model?: true
     capacity?: true
@@ -11382,8 +11378,7 @@ export namespace Prisma {
     createdAt?: true
     observation?: true
     groups?: true
-    inputOutputs?: true
-    equipment?: true
+    type?: true
     product?: true
     model?: true
     capacity?: true
@@ -11400,8 +11395,7 @@ export namespace Prisma {
     createdAt?: true
     observation?: true
     groups?: true
-    inputOutputs?: true
-    equipment?: true
+    type?: true
     product?: true
     model?: true
     capacity?: true
@@ -11505,8 +11499,7 @@ export namespace Prisma {
     createdAt: Date
     observation: string | null
     groups: string
-    inputOutputs: string
-    equipment: string
+    type: string
     product: string
     model: string
     capacity: string
@@ -11542,8 +11535,7 @@ export namespace Prisma {
     createdAt?: boolean
     observation?: boolean
     groups?: boolean
-    inputOutputs?: boolean
-    equipment?: boolean
+    type?: boolean
     product?: boolean
     model?: boolean
     capacity?: boolean
@@ -11560,8 +11552,7 @@ export namespace Prisma {
     createdAt?: boolean
     observation?: boolean
     groups?: boolean
-    inputOutputs?: boolean
-    equipment?: boolean
+    type?: boolean
     product?: boolean
     model?: boolean
     capacity?: boolean
@@ -11582,8 +11573,7 @@ export namespace Prisma {
       createdAt: Date
       observation: string | null
       groups: string
-      inputOutputs: string
-      equipment: string
+      type: string
       product: string
       model: string
       capacity: string
@@ -11991,8 +11981,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Propose", 'DateTime'>
     readonly observation: FieldRef<"Propose", 'String'>
     readonly groups: FieldRef<"Propose", 'String'>
-    readonly inputOutputs: FieldRef<"Propose", 'String'>
-    readonly equipment: FieldRef<"Propose", 'String'>
+    readonly type: FieldRef<"Propose", 'String'>
     readonly product: FieldRef<"Propose", 'String'>
     readonly model: FieldRef<"Propose", 'String'>
     readonly capacity: FieldRef<"Propose", 'String'>
@@ -12405,8 +12394,7 @@ export namespace Prisma {
     createdAt: 'createdAt',
     observation: 'observation',
     groups: 'groups',
-    inputOutputs: 'inputOutputs',
-    equipment: 'equipment',
+    type: 'type',
     product: 'product',
     model: 'model',
     capacity: 'capacity',
@@ -13035,8 +13023,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Propose"> | Date | string
     observation?: StringNullableFilter<"Propose"> | string | null
     groups?: StringFilter<"Propose"> | string
-    inputOutputs?: StringFilter<"Propose"> | string
-    equipment?: StringFilter<"Propose"> | string
+    type?: StringFilter<"Propose"> | string
     product?: StringFilter<"Propose"> | string
     model?: StringFilter<"Propose"> | string
     capacity?: StringFilter<"Propose"> | string
@@ -13053,8 +13040,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     observation?: SortOrderInput | SortOrder
     groups?: SortOrder
-    inputOutputs?: SortOrder
-    equipment?: SortOrder
+    type?: SortOrder
     product?: SortOrder
     model?: SortOrder
     capacity?: SortOrder
@@ -13074,8 +13060,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Propose"> | Date | string
     observation?: StringNullableFilter<"Propose"> | string | null
     groups?: StringFilter<"Propose"> | string
-    inputOutputs?: StringFilter<"Propose"> | string
-    equipment?: StringFilter<"Propose"> | string
+    type?: StringFilter<"Propose"> | string
     product?: StringFilter<"Propose"> | string
     model?: StringFilter<"Propose"> | string
     capacity?: StringFilter<"Propose"> | string
@@ -13092,8 +13077,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     observation?: SortOrderInput | SortOrder
     groups?: SortOrder
-    inputOutputs?: SortOrder
-    equipment?: SortOrder
+    type?: SortOrder
     product?: SortOrder
     model?: SortOrder
     capacity?: SortOrder
@@ -13118,8 +13102,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Propose"> | Date | string
     observation?: StringNullableWithAggregatesFilter<"Propose"> | string | null
     groups?: StringWithAggregatesFilter<"Propose"> | string
-    inputOutputs?: StringWithAggregatesFilter<"Propose"> | string
-    equipment?: StringWithAggregatesFilter<"Propose"> | string
+    type?: StringWithAggregatesFilter<"Propose"> | string
     product?: StringWithAggregatesFilter<"Propose"> | string
     model?: StringWithAggregatesFilter<"Propose"> | string
     capacity?: StringWithAggregatesFilter<"Propose"> | string
@@ -13592,8 +13575,7 @@ export namespace Prisma {
     createdAt?: Date | string
     observation?: string | null
     groups: string
-    inputOutputs: string
-    equipment?: string
+    type?: string
     product?: string
     model?: string
     capacity?: string
@@ -13610,8 +13592,7 @@ export namespace Prisma {
     createdAt?: Date | string
     observation?: string | null
     groups: string
-    inputOutputs: string
-    equipment?: string
+    type?: string
     product?: string
     model?: string
     capacity?: string
@@ -13627,8 +13608,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observation?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: StringFieldUpdateOperationsInput | string
-    inputOutputs?: StringFieldUpdateOperationsInput | string
-    equipment?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     product?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     capacity?: StringFieldUpdateOperationsInput | string
@@ -13645,8 +13625,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observation?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: StringFieldUpdateOperationsInput | string
-    inputOutputs?: StringFieldUpdateOperationsInput | string
-    equipment?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     product?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     capacity?: StringFieldUpdateOperationsInput | string
@@ -13663,8 +13642,7 @@ export namespace Prisma {
     createdAt?: Date | string
     observation?: string | null
     groups: string
-    inputOutputs: string
-    equipment?: string
+    type?: string
     product?: string
     model?: string
     capacity?: string
@@ -13680,8 +13658,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observation?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: StringFieldUpdateOperationsInput | string
-    inputOutputs?: StringFieldUpdateOperationsInput | string
-    equipment?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     product?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     capacity?: StringFieldUpdateOperationsInput | string
@@ -13698,8 +13675,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observation?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: StringFieldUpdateOperationsInput | string
-    inputOutputs?: StringFieldUpdateOperationsInput | string
-    equipment?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     product?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     capacity?: StringFieldUpdateOperationsInput | string
@@ -14198,8 +14174,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     observation?: SortOrder
     groups?: SortOrder
-    inputOutputs?: SortOrder
-    equipment?: SortOrder
+    type?: SortOrder
     product?: SortOrder
     model?: SortOrder
     capacity?: SortOrder
@@ -14220,8 +14195,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     observation?: SortOrder
     groups?: SortOrder
-    inputOutputs?: SortOrder
-    equipment?: SortOrder
+    type?: SortOrder
     product?: SortOrder
     model?: SortOrder
     capacity?: SortOrder
@@ -14238,8 +14212,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     observation?: SortOrder
     groups?: SortOrder
-    inputOutputs?: SortOrder
-    equipment?: SortOrder
+    type?: SortOrder
     product?: SortOrder
     model?: SortOrder
     capacity?: SortOrder

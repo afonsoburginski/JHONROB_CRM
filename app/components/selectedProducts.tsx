@@ -26,8 +26,8 @@ const SelectedProducts: React.FC = () => {
         <TableHead>
           <TableRow>
             <TableHeaderCell>Grupo</TableHeaderCell>
+            <TableHeaderCell>Equipamento</TableHeaderCell>
             <TableHeaderCell>Produto</TableHeaderCell>
-            <TableHeaderCell>Tipo</TableHeaderCell>
             <TableHeaderCell>Modelo</TableHeaderCell>
             <TableHeaderCell>Capacidade</TableHeaderCell>
             <TableHeaderCell>Altura</TableHeaderCell>

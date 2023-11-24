@@ -10,7 +10,7 @@ const SendProducts: React.FC = () => {
 
   const handleSubmit = async () => {
     console.log('handleSubmit called');
-    console.log('Selected products:', selectedProducts);
+    console.log('Selected products:', JSON.stringify(selectedProducts));
   
     if (!selectedProducts || selectedProducts.length === 0) {
       console.error('No products selected');
@@ -18,35 +18,36 @@ const SendProducts: React.FC = () => {
     }
   
     const product = selectedProducts[0];
-    console.log('Selected product:', product);
+    console.log('Selected product:', JSON.stringify(product));
   
-    console.log('Checking required product fields');
-    if (!product.group || !product.equipment || !product.title) {
-      console.error('Missing required product fields');
-      console.error('product.group:', product.group);
-      console.error('product.equipment:', product.equipment);
-      console.error('product.title:', product.title);
-      return;
+    console.log('Checking product fields');
+    const requiredFields = ['group'];
+    for (const field of requiredFields) {
+      if (!product[field]) {
+        console.warn(`product.${field} is missing or undefined`);
+        return; // Return early if a required field is missing
+      } else {
+        console.log(`product.${field}:`, product[field]);
+      }
     }
-    console.log('Required product fields present');
+    console.log('All required product fields present');
   
     const data = {
       title: 'Titulo', 
-      content: observation, 
-      observation: 'Your observation here',
-      group: { title: product.group }, // Make sure group is an object with a title field
-      inputOutput: product.inputOutput ? product.inputOutput.map(io => ({ input: io.input, output: io.output })) : [],
-      equipment: product.equipment,
-      product: product.title,
+      content: 'Teste', 
+      observation: observation, // Use the observation from the state
+      groups: product.group, 
       model: product.model,
       capacity: product.capacity,
       height: product.height,
       power: product.power,
-      input: product.input,
-      output: product.output,
+      input: product.input, // Modificado para product.input
+      output: product.output, // Modificado para product.output
+      type: product.type, 
+      product: product.product, 
     };
   
-    console.log('Data to send', data); // Log the data that will be sent
+    console.log('Data to send', JSON.stringify(data));
   
     try {
       console.log('Sending fetch request');
@@ -65,11 +66,11 @@ const SendProducts: React.FC = () => {
         console.error('Response status:', response.status);
         const responseBody = await response.text();
         console.error('Response body:', responseBody);
-        return;
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
   
       const responseData = await response.json();
-      console.log('Response data:', responseData);
+      console.log('Response data:', JSON.stringify(responseData));
     } catch (error) {
       console.error('Error in handleSubmit:', error);
     }

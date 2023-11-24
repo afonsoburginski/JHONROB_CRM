@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import { Card, Title, Text } from '@tremor/react';
 import Search from '../components/search';
 import ProposeTable from './proposeTable';
-
-interface Propose {
+export interface Propose {
   id: number;
   title: string;
   content: string;
