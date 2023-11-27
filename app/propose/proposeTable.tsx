@@ -21,6 +21,15 @@ interface Propose {
   power: string;
   input: string;
   output: string;
+  clientName: string; // Adicione esta linha
+  address: string; // Adicione esta linha
+  city: string; // Adicione esta linha
+  state: string; // Adicione esta linha
+  cpfCnpj: string; // Adicione esta linha
+  ie: string; // Adicione esta linha
+  contact: string; // Adicione esta linha
+  phone: string; // Adicione esta linha
+  email: string; // Adicione esta linha
 }
 
 const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (

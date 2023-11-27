@@ -78,8 +78,8 @@ const SendProducts: React.FC = () => {
 
   return (
     <>
-      <div className='flex flex-col mt-5'>
-        <Title className='mb-2 text-lg text-gray-900'>Observação</Title>
+      <div className='flex flex-col'>
+        <Title className='mb-2 text-lg text-gray-900'>Observação Geral</Title>
         <textarea
           className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32'
           id='observation'

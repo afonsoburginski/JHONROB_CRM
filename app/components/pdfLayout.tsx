@@ -12,14 +12,14 @@ export const getPdfLayout = (propose: Propose) => {
       { text: 'Sinop, 28 de Agosto de 2023.', alignment: 'right' },
       {
         table: {
-          widths: ['*', '*'],
+          widths: ['*', '*', '*', '*'],
           body: [
-            ['Cliente:', propose.clientName],
-            ['Endereço:', propose.address],
-            ['Município:', propose.city, 'UF:', propose.state],
-            ['CPF/CNPJ:', propose.cpfCnpj, 'I.E.:', propose.ie],
-            ['Contato:', propose.contact, 'Telefone:', propose.phone],
-            ['E-mail:', propose.email],
+            ['Cliente:', propose.clientName || '', '', ''],
+            ['Endereço:', propose.address || '', '', ''],
+            ['Município:', propose.city || '', 'UF:', propose.state || ''],
+            ['CPF/CNPJ:', propose.cpfCnpj || '', 'I.E.:', propose.ie || ''],
+            ['Contato:', propose.contact || '', 'Telefone:', propose.phone || ''],
+            ['E-mail:', propose.email || '', '', ''],
           ]
         },
         layout: 'noBorders'
@@ -31,7 +31,7 @@ export const getPdfLayout = (propose: Propose) => {
         table: {
           widths: ['auto', '*', 'auto'],
           body: [
-            ['QUANT.', 'DESCRIÇÃO', 'VALOR']
+            ['QUANT.', 'DESCRIÇÃO', 'VALOR', ''], // Adicione uma célula vazia
           ]
         }
       },
@@ -41,7 +41,7 @@ export const getPdfLayout = (propose: Propose) => {
         table: {
           widths: ['auto', 'auto', '*'],
           body: [
-            ['EL-1', 'CARGA PL-1', '']
+            ['EL-1', 'CARGA PL-1', '', ''], // Adicione uma célula vazia
           ]
         },
         layout: 'noBorders'
@@ -50,13 +50,13 @@ export const getPdfLayout = (propose: Propose) => {
       {
         table: {
           body: [
-            ['Modelo', propose.product],
-            ['Altura', `${propose.height} metros`],
-            ['Capacidade', `${propose.capacity} (T/H)`],
-            ['Produto', propose.type],
+            ['Modelo', propose.product || ''],
+            ['Altura', `${propose.height || ''} metros`],
+            ['Capacidade', `${propose.capacity || ''} (T/H)`],
+            ['Produto', propose.type || ''],
             ['Peso específico do produto', '750 kg/m³'],
             ['Velocidade', '3,40 m/s'],
-            ['Acionamento', `Motoredutor ${propose.power} com freio contra recuo`],
+            ['Acionamento', `Motoredutor ${propose.power || ''} com freio contra recuo`],
             ['Lado do Acionamento', 'Direito'],
             ['Correia', '12" x 4L com revestimento 1/16" x 1/16"'],
             ['Caçambas', 'Plástica 280mm convencional'],

@@ -41,6 +41,15 @@ model Product {
   group      Group     @relation(fields: [groupId], references: [id])
   models     Model[]
   types      Type[]
+  propriedade1  String
+  propriedade2  String
+  propriedade3  String
+  propriedade4  String
+  propriedade5  String
+  propriedade6  String
+  propriedade7  String
+  propriedade8  String
+  propriedade9  String
 }
 
 model Model {
