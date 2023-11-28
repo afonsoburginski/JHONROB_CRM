@@ -358,7 +358,7 @@ export namespace Prisma {
 
   /**
    * Prisma Client JS version: 5.6.0
-   * Query Engine version: e95e739751f42d8ca026f6b910f5a2dc5adeaeee
+   * Query Engine version: aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a
    */
   export type PrismaVersion = {
     client: string
@@ -1669,6 +1669,40 @@ export namespace Prisma {
   /**
    * Count Types
    */
+
+
+  /**
+   * Count Type ClientCountOutputType
+   */
+
+  export type ClientCountOutputType = {
+    proposes: number
+  }
+
+  export type ClientCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    proposes?: boolean | ClientCountOutputTypeCountProposesArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * ClientCountOutputType without action
+   */
+  export type ClientCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientCountOutputType
+     */
+    select?: ClientCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * ClientCountOutputType without action
+   */
+  export type ClientCountOutputTypeCountProposesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProposeWhereInput
+  }
+
 
 
   /**
@@ -2986,6 +3020,8 @@ export namespace Prisma {
     zip?: boolean
     cpfCnpj?: boolean
     ie?: boolean
+    proposes?: boolean | Client$proposesArgs<ExtArgs>
+    _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["client"]>
 
   export type ClientSelectScalar = {
@@ -3001,10 +3037,17 @@ export namespace Prisma {
     ie?: boolean
   }
 
+  export type ClientInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    proposes?: boolean | Client$proposesArgs<ExtArgs>
+    _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
 
   export type $ClientPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Client"
-    objects: {}
+    objects: {
+      proposes: Prisma.$ProposePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
@@ -3381,6 +3424,7 @@ export namespace Prisma {
   export interface Prisma__ClientClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    proposes<T extends Client$proposesArgs<ExtArgs> = {}>(args?: Subset<T, Client$proposesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProposePayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3434,6 +3478,10 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ClientInclude<ExtArgs> | null
+    /**
      * Filter, which Client to fetch.
      */
     where: ClientWhereUniqueInput
@@ -3449,6 +3497,10 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ClientInclude<ExtArgs> | null
+    /**
      * Filter, which Client to fetch.
      */
     where: ClientWhereUniqueInput
@@ -3463,6 +3515,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Client
      */
     select?: ClientSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ClientInclude<ExtArgs> | null
     /**
      * Filter, which Client to fetch.
      */
@@ -3509,6 +3565,10 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ClientInclude<ExtArgs> | null
+    /**
      * Filter, which Client to fetch.
      */
     where?: ClientWhereInput
@@ -3554,6 +3614,10 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ClientInclude<ExtArgs> | null
+    /**
      * Filter, which Clients to fetch.
      */
     where?: ClientWhereInput
@@ -3594,6 +3658,10 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ClientInclude<ExtArgs> | null
+    /**
      * The data needed to create a Client.
      */
     data: XOR<ClientCreateInput, ClientUncheckedCreateInput>
@@ -3620,6 +3688,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Client
      */
     select?: ClientSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ClientInclude<ExtArgs> | null
     /**
      * The data needed to update a Client.
      */
@@ -3655,6 +3727,10 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ClientInclude<ExtArgs> | null
+    /**
      * The filter to search for the Client to update in case it exists.
      */
     where: ClientWhereUniqueInput
@@ -3678,6 +3754,10 @@ export namespace Prisma {
      */
     select?: ClientSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ClientInclude<ExtArgs> | null
+    /**
      * Filter which Client to delete.
      */
     where: ClientWhereUniqueInput
@@ -3696,6 +3776,27 @@ export namespace Prisma {
 
 
   /**
+   * Client.proposes
+   */
+  export type Client$proposesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Propose
+     */
+    select?: ProposeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProposeInclude<ExtArgs> | null
+    where?: ProposeWhereInput
+    orderBy?: ProposeOrderByWithRelationInput | ProposeOrderByWithRelationInput[]
+    cursor?: ProposeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProposeScalarFieldEnum | ProposeScalarFieldEnum[]
+  }
+
+
+  /**
    * Client without action
    */
   export type ClientDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3703,6 +3804,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Client
      */
     select?: ClientSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ClientInclude<ExtArgs> | null
   }
 
 
@@ -11309,10 +11414,12 @@ export namespace Prisma {
 
   export type ProposeAvgAggregateOutputType = {
     id: number | null
+    clientId: number | null
   }
 
   export type ProposeSumAggregateOutputType = {
     id: number | null
+    clientId: number | null
   }
 
   export type ProposeMinAggregateOutputType = {
@@ -11330,6 +11437,7 @@ export namespace Prisma {
     power: string | null
     input: string | null
     output: string | null
+    clientId: number | null
   }
 
   export type ProposeMaxAggregateOutputType = {
@@ -11347,6 +11455,7 @@ export namespace Prisma {
     power: string | null
     input: string | null
     output: string | null
+    clientId: number | null
   }
 
   export type ProposeCountAggregateOutputType = {
@@ -11364,16 +11473,19 @@ export namespace Prisma {
     power: number
     input: number
     output: number
+    clientId: number
     _all: number
   }
 
 
   export type ProposeAvgAggregateInputType = {
     id?: true
+    clientId?: true
   }
 
   export type ProposeSumAggregateInputType = {
     id?: true
+    clientId?: true
   }
 
   export type ProposeMinAggregateInputType = {
@@ -11391,6 +11503,7 @@ export namespace Prisma {
     power?: true
     input?: true
     output?: true
+    clientId?: true
   }
 
   export type ProposeMaxAggregateInputType = {
@@ -11408,6 +11521,7 @@ export namespace Prisma {
     power?: true
     input?: true
     output?: true
+    clientId?: true
   }
 
   export type ProposeCountAggregateInputType = {
@@ -11425,6 +11539,7 @@ export namespace Prisma {
     power?: true
     input?: true
     output?: true
+    clientId?: true
     _all?: true
   }
 
@@ -11529,6 +11644,7 @@ export namespace Prisma {
     power: string
     input: string
     output: string
+    clientId: number | null
     _count: ProposeCountAggregateOutputType | null
     _avg: ProposeAvgAggregateOutputType | null
     _sum: ProposeSumAggregateOutputType | null
@@ -11565,6 +11681,8 @@ export namespace Prisma {
     power?: boolean
     input?: boolean
     output?: boolean
+    clientId?: boolean
+    client?: boolean | Propose$clientArgs<ExtArgs>
   }, ExtArgs["result"]["propose"]>
 
   export type ProposeSelectScalar = {
@@ -11582,12 +11700,19 @@ export namespace Prisma {
     power?: boolean
     input?: boolean
     output?: boolean
+    clientId?: boolean
+  }
+
+  export type ProposeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | Propose$clientArgs<ExtArgs>
   }
 
 
   export type $ProposePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Propose"
-    objects: {}
+    objects: {
+      client: Prisma.$ClientPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       title: string
@@ -11603,6 +11728,7 @@ export namespace Prisma {
       power: string
       input: string
       output: string
+      clientId: number | null
     }, ExtArgs["result"]["propose"]>
     composites: {}
   }
@@ -11968,6 +12094,7 @@ export namespace Prisma {
   export interface Prisma__ProposeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    client<T extends Propose$clientArgs<ExtArgs> = {}>(args?: Subset<T, Propose$clientArgs<ExtArgs>>): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -12011,6 +12138,7 @@ export namespace Prisma {
     readonly power: FieldRef<"Propose", 'String'>
     readonly input: FieldRef<"Propose", 'String'>
     readonly output: FieldRef<"Propose", 'String'>
+    readonly clientId: FieldRef<"Propose", 'Int'>
   }
     
 
@@ -12024,6 +12152,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Propose
      */
     select?: ProposeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProposeInclude<ExtArgs> | null
     /**
      * Filter, which Propose to fetch.
      */
@@ -12040,6 +12172,10 @@ export namespace Prisma {
      */
     select?: ProposeSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProposeInclude<ExtArgs> | null
+    /**
      * Filter, which Propose to fetch.
      */
     where: ProposeWhereUniqueInput
@@ -12054,6 +12190,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Propose
      */
     select?: ProposeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProposeInclude<ExtArgs> | null
     /**
      * Filter, which Propose to fetch.
      */
@@ -12100,6 +12240,10 @@ export namespace Prisma {
      */
     select?: ProposeSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProposeInclude<ExtArgs> | null
+    /**
      * Filter, which Propose to fetch.
      */
     where?: ProposeWhereInput
@@ -12145,6 +12289,10 @@ export namespace Prisma {
      */
     select?: ProposeSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProposeInclude<ExtArgs> | null
+    /**
      * Filter, which Proposes to fetch.
      */
     where?: ProposeWhereInput
@@ -12185,6 +12333,10 @@ export namespace Prisma {
      */
     select?: ProposeSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProposeInclude<ExtArgs> | null
+    /**
      * The data needed to create a Propose.
      */
     data: XOR<ProposeCreateInput, ProposeUncheckedCreateInput>
@@ -12211,6 +12363,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Propose
      */
     select?: ProposeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProposeInclude<ExtArgs> | null
     /**
      * The data needed to update a Propose.
      */
@@ -12246,6 +12402,10 @@ export namespace Prisma {
      */
     select?: ProposeSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProposeInclude<ExtArgs> | null
+    /**
      * The filter to search for the Propose to update in case it exists.
      */
     where: ProposeWhereUniqueInput
@@ -12269,6 +12429,10 @@ export namespace Prisma {
      */
     select?: ProposeSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProposeInclude<ExtArgs> | null
+    /**
      * Filter which Propose to delete.
      */
     where: ProposeWhereUniqueInput
@@ -12287,6 +12451,22 @@ export namespace Prisma {
 
 
   /**
+   * Propose.client
+   */
+  export type Propose$clientArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Client
+     */
+    select?: ClientSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ClientInclude<ExtArgs> | null
+    where?: ClientWhereInput
+  }
+
+
+  /**
    * Propose without action
    */
   export type ProposeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12294,6 +12474,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Propose
      */
     select?: ProposeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProposeInclude<ExtArgs> | null
   }
 
 
@@ -12425,7 +12609,8 @@ export namespace Prisma {
     height: 'height',
     power: 'power',
     input: 'input',
-    output: 'output'
+    output: 'output',
+    clientId: 'clientId'
   };
 
   export type ProposeScalarFieldEnum = (typeof ProposeScalarFieldEnum)[keyof typeof ProposeScalarFieldEnum]
@@ -12589,6 +12774,7 @@ export namespace Prisma {
     zip?: StringFilter<"Client"> | string
     cpfCnpj?: StringFilter<"Client"> | string
     ie?: StringFilter<"Client"> | string
+    proposes?: ProposeListRelationFilter
   }
 
   export type ClientOrderByWithRelationInput = {
@@ -12602,6 +12788,7 @@ export namespace Prisma {
     zip?: SortOrder
     cpfCnpj?: SortOrder
     ie?: SortOrder
+    proposes?: ProposeOrderByRelationAggregateInput
   }
 
   export type ClientWhereUniqueInput = Prisma.AtLeast<{
@@ -12618,6 +12805,7 @@ export namespace Prisma {
     zip?: StringFilter<"Client"> | string
     cpfCnpj?: StringFilter<"Client"> | string
     ie?: StringFilter<"Client"> | string
+    proposes?: ProposeListRelationFilter
   }, "id">
 
   export type ClientOrderByWithAggregationInput = {
@@ -13065,6 +13253,8 @@ export namespace Prisma {
     power?: StringFilter<"Propose"> | string
     input?: StringFilter<"Propose"> | string
     output?: StringFilter<"Propose"> | string
+    clientId?: IntNullableFilter<"Propose"> | number | null
+    client?: XOR<ClientNullableRelationFilter, ClientWhereInput> | null
   }
 
   export type ProposeOrderByWithRelationInput = {
@@ -13082,6 +13272,8 @@ export namespace Prisma {
     power?: SortOrder
     input?: SortOrder
     output?: SortOrder
+    clientId?: SortOrderInput | SortOrder
+    client?: ClientOrderByWithRelationInput
   }
 
   export type ProposeWhereUniqueInput = Prisma.AtLeast<{
@@ -13102,6 +13294,8 @@ export namespace Prisma {
     power?: StringFilter<"Propose"> | string
     input?: StringFilter<"Propose"> | string
     output?: StringFilter<"Propose"> | string
+    clientId?: IntNullableFilter<"Propose"> | number | null
+    client?: XOR<ClientNullableRelationFilter, ClientWhereInput> | null
   }, "id">
 
   export type ProposeOrderByWithAggregationInput = {
@@ -13119,6 +13313,7 @@ export namespace Prisma {
     power?: SortOrder
     input?: SortOrder
     output?: SortOrder
+    clientId?: SortOrderInput | SortOrder
     _count?: ProposeCountOrderByAggregateInput
     _avg?: ProposeAvgOrderByAggregateInput
     _max?: ProposeMaxOrderByAggregateInput
@@ -13144,6 +13339,7 @@ export namespace Prisma {
     power?: StringWithAggregatesFilter<"Propose"> | string
     input?: StringWithAggregatesFilter<"Propose"> | string
     output?: StringWithAggregatesFilter<"Propose"> | string
+    clientId?: IntNullableWithAggregatesFilter<"Propose"> | number | null
   }
 
   export type UserCreateInput = {
@@ -13202,6 +13398,7 @@ export namespace Prisma {
     zip: string
     cpfCnpj: string
     ie: string
+    proposes?: ProposeCreateNestedManyWithoutClientInput
   }
 
   export type ClientUncheckedCreateInput = {
@@ -13215,6 +13412,7 @@ export namespace Prisma {
     zip: string
     cpfCnpj: string
     ie: string
+    proposes?: ProposeUncheckedCreateNestedManyWithoutClientInput
   }
 
   export type ClientUpdateInput = {
@@ -13227,6 +13425,7 @@ export namespace Prisma {
     zip?: StringFieldUpdateOperationsInput | string
     cpfCnpj?: StringFieldUpdateOperationsInput | string
     ie?: StringFieldUpdateOperationsInput | string
+    proposes?: ProposeUpdateManyWithoutClientNestedInput
   }
 
   export type ClientUncheckedUpdateInput = {
@@ -13240,6 +13439,7 @@ export namespace Prisma {
     zip?: StringFieldUpdateOperationsInput | string
     cpfCnpj?: StringFieldUpdateOperationsInput | string
     ie?: StringFieldUpdateOperationsInput | string
+    proposes?: ProposeUncheckedUpdateManyWithoutClientNestedInput
   }
 
   export type ClientCreateManyInput = {
@@ -13631,6 +13831,7 @@ export namespace Prisma {
     power?: string
     input?: string
     output?: string
+    client?: ClientCreateNestedOneWithoutProposesInput
   }
 
   export type ProposeUncheckedCreateInput = {
@@ -13648,6 +13849,7 @@ export namespace Prisma {
     power?: string
     input?: string
     output?: string
+    clientId?: number | null
   }
 
   export type ProposeUpdateInput = {
@@ -13664,6 +13866,7 @@ export namespace Prisma {
     power?: StringFieldUpdateOperationsInput | string
     input?: StringFieldUpdateOperationsInput | string
     output?: StringFieldUpdateOperationsInput | string
+    client?: ClientUpdateOneWithoutProposesNestedInput
   }
 
   export type ProposeUncheckedUpdateInput = {
@@ -13681,6 +13884,7 @@ export namespace Prisma {
     power?: StringFieldUpdateOperationsInput | string
     input?: StringFieldUpdateOperationsInput | string
     output?: StringFieldUpdateOperationsInput | string
+    clientId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ProposeCreateManyInput = {
@@ -13698,6 +13902,7 @@ export namespace Prisma {
     power?: string
     input?: string
     output?: string
+    clientId?: number | null
   }
 
   export type ProposeUpdateManyMutationInput = {
@@ -13731,6 +13936,7 @@ export namespace Prisma {
     power?: StringFieldUpdateOperationsInput | string
     input?: StringFieldUpdateOperationsInput | string
     output?: StringFieldUpdateOperationsInput | string
+    clientId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -13820,6 +14026,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type ProposeListRelationFilter = {
+    every?: ProposeWhereInput
+    some?: ProposeWhereInput
+    none?: ProposeWhereInput
+  }
+
+  export type ProposeOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type ClientCountOrderByAggregateInput = {
@@ -14216,6 +14432,22 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type ClientNullableRelationFilter = {
+    is?: ClientWhereInput | null
+    isNot?: ClientWhereInput | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -14236,10 +14468,12 @@ export namespace Prisma {
     power?: SortOrder
     input?: SortOrder
     output?: SortOrder
+    clientId?: SortOrder
   }
 
   export type ProposeAvgOrderByAggregateInput = {
     id?: SortOrder
+    clientId?: SortOrder
   }
 
   export type ProposeMaxOrderByAggregateInput = {
@@ -14257,6 +14491,7 @@ export namespace Prisma {
     power?: SortOrder
     input?: SortOrder
     output?: SortOrder
+    clientId?: SortOrder
   }
 
   export type ProposeMinOrderByAggregateInput = {
@@ -14274,10 +14509,12 @@ export namespace Prisma {
     power?: SortOrder
     input?: SortOrder
     output?: SortOrder
+    clientId?: SortOrder
   }
 
   export type ProposeSumOrderByAggregateInput = {
     id?: SortOrder
+    clientId?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -14312,6 +14549,22 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -14322,6 +14575,48 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type ProposeCreateNestedManyWithoutClientInput = {
+    create?: XOR<ProposeCreateWithoutClientInput, ProposeUncheckedCreateWithoutClientInput> | ProposeCreateWithoutClientInput[] | ProposeUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ProposeCreateOrConnectWithoutClientInput | ProposeCreateOrConnectWithoutClientInput[]
+    createMany?: ProposeCreateManyClientInputEnvelope
+    connect?: ProposeWhereUniqueInput | ProposeWhereUniqueInput[]
+  }
+
+  export type ProposeUncheckedCreateNestedManyWithoutClientInput = {
+    create?: XOR<ProposeCreateWithoutClientInput, ProposeUncheckedCreateWithoutClientInput> | ProposeCreateWithoutClientInput[] | ProposeUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ProposeCreateOrConnectWithoutClientInput | ProposeCreateOrConnectWithoutClientInput[]
+    createMany?: ProposeCreateManyClientInputEnvelope
+    connect?: ProposeWhereUniqueInput | ProposeWhereUniqueInput[]
+  }
+
+  export type ProposeUpdateManyWithoutClientNestedInput = {
+    create?: XOR<ProposeCreateWithoutClientInput, ProposeUncheckedCreateWithoutClientInput> | ProposeCreateWithoutClientInput[] | ProposeUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ProposeCreateOrConnectWithoutClientInput | ProposeCreateOrConnectWithoutClientInput[]
+    upsert?: ProposeUpsertWithWhereUniqueWithoutClientInput | ProposeUpsertWithWhereUniqueWithoutClientInput[]
+    createMany?: ProposeCreateManyClientInputEnvelope
+    set?: ProposeWhereUniqueInput | ProposeWhereUniqueInput[]
+    disconnect?: ProposeWhereUniqueInput | ProposeWhereUniqueInput[]
+    delete?: ProposeWhereUniqueInput | ProposeWhereUniqueInput[]
+    connect?: ProposeWhereUniqueInput | ProposeWhereUniqueInput[]
+    update?: ProposeUpdateWithWhereUniqueWithoutClientInput | ProposeUpdateWithWhereUniqueWithoutClientInput[]
+    updateMany?: ProposeUpdateManyWithWhereWithoutClientInput | ProposeUpdateManyWithWhereWithoutClientInput[]
+    deleteMany?: ProposeScalarWhereInput | ProposeScalarWhereInput[]
+  }
+
+  export type ProposeUncheckedUpdateManyWithoutClientNestedInput = {
+    create?: XOR<ProposeCreateWithoutClientInput, ProposeUncheckedCreateWithoutClientInput> | ProposeCreateWithoutClientInput[] | ProposeUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ProposeCreateOrConnectWithoutClientInput | ProposeCreateOrConnectWithoutClientInput[]
+    upsert?: ProposeUpsertWithWhereUniqueWithoutClientInput | ProposeUpsertWithWhereUniqueWithoutClientInput[]
+    createMany?: ProposeCreateManyClientInputEnvelope
+    set?: ProposeWhereUniqueInput | ProposeWhereUniqueInput[]
+    disconnect?: ProposeWhereUniqueInput | ProposeWhereUniqueInput[]
+    delete?: ProposeWhereUniqueInput | ProposeWhereUniqueInput[]
+    connect?: ProposeWhereUniqueInput | ProposeWhereUniqueInput[]
+    update?: ProposeUpdateWithWhereUniqueWithoutClientInput | ProposeUpdateWithWhereUniqueWithoutClientInput[]
+    updateMany?: ProposeUpdateManyWithWhereWithoutClientInput | ProposeUpdateManyWithWhereWithoutClientInput[]
+    deleteMany?: ProposeScalarWhereInput | ProposeScalarWhereInput[]
   }
 
   export type ProductCreateNestedManyWithoutGroupInput = {
@@ -14664,12 +14959,36 @@ export namespace Prisma {
     update?: XOR<XOR<HeightUpdateToOneWithWhereWithoutPowersInput, HeightUpdateWithoutPowersInput>, HeightUncheckedUpdateWithoutPowersInput>
   }
 
+  export type ClientCreateNestedOneWithoutProposesInput = {
+    create?: XOR<ClientCreateWithoutProposesInput, ClientUncheckedCreateWithoutProposesInput>
+    connectOrCreate?: ClientCreateOrConnectWithoutProposesInput
+    connect?: ClientWhereUniqueInput
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type ClientUpdateOneWithoutProposesNestedInput = {
+    create?: XOR<ClientCreateWithoutProposesInput, ClientUncheckedCreateWithoutProposesInput>
+    connectOrCreate?: ClientCreateOrConnectWithoutProposesInput
+    upsert?: ClientUpsertWithoutProposesInput
+    disconnect?: ClientWhereInput | boolean
+    delete?: ClientWhereInput | boolean
+    connect?: ClientWhereUniqueInput
+    update?: XOR<XOR<ClientUpdateToOneWithWhereWithoutProposesInput, ClientUpdateWithoutProposesInput>, ClientUncheckedUpdateWithoutProposesInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -14779,6 +15098,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -14810,7 +15140,7 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -14818,7 +15148,103 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type ProposeCreateWithoutClientInput = {
+    title: string
+    content: string
+    createdAt?: Date | string
+    observation?: string | null
+    groups: string
+    product?: string
+    type?: string
+    model?: string
+    capacity?: string
+    height?: string
+    power?: string
+    input?: string
+    output?: string
+  }
+
+  export type ProposeUncheckedCreateWithoutClientInput = {
+    id?: number
+    title: string
+    content: string
+    createdAt?: Date | string
+    observation?: string | null
+    groups: string
+    product?: string
+    type?: string
+    model?: string
+    capacity?: string
+    height?: string
+    power?: string
+    input?: string
+    output?: string
+  }
+
+  export type ProposeCreateOrConnectWithoutClientInput = {
+    where: ProposeWhereUniqueInput
+    create: XOR<ProposeCreateWithoutClientInput, ProposeUncheckedCreateWithoutClientInput>
+  }
+
+  export type ProposeCreateManyClientInputEnvelope = {
+    data: ProposeCreateManyClientInput | ProposeCreateManyClientInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProposeUpsertWithWhereUniqueWithoutClientInput = {
+    where: ProposeWhereUniqueInput
+    update: XOR<ProposeUpdateWithoutClientInput, ProposeUncheckedUpdateWithoutClientInput>
+    create: XOR<ProposeCreateWithoutClientInput, ProposeUncheckedCreateWithoutClientInput>
+  }
+
+  export type ProposeUpdateWithWhereUniqueWithoutClientInput = {
+    where: ProposeWhereUniqueInput
+    data: XOR<ProposeUpdateWithoutClientInput, ProposeUncheckedUpdateWithoutClientInput>
+  }
+
+  export type ProposeUpdateManyWithWhereWithoutClientInput = {
+    where: ProposeScalarWhereInput
+    data: XOR<ProposeUpdateManyMutationInput, ProposeUncheckedUpdateManyWithoutClientInput>
+  }
+
+  export type ProposeScalarWhereInput = {
+    AND?: ProposeScalarWhereInput | ProposeScalarWhereInput[]
+    OR?: ProposeScalarWhereInput[]
+    NOT?: ProposeScalarWhereInput | ProposeScalarWhereInput[]
+    id?: IntFilter<"Propose"> | number
+    title?: StringFilter<"Propose"> | string
+    content?: StringFilter<"Propose"> | string
+    createdAt?: DateTimeFilter<"Propose"> | Date | string
+    observation?: StringNullableFilter<"Propose"> | string | null
+    groups?: StringFilter<"Propose"> | string
+    product?: StringFilter<"Propose"> | string
+    type?: StringFilter<"Propose"> | string
+    model?: StringFilter<"Propose"> | string
+    capacity?: StringFilter<"Propose"> | string
+    height?: StringFilter<"Propose"> | string
+    power?: StringFilter<"Propose"> | string
+    input?: StringFilter<"Propose"> | string
+    output?: StringFilter<"Propose"> | string
+    clientId?: IntNullableFilter<"Propose"> | number | null
   }
 
   export type ProductCreateWithoutGroupInput = {
@@ -15337,6 +15763,139 @@ export namespace Prisma {
     capacityId?: IntFieldUpdateOperationsInput | number
   }
 
+  export type ClientCreateWithoutProposesInput = {
+    name: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    zip: string
+    cpfCnpj: string
+    ie: string
+  }
+
+  export type ClientUncheckedCreateWithoutProposesInput = {
+    id?: number
+    name: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    zip: string
+    cpfCnpj: string
+    ie: string
+  }
+
+  export type ClientCreateOrConnectWithoutProposesInput = {
+    where: ClientWhereUniqueInput
+    create: XOR<ClientCreateWithoutProposesInput, ClientUncheckedCreateWithoutProposesInput>
+  }
+
+  export type ClientUpsertWithoutProposesInput = {
+    update: XOR<ClientUpdateWithoutProposesInput, ClientUncheckedUpdateWithoutProposesInput>
+    create: XOR<ClientCreateWithoutProposesInput, ClientUncheckedCreateWithoutProposesInput>
+    where?: ClientWhereInput
+  }
+
+  export type ClientUpdateToOneWithWhereWithoutProposesInput = {
+    where?: ClientWhereInput
+    data: XOR<ClientUpdateWithoutProposesInput, ClientUncheckedUpdateWithoutProposesInput>
+  }
+
+  export type ClientUpdateWithoutProposesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zip?: StringFieldUpdateOperationsInput | string
+    cpfCnpj?: StringFieldUpdateOperationsInput | string
+    ie?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ClientUncheckedUpdateWithoutProposesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zip?: StringFieldUpdateOperationsInput | string
+    cpfCnpj?: StringFieldUpdateOperationsInput | string
+    ie?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProposeCreateManyClientInput = {
+    id?: number
+    title: string
+    content: string
+    createdAt?: Date | string
+    observation?: string | null
+    groups: string
+    product?: string
+    type?: string
+    model?: string
+    capacity?: string
+    height?: string
+    power?: string
+    input?: string
+    output?: string
+  }
+
+  export type ProposeUpdateWithoutClientInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    groups?: StringFieldUpdateOperationsInput | string
+    product?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    capacity?: StringFieldUpdateOperationsInput | string
+    height?: StringFieldUpdateOperationsInput | string
+    power?: StringFieldUpdateOperationsInput | string
+    input?: StringFieldUpdateOperationsInput | string
+    output?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProposeUncheckedUpdateWithoutClientInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    groups?: StringFieldUpdateOperationsInput | string
+    product?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    capacity?: StringFieldUpdateOperationsInput | string
+    height?: StringFieldUpdateOperationsInput | string
+    power?: StringFieldUpdateOperationsInput | string
+    input?: StringFieldUpdateOperationsInput | string
+    output?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProposeUncheckedUpdateManyWithoutClientInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    groups?: StringFieldUpdateOperationsInput | string
+    product?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    capacity?: StringFieldUpdateOperationsInput | string
+    height?: StringFieldUpdateOperationsInput | string
+    power?: StringFieldUpdateOperationsInput | string
+    input?: StringFieldUpdateOperationsInput | string
+    output?: StringFieldUpdateOperationsInput | string
+  }
+
   export type ProductCreateManyGroupInput = {
     id?: number
     title: string
@@ -15474,6 +16033,10 @@ export namespace Prisma {
   /**
    * Aliases for legacy arg types
    */
+    /**
+     * @deprecated Use ClientCountOutputTypeDefaultArgs instead
+     */
+    export type ClientCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClientCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use GroupCountOutputTypeDefaultArgs instead
      */

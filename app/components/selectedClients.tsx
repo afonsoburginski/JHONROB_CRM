@@ -2,15 +2,17 @@
 import React from 'react';
 import { Table, Title, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
+import SelectClient from './selectClient';
 
 const SelectedClients: React.FC = () => {
-  console.log('Renderizando SelectedClients');
   const { selectedClient } = useSelectedClient();
-  console.log(selectedClient);
 
   return (
     <div className='flex flex-col w-full'>
-      <Title className="text-lg font-bold">Dados do Cliente</Title> 
+      <div className='flex justify-between items-center w-full'>
+        <Title>Dados do Cliente</Title> 
+        <SelectClient />
+      </div>
       <Table className="bg-grey-lighter text-grey-darker mt-1">
         <TableHead>
           <TableRow>

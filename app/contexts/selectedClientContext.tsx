@@ -1,6 +1,24 @@
 // selectedClientContext.tsx
 'use client'
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, ReactNode } from 'react';
+
+interface Propose {
+  id: number;
+  title: string;
+  content: string;
+  createdAt: Date;
+  observation: string | null;
+  groups: string;
+  product: string;
+  type: string;
+  model: string;
+  capacity: string;
+  height: string;
+  power: string;
+  input: string;
+  output: string;
+  clientId: number | null;
+}
 
 interface Client {
   id: number;
@@ -13,29 +31,21 @@ interface Client {
   zip: string;
   cpfCnpj: string;
   ie: string;
+  proposes: Propose[];
 }
 
 interface SelectedClientContextData {
   selectedClient: Client | null;
-  setClient: (client: Client) => void;
+  setSelectedClient: (client: Client | null) => void;
 }
 
-const SelectedClientContext = createContext<SelectedClientContextData>({} as SelectedClientContextData);
+const SelectedClientContext = createContext<SelectedClientContextData | undefined>(undefined);
 
-export const SelectedClientProvider: React.FC = ({ children }) => {
+export const SelectedClientProvider: React.FC<{children: ReactNode}> = ({ children }) => {
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
 
-  const setClient = (client: Client) => {
-    console.log('Adicionando cliente à tabela:', client);
-    setSelectedClient(client);
-  };
-
-  useEffect(() => {
-    console.log('Renderizando SelectedClients:', selectedClient);
-  }, [selectedClient]);
-
   return (
-    <SelectedClientContext.Provider value={{ selectedClient, setClient }}>
+    <SelectedClientContext.Provider value={{ selectedClient, setSelectedClient }}>
       {children}
     </SelectedClientContext.Provider>
   );

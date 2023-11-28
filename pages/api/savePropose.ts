@@ -6,27 +6,28 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
   if (req.method === 'POST') {
     console.log('Request body', req.body); // Log do corpo da requisição
 
-    const { title, content, observation, groups, type, model, capacity, height, power, product, input, output } = req.body;
+    const { title, content, observation, groups, type, model, capacity, height, power, product, input, output, clientId } = req.body;
 
     // Verifique se todos os campos necessários estão presentes
-    if (!title || !content || !observation || !groups || !type || !model || !capacity || !height || !power || !product || !input || !output) {
+    if (!title || !groups || !height || !power || !product || !input || !output || !clientId) {
       res.status(400).json({ error: 'Missing required fields' });
       return;
     }
 
     const data = {
       title,
-      content,
-      observation,
+      content: content || "", // Use um valor padrão se o campo não estiver presente
+      observation: observation || "", // Use um valor padrão se o campo não estiver presente
       groups,
-      type,
-      model,
-      capacity,
+      type: type || "", // Use um valor padrão se o campo não estiver presente
+      model: model || "", // Use um valor padrão se o campo não estiver presente
+      capacity: capacity || "", // Use um valor padrão se o campo não estiver presente
       height,
       power,
       product,
-      input: input.join(', '), // Converte o array para string
-      output: output.join(', '), // Converte o array para string
+      input,
+      output,
+      clientId, // Adiciona o clientId aos dados da proposta
     };
 
     try {

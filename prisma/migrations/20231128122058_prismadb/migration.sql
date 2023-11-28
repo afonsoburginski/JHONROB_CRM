@@ -18,6 +18,8 @@ CREATE TABLE "Client" (
     "city" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "zip" TEXT NOT NULL,
+    "cpfCnpj" TEXT NOT NULL,
+    "ie" TEXT NOT NULL,
 
     CONSTRAINT "Client_pkey" PRIMARY KEY ("id")
 );
@@ -103,15 +105,15 @@ CREATE TABLE "Propose" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "observation" TEXT,
     "groups" TEXT NOT NULL,
-    "inputOutputs" TEXT NOT NULL,
-    "equipment" TEXT NOT NULL DEFAULT '',
     "product" TEXT NOT NULL DEFAULT '',
+    "type" TEXT NOT NULL DEFAULT '',
     "model" TEXT NOT NULL DEFAULT '',
     "capacity" TEXT NOT NULL DEFAULT '',
     "height" TEXT NOT NULL DEFAULT '',
     "power" TEXT NOT NULL DEFAULT '',
     "input" TEXT NOT NULL DEFAULT '',
     "output" TEXT NOT NULL DEFAULT '',
+    "clientId" INTEGER,
 
     CONSTRAINT "Propose_pkey" PRIMARY KEY ("id")
 );
@@ -133,3 +135,6 @@ ALTER TABLE "Height" ADD CONSTRAINT "Height_capacityId_fkey" FOREIGN KEY ("capac
 
 -- AddForeignKey
 ALTER TABLE "Power" ADD CONSTRAINT "Power_heightId_fkey" FOREIGN KEY ("heightId") REFERENCES "Height"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Propose" ADD CONSTRAINT "Propose_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE SET NULL ON UPDATE CASCADE;

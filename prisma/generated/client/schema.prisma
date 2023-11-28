@@ -16,7 +16,7 @@ model User {
 }
 
 model Client {
-  id        Int        @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   name      String
   email     String
   phone     String
@@ -24,6 +24,9 @@ model Client {
   city      String
   state     String
   zip       String
+  cpfCnpj   String
+  ie        String
+  proposes  Propose[]
 }
 
 model Group {
@@ -55,7 +58,6 @@ model Type {
   productId    Int
   product      Product   @relation(fields: [productId], references: [id])
 }
-
 
 model Capacity {
   id         Int      @id @default(autoincrement())
@@ -95,12 +97,14 @@ model Propose {
   createdAt     DateTime       @default(now())
   observation   String?
   groups        String
-  type          String         @default("")
   product       String         @default("")
+  type          String         @default("")
   model         String         @default("")
   capacity      String         @default("")
   height        String         @default("")
   power         String         @default("")
   input         String         @default("")
   output        String         @default("")
+  clientId      Int?           
+  client        Client?        @relation(fields: [clientId], references: [id])
 }

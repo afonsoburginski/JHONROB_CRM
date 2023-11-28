@@ -12,8 +12,8 @@ interface Product {
   capacity: string;
   height: string;
   power: string;
-  input: string[]; // Atualizado para ser um array de strings
-  output: string[]; // Atualizado para ser um array de strings
+  input: string[];
+  output: string[];
 }
 
 const SelectedProducts: React.FC = () => {
@@ -22,36 +22,45 @@ const SelectedProducts: React.FC = () => {
   return (
     <>
       <Title>Itens da Venda</Title> 
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Grupo</TableHeaderCell>
-            <TableHeaderCell>Equipamento</TableHeaderCell>
-            <TableHeaderCell>Produto</TableHeaderCell>
-            <TableHeaderCell>Modelo</TableHeaderCell>
-            <TableHeaderCell>Capacidade</TableHeaderCell>
-            <TableHeaderCell>Altura</TableHeaderCell>
-            <TableHeaderCell>Potência</TableHeaderCell>
-            <TableHeaderCell>Entrada</TableHeaderCell>
-            <TableHeaderCell>Saída</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {selectedProducts.map((product, index) => (
-            <TableRow key={index}>
-              <TableCell>{product.group}</TableCell>
-              <TableCell>{product.product}</TableCell>
-              <TableCell>{product.type}</TableCell>
-              <TableCell>{product.model}</TableCell>
-              <TableCell>{product.capacity}</TableCell>
-              <TableCell>{product.height}</TableCell>
-              <TableCell>{product.power}</TableCell>
-              <TableCell>{product.input}</TableCell>
-              <TableCell>{product.output}</TableCell>
+      <div className='max-h-96 overflow-auto'>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Grupo</TableHeaderCell>
+              <TableHeaderCell>Equipamento</TableHeaderCell>
+              <TableHeaderCell>Produto</TableHeaderCell>
+              <TableHeaderCell>Modelo</TableHeaderCell>
+              <TableHeaderCell>Capacidade</TableHeaderCell>
+              <TableHeaderCell>Altura</TableHeaderCell>
+              <TableHeaderCell>Potência</TableHeaderCell>
+              <TableHeaderCell>Entrada</TableHeaderCell>
+              <TableHeaderCell>Saída</TableHeaderCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {selectedProducts.map((product, index) => (
+              <TableRow key={index} style={{ height: '46.53px' }}>
+                <TableCell style={{ lineHeight: '1.0' }}>{product.group}</TableCell>
+                <TableCell style={{ lineHeight: '1.0' }}>{product.product}</TableCell>
+                <TableCell style={{ lineHeight: '1.0' }}>{product.type}</TableCell>
+                <TableCell style={{ lineHeight: '1.0' }}>{product.model}</TableCell>
+                <TableCell style={{ lineHeight: '1.0' }}>{product.capacity}</TableCell>
+                <TableCell style={{ lineHeight: '1.0' }}>{product.height}</TableCell>
+                <TableCell style={{ lineHeight: '1.0' }}>{product.power}</TableCell>
+                <TableCell style={{ lineHeight: '1.0' }}>{product.input}</TableCell>
+                <TableCell style={{ lineHeight: '1.0' }}>{product.output}</TableCell>
+              </TableRow>
+            ))}
+            {Array.from({ length: 7 - selectedProducts.length }).map((_, index) => (
+              <TableRow key={index + selectedProducts.length} style={{ height: '46.53px' }}>
+                <TableCell colSpan={9}>
+                  <div style={{ visibility: 'hidden', lineHeight: '1.0' }}>Placeholder</div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </>
   );
 };

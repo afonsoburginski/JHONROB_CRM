@@ -75,7 +75,6 @@ export default function SelectFormClient() {
   const [inputsAndOutputs, setInputsAndOutputs] = useState<InputOutput[]>([]);
   const {addProductToTable} = useSelectedProduct();
 
-  // Adicione o useEffect aqui
   useEffect(() => {
     if (selectedCapacity) {
       setHeights(selectedCapacity.heights);
@@ -92,13 +91,8 @@ export default function SelectFormClient() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('Grupos recebidos:', data);
-  
-        // Verifica se data.groups é um array antes de atualizar o estado
         if (Array.isArray(data.groups)) {
           setGroups(data.groups);
-          // Adicione um log de console para verificar os dados do grupo
-          console.log('Grupos:', data.groups);
         } else {
           console.error('A resposta da API não é um array:', data);
         }
@@ -142,8 +136,6 @@ export default function SelectFormClient() {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           const data = await response.json();
-          console.log('Inputs and Outputs received:', data);
-          // Verifica se data.inputOutputs é um array antes de atualizar o estado
           if (Array.isArray(data.inputOutputs)) {
             setInputsAndOutputs(data.inputOutputs);
           } else {
@@ -182,7 +174,7 @@ export default function SelectFormClient() {
     } else {
       setTypes([]);
     }
-    setSelectedType(null); // Limpe a seleção de tipo
+    setSelectedType(null);
     setSelectedModel(null);
     setSelectedCapacity(null);
     setSelectedHeight(null);
@@ -257,10 +249,7 @@ export default function SelectFormClient() {
     ) {
       return;
     }
-  
-    console.log('selectedInput:', selectedInput); // Adicione este log
-    console.log('selectedOutput:', selectedOutput); // Adicione este log
-  
+
     const savedProduct = {
       group: selectedGroup?.title,
       product: selectedProduct?.title,
@@ -272,10 +261,8 @@ export default function SelectFormClient() {
       input: selectedInput?.map((io) => io.value), // Modificado para mapear para io.value
       output: selectedOutput?.map((io) => io.value), // Modificado para mapear para io.value
     };
-  
     addProductToTable(savedProduct);
-  
-    setSelectedGroup(null); // Limpe a seleção do grupo
+    setSelectedGroup(null);
     setSelectedProduct(null);
     setSelectedType(null);
     setSelectedModel(null);
@@ -291,7 +278,7 @@ export default function SelectFormClient() {
       <form className='flex flex-col w-full max-w-screen-xl gap-5'>
         <div className='flex grid-cols-4 gap-5'>
           <div className='grid-cols-1 w-full'>
-            <label>Grupo</label>
+            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Grupo</label>
             <Select
               value={selectedGroup ? { value: selectedGroup.id, label: selectedGroup.title } : null}
               options={groups.map(group => ({ value: group.id, label: group.title }))}
@@ -299,7 +286,7 @@ export default function SelectFormClient() {
             />
           </div>
           <div className='grid-cols-1 w-full'>
-            <label>Equipamento</label>
+            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Equipamento</label>
             <Select
               value={selectedProduct ? { value: selectedProduct.id, label: selectedProduct.title } : null}
               onChange={handleProductChange}
@@ -308,7 +295,7 @@ export default function SelectFormClient() {
             />
           </div>
           <div className='grid-cols-1 w-full'>
-            <label>Produto</label>
+            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Produto</label>
             <Select
               value={selectedType ? { value: selectedType.id, label: selectedType.title } : null}
               onChange={handleTypeChange}
@@ -317,7 +304,7 @@ export default function SelectFormClient() {
             />
           </div>
           <div className='grid-cols-1 w-full'>
-            <label>Modelo</label>
+            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Modelo</label>
             <Select
               value={selectedModel ? { value: selectedModel.id, label: selectedModel.title } : null}
               onChange={handleModelChange}
@@ -326,7 +313,7 @@ export default function SelectFormClient() {
             />
           </div>
           <div className='grid-cols-1 w-full'>
-            <label>Capacidade</label>
+            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Capacidade</label>
             <Select
               value={selectedCapacity ? { value: selectedCapacity.id, label: selectedCapacity.title } : null}
               onChange={handleCapacityChange}
@@ -338,7 +325,7 @@ export default function SelectFormClient() {
 
         <div className='grid grid-cols-4 gap-5'>
           <div className='grid-cols-1 w-full'>
-            <label>Altura</label>
+            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Altura</label>
             <Select
               value={selectedHeight ? { value: selectedHeight.id, label: selectedHeight.title } : null}
               onChange={handleHeightChange}
@@ -347,7 +334,7 @@ export default function SelectFormClient() {
             />
           </div>
           <div className='grid-cols-1 w-full'>
-            <label>Potência</label>
+            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Potência</label>
             <Select
               value={selectedPower ? { value: selectedPower.id, label: `${selectedPower.title} ${selectedPower.recommended ? "(recomendado)" : ""}` } : null}
               onChange={handlePowerChange}
@@ -356,7 +343,7 @@ export default function SelectFormClient() {
             />
           </div>
           <div className='grid-cols-1 w-full'>
-            <label>Entrada</label>
+            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Entrada</label>
             <Select
               isMulti
               value={selectedInput}
@@ -366,7 +353,7 @@ export default function SelectFormClient() {
             />
           </div>
           <div className='grid-cols-1 w-full'>
-            <label>Saída</label>
+            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Saída</label>
             <Select
               isMulti
               value={selectedOutput}
