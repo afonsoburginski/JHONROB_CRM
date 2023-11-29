@@ -1,87 +1,126 @@
+// components/pdfLayout.tsx
+'use client'
 import React from 'react';
-import { Propose } from '../propose/page';
+import styled from 'styled-components';
 
-interface PdfLayoutProps {
-  propose: Propose;
-}
+const Container = styled.div`
+  width: 794px; // 210mm
+  height: 1122px; // 297mm
+  padding: 20px;
+  margin: auto;
+  background: white;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+`;
 
-// pdfLayout.tsx
-export const getPdfLayout = (propose: Propose) => {
+const Date = styled.p`
+  text-align: right;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`;
+
+const TableRow = styled.tr`
+  border-bottom: 1px solid #ddd;
+`;
+
+const TableCell = styled.td`
+  padding: 8px;
+`;
+
+const LeftAligned = styled.div`
+  text-align: left;
+  flex: 1;
+`;
+
+const CenterAligned = styled.div`
+  text-align: center;
+  flex: 1;
+`;
+
+
+export const PdfLayout: React.FC = () => {
   return (
-    [
-      { text: 'Sinop, 28 de Agosto de 2023.', alignment: 'right' },
-      {
-        table: {
-          widths: ['*', '*', '*', '*'],
-          body: [
-            ['Cliente:', propose.clientName || '', '', ''],
-            ['Endereço:', propose.address || '', '', ''],
-            ['Município:', propose.city || '', 'UF:', propose.state || ''],
-            ['CPF/CNPJ:', propose.cpfCnpj || '', 'I.E.:', propose.ie || ''],
-            ['Contato:', propose.contact || '', 'Telefone:', propose.phone || ''],
-            ['E-mail:', propose.email || '', '', ''],
-          ]
-        },
-        layout: 'noBorders'
-      },
-      { text: ' ', fontSize: 14 }, // Adiciona um espaço
-      { text: 'R0 PROPOSTA DE FORNECIMENTO DE EQUIPAMENTOS OF-11915', alignment: 'center' },
-      { text: ' ', fontSize: 14 }, // Adiciona um espaço
-      {
-        table: {
-          widths: ['auto', '*', 'auto'],
-          body: [
-            ['QUANT.', 'DESCRIÇÃO', 'VALOR', ''], // Adicione uma célula vazia
-          ]
-        }
-      },
-      { text: '01 ELEVADOR DE CAÇAMBAS', fontSize: 14 },
-      { text: ' ', fontSize: 14 }, // Adiciona um espaço
-      {
-        table: {
-          widths: ['auto', 'auto', '*'],
-          body: [
-            ['EL-1', 'CARGA PL-1', '', ''], // Adicione uma célula vazia
-          ]
-        },
-        layout: 'noBorders'
-      },
-      { text: ' ', fontSize: 14 }, // Adiciona um espaço
-      {
-        table: {
-          body: [
-            ['Modelo', propose.product || ''],
-            ['Altura', `${propose.height || ''} metros`],
-            ['Capacidade', `${propose.capacity || ''} (T/H)`],
-            ['Produto', propose.type || ''],
-            ['Peso específico do produto', '750 kg/m³'],
-            ['Velocidade', '3,40 m/s'],
-            ['Acionamento', `Motoredutor ${propose.power || ''} com freio contra recuo`],
-            ['Lado do Acionamento', 'Direito'],
-            ['Correia', '12" x 4L com revestimento 1/16" x 1/16"'],
-            ['Caçambas', 'Plástica 280mm convencional'],
-            ['Distância entre caçambas', '153mm 167mm'],
-            ['Tambor Superior', 'Emborrachado Ø 642mm'],
-            ['Corpo', 'Construído em chapa galvanizada # 14 (1,95mm)'],
-            ['Pé e Cabeça', 'Construído em chapa galvanizada # 12 (2,70mm)'],
-          ]
-        }
-      },
-      { text: ' ', fontSize: 14 }, // Adiciona um espaço
-      { text: 'Acompanham este elevador:', fontSize: 14 },
-      {
-        ul: [
-          '1 Saída 240mm',
-          '1 Porta de inspeção localizada na cabeça do elevador',
-          '1 Esticador no pé do elevador',
-          '2 Porta de inspeção no corpo do elevador',
-          'Cabo de aço, para uso de cinto trava queda.',
-          'Plataforma padrão para inspeção e manutenção com piso anti-derrapante',
-          'Guarda corpo a partir de 2 metros de altura acima do nível do poço',
-          'Moegas baixa / alta de entrada no pé do elevador',
-          'Plataformas de descanso conforme normas de segurança',
-        ]
-      },
-    ]
+    <Container>
+      <Date>Sinop, 28 de Agosto de 2023.</Date>
+      <Table>
+        <TableRow>
+          <TableCell>Cliente:</TableCell>
+          <TableCell>Ari Valdemar Velke</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Endereço:</TableCell>
+          <TableCell colSpan={3}>Rod. MT 235, KM 50, S/Nº, GLEBA: Sucuruina, Faz. São Pedro.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Município:</TableCell>
+          <TableCell>Diamantino</TableCell>
+          <TableCell>UF:</TableCell>
+          <TableCell>MT</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>CPF/CNPJ:</TableCell>
+          <TableCell>144.920.590-91</TableCell>
+          <TableCell>I.E.:</TableCell>
+          <TableCell>13.315.579-0</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Contato:</TableCell>
+          <TableCell>Giovana Velke / Tércio</TableCell>
+          <TableCell>Telefone:</TableCell>
+          <TableCell>(65)9.8402-0588</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>E-mail:</TableCell>
+          <TableCell>ari.velke@hotmail.com / valedoriodosangue@gmail.com</TableCell>
+        </TableRow>
+      </Table>
+      <Table>
+        <TableRow>
+          <TableCell style={{ width: '10%' }}>
+            <LeftAligned>
+              OF-11915
+            </LeftAligned>
+          </TableCell>
+          <TableCell style={{ width: '65%' }}>
+            <CenterAligned>
+              PROPOSTA DE FORNECIMENTO DE EQUIPAMENTOS
+            </CenterAligned>
+          </TableCell>
+        </TableRow>
+      </Table>
+      <Table>
+        <TableRow>
+          <TableCell>QUANT.</TableCell>
+          <TableCell>DESCRIÇÃO</TableCell>
+          <TableCell>VALOR</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>01</TableCell>
+          <TableCell>MÁQUINA DE PRE-LIMPEZA PL-1</TableCell>
+          <TableCell></TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Modelo</TableCell>
+          <TableCell>PLJ-220</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Capacidade</TableCell>
+          <TableCell>220 t/h</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Produto</TableCell>
+          <TableCell>Soja/Milho</TableCell>
+        </TableRow>
+      </Table>
+      {/* Continue adicionando mais elementos conforme necessário */}
+    </Container>
   );
 };

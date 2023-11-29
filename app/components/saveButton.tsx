@@ -1,11 +1,14 @@
 'use client'
+// saveButton.tsx
 import React from 'react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
+import { useObservation } from '../contexts/observationContext';
 
 const SaveButton: React.FC = () => {
   const { selectedProducts } = useSelectedProduct();
   const { selectedClient } = useSelectedClient();
+  const { observation } = useObservation();
 
   console.log('Selected client:', selectedClient);
 
@@ -23,47 +26,41 @@ const SaveButton: React.FC = () => {
       return;
     }
     
-    for (const product of selectedProducts) {
-      const requiredFields = ['group'];
-      for (const field of requiredFields) {
-        if (!(field in product)) {
-          console.warn(`product.${field} is missing or undefined`);
-          return;
-        }
-      }
-      
-      const data = {
-        title: product.title, 
-        content: "", // Adicione o conteúdo aqui
-        observation: "", // Adicione a observação aqui
-        groups: JSON.stringify(product.group),
-        product: product.title,
-        type: "", // Adicione o tipo aqui
-        model: "", // Adicione o modelo aqui
-        capacity: "", // Adicione a capacidade aqui
-        height: product.height,
-        power: product.power,
-        input: JSON.stringify(product.inputOutput),
-        output: JSON.stringify(product.inputOutput),
-        clientId: selectedClient.id,
-      };
+    const productSelections = selectedProducts.map(product => ({
+      groups: product.group,
+      type: product.type,
+      model: product.model,
+      capacity: product.capacity,
+      height: product.height,
+      power: product.power,
+      product: product.product,
+      input: product.input.join(', '),
+      output: product.output.join(', '),
+    }));
 
-      console.log('Data to be sent:', data); // Log dos dados a serem enviados
-      
-      const response = await fetch('http://localhost:3000/api/savePropose', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-    
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      } else {
-        const responseData = await response.json();
-        console.log('Response data:', responseData); // Log dos dados da resposta
-      }
+    const data = {
+      title: `Proposta ${selectedClient.name}`, // Use the actual title value
+      content: '', // Use the actual content value
+      observation: observation,
+      clientId: selectedClient.id,
+      productSelections,
+    };
+
+    console.log('Data to be sent:', data);
+
+    const response = await fetch('http://localhost:3000/api/savePropose', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    } else {
+      const responseData = await response.json();
+      console.log('Response data:', responseData); // Log dos dados da resposta
     }
   };
 

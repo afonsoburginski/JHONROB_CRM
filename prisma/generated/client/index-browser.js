@@ -17,11 +17,11 @@ exports.$Enums = {}
 
 /**
  * Prisma Client JS version: 5.6.0
- * Query Engine version: aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a
+ * Query Engine version: e95e739751f42d8ca026f6b910f5a2dc5adeaeee
  */
 Prisma.prismaVersion = {
   client: "5.6.0",
-  engine: "aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a"
+  engine: "e95e739751f42d8ca026f6b910f5a2dc5adeaeee"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -182,6 +182,11 @@ exports.Prisma.ProposeScalarFieldEnum = {
   content: 'content',
   createdAt: 'createdAt',
   observation: 'observation',
+  clientId: 'clientId'
+};
+
+exports.Prisma.ProductSelectionScalarFieldEnum = {
+  id: 'id',
   groups: 'groups',
   product: 'product',
   type: 'type',
@@ -191,7 +196,7 @@ exports.Prisma.ProposeScalarFieldEnum = {
   power: 'power',
   input: 'input',
   output: 'output',
-  clientId: 'clientId'
+  proposeId: 'proposeId'
 };
 
 exports.Prisma.SortOrder = {
@@ -221,7 +226,8 @@ exports.Prisma.ModelName = {
   Height: 'Height',
   Power: 'Power',
   InputOutput: 'InputOutput',
-  Propose: 'Propose'
+  Propose: 'Propose',
+  ProductSelection: 'ProductSelection'
 };
 
 /**

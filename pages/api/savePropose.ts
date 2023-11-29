@@ -3,44 +3,51 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from '../../app/prisma'
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
+  console.log('Request received');
+
   if (req.method === 'POST') {
-    console.log('Request body', req.body); // Log do corpo da requisição
+    console.log('Request body', req.body);
 
-    const { title, content, observation, groups, type, model, capacity, height, power, product, input, output, clientId } = req.body;
+    const { title, content, observation, productSelections, clientId } = req.body;
 
-    // Verifique se todos os campos necessários estão presentes
-    if (!title || !groups || !height || !power || !product || !input || !output || !clientId) {
-      res.status(400).json({ error: 'Missing required fields' });
-      return;
-    }
-
-    const data = {
-      title,
-      content: content || "", // Use um valor padrão se o campo não estiver presente
-      observation: observation || "", // Use um valor padrão se o campo não estiver presente
-      groups,
-      type: type || "", // Use um valor padrão se o campo não estiver presente
-      model: model || "", // Use um valor padrão se o campo não estiver presente
-      capacity: capacity || "", // Use um valor padrão se o campo não estiver presente
-      height,
-      power,
-      product,
-      input,
-      output,
-      clientId, // Adiciona o clientId aos dados da proposta
+    const proposeData = {
+      title: title || "",
+      content: content || "",
+      observation: observation || "",
+      clientId,
     };
 
+    console.log('Data to create proposal', proposeData);
+
     try {
-      console.log('Data to create proposal', data); // Log dos dados para criar a proposta
+      const proposal = await prisma.propose.create({
+        data: {
+          ...proposeData,
+          productSelections: {
+            create: productSelections.map((selection: any) => ({
+              groups: selection.groups || "",
+              product: selection.product || "",
+              type: selection.type || "",
+              model: selection.model || "",
+              capacity: selection.capacity || "",
+              height: selection.height || "",
+              power: selection.power || "",
+              input: selection.input || "",
+              output: selection.output || "",
+            })),
+          },
+        },
+        include: {
+          productSelections: true,
+        },
+      });
 
-      const proposal = await prisma.propose.create({ data });
-
-      console.log('Created proposal', proposal); // Log da proposta criada
+      console.log('Created proposal', proposal);
 
       res.status(200).json(proposal);
     } catch (error) {
-      console.error('Error creating proposal:', error); // Log do erro
-      res.status(500).json({ error: error.message }); // Envia a mensagem de erro na resposta
+      console.error('Error creating proposal:', error);
+      res.status(500).json({ error: error.message });
     }
   } else {
     res.status(405).json({ error: 'Method not allowed' });

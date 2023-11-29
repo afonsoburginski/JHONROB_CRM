@@ -96,15 +96,22 @@ model Propose {
   content       String
   createdAt     DateTime       @default(now())
   observation   String?
-  groups        String
-  product       String         @default("")
-  type          String         @default("")
-  model         String         @default("")
-  capacity      String         @default("")
-  height        String         @default("")
-  power         String         @default("")
-  input         String         @default("")
-  output        String         @default("")
   clientId      Int?           
   client        Client?        @relation(fields: [clientId], references: [id])
+  productSelections ProductSelection[]
+}
+
+model ProductSelection {
+  id            Int            @id @default(autoincrement())
+  groups        String
+  product       String
+  type          String
+  model         String
+  capacity      String
+  height        String
+  power         String
+  input         String
+  output        String
+  proposeId     Int
+  propose       Propose        @relation(fields: [proposeId], references: [id])
 }

@@ -21,15 +21,7 @@ interface Propose {
   power: string;
   input: string;
   output: string;
-  clientName: string; // Adicione esta linha
-  address: string; // Adicione esta linha
-  city: string; // Adicione esta linha
-  state: string; // Adicione esta linha
-  cpfCnpj: string; // Adicione esta linha
-  ie: string; // Adicione esta linha
-  contact: string; // Adicione esta linha
-  phone: string; // Adicione esta linha
-  email: string; // Adicione esta linha
+  client: { name: string }; // Modifique esta linha
 }
 
 const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
@@ -38,9 +30,11 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
       <TableRow>
         <TableHeaderCell>ID</TableHeaderCell>
         <TableHeaderCell>Título</TableHeaderCell>
-        <TableHeaderCell>Conteúdo</TableHeaderCell>
-        {/* <TableHeaderCell>Observação</TableHeaderCell> */}
-        <TableHeaderCell>Grupos</TableHeaderCell>
+        {/* <TableHeaderCell>Conteúdo</TableHeaderCell> */}
+        <TableHeaderCell>Cliente</TableHeaderCell>
+        <TableHeaderCell>Observação</TableHeaderCell>
+        <TableHeaderCell>Status</TableHeaderCell>
+      {/*<TableHeaderCell>Grupos</TableHeaderCell>
         <TableHeaderCell>Equipamento</TableHeaderCell>
         <TableHeaderCell>Produto</TableHeaderCell>
         <TableHeaderCell>Modelo</TableHeaderCell>
@@ -48,8 +42,8 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
         <TableHeaderCell>Altura</TableHeaderCell>
         <TableHeaderCell>Potência</TableHeaderCell>
         <TableHeaderCell>Entrada</TableHeaderCell>
-        <TableHeaderCell>Saída</TableHeaderCell>
-        <TableHeaderCell>Gerar PDF</TableHeaderCell> {/* Adicione esta linha */}
+        <TableHeaderCell>Saída</TableHeaderCell> */}
+        <TableHeaderCell>Gerar PDF</TableHeaderCell>
       </TableRow>
     </TableHead>
     <TableBody>
@@ -57,9 +51,11 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
         <TableRow key={index}>
           <TableCell>{propose.id}</TableCell>
           <TableCell>{propose.title}</TableCell>
-          <TableCell>{propose.content}</TableCell>
-          {/* <TableCell>{propose.observation}</TableCell> */}
-          <TableCell>{propose.groups}</TableCell>
+          {/* <TableCell>{propose.content}</TableCell> */}
+          <TableCell>{propose.client.name}</TableCell>
+          <TableCell>{propose.observation}</TableCell> 
+          <TableCell>"status"</TableCell> 
+        {/*<TableCell>{propose.groups}</TableCell>
           <TableCell>{propose.product}</TableCell>
           <TableCell>{propose.type}</TableCell>
           <TableCell>{propose.model}</TableCell>
@@ -67,7 +63,7 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
           <TableCell>{propose.height}</TableCell>
           <TableCell>{propose.power}</TableCell>
           <TableCell>{propose.input}</TableCell>
-          <TableCell>{propose.output}</TableCell>
+          <TableCell>{propose.output}</TableCell> */}
           <TableCell>
             <GeneratePdfButton propose={propose} />
           </TableCell> {/* Adicione esta linha */}
