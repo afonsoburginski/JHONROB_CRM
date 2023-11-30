@@ -54,7 +54,7 @@ export default function ProposePage({ searchParams }: { searchParams: { q: strin
   return (
     <main className="p-4 md:p-10 mx-auto max-w-screen-2xl">
       <Title>Propostas</Title>
-      <Text>Lista detalhada de propostas</Text>
+      <Text>Lista detalhada de propostas, busque por ID ou Nome.</Text>
       <Search />
       <Card className="mt-6">
         <ProposeTable proposes={proposes} />

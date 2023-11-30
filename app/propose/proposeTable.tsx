@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import { Table, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
-import GeneratePdfButton from '../components/pdfButton';
+import GenerateProposeButton from '../components/proposeButton';
 
 interface ProposeTableProps {
   proposes: Propose[];
@@ -54,7 +54,11 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
           {/* <TableCell>{propose.content}</TableCell> */}
           <TableCell>{propose.client.name}</TableCell>
           <TableCell>{propose.observation}</TableCell> 
-          <TableCell>"status"</TableCell> 
+          <TableCell>
+            <span style={{ backgroundColor: '#3b82f6', color: 'white', padding: '0.5em', borderRadius: '0.30em' }}>
+              Aprovado
+            </span>
+          </TableCell>
         {/*<TableCell>{propose.groups}</TableCell>
           <TableCell>{propose.product}</TableCell>
           <TableCell>{propose.type}</TableCell>
@@ -65,7 +69,7 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
           <TableCell>{propose.input}</TableCell>
           <TableCell>{propose.output}</TableCell> */}
           <TableCell>
-            <GeneratePdfButton propose={propose} />
+            <GenerateProposeButton propose={propose} />
           </TableCell> {/* Adicione esta linha */}
         </TableRow>
       ))}

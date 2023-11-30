@@ -8,6 +8,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       const proposals = await prisma.propose.findMany({
         include: {
           client: true, 
+          productSelections: true,
         },
       });
       res.status(200).json(proposals);
