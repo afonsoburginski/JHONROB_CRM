@@ -1,68 +1,76 @@
-// propsoeButton.tsx:
+// proposeButton.tsx
 'use client'
-import React, { useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Propose } from '../propose/page';
 import Layout from './layout';
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
+import IconButton from '@mui/material/IconButton';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import ReactDOM from 'react-dom';
+import { showToastSuccess, showToastError } from './toastfy';
 
 interface GenerateProposeButtonProps {
   propose: Propose;
 }
 
+const layoutSizeInMm = {
+  width: 210,
+  height: 297
+};
+
 const GenerateProposeButton: React.FC<GenerateProposeButtonProps> = ({ propose }) => {
-  const svgRef = useRef(null);
+  const [layoutReady, setLayoutReady] = useState(false);
 
   const generatePdf = () => {
-    const input = document.getElementById('layout');
+    const layoutElement = document.createElement('div');
+    layoutElement.style.position = 'absolute';
+    layoutElement.style.left = '-9999px';
+    document.body.appendChild(layoutElement);
+  
+    ReactDOM.render(<Layout propose={propose} />, layoutElement, () => {
+      html2canvas(layoutElement, { scale: 1 })
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: [layoutSizeInMm.width, layoutSizeInMm.height]
+        });
+        const imgWidth = layoutSizeInMm.width;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+    
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+        pdf.save(`proposta_${propose.id}.pdf`);
+    
+        document.body.removeChild(layoutElement);
 
-    html2canvas(input)
-    .then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4'
+        showToastSuccess('PDF gerado com sucesso');
+      })
+      .catch((error) => {
+        showToastError('Erro ao gerar o PDF');
       });
-      pdf.addImage(imgData, 'PNG', 0, 0);
-      pdf.save("proposta.pdf");
     });
   };
 
   const handleClick = () => {
+    if (!layoutReady) {
+      console.log('Layout ainda não está pronto');
+      return;
+    }
+
     console.log('Button clicked');
     generatePdf();
-
-    // Verifique se os dados da proposta estão definidos
-    if (!propose) {
-      console.error('Dados da proposta não definidos');
-      return;
-    }
-
-    // Imprima os dados da proposta no console
-    console.log('Dados da proposta:', propose);
-
-    // Verifique se os produtos estão definidos
-    if (!propose.productSelections) {
-      console.error('Produtos não definidos');
-      return;
-    }
-
-    // Imprima cada produto no console
-    propose.productSelections.forEach((product, index) => {
-      console.log(`Produto ${index + 1}:`, product);
-    });
   };
 
+  useEffect(() => {
+    setLayoutReady(true);
+  }, []);
+
   return (
-    <>
-      <Layout propose={propose} />
-      <div onClick={handleClick} onMouseEnter={() => svgRef.current?.classList.add('animate-bounce')} onMouseLeave={() => svgRef.current?.classList.remove('animate-bounce')}>
-        <svg ref={svgRef} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8 text-blue-500 cursor-pointer">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 2v4a2 2 0 0 0 2 2h4m-2 2v8m-6-4H6"></path>
-        </svg>
-      </div>
-    </>
+    <IconButton color="primary" onClick={handleClick}>
+      <SaveAltIcon />
+    </IconButton>
   );
 };
 

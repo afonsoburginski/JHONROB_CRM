@@ -1,8 +1,9 @@
 // components/Layout.tsx
 'use client'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/system';
-import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typography, Grid, Box } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typography, Grid, Box, Divider } from '@mui/material';
+import { colors } from '@react-spring/shared';
 
 interface Client {
   id: number;
@@ -47,19 +48,19 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
-  // Remova a lógica de roteamento, pois os dados da proposta agora vêm das propriedades
+  const [currentPropose, setCurrentPropose] = useState(propose);
 
-  console.log(typeof propose.client); // deve imprimir "string"
-  console.log(Array.isArray(productSelections)); // deve imprimir "true"
+  useEffect(() => {
+    setCurrentPropose(propose);
+  }, [propose]);
 
   const Container = styled('div')({
-    width: '210mm', // A4 width
-    height: '297mm', // A4 height
+    width: '260mm',
+    height: '297mm' ,
     padding: '0 10mm', // Reduza o padding horizontal
     margin: '0 auto',
     background: 'white',
     boxShadow: '0 0 0.1cm rgba(0,0,0,0.)',
-    justifyContent: 'center',
   });
   
   const ContentContainer = styled('div')({
@@ -85,6 +86,12 @@ const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
     marginBottom: '10px',
   });
 
+  const DescriptionTypography = styled(Typography)({
+    marginBottom: '10px',
+    display: 'flex',
+    gap: '2rem',
+  });
+
   const TitleTypography = styled(Typography)({
     fontWeight: 'bold',
     display: 'inline',
@@ -105,12 +112,17 @@ const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
 
 
   return (
-    <Container id="layout" class="css-1toqb1g">
+    <Container id={`layout_${currentPropose.id}`}>
       <ContentContainer>
-        <DateTypography>Sinop, 28 de Agosto de 2023.</DateTypography>
+
+        <DateTypography>
+          Sinop, {new Date(propose.createdAt).toLocaleDateString(
+            'pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }
+          )}.
+        </DateTypography>
 
         <Grid container spacing={2} mt={5}>
-          <Grid item xs={8}>
+          <Grid item xs={4}>
             <HeaderTypography>
               <TitleTypography>Cliente:</TitleTypography>
               <TextTypography>{propose.client.name}</TextTypography>
@@ -126,7 +138,7 @@ const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
         </Grid>
 
         <Grid container spacing={2}>
-          <Grid item xs={8}>
+          <Grid item xs={4}>
             <HeaderTypography>
               <TitleTypography>Município:</TitleTypography>
               <TextTypography>{propose.client.city}</TextTypography>
@@ -162,13 +174,13 @@ const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
           <Grid item xs={12}>
             <Grid container justifyContent="space-between">
               <Grid item xs={3}>
-                <TitleTypography>RO</TitleTypography>
+                <TitleTypography style={{ color: 'red' }} >RO</TitleTypography>
               </Grid>
               <Grid item xs={8}>
                 <TitleTypography>PROPOSTA DE FORNECIMENTO DE EQUIPAMENTOS</TitleTypography>
               </Grid>
               <Grid item xs={1}>
-                <TitleTypography>{`OF-${propose.id}`}</TitleTypography>
+                <TitleTypography style={{ color: 'red' }}>{`OF - ${propose.id}`}</TitleTypography>
               </Grid>
             </Grid>
           </Grid>
@@ -204,20 +216,21 @@ const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
                   {/* <TitleTypography>{product.product ? product.product : 'Produto não definido'}</TitleTypography> */}
                 </Grid>
                 <Grid item xs={7} mt={1}>
-                  <HeaderTypography>
-                    <TitleTypography>Modelo</TitleTypography>
+                  <DescriptionTypography>
+                    <TitleTypography>Modelo....................:</TitleTypography>
                     <TextTypography>{product.model ? product.model : 'Modelo não definido'}</TextTypography>
-                  </HeaderTypography>
-                  <HeaderTypography>
-                    <TitleTypography>Capacidade</TitleTypography>
+                  </DescriptionTypography>
+                  <DescriptionTypography>
+                    <TitleTypography>Capacidade.............:</TitleTypography>
                     <TextTypography>{product.capacity ? product.capacity : 'Capacidade não definida'}</TextTypography>
-                  </HeaderTypography>
-                  <HeaderTypography>
-                    <TitleTypography>Produto:</TitleTypography>
+                  </DescriptionTypography>
+                  <DescriptionTypography>
+                    <TitleTypography>Produto...................:</TitleTypography>
                     <TextTypography>{product.product ? product.product : 'Produto não definido'}</TextTypography>
-                  </HeaderTypography>
+                  </DescriptionTypography>
                 </Grid>
               </Grid>
+              <Divider style={{borderTop: '0.5px dotted'}}/>
 
             </Grid>
           ))}

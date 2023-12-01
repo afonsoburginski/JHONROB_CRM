@@ -17,7 +17,11 @@ interface Product {
 }
 
 const SelectedProducts: React.FC = () => {
-  const { selectedProducts } = useSelectedProduct();
+  const { selectedProducts, removeProduct } = useSelectedProduct(); // Adicione removeProduct
+
+  const handleRemoveProduct = (index: number) => {
+    removeProduct(index);
+  };
 
   return (
     <>
@@ -35,6 +39,7 @@ const SelectedProducts: React.FC = () => {
               <TableHeaderCell>Potência</TableHeaderCell>
               <TableHeaderCell>Entrada</TableHeaderCell>
               <TableHeaderCell>Saída</TableHeaderCell>
+              <TableHeaderCell>Remover</TableHeaderCell> {/* Adicione uma coluna para o botão de remover */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -49,11 +54,14 @@ const SelectedProducts: React.FC = () => {
                 <TableCell style={{ lineHeight: '1.0' }}>{product.power}</TableCell>
                 <TableCell style={{ lineHeight: '1.0' }}>{product.input}</TableCell>
                 <TableCell style={{ lineHeight: '1.0' }}>{product.output}</TableCell>
+                <TableCell style={{ lineHeight: '1.0' }}>
+                  <button onClick={() => handleRemoveProduct(index)}>X</button> {/* Adicione um botão de remover */}
+                </TableCell>
               </TableRow>
             ))}
             {Array.from({ length: 7 - selectedProducts.length }).map((_, index) => (
               <TableRow key={index + selectedProducts.length} style={{ height: '46.53px' }}>
-                <TableCell colSpan={9}>
+                <TableCell colSpan={10}>
                   <div style={{ visibility: 'hidden', lineHeight: '1.0' }}>Placeholder</div>
                 </TableCell>
               </TableRow>

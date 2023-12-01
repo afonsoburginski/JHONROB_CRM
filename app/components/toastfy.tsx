@@ -24,3 +24,11 @@ export function checkFieldsAndShowError(
   }
   return false;
 }
+
+export function showToastSuccess(message) {
+  toast.success(message);
+}
+
+export function showToastError(message) {
+  toast.error(message);
+}

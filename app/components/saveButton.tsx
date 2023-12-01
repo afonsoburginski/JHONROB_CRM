@@ -4,25 +4,21 @@ import React from 'react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
 import { useObservation } from '../contexts/observationContext';
+import { showToastSuccess, showToastError } from './toastfy'; // importe as funções do toast
 
 const SaveButton: React.FC = () => {
-  const { selectedProducts } = useSelectedProduct();
-  const { selectedClient } = useSelectedClient();
-  const { observation } = useObservation();
-
-  console.log('Selected client:', selectedClient);
+  const { selectedProducts, resetSelectedProducts } = useSelectedProduct(); // Adicione resetSelectedProducts
+  const { selectedClient, resetSelectedClient } = useSelectedClient(); // Adicione resetSelectedClient
+  const { observation, resetObservation } = useObservation(); // Adicione resetObservation
 
   const handleSubmit = async () => {
-    console.log('Selected products:', selectedProducts); // Log dos produtos selecionados
-    console.log('Selected client:', selectedClient); // Log do cliente selecionado
-
     if (!selectedProducts || selectedProducts.length === 0) {
-      console.error('No products selected');
+      showToastError('Nenhum produto selecionado'); // mostre um toast de erro
       return;
     }
     
     if (!selectedClient) {
-      console.error('No client selected');
+      showToastError('Nenhum cliente selecionado'); // mostre um toast de erro
       return;
     }
     
@@ -46,8 +42,6 @@ const SaveButton: React.FC = () => {
       productSelections,
     };
 
-    console.log('Data to be sent:', data);
-
     const response = await fetch('http://localhost:3000/api/savePropose', {
       method: 'POST',
       headers: {
@@ -57,10 +51,16 @@ const SaveButton: React.FC = () => {
     });
   
     if (!response.ok) {
+      showToastError(`Erro ao salvar: ${response.status}`); // mostre um toast de erro
       throw new Error(`HTTP error! status: ${response.status}`);
     } else {
       const responseData = await response.json();
-      console.log('Response data:', responseData); // Log dos dados da resposta
+
+      resetSelectedProducts();
+      resetSelectedClient();
+      resetObservation();
+
+      showToastSuccess('Proposta salva com sucesso'); // mostre um toast de sucesso
     }
   };
 

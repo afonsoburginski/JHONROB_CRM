@@ -37,6 +37,7 @@ interface Client {
 interface SelectedClientContextData {
   selectedClient: Client | null;
   setSelectedClient: (client: Client | null) => void;
+  resetSelectedClient: () => void; // Adicione esta linha
 }
 
 const SelectedClientContext = createContext<SelectedClientContextData | undefined>(undefined);
@@ -44,8 +45,12 @@ const SelectedClientContext = createContext<SelectedClientContextData | undefine
 export const SelectedClientProvider: React.FC<{children: ReactNode}> = ({ children }) => {
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
 
+  const resetSelectedClient = () => { // Adicione esta função
+    setSelectedClient(null);
+  };
+
   return (
-    <SelectedClientContext.Provider value={{ selectedClient, setSelectedClient }}>
+    <SelectedClientContext.Provider value={{ selectedClient, setSelectedClient, resetSelectedClient }}>
       {children}
     </SelectedClientContext.Provider>
   );

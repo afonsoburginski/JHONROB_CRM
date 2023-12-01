@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
-import { checkFieldsAndShowError } from './toastify';
+import { checkFieldsAndShowError } from './toastfy';
 
 interface Group {
   id: string;

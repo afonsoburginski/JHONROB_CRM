@@ -1,6 +1,5 @@
 // selectedProductContext.tsx
 'use client'
-// selectedProductContext.tsx
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 interface Group {
@@ -29,6 +28,7 @@ interface SelectedProductContextData {
   selectProduct: (product: Product | null) => void;
   selectedProducts: Product[];
   addProductToTable: (product: Product) => void;
+  resetSelectedProducts: () => void; // Adicione esta linha
 }
 
 const SelectedProductContext = createContext<SelectedProductContextData>({} as SelectedProductContextData);
@@ -49,8 +49,12 @@ export const SelectedProductProvider: React.FC<SelectedProductProviderProps> = (
     setSelectedProducts(prevProducts => [...prevProducts, product]);
   };
 
+  const resetSelectedProducts = () => { // Adicione esta função
+    setSelectedProducts([]);
+  };
+
   return (
-    <SelectedProductContext.Provider value={{ selectedProduct, selectProduct, selectedProducts, addProductToTable }}>
+    <SelectedProductContext.Provider value={{ selectedProduct, selectProduct, selectedProducts, addProductToTable, resetSelectedProducts }}>
       {children}
     </SelectedProductContext.Provider>
   );
