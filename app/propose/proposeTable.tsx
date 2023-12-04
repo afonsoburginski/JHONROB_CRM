@@ -55,7 +55,7 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
           <TableCell>{propose.id}</TableCell>
           <TableCell>{`Proposta ${propose.client.name}`}</TableCell> 
           <TableCell>
-            <ObservationModal observation={propose.observation} /> {/* Substitua a exibição direta da observação pelo componente ObservationModal */}
+            <ObservationModal observation={propose.observation} />
           </TableCell>
           <TableCell>
             <Button style={{ backgroundColor: '#3b82f6', color: 'white', padding: '0.5em', borderRadius: '0.30em' }}>

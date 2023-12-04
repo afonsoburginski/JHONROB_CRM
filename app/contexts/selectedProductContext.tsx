@@ -21,6 +21,7 @@ interface Product {
   inputOutput: InputOutput;
   height: string;
   power: string;
+  tempId?: number; // Adicione esta linha
 }
 
 interface SelectedProductContextData {
@@ -28,7 +29,8 @@ interface SelectedProductContextData {
   selectProduct: (product: Product | null) => void;
   selectedProducts: Product[];
   addProductToTable: (product: Product) => void;
-  resetSelectedProducts: () => void; // Adicione esta linha
+  removeProduct: (tempId: number) => void; // Atualize esta linha
+  resetSelectedProducts: () => void;
 }
 
 const SelectedProductContext = createContext<SelectedProductContextData>({} as SelectedProductContextData);
@@ -46,15 +48,20 @@ export const SelectedProductProvider: React.FC<SelectedProductProviderProps> = (
   };
 
   const addProductToTable = (product: Product) => {
-    setSelectedProducts(prevProducts => [...prevProducts, product]);
+    const productWithTempId = { ...product, tempId: Date.now() }; // Adicione esta linha
+    setSelectedProducts(prevProducts => [...prevProducts, productWithTempId]);
   };
 
-  const resetSelectedProducts = () => { // Adicione esta função
+  const removeProduct = (tempId: number) => { // Atualize esta linha
+    setSelectedProducts(prevProducts => prevProducts.filter(product => product.tempId !== tempId)); // Atualize esta linha
+  };
+
+  const resetSelectedProducts = () => {
     setSelectedProducts([]);
   };
 
   return (
-    <SelectedProductContext.Provider value={{ selectedProduct, selectProduct, selectedProducts, addProductToTable, resetSelectedProducts }}>
+    <SelectedProductContext.Provider value={{ selectedProduct, selectProduct, selectedProducts, addProductToTable, removeProduct, resetSelectedProducts }}>
       {children}
     </SelectedProductContext.Provider>
   );

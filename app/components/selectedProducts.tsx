@@ -4,6 +4,11 @@ import React from 'react';
 import { Table, Title, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
 
+import { Button } from '@tremor/react';
+import { AiOutlineClose } from 'react-icons/ai';
+import CloseIcon from '@mui/icons-material/Close';
+
+
 interface Product {
   group: string;
   product: string;
@@ -14,13 +19,14 @@ interface Product {
   power: string;
   input: string[];
   output: string[];
+  tempId?: number; // Adicione esta linha
 }
 
 const SelectedProducts: React.FC = () => {
   const { selectedProducts, removeProduct } = useSelectedProduct(); // Adicione removeProduct
 
-  const handleRemoveProduct = (index: number) => {
-    removeProduct(index);
+  const handleRemoveProduct = (tempId: number) => { // Atualize esta linha
+    removeProduct(tempId); // Atualize esta linha
   };
 
   return (
@@ -54,8 +60,10 @@ const SelectedProducts: React.FC = () => {
                 <TableCell style={{ lineHeight: '1.0' }}>{product.power}</TableCell>
                 <TableCell style={{ lineHeight: '1.0' }}>{product.input}</TableCell>
                 <TableCell style={{ lineHeight: '1.0' }}>{product.output}</TableCell>
-                <TableCell style={{ lineHeight: '1.0' }}>
-                  <button onClick={() => handleRemoveProduct(index)}>X</button> {/* Adicione um botão de remover */}
+                <TableCell style={{ lineHeight: '1.0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={() => handleRemoveProduct(product.tempId)}>
+                    <AiOutlineClose />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

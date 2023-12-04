@@ -26,7 +26,7 @@ const ObservationModal: React.FC<ObservationModalProps> = ({ observation }) => {
       <Typography variant="body1" component="span">
         {observation.substring(0, 30)}
       </Typography>
-      <Button color="primary" onClick={handleOpen}>
+      <Button variant='outlined' color="primary" onClick={handleOpen}>
         Ver mais
       </Button>
       <Modal open={isModalOpen} onClose={handleClose}>

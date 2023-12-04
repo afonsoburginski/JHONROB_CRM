@@ -2,6 +2,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+import { Grid, Text, Button } from '@tremor/react';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
 import { checkFieldsAndShowError } from './toastfy';
 
@@ -275,75 +276,74 @@ export default function SelectFormClient() {
 
   return (
     <>
-      <form className='flex flex-col w-full max-w-screen-xl gap-5'>
-        <div className='flex grid-cols-4 gap-5'>
-          <div className='grid-cols-1 w-full'>
-            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Grupo</label>
-            <Select
-              value={selectedGroup ? { value: selectedGroup.id, label: selectedGroup.title } : null}
-              options={groups.map(group => ({ value: group.id, label: group.title }))}
-              onChange={handleGroupChange}
-            />
-          </div>
-          <div className='grid-cols-1 w-full'>
-            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Equipamento</label>
-            <Select
-              value={selectedProduct ? { value: selectedProduct.id, label: selectedProduct.title } : null}
-              onChange={handleProductChange}
-              options={(selectedGroup?.products || []).map((product) => ({ value: product.id, label: product.title }))}
-              isDisabled={!selectedGroup}
-            />
-          </div>
-          <div className='grid-cols-1 w-full'>
-            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Produto</label>
-            <Select
-              value={selectedType ? { value: selectedType.id, label: selectedType.title } : null}
-              onChange={handleTypeChange}
-              options={types.map((type) => ({ value: type.id, label: type.title }))}
-              isDisabled={!selectedProduct}
-            />
-          </div>
-          <div className='grid-cols-1 w-full'>
-            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Modelo</label>
-            <Select
-              value={selectedModel ? { value: selectedModel.id, label: selectedModel.title } : null}
-              onChange={handleModelChange}
-              options={models.map((model) => ({ value: model.id, label: model.title }))}
-              isDisabled={!selectedProduct}
-            />
-          </div>
-          <div className='grid-cols-1 w-full'>
-            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Capacidade</label>
-            <Select
-              value={selectedCapacity ? { value: selectedCapacity.id, label: selectedCapacity.title } : null}
-              onChange={handleCapacityChange}
-              options={(selectedModel?.capacities || []).map((capacity) => ({ value: capacity.id, label: capacity.title }))}
-              isDisabled={!selectedModel}
-            />
-          </div>
-        </div>
+    <form className='flex flex-col w-full max-w-screen-xl gap-5'>
+      <Grid className='flex grid-cols-4 gap-5'>
+        <Grid className='grid-cols-1 w-full'>
+          <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Grupo</Text>
+          <Select
+            value={selectedGroup ? { value: selectedGroup.id, label: selectedGroup.title } : null}
+            options={groups.map(group => ({ value: group.id, label: group.title }))}
+            onChange={handleGroupChange}
+          />
+        </Grid>
+        <Grid className='grid-cols-1 w-full'>
+          <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Equipamento</Text>
+          <Select
+            value={selectedProduct ? { value: selectedProduct.id, label: selectedProduct.title } : null}
+            onChange={handleProductChange}
+            options={(selectedGroup?.products || []).map((product) => ({ value: product.id, label: product.title }))}
+            isDisabled={!selectedGroup}
+          />
+        </Grid>
+        <Grid className='grid-cols-1 w-full'>
+          <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Produto</Text>
+          <Select
+            value={selectedType ? { value: selectedType.id, label: selectedType.title } : null}
+            onChange={handleTypeChange}
+            options={types.map((type) => ({ value: type.id, label: type.title }))}
+            isDisabled={!selectedProduct}
+          />
+        </Grid>
+        <Grid className='grid-cols-1 w-full'>
+          <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Modelo</Text>
+          <Select
+            value={selectedModel ? { value: selectedModel.id, label: selectedModel.title } : null}
+            onChange={handleModelChange}
+            options={models.map((model) => ({ value: model.id, label: model.title }))}
+            isDisabled={!selectedProduct}
+          />
+        </Grid>
+        <Grid className='grid-cols-1 w-full'>
+          <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Capacidade</Text>
+          <Select
+            value={selectedCapacity ? { value: selectedCapacity.id, label: selectedCapacity.title } : null}
+            onChange={handleCapacityChange}
+            options={(selectedModel?.capacities || []).map((capacity) => ({ value: capacity.id, label: capacity.title }))}
+            isDisabled={!selectedModel}
+          />
+        </Grid>
 
-        <div className='grid grid-cols-4 gap-5'>
-          <div className='grid-cols-1 w-full'>
-            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Altura</label>
+        <Grid className='grid-cols-4 gap-5'>
+          <Grid className='grid-cols-1 w-full'>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Altura</Text>
             <Select
               value={selectedHeight ? { value: selectedHeight.id, label: selectedHeight.title } : null}
               onChange={handleHeightChange}
               options={(selectedCapacity?.heights || []).map((height) => ({ value: height.id, label: height.title }))}
               isDisabled={!selectedCapacity}
             />
-          </div>
-          <div className='grid-cols-1 w-full'>
-            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Potência</label>
+          </Grid>
+          <Grid className='grid-cols-1 w-full'>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Potência</Text>
             <Select
               value={selectedPower ? { value: selectedPower.id, label: `${selectedPower.title} ${selectedPower.recommended ? "(recomendado)" : ""}` } : null}
               onChange={handlePowerChange}
               options={powers ? powers.map((power) => ({ value: power.id, label: `${power.title} ${power.recommended ? "(recomendado)" : ""}` })) : []}
               isDisabled={!selectedHeight}
             />
-          </div>
-          <div className='grid-cols-1 w-full'>
-            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Entrada</label>
+          </Grid>
+          <Grid className='grid-cols-1 w-full'>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Entrada</Text>
             <Select
               isMulti
               value={selectedInput}
@@ -351,9 +351,9 @@ export default function SelectFormClient() {
               options={inputsAndOutputs.map((item) => ({ value: item.input, label: item.input }))}
               isDisabled={!selectedPower}
             />
-          </div>
-          <div className='grid-cols-1 w-full'>
-            <label className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Saída</label>
+          </Grid>
+          <Grid className='grid-cols-1 w-full'>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Saída</Text>
             <Select
               isMulti
               value={selectedOutput}
@@ -361,12 +361,12 @@ export default function SelectFormClient() {
               options={inputsAndOutputs.map((item) => ({ value: item.output, label: item.output }))}
               isDisabled={!selectedPower}
             />
-          </div>
-        </div>
+          </Grid>
+        </Grid>
         <div className='flex justify-end items-end grid-cols-3 w-full'>
-          <button className='bg-white hover:bg-gray-100 text-gray-800 font-normal py-1 px-4 border border-gray-400 rounded'  onClick={handleSave}>
-            Adicionar
-          </button>
+        <Button variant='secondary' onClick={handleSave}>
+          Adicionar
+        </Button>
         </div>
       </form>
     </>
