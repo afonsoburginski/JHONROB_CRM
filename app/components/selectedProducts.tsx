@@ -45,7 +45,7 @@ const SelectedProducts: React.FC = () => {
               <TableHeaderCell>Potência</TableHeaderCell>
               <TableHeaderCell>Entrada</TableHeaderCell>
               <TableHeaderCell>Saída</TableHeaderCell>
-              <TableHeaderCell>Remover</TableHeaderCell> {/* Adicione uma coluna para o botão de remover */}
+              <TableHeaderCell style={{ padding: '0'}}>Remover</TableHeaderCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -60,11 +60,13 @@ const SelectedProducts: React.FC = () => {
                 <TableCell style={{ lineHeight: '1.0' }}>{product.power}</TableCell>
                 <TableCell style={{ lineHeight: '1.0' }}>{product.input}</TableCell>
                 <TableCell style={{ lineHeight: '1.0' }}>{product.output}</TableCell>
-                <TableCell style={{ lineHeight: '1.0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+                <TableCell style={{ lineHeight: '1.0', padding: '0' }}>
                   <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={() => handleRemoveProduct(product.tempId)}>
                     <AiOutlineClose />
                   </Button>
                 </TableCell>
+
               </TableRow>
             ))}
             {Array.from({ length: 7 - selectedProducts.length }).map((_, index) => (

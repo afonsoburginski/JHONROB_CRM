@@ -1,6 +1,7 @@
 'use client'
 // saveButton.tsx
 import React from 'react';
+import { Button } from '@tremor/react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
 import { useObservation } from '../contexts/observationContext';
@@ -65,9 +66,9 @@ const SaveButton: React.FC = () => {
   };
 
   return (
-    <button onClick={handleSubmit} className='bg-white hover:bg-gray-100 text-gray-800 font-normal py-1 px-4 border border-gray-400 rounded'>
+    <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={handleSubmit}>
       Salvar
-    </button>
+    </Button>
   );
 };
 

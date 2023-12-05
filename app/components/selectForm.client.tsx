@@ -10,6 +10,7 @@ interface Group {
   id: string;
   title: string;
   products: Product[];
+  inputOutput: string[];
 }
 
 interface Product {
@@ -276,56 +277,57 @@ export default function SelectFormClient() {
 
   return (
     <>
-    <form className='flex flex-col w-full max-w-screen-xl gap-5'>
-      <Grid className='flex grid-cols-4 gap-5'>
-        <Grid className='grid-cols-1 w-full'>
-          <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Grupo</Text>
-          <Select
-            value={selectedGroup ? { value: selectedGroup.id, label: selectedGroup.title } : null}
-            options={groups.map(group => ({ value: group.id, label: group.title }))}
-            onChange={handleGroupChange}
-          />
-        </Grid>
-        <Grid className='grid-cols-1 w-full'>
-          <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Equipamento</Text>
-          <Select
-            value={selectedProduct ? { value: selectedProduct.id, label: selectedProduct.title } : null}
-            onChange={handleProductChange}
-            options={(selectedGroup?.products || []).map((product) => ({ value: product.id, label: product.title }))}
-            isDisabled={!selectedGroup}
-          />
-        </Grid>
-        <Grid className='grid-cols-1 w-full'>
-          <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Produto</Text>
-          <Select
-            value={selectedType ? { value: selectedType.id, label: selectedType.title } : null}
-            onChange={handleTypeChange}
-            options={types.map((type) => ({ value: type.id, label: type.title }))}
-            isDisabled={!selectedProduct}
-          />
-        </Grid>
-        <Grid className='grid-cols-1 w-full'>
-          <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Modelo</Text>
-          <Select
-            value={selectedModel ? { value: selectedModel.id, label: selectedModel.title } : null}
-            onChange={handleModelChange}
-            options={models.map((model) => ({ value: model.id, label: model.title }))}
-            isDisabled={!selectedProduct}
-          />
-        </Grid>
-        <Grid className='grid-cols-1 w-full'>
-          <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Capacidade</Text>
-          <Select
-            value={selectedCapacity ? { value: selectedCapacity.id, label: selectedCapacity.title } : null}
-            onChange={handleCapacityChange}
-            options={(selectedModel?.capacities || []).map((capacity) => ({ value: capacity.id, label: capacity.title }))}
-            isDisabled={!selectedModel}
-          />
+      <form className='flex flex-col w-full max-w-screen-xl gap-5'>
+        <Grid className='grid-cols-5 gap-5'>
+          <Grid className='grid-cols-1 w-full'>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Grupo</Text>
+            <Select
+              value={selectedGroup ? { value: selectedGroup.id, label: selectedGroup.title } : null}
+              options={groups.map(group => ({ value: group.id, label: group.title }))}
+              onChange={handleGroupChange}
+            />
+          </Grid>
+          <Grid className='grid-cols-1 w-full'>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Equipamento</Text>
+            <Select
+              value={selectedProduct ? { value: selectedProduct.id, label: selectedProduct.title } : null}
+              onChange={handleProductChange}
+              options={(selectedGroup?.products || []).map((product) => ({ value: product.id, label: product.title }))}
+              isDisabled={!selectedGroup}
+            />
+          </Grid>
+          <Grid className='grid-cols-1 w-full'>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Produto</Text>
+            <Select
+              value={selectedType ? { value: selectedType.id, label: selectedType.title } : null}
+              onChange={handleTypeChange}
+              options={types.map((type) => ({ value: type.id, label: type.title }))}
+              isDisabled={!selectedProduct}
+            />
+          </Grid>
+          <Grid className='grid-cols-1 w-full'>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Modelo</Text>
+            <Select
+              value={selectedModel ? { value: selectedModel.id, label: selectedModel.title } : null}
+              onChange={handleModelChange}
+              options={models.map((model) => ({ value: model.id, label: model.title }))}
+              isDisabled={!selectedProduct}
+            />
+          </Grid>
+          <Grid className='grid-cols-1 w-full'>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Capacidade</Text>
+            <Select
+              value={selectedCapacity ? { value: selectedCapacity.id, label: selectedCapacity.title } : null}
+              onChange={handleCapacityChange}
+              options={(selectedModel?.capacities || []).map((capacity) => ({ value: capacity.id, label: capacity.title }))}
+              isDisabled={!selectedModel}
+            />
+          </Grid>
         </Grid>
 
         <Grid className='grid-cols-4 gap-5'>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Altura</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Altura</Text>
             <Select
               value={selectedHeight ? { value: selectedHeight.id, label: selectedHeight.title } : null}
               onChange={handleHeightChange}
@@ -334,7 +336,7 @@ export default function SelectFormClient() {
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Potência</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Potência</Text>
             <Select
               value={selectedPower ? { value: selectedPower.id, label: `${selectedPower.title} ${selectedPower.recommended ? "(recomendado)" : ""}` } : null}
               onChange={handlePowerChange}
@@ -343,7 +345,7 @@ export default function SelectFormClient() {
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Entrada</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Entrada</Text>
             <Select
               isMulti
               value={selectedInput}
@@ -353,7 +355,7 @@ export default function SelectFormClient() {
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5">Saída</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Saída</Text>
             <Select
               isMulti
               value={selectedOutput}
@@ -363,13 +365,14 @@ export default function SelectFormClient() {
             />
           </Grid>
         </Grid>
-        <div className='flex justify-end items-end grid-cols-3 w-full'>
-        <Button variant='secondary' onClick={handleSave}>
-          Adicionar
-        </Button>
-        </div>
+
+        <Grid className='flex justify-end items-end grid-cols-3 w-full'>
+          <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={handleSave}>
+            Adicionar
+          </Button>
+        </Grid>
+
       </form>
     </>
   );
 }
-
