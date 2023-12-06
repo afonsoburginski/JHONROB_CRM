@@ -3,7 +3,6 @@
 import React from 'react';
 import { Table, TableHead, TableRow, TableHeaderCell, TableBody, TableCell, Button} from '@tremor/react';
 import GenerateProposeButton from '../components/proposeButton';
-import PreviewButton from '../components/previewButton';
 import ObservationModal from '../components/observationModal';
 
 interface ProposeTableProps {
@@ -24,7 +23,21 @@ interface Propose {
   power: string;
   input: string;
   output: string;
-  client: { name: string };
+  createdAt: Date; // Adicione esta linha
+  clientId: number; // Adicione esta linha
+  client: { 
+    id: number;
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    cpfCnpj: string;
+    ie: string;
+  };
+  productSelections: any[]; // Adicione esta linha, substitua 'any' pelo tipo correto
 }
 
 const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
@@ -58,12 +71,11 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
             <ObservationModal observation={propose.observation} />
           </TableCell>
           <TableCell>
-            <Button style={{ backgroundColor: '#3b82f6', color: 'white', padding: '0.5em', borderRadius: '0.30em' }}>
+            <Button style={{ borderRadius: '5px'}} variant='secondary'>
               Aprovado
             </Button>
           </TableCell>
           <TableCell>
-            <PreviewButton propose={propose} />
             <GenerateProposeButton propose={propose} />
           </TableCell>
           {/* <TableCell>{propose.content}</TableCell> */}

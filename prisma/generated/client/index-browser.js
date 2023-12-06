@@ -16,11 +16,11 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.6.0
+ * Prisma Client JS version: 5.7.0
  * Query Engine version: e95e739751f42d8ca026f6b910f5a2dc5adeaeee
  */
 Prisma.prismaVersion = {
-  client: "5.6.0",
+  client: "5.7.0",
   engine: "e95e739751f42d8ca026f6b910f5a2dc5adeaeee"
 }
 
@@ -111,7 +111,8 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   username: 'username',
-  email: 'email'
+  email: 'email',
+  role: 'role'
 };
 
 exports.Prisma.ClientScalarFieldEnum = {
@@ -213,7 +214,10 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.Role = exports.$Enums.Role = {
+  ADMIN: 'ADMIN',
+  USER: 'USER'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',

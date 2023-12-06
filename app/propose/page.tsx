@@ -1,3 +1,4 @@
+// propose/page.tsx
 'use client'
 import { useEffect, useState } from 'react';
 import { Card, Title, Text } from '@tremor/react';

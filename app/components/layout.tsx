@@ -1,9 +1,7 @@
-// components/Layout.tsx
-'use client'
-import React, { useEffect, useState } from 'react';
+// Layout.tsx
+import React, { forwardRef, Ref } from 'react';
 import { styled } from '@mui/system';
 import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typography, Grid, Box, Divider } from '@mui/material';
-import { colors } from '@react-spring/shared';
 
 interface Client {
   id: number;
@@ -47,117 +45,120 @@ interface LayoutProps {
   propose: Propose;
 }
 
-const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
-  const [currentPropose, setCurrentPropose] = useState(propose);
+const Container = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%', // Garanta que o container ocupe a largura total
+  height: '100%',
+  padding: '0 10mm',
+  margin: '0 auto',
+  background: 'white',
+  boxShadow: '0 0 0.1cm rgba(0,0,0,0.)',
+});
 
-  useEffect(() => {
-    setCurrentPropose(propose);
-  }, [propose]);
+const ContentContainer = styled('div')({
+  width: '100%', // Garanta que o container ocupe a largura total
+  margin: '0 auto',
+});
 
-  const Container = styled('div')({
-    display: 'flex',
-    width: '260mm',
-    height: '297mm' ,
-    padding: '0 10mm', // Reduza o padding horizontal
-    margin: '0 auto',
-    background: 'white',
-    boxShadow: '0 0 0.1cm rgba(0,0,0,0.)',
-  });
+const ProductItem = styled(Grid)({
+  breakInside: 'avoid',
+  pageBreakInside: 'avoid',
+});
+
+const StyledTable = styled(Table)({
+  width: '100%',
+});
+
+const StyledTableRow = styled(TableRow)({
+  // adicione aqui os estilos que você deseja aplicar à linha da tabela
+});
+
+const DateTypography = styled(Typography)({
+  fontWeight: 'bold',
+  textAlign: 'right',
+  marginRight: '10px', // Aumente este valor conforme necessário
+});
+
+const HeaderTypography = styled(Typography)({
+  marginBottom: '10px',
+});
+
+const DescriptionTypography = styled(Typography)({
+  marginBottom: '10px',
+  display: 'flex',
+  gap: '2rem',
+});
+
+const TitleTypography = styled(Typography)({
+  fontWeight: 'bold',
+  display: 'inline',
+});
+
+const TextTypography = styled(Typography)({
+  display: 'inline',
+  marginLeft: '10px',
+});
+
+const SubtitleTypography = styled(Typography)({
+  display: 'inline',
+});
+
+const FirstHeaderTypography = styled(HeaderTypography)({
+  marginTop: '30px', // ajuste este valor para o espaço desejado
+});
+
+const ObservationTypography = styled(Typography)({
+  marginTop: '20px',
+  marginBottom: '10px',
+  gap: '2rem',
+});
+
+const DeliveryTypography = styled(Typography)({
+  display: 'flex',
+  flexDirection: 'column',
+  marginTop: '20px',
+  marginBottom: '10px',
+});
+
+const FooterTypography = styled(Typography)({
+  marginTop: '20px',
+  marginBottom: '10px',
+});
+
+
+const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
+  if (!propose) {
+    return null; // ou renderize algum tipo de componente de carregamento ou placeholder
+  }
   
-  const ContentContainer = styled('div')({
-    maxWidth: '100%', // Ajuste para preencher completamente
-    margin: '0 auto',
-  });
-
-  const StyledTable = styled(Table)({
-    width: '100%',
-  });
-
-  const StyledTableRow = styled(TableRow)({
-    // adicione aqui os estilos que você deseja aplicar à linha da tabela
-  });
-
-  const DateTypography = styled(Typography)({
-    fontWeight: 'bold',
-    textAlign: 'right',
-    marginRight: '10px', // Aumente este valor conforme necessário
-  });
-
-  const HeaderTypography = styled(Typography)({
-    marginBottom: '10px',
-  });
-
-  const DescriptionTypography = styled(Typography)({
-    marginBottom: '10px',
-    display: 'flex',
-    gap: '2rem',
-  });
-
-  const TitleTypography = styled(Typography)({
-    fontWeight: 'bold',
-    display: 'inline',
-  });
-
-  const TextTypography = styled(Typography)({
-    display: 'inline',
-    marginLeft: '10px',
-  });
-
-  const SubtitleTypography = styled(Typography)({
-    display: 'inline',
-  });
-
-  const FirstHeaderTypography = styled(HeaderTypography)({
-    marginTop: '30px', // ajuste este valor para o espaço desejado
-  });
-
-  const ObservationTypography = styled(Typography)({
-    marginTop: '20px',
-    marginBottom: '10px',
-    gap: '2rem',
-  });
-
-  const DeliveryTypography = styled(Typography)({
-    display: 'flex',
-    flexDirection: 'column',
-    marginTop: '20px',
-    marginBottom: '10px',
-  });
-
-  const FooterTypography = styled(Typography)({
-    marginTop: '20px',
-    marginBottom: '10px',
-  });
-
-
   return (
-    <Container id={`layout_${currentPropose.id}`}>
+    <Container id={`layout_${propose.id}`} ref={ref}>
       <ContentContainer>
 
-        <DateTypography>
+        <DateTypography mt={5} mb={5}>
           Sinop, {new Date(propose.createdAt).toLocaleDateString(
             'pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }
           )}.
         </DateTypography>
 
-        <Grid container mt={5}>
-          <Grid item xs={4}>
+        <Grid container item xs={12} spacing={2}>
+          <Grid item xs={10}>
             <HeaderTypography>
               <TitleTypography>Cliente:</TitleTypography>
               <TextTypography>{propose.client.name}</TextTypography>
             </HeaderTypography>
-          </Grid>
-
-          <Grid item xs={3}>
             <HeaderTypography>
               <TitleTypography>Endereço:</TitleTypography>
               <TextTypography>{propose.client.address}</TextTypography>
             </HeaderTypography>
           </Grid>
+          <Grid item xs={2}>
+          </Grid>
         </Grid>
 
-        <Grid container>
-          <Grid item xs={4}>
+        <Grid container item xs={12}>
+          <Grid item xs={5}>
             <HeaderTypography>
               <TitleTypography>Município:</TitleTypography>
               <TextTypography>{propose.client.city}</TextTypography>
@@ -172,7 +173,7 @@ const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
             </HeaderTypography>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={7}>
             <HeaderTypography>
               <TitleTypography>UF:</TitleTypography>
               <TextTypography>{propose.client.state}</TextTypography>
@@ -188,14 +189,13 @@ const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
           </Grid>
         </Grid>
 
-
         <Grid container mt={4}>
           <Grid item xs={12}>
             <Grid container justifyContent="space-between">
-              <Grid item xs={3}>
+              <Grid item xs={2}>
                 <TitleTypography style={{ color: 'red' }} >RO</TitleTypography>
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs={9}>
                 <TitleTypography>PROPOSTA DE FORNECIMENTO DE EQUIPAMENTOS</TitleTypography>
               </Grid>
               <Grid item xs={1}>
@@ -206,10 +206,10 @@ const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
           
           <Grid item xs={12}>
             <Grid container justifyContent="space-between">
-              <Grid item xs={3}>
+              <Grid item xs={2}>
                 <TitleTypography>QUANT.</TitleTypography>
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs={9}>
                 <TitleTypography>DESCRIÇÃO DA PROPOSTA</TitleTypography>
               </Grid>
               <Grid item xs={1}>
@@ -370,7 +370,7 @@ const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
                     </Grid>
                   </Grid>
 
-                  <Grid item mt={2} mb={4}>
+                  <Grid item mt={2}>
                     <Grid container direction="column">
                       <Grid item>
                         <TitleTypography>JHONROB SILOS E SECADORES LTDA</TitleTypography>
@@ -428,9 +428,12 @@ const Layout: React.FC<LayoutProps> = ({ propose, productSelections }) => {
           </Grid>
 
         </Grid>
+
       </ContentContainer>
     </Container>
   );
-};
+});
+
+Layout.displayName = 'Layout';
 
 export default Layout;
