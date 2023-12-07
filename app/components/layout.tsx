@@ -404,7 +404,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                 <Grid container direction="row" justifyContent="space-between">
                   <Grid item xs={5}>
                     <FooterTypography>
-                      <TitleTypography>__________________________</TitleTypography>
+                      <TitleTypography>_________________________</TitleTypography>
                       <Grid container direction="column" alignItems="flex-start">
                         <TitleTypography>Thiago Azevedo</TitleTypography>
                         <TitleTypography>Jhonrob Silos e Secadores</TitleTypography>
@@ -414,7 +414,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                   </Grid>
                   <Grid item xs={5}>
                     <FooterTypography>
-                      <TitleTypography>__________________________</TitleTypography>
+                      <TitleTypography>_________________________</TitleTypography>
                       <Grid container direction="column" alignItems="flex-start">
                         <TitleTypography>{propose.client.name}</TitleTypography>
                         <TitleTypography>Cliente</TitleTypography>

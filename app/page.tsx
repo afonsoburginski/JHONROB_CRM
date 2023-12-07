@@ -1,7 +1,7 @@
 // page.tsx
 import React from 'react';
 import { Card, Title, Text } from '@tremor/react';
-import SelectFormClient from './components/selectForm.client';
+import SelectFormClient from './components/selectForm';
 import SelectedProducts from './components/selectedProducts';
 import SelectedClients from './components/selectedClients';
 import ObserveForm from './components/observeForm';

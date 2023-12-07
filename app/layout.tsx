@@ -1,10 +1,10 @@
+// app/layout.tsx
 import './globals.css';
-
 import { Analytics } from '@vercel/analytics/react';
 import Nav from './components/nav';
 import Toast from './toast';
 import { Suspense } from 'react';
-import { SelectedProductProvider } from './contexts/selectedProductContext'; // Importe o SelectedProductProvider
+import { SelectedProductProvider } from './contexts/selectedProductContext';
 
 export const metadata = {
   title: 'JHONROB CRM',
@@ -12,7 +12,7 @@ export const metadata = {
     'A user admin dashboard configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, ESLint, and Prettier.'
 };
 
-export default function RootLayout({
+function RootLayout({
   children
 }: {
   children: React.ReactNode;
@@ -21,9 +21,9 @@ export default function RootLayout({
     <html lang="en" className="h-full bg-gray-50">
       <body className="h-full">
         <Suspense>
-          <Nav />
+          <Nav session={undefined} />
         </Suspense>
-        <SelectedProductProvider> {/* Adicione o SelectedProductProvider aqui */}
+        <SelectedProductProvider>
           {children}
         </SelectedProductProvider>
         <Analytics />
@@ -32,3 +32,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+export default RootLayout;

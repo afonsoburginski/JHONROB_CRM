@@ -1,6 +1,5 @@
-// login/page.tsx
 import Image from "next/image";
-import Form from "../components/form";
+import Form from "../../components/auth/form";
 import Link from "next/link";
 
 export default function Login() {
@@ -18,9 +17,9 @@ export default function Login() {
               height={20}
             />
           </Link>
-          <h3 className="text-xl font-semibold">Login</h3>
+          <h3 className="text-xl font-semibold">Sign In</h3>
           <p className="text-sm text-gray-500">
-            Use seu email e senha para entrar
+            Use your email and password to sign in
           </p>
         </div>
         <Form type="login" />

@@ -390,7 +390,7 @@ export namespace Prisma {
 
   /**
    * Prisma Client JS version: 5.7.0
-   * Query Engine version: e95e739751f42d8ca026f6b910f5a2dc5adeaeee
+   * Query Engine version: 79fb5193cf0a8fdbef536e4b4a159cad677ab1b9
    */
   export type PrismaVersion = {
     client: string
@@ -2045,24 +2045,27 @@ export namespace Prisma {
   export type UserMinAggregateOutputType = {
     id: number | null
     name: string | null
-    username: string | null
     email: string | null
+    password: string | null
+    image: string | null
     role: $Enums.Role | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: number | null
     name: string | null
-    username: string | null
     email: string | null
+    password: string | null
+    image: string | null
     role: $Enums.Role | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
     name: number
-    username: number
     email: number
+    password: number
+    image: number
     role: number
     _all: number
   }
@@ -2079,24 +2082,27 @@ export namespace Prisma {
   export type UserMinAggregateInputType = {
     id?: true
     name?: true
-    username?: true
     email?: true
+    password?: true
+    image?: true
     role?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
     name?: true
-    username?: true
     email?: true
+    password?: true
+    image?: true
     role?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
     name?: true
-    username?: true
     email?: true
+    password?: true
+    image?: true
     role?: true
     _all?: true
   }
@@ -2190,8 +2196,9 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     id: number
     name: string
-    username: string
     email: string
+    password: string
+    image: string
     role: $Enums.Role
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
@@ -2217,16 +2224,18 @@ export namespace Prisma {
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    username?: boolean
     email?: boolean
+    password?: boolean
+    image?: boolean
     role?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
     name?: boolean
-    username?: boolean
     email?: boolean
+    password?: boolean
+    image?: boolean
     role?: boolean
   }
 
@@ -2237,8 +2246,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
-      username: string
       email: string
+      password: string
+      image: string
       role: $Enums.Role
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -2636,8 +2646,9 @@ export namespace Prisma {
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'Int'>
     readonly name: FieldRef<"User", 'String'>
-    readonly username: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
+    readonly password: FieldRef<"User", 'String'>
+    readonly image: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'Role'>
   }
     
@@ -13594,8 +13605,9 @@ export namespace Prisma {
   export const UserScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    username: 'username',
     email: 'email',
+    password: 'password',
+    image: 'image',
     role: 'role'
   };
 
@@ -13835,35 +13847,39 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     id?: IntFilter<"User"> | number
     name?: StringFilter<"User"> | string
-    username?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
+    image?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    username?: SortOrder
     email?: SortOrder
+    password?: SortOrder
+    image?: SortOrder
     role?: SortOrder
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    email?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
-    username?: StringFilter<"User"> | string
-    email?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
+    image?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
-  }, "id">
+  }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    username?: SortOrder
     email?: SortOrder
+    password?: SortOrder
+    image?: SortOrder
     role?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
@@ -13878,8 +13894,9 @@ export namespace Prisma {
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"User"> | number
     name?: StringWithAggregatesFilter<"User"> | string
-    username?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
+    password?: StringWithAggregatesFilter<"User"> | string
+    image?: StringWithAggregatesFilter<"User"> | string
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   }
 
@@ -14512,54 +14529,61 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     name: string
-    username: string
     email: string
+    password: string
+    image: string
     role?: $Enums.Role
   }
 
   export type UserUncheckedCreateInput = {
     id?: number
     name: string
-    username: string
     email: string
+    password: string
+    image: string
     role?: $Enums.Role
   }
 
   export type UserUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type UserUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type UserCreateManyInput = {
     id?: number
     name: string
-    username: string
     email: string
+    password: string
+    image: string
     role?: $Enums.Role
   }
 
   export type UserUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
@@ -15185,8 +15209,9 @@ export namespace Prisma {
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    username?: SortOrder
     email?: SortOrder
+    password?: SortOrder
+    image?: SortOrder
     role?: SortOrder
   }
 
@@ -15197,16 +15222,18 @@ export namespace Prisma {
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    username?: SortOrder
     email?: SortOrder
+    password?: SortOrder
+    image?: SortOrder
     role?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    username?: SortOrder
     email?: SortOrder
+    password?: SortOrder
+    image?: SortOrder
     role?: SortOrder
   }
 
