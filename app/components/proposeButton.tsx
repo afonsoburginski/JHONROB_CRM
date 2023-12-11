@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import IconButton from '@mui/material/IconButton';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
-import { Propose } from '../propose/page';
+import { Propose } from '../(private)/propose/page';
 import ReactToPrint from 'react-to-print';
 import Layout from './layout';
 

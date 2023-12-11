@@ -1,19 +1,14 @@
 // Arquivo: app/prisma/prisma.ts
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 declare global {
   var prisma: PrismaClient | undefined;
 }
 
-let prismaInstance: PrismaClient;
+const prisma = global.prisma || new PrismaClient();
 
-if (process.env.NODE_ENV === 'production') {
-  prismaInstance = new PrismaClient();
-} else {
-  if (!global.prisma) {
-    global.prisma = new PrismaClient();
-  }
-  prismaInstance = global.prisma;
-}
+if (process.env.NODE_ENV === "development") global.prisma = prisma;
+
+const prismaInstance = global.prisma;
 
 export { prismaInstance as prisma };
