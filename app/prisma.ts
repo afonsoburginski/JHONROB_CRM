@@ -9,6 +9,4 @@ const prisma = global.prisma || new PrismaClient();
 
 if (process.env.NODE_ENV === "development") global.prisma = prisma;
 
-const prismaInstance = global.prisma;
-
-export { prismaInstance as prisma };
+export { prisma };

@@ -1,13 +1,10 @@
-// api/auth/[...nextauth]/route.ts
-import NextAuth from "next-auth";
+// app/api/auth/[...nextauth].ts
+import NextAuth, { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "../../../prisma";
 import { compare } from "bcrypt";
 
-export const {
-  handlers: { GET, POST },
-  auth
-} = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       credentials: {
@@ -15,7 +12,7 @@ export const {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        const { email, password } = credentials;
+        const { email, password } = credentials ?? {}
         if (!email || !password) {
           throw new Error("Missing username or password");
         }
@@ -24,6 +21,8 @@ export const {
             email,
           },
         });
+
+        console.log('User found:', user);
         if (!user || !(await compare(password, user.password))) {
           throw new Error("Invalid username or password");
         }
@@ -31,4 +30,8 @@ export const {
       },
     }),
   ],
-});
+};
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };

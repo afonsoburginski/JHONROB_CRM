@@ -1,9 +1,8 @@
-// auth-status.tsx
+import { useSession } from 'next-auth/react';
 
-import { getServerSession } from "next-auth/next";
+export default function AuthStatus() {
+  const { data: session } = useSession();
 
-export default async function AuthStatus() {
-  const session = await getServerSession();
   return (
     <div className="absolute top-5 w-full flex justify-center items-center">
       {session && (

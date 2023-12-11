@@ -13,15 +13,15 @@ export const metadata = {
 };
 
 function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <html lang="en" className="h-full bg-gray-50">
       <body className="h-full">
-        <Suspense>
-          <Nav />
+        <Suspense fallback="Loading...">
+          <Nav/>
         </Suspense>
         <SelectedProductProvider>
           {children}
