@@ -110,19 +110,19 @@ export default function Form({ type }: { type: "login" | "register" }) {
       </button>
       {type === "login" ? (
         <p className="text-center text-sm text-gray-600">
-          Don&apos;t have an account?{" "}
+          Não tem uma conta?{" "}
           <Link href="/register" className="font-semibold text-gray-800">
-            Sign up
+            Cadastre-se
           </Link>{" "}
-          for free.
+          aqui.
         </p>
       ) : (
         <p className="text-center text-sm text-gray-600">
-          Already have an account?{" "}
+          Já tem uma conta? Faça{" "}
           <Link href="/login" className="font-semibold text-gray-800">
-            Sign in
+            Login
           </Link>{" "}
-          instead.
+          aqui.
         </p>
       )}
     </form>

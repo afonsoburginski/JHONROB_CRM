@@ -17,9 +17,9 @@ export default function Login() {
               height={20}
             />
           </Link>
-          <h3 className="text-xl font-semibold">Sign In</h3>
+          <h3 className="text-xl font-semibold">Login</h3>
           <div className="text-sm text-gray-500">
-            Use your email and password to sign in
+            Use seu email e senha para entrar
           </div>
         </div>
         <Form type="login" />

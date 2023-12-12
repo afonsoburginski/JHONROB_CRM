@@ -1,9 +1,9 @@
 // nav.tsx
+import { useSession } from 'next-auth/react'
 import Navbar from './navbar';
 
-function Nav({ session }) {
-  console.log('Session:', session);
-  return <Navbar user={session?.user} session={session} />;
-}
+export default function Nav() {
+  const { data: session } = useSession()
 
-export default Nav;
+  return <Navbar user={session?.user} />;
+}

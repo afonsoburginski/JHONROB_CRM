@@ -1,24 +1,11 @@
 // navbar.tsx
 'use client'
-import React from 'react';
+import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
-import { signIn, signOut } from 'next-auth/react';
-import { Disclosure } from '@headlessui/react';
+import { signOut, getSession } from 'next-auth/react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
 import Image from 'next/image';
-
-interface User {
-  id: number;
-  name: string | null;
-  email: string;
-  password: string;
-  image: string | null;
-  role: 'USER' | 'ADMIN';
-}
-
-interface Session {
-  user: User;
-}
-
+import { useEffect, useState } from 'react';
 
 const navigation = [
   { name: 'Dashboard', href: '/' },
@@ -31,8 +18,18 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Navbar({ session }: { session: Session }) {
+export default function AuthStatus() {
   const pathname = usePathname();
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      const session = await getSession();
+      setSession(session);
+    };
+
+    fetchSession();
+  }, []);
 
   return (
     <Disclosure as="nav" className="bg-white shadow-sm">
@@ -63,18 +60,60 @@ export default function Navbar({ session }: { session: Session }) {
                 </div>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center">
-              <button onClick={() => signOut()}>Sign out</button>
-              {session && (
-                <>
-                  Signed in as {session.user?.email} <br />
-                  <button onClick={() => signOut()}>Sign out</button>
-                </>
-              ) : (
-                <>
-                  Not signed in <br />
-                  <button onClick={() => signIn()}>Sign in</button>
-                </>
-              )}
+                {session && (
+                  <Menu as="div" className="ml-3 relative">
+                    <Menu.Button className="flex items-center">
+                      <span className="mr-3">Olá, {session.user?.name}</span>
+                      {console.log(session.user?.image)}
+                      <Image
+                        src={session.user?.image || 'https://avatar.vercel.sh/nextjs'}
+                        height={32}
+                        width={32}
+                        alt={`${session.user?.name || 'placeholder'} avatar`}
+                        className="h-8 w-8 rounded-full"
+                      />
+                    </Menu.Button>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                        <div className="py-1">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="#"
+                                className={`${
+                                  active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                                } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                              >
+                                {session.user?.email}
+                              </a>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="#"
+                                className={`${
+                                  active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                                } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                                onClick={() => signOut()}
+                              >
+                                Sair
+                              </a>
+                            )}
+                          </Menu.Item>
+                        </div>
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
+                )}
               </div>
             </div>
           </div>

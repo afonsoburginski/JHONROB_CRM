@@ -6,6 +6,10 @@ import Toast from '../toast';
 import { Suspense } from 'react';
 import { SelectedProductProvider } from '../contexts/selectedProductContext';
 
+import AuthStatus from 'app/components/authcomponents/auth-status';
+
+import Navbar from 'app/components/navbar';
+
 export const metadata = {
   title: 'JHONROB CRM',
   description:
@@ -21,11 +25,12 @@ function RootLayout({
     <html lang="en" className="h-full bg-gray-50">
       <body className="h-full">
         <Suspense fallback="Loading...">
-          <Nav/>
+          <Navbar />
+          {/* <AuthStatus /> */}
+          <SelectedProductProvider>
+            {children}
+          </SelectedProductProvider>
         </Suspense>
-        <SelectedProductProvider>
-          {children}
-        </SelectedProductProvider>
         <Analytics />
         <Toast />
       </body>

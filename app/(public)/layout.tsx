@@ -17,6 +17,8 @@ export default async function RootLayout({
   return (
     <html lang="en" className="h-full bg-gray-50">
       <body className="h-full">
+        <Suspense fallback="Loading...">
+        </Suspense>
         <Toaster />
         {children}
       </body>
