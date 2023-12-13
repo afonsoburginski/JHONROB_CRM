@@ -6,58 +6,6 @@ import { Grid, Text, Button } from '@tremor/react';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
 import { checkFieldsAndShowError } from './toastfy';
 
-interface Group {
-  id: string;
-  title: string;
-  products: Product[];
-  inputOutput: string[];
-}
-
-interface Product {
-  id: string;
-  title: string;
-  models: Model[];
-  types: Type[];
-}
-
-interface Type {
-  id: string;
-  title: string;
-}
-
-interface Model {
-  id: string;
-  title: string;
-  capacities: Capacity[];
-}
-
-interface Capacity {
-  id: string;
-  title: string;
-  heights: Height[];
-}
-
-interface Height {
-  id: string;
-  title: string;
-  powers: Power[];
-  recommended: boolean;
-}
-
-interface Power {
-  id: string;
-  title: string;
-  recommended: boolean;
-}
-
-interface InputOutput {
-  id: string;
-  title: string;
-  type: string;
-  input: string;
-  output: string;
-}
-
 export default function SelectFormClient() {
   const [groups, setGroups] = useState<Group[]>([]);
   const [selectedGroup, setSelectedGroup] = useState<Group | null>(null);
@@ -107,12 +55,25 @@ export default function SelectFormClient() {
   }, []);
   
   useEffect(() => {
-    if (types) {
-      const allProducts = types.flatMap(type => type.products);
-      setProducts(allProducts);
+    if (selectedGroup) {
+      setProducts(selectedGroup.products);
+      if (selectedProduct) {
+        const newSelectedProduct = selectedGroup.products.find((product) => product && product.id === selectedProduct.id);
+        if (newSelectedProduct) {
+          setSelectedProduct(newSelectedProduct);
+          setTypes(newSelectedProduct.types);
+        } else {
+          setSelectedProduct(null);
+          setTypes([]);
+        }
+      }
+    } else {
+      setProducts([]);
+      setSelectedProduct(null);
+      setTypes([]);
     }
-  }, [types]);
-  
+  }, [selectedGroup, selectedProduct]);
+
   useEffect(() => {
     if (selectedProduct) {
       setModels(selectedProduct.models);
@@ -121,6 +82,13 @@ export default function SelectFormClient() {
     }
   }, [selectedProduct]);
   
+  useEffect(() => {
+    if (types) {
+      const allProducts = types.flatMap(type => type.products);
+      setProducts(allProducts);
+    }
+  }, [types]);
+
   useEffect(() => {
     if (selectedHeight) {
       setPowers(selectedHeight.powers);
@@ -161,6 +129,7 @@ export default function SelectFormClient() {
       setProducts([]);
     }
     setSelectedProduct(null);
+    setTypes([]);
     setSelectedType(null);
     setSelectedModel(null);
     setSelectedCapacity(null);
@@ -169,18 +138,24 @@ export default function SelectFormClient() {
   };
   
   const handleProductChange = (selectedOption: any) => {
-    const selectedProduct = products.find((product) => product.id === selectedOption?.value);
-    setSelectedProduct(selectedProduct || null);
+    const selectedProduct = selectedGroup.products.find((product) => product && product.id === selectedOption?.value);
     if (selectedProduct) {
+      setSelectedProduct(selectedProduct);
       setTypes(selectedProduct.types);
+      setSelectedType(null);
+      setSelectedModel(null);
+      setSelectedCapacity(null);
+      setSelectedHeight(null);
+      setSelectedPower(null);
     } else {
+      setSelectedProduct(null);
       setTypes([]);
+      setSelectedType(null);
+      setSelectedModel(null);
+      setSelectedCapacity(null);
+      setSelectedHeight(null);
+      setSelectedPower(null);
     }
-    setSelectedType(null);
-    setSelectedModel(null);
-    setSelectedCapacity(null);
-    setSelectedHeight(null);
-    setSelectedPower(null);
   };
 
   const handleTypeChange = (selectedOption: any) => {

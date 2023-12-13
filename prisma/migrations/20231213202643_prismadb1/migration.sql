@@ -134,6 +134,12 @@ CREATE TABLE "ProductSelection" (
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "Group_title_key" ON "Group"("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Product_title_key" ON "Product"("title");
+
 -- AddForeignKey
 ALTER TABLE "Product" ADD CONSTRAINT "Product_groupId_fkey" FOREIGN KEY ("groupId") REFERENCES "Group"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 

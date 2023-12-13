@@ -39,13 +39,13 @@ model Client {
 
 model Group {
   id        Int        @id @default(autoincrement())
-  title     String
+  title     String     @unique
   products  Product[]
 }
 
 model Product {
   id         Int       @id @default(autoincrement())
-  title      String
+  title      String    @unique
   groupId    Int
   group      Group     @relation(fields: [groupId], references: [id])
   models     Model[]

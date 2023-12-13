@@ -7,9 +7,8 @@ import { Suspense } from 'react';
 import { SelectedProductProvider } from '../contexts/selectedProductContext';
 
 import AuthStatus from 'app/components/authcomponents/auth-status';
-
 import Navbar from 'app/components/navbar';
-
+;
 export const metadata = {
   title: 'JHONROB CRM',
   description:
