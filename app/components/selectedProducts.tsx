@@ -1,12 +1,12 @@
 // selectedProducts.tsx
 'use client';
 import React from 'react';
+import { HiXMark } from "react-icons/hi2";
 import { Table, Title, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
 
 import { Button } from '@tremor/react';
-import { AiOutlineClose } from 'react-icons/ai';
-import CloseIcon from '@mui/icons-material/Close';
+
 
 
 interface Product {
@@ -63,7 +63,7 @@ const SelectedProducts: React.FC = () => {
 
                 <TableCell style={{ lineHeight: '1.0', padding: '0' }}>
                   <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={() => handleRemoveProduct(product.tempId)}>
-                    <AiOutlineClose />
+                    <HiXMark />
                   </Button>
                 </TableCell>
 

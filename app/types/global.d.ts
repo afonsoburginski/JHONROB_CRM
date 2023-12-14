@@ -1,47 +1,47 @@
 declare global {
-  interface Power {
+  type Power = {
     id: string;
     title: string;
     recommended: boolean;
-  }
+  };
 
-  interface Height {
+  type Height = {
     id: string;
     title: string;
     powers: Power[];
     recommended: boolean;
-  }
+  };
 
-  interface Capacity {
+  type Capacity = {
     id: string;
     title: string;
     heights: Height[];
-  }
+  };
 
-  interface Model {
+  type Model = {
     id: string;
     title: string;
     capacities: Capacity[];
-  }
+  };
 
-  interface Type {
+  type Type = {
     id: string;
     title: string;
-  }
+  };
 
-  interface Product {
+  type Product = {
     id: string;
     title: string;
     models: Model[];
     types: Type[];
-  }
+  };
 
-  interface Group {
+  type Group = {
     id: string;
     title: string;
     products: Product[];
     inputOutput: string[];
-  }
+  };
 
   interface ProductTableProps {
     groups: Group[] | undefined;

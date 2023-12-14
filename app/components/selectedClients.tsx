@@ -1,10 +1,10 @@
-'use client'
 // selectedClients.tsx
+'use client'
 import React from 'react';
 import { Table, Title, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
 import { useSpring, animated } from 'react-spring';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { HiMagnifyingGlass } from "react-icons/hi2";
 import SelectClient from './selectClient';
 
 const SelectedClients: React.FC = () => {
@@ -35,7 +35,7 @@ const SelectedClients: React.FC = () => {
           <animated.div style={animationProps} className="flex items-center z-50">
             <SelectClient />
           </animated.div>
-          {!isHovered && !isAnimatingOut && <MagnifyingGlassIcon className="h-6 w-6 text-gray-400 flex items-center mt-5" />}
+          {!isHovered && !isAnimatingOut && <HiMagnifyingGlass className="h-6 w-6 text-gray-400 flex items-center mt-5" />}
         </div>
       </div>
       <Table className="bg-grey-lighter text-grey-darker mt-1">
@@ -48,9 +48,9 @@ const SelectedClients: React.FC = () => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell className="w-1/3">{selectedClient ? selectedClient.name : '-'}</TableCell>
-            <TableCell className="w-1/3">{selectedClient ? selectedClient.email : '-'}</TableCell>
-            <TableCell className="w-1/3">{selectedClient ? selectedClient.phone : '-'}</TableCell>
+            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.name : '-'}</TableCell>
+            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.email : '-'}</TableCell>
+            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.phone : '-'}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -65,9 +65,9 @@ const SelectedClients: React.FC = () => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell className="w-1/3">{selectedClient ? selectedClient.address : '-'}</TableCell>
-            <TableCell className="w-1/3">{selectedClient ? selectedClient.city : '-'}</TableCell>
-            <TableCell className="w-1/3">{selectedClient ? selectedClient.state : '-'}</TableCell>
+            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.address : '-'}</TableCell>
+            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.city : '-'}</TableCell>
+            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.state : '-'}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -82,9 +82,9 @@ const SelectedClients: React.FC = () => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell className="w-1/3">{selectedClient ? selectedClient.zip : '-'}</TableCell>
-            <TableCell className="w-1/3">{selectedClient ? selectedClient.cpfCnpj : '-'}</TableCell>
-            <TableCell className="w-1/3">{selectedClient ? selectedClient.ie : '-'}</TableCell>
+            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.zip : '-'}</TableCell>
+            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.cpfCnpj : '-'}</TableCell>
+            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.ie : '-'}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

@@ -1,10 +1,14 @@
 'use client';
-
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { usePathname, useRouter } from 'next/navigation';
 import { useTransition } from 'react';
+import { HiMagnifyingGlass  } from "react-icons/hi2";
+import { usePathname, useRouter } from 'next/navigation';
 
-export default function Search({ disabled }: { disabled?: boolean }) {
+interface SearchProps {
+  disabled?: boolean;
+  onChange?: (value: string) => void;
+}
+
+export default function Search({ disabled, onChange }: SearchProps) {
   const { replace } = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -20,6 +24,10 @@ export default function Search({ disabled }: { disabled?: boolean }) {
     startTransition(() => {
       replace(`${pathname}?${params.toString()}`);
     });
+
+    if (onChange) {
+      onChange(term);
+    }
   }
 
   return (
@@ -32,7 +40,7 @@ export default function Search({ disabled }: { disabled?: boolean }) {
           className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
           aria-hidden="true"
         >
-          <MagnifyingGlassIcon
+          <HiMagnifyingGlass 
             className="mr-3 h-4 w-4 text-gray-400"
             aria-hidden="true"
           />

@@ -1,8 +1,5 @@
 // selectClient.tsx
 'use client';
-
-import { useSpring, animated } from 'react-spring';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { SearchSelect, SearchSelectItem } from '@tremor/react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
 import { useState, useEffect } from 'react';

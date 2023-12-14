@@ -51,6 +51,12 @@ model Product {
   models     Model[]
   types      Type[]
 }
+model Type {
+  id           Int        @id @default(autoincrement())
+  title        String
+  productId    Int
+  product      Product   @relation(fields: [productId], references: [id])
+}
 
 model Model {
   id           Int        @id @default(autoincrement())
@@ -60,12 +66,6 @@ model Model {
   capacities   Capacity[]
 }
 
-model Type {
-  id           Int        @id @default(autoincrement())
-  title        String
-  productId    Int
-  product      Product   @relation(fields: [productId], references: [id])
-}
 
 model Capacity {
   id         Int      @id @default(autoincrement())
