@@ -1,48 +1,52 @@
 declare global {
-  interface Group {
+  interface Power {
     id: string;
     title: string;
-    products: Product[];
-    inputOutput: string[];
+    recommended: boolean;
   }
-  
-  interface Product {
-    id: string;
-    title: string;
-    models: Model[];
-    types: Type[];
-  }
-  
-  interface Type {
-    id: string;
-    title: string;
-  }
-  
-  interface Model {
-    id: string;
-    title: string;
-    capacities: Capacity[];
-  }
-  
-  interface Capacity {
-    id: string;
-    title: string;
-    heights: Height[];
-  }
-  
+
   interface Height {
     id: string;
     title: string;
     powers: Power[];
     recommended: boolean;
   }
-  
-  interface Power {
+
+  interface Capacity {
     id: string;
     title: string;
-    recommended: boolean;
+    heights: Height[];
   }
-  
+
+  interface Model {
+    id: string;
+    title: string;
+    capacities: Capacity[];
+  }
+
+  interface Type {
+    id: string;
+    title: string;
+  }
+
+  interface Product {
+    id: string;
+    title: string;
+    models: Model[];
+    types: Type[];
+  }
+
+  interface Group {
+    id: string;
+    title: string;
+    products: Product[];
+    inputOutput: string[];
+  }
+
+  interface ProductTableProps {
+    groups: Group[] | undefined;
+  }
+
   interface InputOutput {
     id: string;
     title: string;

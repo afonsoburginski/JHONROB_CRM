@@ -17,69 +17,55 @@ export const config = {
 const uploadMiddleware = multer().single('file');
 
 async function processRow(row) {
-  let group = await prisma.group.findUnique({
-    where: {
-      title: row.groupTitle,
-    },
+  let group = await prisma.group.upsert({
+    where: { title: row.groupTitle },
+    update: {},
+    create: { title: row.groupTitle },
   });
 
-  if (!group) {
-    group = await prisma.group.create({
-      data: {
-        title: row.groupTitle,
-      },
-    });
-  }
-
-  let product = await prisma.product.findUnique({
-    where: {
+  let product = await prisma.product.upsert({
+    where: { title: row.productTitle },
+    update: {},
+    create: {
       title: row.productTitle,
+      group: { connect: { id: group.id } },
     },
   });
-  
-  if (!product) {
-    product = await prisma.product.create({
-      data: {
-        title: row.productTitle,
-        groupId: group.id,
-      },
-    });
-  }
 
-  const model = await prisma.model.create({
+  let model = await prisma.model.create({
     data: {
       title: row.modelTitle,
-      productId: product.id,
+      product: { connect: { id: product.id } },
     },
   });
 
-  const type = await prisma.type.create({
+  let type = await prisma.type.create({
     data: {
       title: row.typeTitle,
-      productId: product.id,
+      product: { connect: { id: product.id } },
     },
   });
 
-  const capacity = await prisma.capacity.create({
+  let capacity = await prisma.capacity.create({
     data: {
       title: row.capacityTitle,
-      modelId: model.id,
+      model: { connect: { id: model.id } },
     },
   });
 
-  const height = await prisma.height.create({
+  let height = await prisma.height.create({
     data: {
       title: row.heightTitle,
       recommended: row.recommendedHeight === 'true',
-      capacityId: capacity.id,
+      capacity: { connect: { id: capacity.id } },
     },
   });
 
-  const power = await prisma.power.create({
+  let power = await prisma.power.create({
     data: {
       title: row.powerTitle,
       recommended: row.recommendedPower === 'true',
-      heightId: height.id,
+      height: { connect: { id: height.id } },
     },
   });
 }
@@ -90,15 +76,15 @@ const apiRoute = (req, res) => {
       if (err) {
         return res.status(500).json(err);
       }
-    
+
       const bufferStream = new Readable();
       bufferStream.push(req.file.buffer);
-      bufferStream.push(null); // Significa que acabamos de adicionar dados ao stream
-    
+      bufferStream.push(null);
+
       const results = [];
-      
+
       bufferStream
-        .pipe(csvParser.parse({ columns: true }))
+        .pipe(csvParser.parse({ columns: true, delimiter: ',', relax: true }))
         .on('data', (data) => results.push(data))
         .on('end', async () => {
           try {
