@@ -2,8 +2,8 @@
 import React, { useCallback, useState, Fragment } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Dialog, Transition } from '@headlessui/react';
-import { HiCloudArrowUp } from "react-icons/hi2";
-import { Text, Title } from '@tremor/react';
+import { HiOutlineCloudArrowUp  } from "react-icons/hi2";
+import { Card, Flex, Icon, Metric, Text, Title } from "@tremor/react";
 
 const Dropzone = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +34,7 @@ const Dropzone = () => {
 
   return (
     <div>
-      <HiCloudArrowUp  className="w-12 h-12 text-blue-400 cursor-pointer" onClick={() => setIsOpen(true)} />
+      <Icon icon={HiOutlineCloudArrowUp } variant="outlined" tooltip="Upload de dados" size="lg" onClick={() => setIsOpen(true)} />
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={() => setIsOpen(false)}>
           <Transition.Child
@@ -65,7 +65,7 @@ const Dropzone = () => {
                   </Dialog.Title>
                   <div className="flex items-center justify-center h-64 border-2 border-gray-200 border-dashed rounded-md">
                     <div className="text-center">
-                      <HiCloudArrowUp  className="w-12 h-12 mx-auto text-gray-400" />
+                      <HiOutlineCloudArrowUp   className="w-12 h-12 mx-auto text-gray-400" />
                       <Text className="mt-2 text-sm text-gray-600">Arraste e solte um arquivo aqui, ou clique para selecionar um arquivo</Text>
                       <input {...getInputProps()} />
                     </div>

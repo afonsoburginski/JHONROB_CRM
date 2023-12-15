@@ -1,3 +1,4 @@
+// tailwind.config.ts
 import type { Config } from 'tailwindcss';
 
 export default {
@@ -39,8 +40,11 @@ export default {
             emphasis: '#374151', // gray-700
             strong: '#111827', // gray-900
             inverted: '#ffffff' // white
-          }
+          },
         }
+      },
+      maxHeight: {
+        '150': '35rem', // Adiciona max-h-150
       },
       boxShadow: {
         // light

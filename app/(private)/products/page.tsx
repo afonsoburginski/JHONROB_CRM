@@ -45,55 +45,56 @@ const ProductPage = () => {
 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-screen-2xl">
-      {/* <Search onChange={handleSearchChange} placeholder="Buscar..." /> */}
       <Title>Cadastro</Title>
       <Text>Preencha os campos abaixo para cadastrar um novo produto ou cliente.</Text>
-      <TabGroup className="mt-6">
-        <TabList>
-          <Tab>
-            <Title>Equipamentos</Title>
-          </Tab>
-          <Tab>
-            <Title>Clientes</Title>
-          </Tab>
-        </TabList>
-        <TabPanels>
 
-          <TabPanel>
-            <Grid numItemsMd={2} numItemsLg={3} className="gap-6 mt-6">
-              <Card>
-                {/* Placeholder to set height */}
-                <div className="h-28" />
-              </Card>
-              <Card>
-                {/* Placeholder to set height */}
-                <div className="h-28" />
-              </Card>
-              <Card>
-                <Dropzone/>
-                Faça o upload de dados via csv
-                <Export/>
-                Exporte os dados em csv
-                <div className="h-28" />
-              </Card>
-            </Grid>
-            <div className="mt-6">
-              <Card>
-                <ProductTable groups={filteredGroups} />
-              </Card>
-            </div>
-          </TabPanel>
+      <div className="flex">
+        <TabGroup className="mt-6">
 
-          <TabPanel>
-            <div className="mt-6">
-              <Card>
+          <Card>
+            <TabList>
+              <Tab>
+                <Text>Produtos</Text>
+              </Tab>
+              <Tab>
+                <Text>Clientes</Text>
+              </Tab>
+            </TabList>
+          </Card>
 
-              </Card>
-            </div>
-          </TabPanel>
+          <TabPanels>
+            <TabPanel>
+              <div className="mt-6">
+                <Card>
+                  <div className="mb-6">
+                    <Search onChange={handleSearchChange} />
+                  </div>
+                  <ProductTable groups={filteredGroups} />
+                </Card>
+              </div>
+            </TabPanel>
 
-        </TabPanels>
-      </TabGroup>
+            <TabPanel>
+              <div className="mt-6">
+                <Card>
+                  Aqui será o cadastro de clientes
+                </Card>
+              </div>
+            </TabPanel>
+          </TabPanels>
+
+          <Grid numItemsMd={1} numItemsLg={1} className="gap-6 mt-6 ml-6">
+            <Card>
+              <Dropzone/>
+              Faça o upload de dados via csv
+              <Export/>
+              Exporte os dados em csv
+              <div className="h-28" />
+            </Card>
+          </Grid>
+        </TabGroup>
+
+      </div>
     </main>
   );
 };

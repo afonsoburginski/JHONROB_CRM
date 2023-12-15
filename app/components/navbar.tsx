@@ -39,7 +39,7 @@ export default function AuthStatus() {
             <div className="flex h-16 justify-between">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  <Image src="/logo.png" alt="Logo" width={32} height={32} />
+                  <Image src="/logo.png" alt="Logo" width={130} height={40} />
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                   {navigation.map((item) => (
@@ -64,7 +64,6 @@ export default function AuthStatus() {
                   <Menu as="div" className="ml-3 relative">
                     <Menu.Button className="flex items-center">
                       <span className="mr-3">Olá, {session.user?.name}</span>
-                      {console.log(session.user?.image)}
                       <Image
                         src={session.user?.image || 'https://avatar.vercel.sh/nextjs'}
                         height={32}

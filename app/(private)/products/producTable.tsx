@@ -1,11 +1,13 @@
 // productTable.tsx
 'use client'
 import React, { useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
 import { Title, Table, TableHead, TableRow, TableHeaderCell, TableBody, TableCell, Button } from '@tremor/react';
+import EditProductsModal from './editProductModal';
 
 const ProductTable: React.FC<ProductTableProps> = ({ groups }) => {
   const [openRows, setOpenRows] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
 
   const toggleRow = (id) => {
     const currentOpenRows = [...openRows];
@@ -18,6 +20,29 @@ const ProductTable: React.FC<ProductTableProps> = ({ groups }) => {
     }
 
     setOpenRows(currentOpenRows);
+  }
+
+  const toggleProductSelection = (id) => {
+    const currentSelectedProducts = [...selectedProducts];
+    const index = currentSelectedProducts.indexOf(id);
+
+    if (index !== -1) {
+      currentSelectedProducts.splice(index, 1);
+    } else {
+      currentSelectedProducts.push(id);
+    }
+
+    setSelectedProducts(currentSelectedProducts);
+  }
+
+  const handleEditSelected = () => {
+    // Mapeia os IDs dos produtos selecionados de volta para os produtos reais
+    const selectedProductObjects = groups.flatMap(group => 
+      group.products.filter(product => selectedProducts.includes(product.id))
+    );
+
+    setSelectedProducts(selectedProductObjects);
+    setIsEditing(true);
   }
 
   const countVariations = (product) => {
@@ -48,15 +73,11 @@ const ProductTable: React.FC<ProductTableProps> = ({ groups }) => {
         <Table>
           <TableHead>
             <TableRow>
+              <TableHeaderCell></TableHeaderCell>
               <TableHeaderCell>ID</TableHeaderCell>
               <TableHeaderCell>Grupo</TableHeaderCell>
               <TableHeaderCell>Equipamento</TableHeaderCell>
               <TableHeaderCell>Variações</TableHeaderCell>
-              <TableHeaderCell>Produto</TableHeaderCell>
-              <TableHeaderCell>Modelo</TableHeaderCell>
-              <TableHeaderCell>Capacidade</TableHeaderCell>
-              <TableHeaderCell>Altura</TableHeaderCell>
-              <TableHeaderCell>Potência</TableHeaderCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -64,6 +85,9 @@ const ProductTable: React.FC<ProductTableProps> = ({ groups }) => {
               group.products.map((product) => (
                 <React.Fragment key={product.id}>
                   <TableRow onClick={() => toggleRow(product.id)}>
+                    <TableCell>
+                      <input type="checkbox" onChange={() => toggleProductSelection(product.id)} />
+                    </TableCell>
                     <TableCell>{group.id}</TableCell>
                     <TableCell>{group.title}</TableCell>
                     <TableCell>{product.title}</TableCell>
@@ -73,27 +97,6 @@ const ProductTable: React.FC<ProductTableProps> = ({ groups }) => {
                       </span>
                     </TableCell>
                   </TableRow>
-                  {openRows.includes(product.id) && product.types.map((type) =>
-                    product.models.map((model) =>
-                      model.capacities.map((capacity) =>
-                        capacity.heights.map((height) =>
-                          height.powers.map((power) => (
-                            <TableRow 
-                              key={`${group.id}-${product.id}-${type.id}-${model.id}-${capacity.id}-${height.id}-${power.id}`}
-                              style={{ lineHeight: '1.0' }}
-                            >
-                              <TableCell colSpan={4}></TableCell>
-                              <TableCell>{"└─ " + type.title}</TableCell>
-                              <TableCell>{model.title}</TableCell>
-                              <TableCell>{capacity.title}</TableCell>
-                              <TableCell>{height.title}</TableCell>
-                              <TableCell>{power.title}</TableCell>
-                            </TableRow>
-                          ))
-                        )
-                      )
-                    )
-                  )}
                 </React.Fragment>
               ))
             ))}
@@ -104,9 +107,34 @@ const ProductTable: React.FC<ProductTableProps> = ({ groups }) => {
             ))}
           </TableBody>
         </Table>
+        {selectedProducts.length > 0 && <Button onClick={handleEditSelected}>Editar Selecionados</Button>}
       </div>
+      <EditProductsModal open={isEditing} onClose={() => setIsEditing(false)} products={selectedProducts} />
     </>
   );
 };
 
 export default ProductTable;
+
+
+{/* {openRows.includes(product.id) && product.types.map((type) =>
+  product.models.map((model) =>
+    model.capacities.map((capacity) =>
+      capacity.heights.map((height) =>
+        height.powers.map((power) => (
+          <TableRow 
+            key={`${group.id}-${product.id}-${type.id}-${model.id}-${capacity.id}-${height.id}-${power.id}`}
+            style={{ lineHeight: '1.0' }}
+          >
+            <TableCell colSpan={4}></TableCell>
+            <TableCell>{"└─ " + type.title}</TableCell>
+            <TableCell>{model.title}</TableCell>
+            <TableCell>{capacity.title}</TableCell>
+            <TableCell>{height.title}</TableCell>
+            <TableCell>{power.title}</TableCell>
+          </TableRow>
+        ))
+      )
+    )
+  )
+)} */}
