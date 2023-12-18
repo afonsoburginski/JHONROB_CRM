@@ -3,88 +3,181 @@
 import React from 'react';
 import { Table, Title, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
-import { useSpring, animated } from 'react-spring';
-import { HiMagnifyingGlass } from "react-icons/hi2";
 import SelectClient from './selectClient';
+import { Transition } from 'react-transition-group';
+
+const duration = 150;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out`,
+  opacity: 0,
+}
+
+const transitionStyles = {
+  entering: { opacity: 0 },
+  entered:  { opacity: 1 },
+  exiting:  { opacity: 0 },
+  exited:  { opacity: 0 },
+  unmounted: { opacity: 0 }, // Adicione esta linha
+};
 
 const SelectedClients: React.FC = () => {
   const { selectedClient } = useSelectedClient();
-  const [isHovered, setIsHovered] = React.useState(false);
-  const [isAnimatingOut, setIsAnimatingOut] = React.useState(false);
-
-  const animationProps = useSpring({
-    opacity: isHovered ? 1 : 0,
-    transform: isHovered ? 'translateX(0)' : 'translateX(12%)',
-    onRest: () => setIsAnimatingOut(false),
-    onStart: () => {
-      if (!isHovered) {
-        setIsAnimatingOut(true);
-      }
-    },
-  });
 
   return (
     <div className='flex flex-col w-full'>
       <div className='flex justify-between items-center w-full'>
         <Title>Dados do Cliente</Title> 
-        <div 
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className="flex items-center"
-        >
-          <animated.div style={animationProps} className="flex items-center z-50">
-            <SelectClient />
-          </animated.div>
-          {!isHovered && !isAnimatingOut && <HiMagnifyingGlass className="h-6 w-6 text-gray-400 flex items-center mt-5" />}
+        <div className="flex items-center">
+          <SelectClient />
         </div>
       </div>
-      <Table className="bg-grey-lighter text-grey-darker mt-1">
+      <Table className="bg-grey-lighter text-grey-darker">
         <TableHead>
           <TableRow>
-            <TableHeaderCell className="w-1/3">Nome</TableHeaderCell>
-            <TableHeaderCell className="w-1/3">Email</TableHeaderCell>
-            <TableHeaderCell className="w-1/3">Telefone</TableHeaderCell>
+            <TableHeaderCell className="w-1/3 py-1">Nome</TableHeaderCell>
+            <TableHeaderCell className="w-1/3 py-1">Email</TableHeaderCell>
+            <TableHeaderCell className="w-1/3 py-1">Telefone</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.name : '-'}</TableCell>
-            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.email : '-'}</TableCell>
-            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.phone : '-'}</TableCell>
+            <TableCell className={`w-1/3 py-0`}>
+              <Transition in={selectedClient !== null} timeout={duration}>
+                {state => (
+                  <div style={{
+                    ...defaultStyle,
+                    ...transitionStyles[state]
+                  }}>
+                    {selectedClient ? selectedClient.name : '-'}
+                  </div>
+                )}
+              </Transition>
+            </TableCell>
+            <TableCell className={`w-1/3 py-0`}>
+              <Transition in={selectedClient !== null} timeout={duration}>
+                {state => (
+                  <div style={{
+                    ...defaultStyle,
+                    ...transitionStyles[state]
+                  }}>
+                    {selectedClient ? selectedClient.email : '-'}
+                  </div>
+                )}
+              </Transition>
+            </TableCell>
+            <TableCell className={`w-1/3 py-0`}>
+              <Transition in={selectedClient !== null} timeout={duration}>
+                {state => (
+                  <div style={{
+                    ...defaultStyle,
+                    ...transitionStyles[state]
+                  }}>
+                    {selectedClient ? selectedClient.phone : '-'}
+                  </div>
+                )}
+              </Transition>
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
-  
+        
       <Table className="bg-grey-lighter text-grey-darker mt-1">
         <TableHead>
           <TableRow>
-            <TableHeaderCell className="w-1/3">Endereço</TableHeaderCell>
-            <TableHeaderCell className="w-1/3">Cidade</TableHeaderCell>
-            <TableHeaderCell className="w-1/3">Estado</TableHeaderCell>
+            <TableHeaderCell className="w-1/3 py-1">Endereço</TableHeaderCell>
+            <TableHeaderCell className="w-1/3 py-1">Cidade</TableHeaderCell>
+            <TableHeaderCell className="w-1/3 py-1">Estado</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.address : '-'}</TableCell>
-            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.city : '-'}</TableCell>
-            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.state : '-'}</TableCell>
+            <TableCell className={`w-1/3 py-0`}>
+              <Transition in={selectedClient !== null} timeout={duration}>
+                {state => (
+                  <div style={{
+                    ...defaultStyle,
+                    ...transitionStyles[state]
+                  }}>
+                    {selectedClient ? selectedClient.address : '-'}
+                  </div>
+                )}
+              </Transition>
+            </TableCell>
+            <TableCell className={`w-1/3 py-0`}>
+              <Transition in={selectedClient !== null} timeout={duration}>
+                {state => (
+                  <div style={{
+                    ...defaultStyle,
+                    ...transitionStyles[state]
+                  }}>
+                    {selectedClient ? selectedClient.city : '-'}
+                  </div>
+                )}
+              </Transition>
+            </TableCell>
+            <TableCell className={`w-1/3 py-0`}>
+              <Transition in={selectedClient !== null} timeout={duration}>
+                {state => (
+                  <div style={{
+                    ...defaultStyle,
+                    ...transitionStyles[state]
+                  }}>
+                    {selectedClient ? selectedClient.state : '-'}
+                  </div>
+                )}
+              </Transition>
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
-  
+
       <Table className="bg-grey-lighter text-grey-darker mt-1">
         <TableHead>
           <TableRow>
-            <TableHeaderCell className="w-1/3">CEP</TableHeaderCell>
-            <TableHeaderCell className="w-1/3">CPF/CNPJ</TableHeaderCell>
-            <TableHeaderCell className="w-1/3">IE</TableHeaderCell>
+            <TableHeaderCell className="w-1/3 py-1">CEP</TableHeaderCell>
+            <TableHeaderCell className="w-1/3 py-1">CPF/CNPJ</TableHeaderCell>
+            <TableHeaderCell className="w-1/3 py-1">IE</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.zip : '-'}</TableCell>
-            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.cpfCnpj : '-'}</TableCell>
-            <TableCell className="w-1/3 py-1">{selectedClient ? selectedClient.ie : '-'}</TableCell>
+            <TableCell className={`w-1/3 py-0`}>
+              <Transition in={selectedClient !== null} timeout={duration}>
+                {state => (
+                  <div style={{
+                    ...defaultStyle,
+                    ...transitionStyles[state]
+                  }}>
+                    {selectedClient ? selectedClient.zip : '-'}
+                  </div>
+                )}
+              </Transition>
+            </TableCell>
+            <TableCell className={`w-1/3 py-0`}>
+              <Transition in={selectedClient !== null} timeout={duration}>
+                {state => (
+                  <div style={{
+                    ...defaultStyle,
+                    ...transitionStyles[state]
+                  }}>
+                    {selectedClient ? selectedClient.cpfCnpj : '-'}
+                  </div>
+                )}
+              </Transition>
+            </TableCell>
+            <TableCell className={`w-1/3 py-0`}>
+              <Transition in={selectedClient !== null} timeout={duration}>
+                {state => (
+                  <div style={{
+                    ...defaultStyle,
+                    ...transitionStyles[state]
+                  }}>
+                    {selectedClient ? selectedClient.ie : '-'}
+                  </div>
+                )}
+              </Transition>
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>

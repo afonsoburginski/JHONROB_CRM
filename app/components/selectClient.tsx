@@ -1,8 +1,9 @@
 // selectClient.tsx
 'use client';
+import { useState, useEffect } from 'react';
 import { SearchSelect, SearchSelectItem } from '@tremor/react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
-import { useState, useEffect } from 'react';
+import { HiMagnifyingGlass } from "react-icons/hi2";
 
 interface Client {
   id: number;
@@ -47,13 +48,14 @@ export default function SelectClient() {
 
   return (
     <div 
-      className="flex mt-5"
+      className="flex"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="rounded-md shadow-sm flex">
         <SearchSelect
           id="search"
+          icon={HiMagnifyingGlass}
           placeholder="Pesquisar por nome..."
           onChange={(value) => handleSearch(value)}
           className="w-full"

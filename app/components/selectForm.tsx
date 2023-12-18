@@ -54,10 +54,10 @@ export default function SelectFormClient() {
 
   return (
     <>
-      <form className='flex flex-col w-full max-w-screen-xl gap-5'>
+      <form className='flex flex-col w-full max-w-full gap-5'>
         <Grid className='grid-cols-5 gap-5'>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Grupo</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Grupo</Text>
             <Select
               styles={customStyles}
               value={selectedGroup ? { value: selectedGroup.id, label: selectedGroup.title } : null}
@@ -66,7 +66,7 @@ export default function SelectFormClient() {
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Equipamento</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Equipamento</Text>
             <Select
               styles={customStyles}
               value={selectedProduct ? { value: selectedProduct.id, label: selectedProduct.title } : null}
@@ -76,7 +76,7 @@ export default function SelectFormClient() {
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Produto</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Produto</Text>
             <Select
               styles={customStyles}
               value={selectedType ? { value: selectedType.id, label: selectedType.title } : null}
@@ -86,7 +86,7 @@ export default function SelectFormClient() {
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Modelo</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Modelo</Text>
             <Select
               styles={customStyles}
               value={selectedModel ? { value: selectedModel.id, label: selectedModel.title } : null}
@@ -96,7 +96,7 @@ export default function SelectFormClient() {
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Capacidade</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Capacidade</Text>
             <Select
               styles={customStyles}
               value={selectedCapacity ? { value: selectedCapacity.id, label: selectedCapacity.title } : null}
@@ -109,7 +109,7 @@ export default function SelectFormClient() {
 
         <Grid className='grid-cols-4 gap-5'>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Altura</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Altura</Text>
             <Select
               styles={customStyles}
               value={selectedHeight ? { value: selectedHeight.id, label: selectedHeight.title } : null}
@@ -119,7 +119,7 @@ export default function SelectFormClient() {
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Potência</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Potência</Text>
             <Select
               styles={customStyles}
               value={selectedPower ? { value: selectedPower.id, label: `${selectedPower.title} ${selectedPower.recommended ? "(recomendado)" : ""}` } : null}
@@ -129,7 +129,7 @@ export default function SelectFormClient() {
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Entrada</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Entrada</Text>
             <Select
               styles={customStyles}
               isMulti
@@ -140,7 +140,7 @@ export default function SelectFormClient() {
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-3.5">Saída</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Saída</Text>
             <Select
               styles={customStyles}
               isMulti
@@ -157,7 +157,6 @@ export default function SelectFormClient() {
             Adicionar
           </Button>
         </Grid>
-
       </form>
     </>
   );
