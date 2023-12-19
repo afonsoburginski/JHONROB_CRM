@@ -54,7 +54,7 @@ export default function SelectFormClient() {
 
   return (
     <>
-      <form className='flex flex-col w-full max-w-full gap-5'>
+      <form className='flex flex-col w-full max-w-full gap-5 h-48'>
         <Grid className='grid-cols-5 gap-5'>
           <Grid className='grid-cols-1 w-full'>
             <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Grupo</Text>

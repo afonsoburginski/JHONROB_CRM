@@ -28,7 +28,7 @@ const SelectedProducts: React.FC = () => {
   return (
     <>
       <Title>Itens da Venda</Title> 
-      <div className='max-h-80 overflow-auto'>
+      <div className='h-80 overflow-auto'>
         <Table>
           <TableHead>
             <TableRow>
@@ -47,16 +47,16 @@ const SelectedProducts: React.FC = () => {
           <TableBody>
             {selectedProducts.map((product, index) => (
               <TableRow key={index}>
-                <TableCell>{product.group}</TableCell>
-                <TableCell>{product.product}</TableCell>
-                <TableCell>{product.type}</TableCell>
-                <TableCell>{product.model}</TableCell>
-                <TableCell>{product.capacity}</TableCell>
-                <TableCell>{product.height}</TableCell>
-                <TableCell>{product.power}</TableCell>
-                <TableCell>{product.input}</TableCell>
-                <TableCell>{product.output}</TableCell>
-                <TableCell>
+                <TableCell><div style={{ lineHeight: '1.0' }}>{product.group}</div></TableCell>
+                <TableCell><div style={{ lineHeight: '1.0' }}>{product.product}</div></TableCell>
+                <TableCell><div style={{ lineHeight: '1.0' }}>{product.type}</div></TableCell>
+                <TableCell><div style={{ lineHeight: '1.0' }}>{product.model}</div></TableCell>
+                <TableCell><div style={{ lineHeight: '1.0' }}>{product.capacity}</div></TableCell>
+                <TableCell><div style={{ lineHeight: '1.0' }}>{product.height}</div></TableCell>
+                <TableCell><div style={{ lineHeight: '1.0' }}>{product.power}</div></TableCell>
+                <TableCell><div style={{ lineHeight: '1.0' }}>{product.input}</div></TableCell>
+                <TableCell><div style={{ lineHeight: '1.0' }}>{product.output}</div></TableCell>
+                <TableCell style={{ padding: '0'}}>
                   <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={() => handleRemoveProduct(product.tempId)}>
                     <HiXMark />
                   </Button>
@@ -66,7 +66,7 @@ const SelectedProducts: React.FC = () => {
             {Array.from({ length: 6 - selectedProducts.length }).map((_, index) => (
               <TableRow key={index + selectedProducts.length}>
                 <TableCell colSpan={10}>
-                  <div style={{ visibility: 'hidden', lineHeight: '1.0', height: '12px'}}>Placeholder</div>
+                  <div style={{ visibility: 'hidden', lineHeight: '1.0'}}>Placeholder</div>
                 </TableCell>
               </TableRow>
             ))}

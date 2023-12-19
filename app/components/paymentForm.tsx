@@ -1,8 +1,8 @@
 // PaymentInfoForm.tsx
 import { useState } from "react";
-import { SearchSelect, SearchSelectItem, NumberInput, Title, TextInput, Text } from "@tremor/react";
 import { HiMagnifyingGlass, HiOutlineCurrencyDollar } from "react-icons/hi2";
 import { CgMathPercent } from "react-icons/cg";
+import { Grid, Flex, SearchSelect, SearchSelectItem, NumberInput, Title, TextInput, Text } from "@tremor/react";
 
 export type SalesPerson = {
   name: string;
@@ -21,30 +21,32 @@ export const banks = ["Bank A", "Bank B", "Bank C"];
 
 export default function PaymentInfoForm() {
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [bank, setBank] = useState("");
-  const [discount, setDiscount] = useState(0);
   const [salesPerson, setSalesPerson] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [bank, setBank] = useState("");
+  const [bankAgency, setBankAgency] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
 
   return (
     <>
       <Title>Informações de Pagamento</Title>
-      <div className="flex flex-col space-y-4 max-h-80">
-        <div className="flex flex-col space-y-2">
-          <Text>Método de Pagamento</Text>
-          <SearchSelect
-            onValueChange={setPaymentMethod}
-            placeholder="Selecione o Método de Pagamento..."
-          >
-            {paymentMethods.map((method, index) => (
-              <SearchSelectItem key={index} value={method}>
-                {method}
-              </SearchSelectItem>
-            ))}
-          </SearchSelect>
-        </div>
-        <div className="flex space-x-4">
-          <div className="flex flex-col space-y-2 w-full md:w-1/2">
+      <Grid className="space-y-4 h-60 mb-20 w-full">
+        <Flex className="space-x-40 w-full mt-4">
+          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/3">
+            <Text>Método de Pagamento</Text>
+            <SearchSelect
+              onValueChange={setPaymentMethod}
+              placeholder="Selecione o Método de Pagamento..."
+            >
+              {paymentMethods.map((method, index) => (
+                <SearchSelectItem key={index} value={method}>
+                  {method}
+                </SearchSelectItem>
+              ))}
+            </SearchSelect>
+          </Flex>
+  
+          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/3">
             <Text>Vendedor</Text>
             <SearchSelect
               onValueChange={setSalesPerson}
@@ -56,18 +58,19 @@ export default function PaymentInfoForm() {
                 </SearchSelectItem>
               ))}
             </SearchSelect>
-          </div>
-          <div className="flex flex-col space-y-2 w-full md:w-1/2">
+          </Flex>
+          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/3">
             <Text>Desconto</Text>
             <NumberInput
               icon={HiOutlineCurrencyDollar}
               onValueChange={setDiscount}
               placeholder="Adicione um desconto..."
             />
-          </div>
-        </div>
-        <div className="flex space-x-4">
-          <div className="flex flex-col space-y-2 w-full md:w-1/2">
+          </Flex>
+        </Flex>
+  
+        <Flex className="space-x-40 w-full">
+          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/3">
             <Text>Banco</Text>
             <SearchSelect
               onValueChange={setBank}
@@ -79,16 +82,24 @@ export default function PaymentInfoForm() {
                 </SearchSelectItem>
               ))}
             </SearchSelect>
-          </div>
-          <div className="flex flex-col space-y-2 w-full md:w-1/2">
+          </Flex>
+          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/3">
+            <Text>Agência</Text>
+            <TextInput
+              onValueChange={setBankAgency}
+              placeholder="Insira a agência do banco..."
+            />
+          </Flex>
+          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/3">
             <Text>Número da Conta</Text>
             <TextInput
               onValueChange={setAccountNumber}
               placeholder="Insira o número da conta..."
             />
-          </div>
-        </div>
-      </div>
+          </Flex>
+        </Flex>
+
+      </Grid>
     </>
   );
-}
+};

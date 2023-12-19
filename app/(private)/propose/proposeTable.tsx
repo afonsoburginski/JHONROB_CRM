@@ -1,8 +1,8 @@
 // proposeTable.tsx
 'use client'
 import React from 'react';
-import { Table, TableHead, TableRow, TableHeaderCell, TableBody, TableCell, Button} from '@tremor/react';
-import GenerateProposeButton from '../../components/proposeButton';
+import { Table, TableHead, TableRow, TableHeaderCell, TableBody, TableCell, BadgeDelta } from '@tremor/react';
+import ProposeButton from '../../components/proposeButton';
 import ObservationModal from '../../components/observationModal';
 
 interface ProposeTableProps {
@@ -37,7 +37,7 @@ interface Propose {
     cpfCnpj: string;
     ie: string;
   };
-  productSelections: any[]; // Adicione esta linha, substitua 'any' pelo tipo correto
+  productSelections: any[];
 }
 
 const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
@@ -49,17 +49,6 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
         <TableHeaderCell>Observação</TableHeaderCell>
         <TableHeaderCell>Status</TableHeaderCell>
         <TableHeaderCell>Gerar Proposta</TableHeaderCell>
-        {/* <TableHeaderCell>Conteúdo</TableHeaderCell> */}
-        {/* <TableHeaderCell>Cliente</TableHeaderCell> */}
-        {/* <TableHeaderCell>Grupos</TableHeaderCell> */}
-        {/* <TableHeaderCell>Equipamento</TableHeaderCell> */}
-        {/* <TableHeaderCell>Produto</TableHeaderCell> */}
-        {/* <TableHeaderCell>Modelo</TableHeaderCell> */}
-        {/* <TableHeaderCell>Capacidade</TableHeaderCell> */}
-        {/* <TableHeaderCell>Altura</TableHeaderCell> */}
-        {/* <TableHeaderCell>Potência</TableHeaderCell> */}
-        {/* <TableHeaderCell>Entrada</TableHeaderCell> */}
-        {/* <TableHeaderCell>Saída</TableHeaderCell> */}
       </TableRow>
     </TableHead>
     <TableBody>
@@ -71,24 +60,13 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
             <ObservationModal observation={propose.observation} />
           </TableCell>
           <TableCell>
-            <Button style={{ borderRadius: '5px'}} variant='secondary'>
+            <BadgeDelta size="sm">
               Aprovado
-            </Button>
+            </BadgeDelta>
           </TableCell>
           <TableCell>
-            <GenerateProposeButton propose={propose} />
+            <ProposeButton propose={propose} />
           </TableCell>
-          {/* <TableCell>{propose.content}</TableCell> */}
-          {/* <TableCell>{propose.client.name}</TableCell> */}
-          {/* <TableCell>{propose.groups}</TableCell> */}
-          {/* <TableCell>{propose.product}</TableCell> */}
-          {/* <TableCell>{propose.type}</TableCell> */}
-          {/* <TableCell>{propose.model}</TableCell> */}
-          {/* <TableCell>{propose.capacity}</TableCell> */}
-          {/* <TableCell>{propose.height}</TableCell> */}
-          {/* <TableCell>{propose.power}</TableCell> */}
-          {/* <TableCell>{propose.input}</TableCell> */}
-          {/* <TableCell>{propose.output}</TableCell> */}
         </TableRow>
       ))}
     </TableBody>

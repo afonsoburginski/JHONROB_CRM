@@ -7,11 +7,11 @@ import { Propose } from '../(private)/propose/page';
 import ReactToPrint from 'react-to-print';
 import Layout from './layout';
 
-interface GenerateProposeButtonProps {
+interface ProposeButtonProps {
   propose: Propose;
 }
 
-const GenerateProposeButton: React.FC<GenerateProposeButtonProps> = ({ propose }) => {
+const ProposeButton: React.FC<ProposeButtonProps> = ({ propose }) => {
   const componentRef = useRef(null);
 
   useEffect(() => {
@@ -23,13 +23,13 @@ const GenerateProposeButton: React.FC<GenerateProposeButtonProps> = ({ propose }
       <ReactToPrint
         trigger={() => <IconButton color="primary"><SaveAltIcon /></IconButton>}
         content={() => componentRef.current}
-        documentTitle={`Proposta ${propose.id}`} // Define o título do documento
+        documentTitle={`Proposta ${propose.id}`}
       />
-      <div style={{ position: 'absolute', visibility: 'hidden', height: 0 }}>
+      <div style={{ position: 'absolute', display: 'none' }}>
         <Layout ref={componentRef} propose={propose} />
       </div>
     </div>
   );
 };
 
-export default GenerateProposeButton;
+export default ProposeButton;

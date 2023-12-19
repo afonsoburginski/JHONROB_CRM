@@ -13,12 +13,12 @@ export interface Propose {
   groups: string;
   product: string;
   type: string;
-  model: string; // Adicione esta linha
+  model: string;
   capacity: string;
   height: string;
   power: string;
-  input: string; // Adicione esta linha
-  output: string; // Adicione esta linha
+  input: string;
+  output: string;
   clientName: string;
   address: string;
   city: string;

@@ -25,24 +25,25 @@ const SelectedClients: React.FC = () => {
   const { selectedClient } = useSelectedClient();
 
   return (
-    <div className='flex flex-col w-full'>
+    <div className='flex flex-col w-full h-48 overflow-auto'>
       <div className='flex justify-between items-center w-full'>
         <Title>Dados do Cliente</Title> 
         <div className="flex items-center">
           <SelectClient />
         </div>
       </div>
-      <Table className="bg-grey-lighter text-grey-darker">
+      <Table className="bg-grey-lighter text-grey-darker mt-5 mb-5">
         <TableHead>
           <TableRow>
-            <TableHeaderCell className="w-1/3 py-1">Nome</TableHeaderCell>
-            <TableHeaderCell className="w-1/3 py-1">Email</TableHeaderCell>
-            <TableHeaderCell className="w-1/3 py-1">Telefone</TableHeaderCell>
+            <TableHeaderCell className="w-1/4 py-1">Nome</TableHeaderCell>
+            <TableHeaderCell className="w-1/4 py-1">Email</TableHeaderCell>
+            <TableHeaderCell className="w-1/4 py-1">Telefone</TableHeaderCell>
+            <TableHeaderCell className="w-1/4 py-1">Endereço</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell className={`w-1/3 py-0`}>
+            <TableCell className={`w-1/4 py-0`}>
               <Transition in={selectedClient !== null} timeout={duration}>
                 {state => (
                   <div style={{
@@ -54,7 +55,7 @@ const SelectedClients: React.FC = () => {
                 )}
               </Transition>
             </TableCell>
-            <TableCell className={`w-1/3 py-0`}>
+            <TableCell className={`w-1/4 py-0`}>
               <Transition in={selectedClient !== null} timeout={duration}>
                 {state => (
                   <div style={{
@@ -66,7 +67,7 @@ const SelectedClients: React.FC = () => {
                 )}
               </Transition>
             </TableCell>
-            <TableCell className={`w-1/3 py-0`}>
+            <TableCell className={`w-1/4 py-0`}>
               <Transition in={selectedClient !== null} timeout={duration}>
                 {state => (
                   <div style={{
@@ -78,21 +79,7 @@ const SelectedClients: React.FC = () => {
                 )}
               </Transition>
             </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-        
-      <Table className="bg-grey-lighter text-grey-darker mt-1">
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell className="w-1/3 py-1">Endereço</TableHeaderCell>
-            <TableHeaderCell className="w-1/3 py-1">Cidade</TableHeaderCell>
-            <TableHeaderCell className="w-1/3 py-1">Estado</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell className={`w-1/3 py-0`}>
+            <TableCell className={`w-1/4 py-0`}>
               <Transition in={selectedClient !== null} timeout={duration}>
                 {state => (
                   <div style={{
@@ -104,7 +91,22 @@ const SelectedClients: React.FC = () => {
                 )}
               </Transition>
             </TableCell>
-            <TableCell className={`w-1/3 py-0`}>
+          </TableRow>
+        </TableBody>
+      </Table>
+        
+      <Table className="bg-grey-lighter text-grey-darker">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell className="w-1/4 py-1">Cidade</TableHeaderCell>
+            <TableHeaderCell className="w-1/4 py-1">Estado</TableHeaderCell>
+            <TableHeaderCell className="w-1/4 py-1">CEP</TableHeaderCell>
+            <TableHeaderCell className="w-1/4 py-1">CPF/CNPJ</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell className={`w-1/4 py-0`}>
               <Transition in={selectedClient !== null} timeout={duration}>
                 {state => (
                   <div style={{
@@ -116,7 +118,7 @@ const SelectedClients: React.FC = () => {
                 )}
               </Transition>
             </TableCell>
-            <TableCell className={`w-1/3 py-0`}>
+            <TableCell className={`w-1/4 py-0`}>
               <Transition in={selectedClient !== null} timeout={duration}>
                 {state => (
                   <div style={{
@@ -128,21 +130,7 @@ const SelectedClients: React.FC = () => {
                 )}
               </Transition>
             </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-
-      <Table className="bg-grey-lighter text-grey-darker mt-1">
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell className="w-1/3 py-1">CEP</TableHeaderCell>
-            <TableHeaderCell className="w-1/3 py-1">CPF/CNPJ</TableHeaderCell>
-            <TableHeaderCell className="w-1/3 py-1">IE</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell className={`w-1/3 py-0`}>
+            <TableCell className={`w-1/4 py-0`}>
               <Transition in={selectedClient !== null} timeout={duration}>
                 {state => (
                   <div style={{
@@ -154,7 +142,7 @@ const SelectedClients: React.FC = () => {
                 )}
               </Transition>
             </TableCell>
-            <TableCell className={`w-1/3 py-0`}>
+            <TableCell className={`w-1/4 py-0`}>
               <Transition in={selectedClient !== null} timeout={duration}>
                 {state => (
                   <div style={{
@@ -162,18 +150,6 @@ const SelectedClients: React.FC = () => {
                     ...transitionStyles[state]
                   }}>
                     {selectedClient ? selectedClient.cpfCnpj : '-'}
-                  </div>
-                )}
-              </Transition>
-            </TableCell>
-            <TableCell className={`w-1/3 py-0`}>
-              <Transition in={selectedClient !== null} timeout={duration}>
-                {state => (
-                  <div style={{
-                    ...defaultStyle,
-                    ...transitionStyles[state]
-                  }}>
-                    {selectedClient ? selectedClient.ie : '-'}
                   </div>
                 )}
               </Transition>
