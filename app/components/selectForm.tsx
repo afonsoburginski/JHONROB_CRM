@@ -63,6 +63,7 @@ export default function SelectFormClient() {
               value={selectedGroup ? { value: selectedGroup.id, label: selectedGroup.title } : null}
               options={groups.map(group => ({ value: group.id, label: group.title }))}
               onChange={handleGroupChange}
+              placeholder='Selecione o grupo...'
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
@@ -73,6 +74,7 @@ export default function SelectFormClient() {
               onChange={handleProductChange}
               options={(selectedGroup?.products || []).map((product) => ({ value: product.id, label: product.title }))}
               isDisabled={!selectedGroup}
+              placeholder='Selecione o equipamento...'
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
@@ -83,6 +85,7 @@ export default function SelectFormClient() {
               onChange={handleTypeChange}
               options={types.map((type) => ({ value: type.id, label: type.title }))}
               isDisabled={!selectedProduct}
+              placeholder='Selecione o produto...'
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
@@ -93,6 +96,7 @@ export default function SelectFormClient() {
               onChange={handleModelChange}
               options={models.map((model) => ({ value: model.id, label: model.title }))}
               isDisabled={!selectedProduct}
+              placeholder='Selecione o modelo...'
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
@@ -103,6 +107,7 @@ export default function SelectFormClient() {
               onChange={handleCapacityChange}
               options={(selectedModel?.capacities || []).map((capacity) => ({ value: capacity.id, label: capacity.title }))}
               isDisabled={!selectedModel}
+              placeholder='Selecione a capacidade...'
             />
           </Grid>
         </Grid>
@@ -116,6 +121,7 @@ export default function SelectFormClient() {
               onChange={handleHeightChange}
               options={(selectedCapacity?.heights || []).map((height) => ({ value: height.id, label: height.title }))}
               isDisabled={!selectedCapacity}
+              placeholder='Selecione a altura...'
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
@@ -126,6 +132,7 @@ export default function SelectFormClient() {
               onChange={handlePowerChange}
               options={powers ? powers.map((power) => ({ value: power.id, label: `${power.title} ${power.recommended ? "(recomendado)" : ""}` })) : []}
               isDisabled={!selectedHeight}
+              placeholder='Selecione a potência...'
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
@@ -137,6 +144,7 @@ export default function SelectFormClient() {
               onChange={handleInputChange}
               options={inputsAndOutputs.map((item) => ({ value: item.input, label: item.input }))}
               isDisabled={!selectedPower}
+              placeholder='Selecione a entrada...'
             />
           </Grid>
           <Grid className='grid-cols-1 w-full'>
@@ -148,12 +156,13 @@ export default function SelectFormClient() {
               onChange={handleOutputChange}
               options={inputsAndOutputs.map((item) => ({ value: item.output, label: item.output }))}
               isDisabled={!selectedPower}
+              placeholder='Selecione a saída...'
             />
           </Grid>
         </Grid>
 
         <Grid className='flex justify-end items-end grid-cols-3 w-full'>
-          <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={handleSave}>
+          <Button size='xs' style={{ borderRadius: '5px' }} variant='secondary' onClick={handleSave}>
             Adicionar
           </Button>
         </Grid>

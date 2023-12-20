@@ -16,8 +16,9 @@ export const salesPeople: SalesPerson[] = [
   { name: "Max Balmoore" },
 ];
 
-export const paymentMethods = ["Credit Card", "Bank Transfer", "Cash"];
-export const banks = ["Bank A", "Bank B", "Bank C"];
+export const company = ["Jhonrob Matriz", "Jhonrob Filial"];
+export const paymentMethods = ["Boleto Bancário", "Transferência Bancária", "Commodities"];
+export const banks = ["Banco A", "Banco B", "Banco C"];
 
 export default function PaymentInfoForm() {
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -31,8 +32,22 @@ export default function PaymentInfoForm() {
     <>
       <Title>Informações de Pagamento</Title>
       <Grid className="space-y-4 h-60 mb-20 w-full">
-        <Flex className="space-x-40 w-full mt-4">
-          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/3">
+
+        <Flex className="space-x-10 w-full mt-4">
+          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/2">
+            <Text>Empresa</Text>
+            <SearchSelect
+              onValueChange={setPaymentMethod}
+              placeholder="Selecione o Método de Pagamento..."
+            >
+              {company.map((method, index) => (
+                <SearchSelectItem key={index} value={method}>
+                  {method}
+                </SearchSelectItem>
+              ))}
+            </SearchSelect>
+          </Flex>
+          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/2">
             <Text>Método de Pagamento</Text>
             <SearchSelect
               onValueChange={setPaymentMethod}
@@ -45,8 +60,18 @@ export default function PaymentInfoForm() {
               ))}
             </SearchSelect>
           </Flex>
-  
-          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/3">
+        </Flex>
+
+        <Flex className="space-x-10 w-full">
+          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/2">
+            <Text>Parcelamento</Text>
+            <NumberInput
+              icon={HiOutlineCurrencyDollar}
+              onValueChange={setDiscount}
+              placeholder="Adicione um desconto..."
+            />
+          </Flex>
+          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/2">
             <Text>Vendedor</Text>
             <SearchSelect
               onValueChange={setSalesPerson}
@@ -59,17 +84,9 @@ export default function PaymentInfoForm() {
               ))}
             </SearchSelect>
           </Flex>
-          <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/3">
-            <Text>Desconto</Text>
-            <NumberInput
-              icon={HiOutlineCurrencyDollar}
-              onValueChange={setDiscount}
-              placeholder="Adicione um desconto..."
-            />
-          </Flex>
         </Flex>
-  
-        <Flex className="space-x-40 w-full">
+
+        <Flex className="space-x-10 w-full">
           <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/3">
             <Text>Banco</Text>
             <SearchSelect

@@ -9,11 +9,10 @@ const ObserveForm: React.FC = () => {
 
   return (
     <Grid className='flex flex-col'>
-      <Title className='mb-2 text-lg'>Observação Geral</Title>
+      <Title className='text-lg'>Observação Geral</Title>
       <Textarea
         placeholder='Digite uma observação geral para a proposta...'
-        style={{ height: '269px' }}
-        className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+        className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40'
         id='observation'
         value={observation}
         onChange={(e) => setObservation(e.target.value)}

@@ -17,6 +17,7 @@ import SelectFormClient from '../../components/selectForm';
 import SelectedProducts from '../../components/selectedProducts';
 import SelectedClients from '../../components/selectedClients';
 import PaymentForm from '../../components/paymentForm';
+import Deadline from 'app/components/deadline';
 import ObserveForm from '../../components/observeForm';
 import SaveButton from '../../components/saveButton';
 
@@ -78,7 +79,7 @@ const ManagerPage: React.FC = () => {
                           <SelectFormClient />
                         </Card>
                         <Card className="mt-6">
-                          <SelectedProducts selectedProducts={[]} inputsAndOutputs={[]} />
+                          <SelectedProducts />
                         </Card>
                       </div>
                     )}
@@ -93,20 +94,23 @@ const ManagerPage: React.FC = () => {
                       </div>
                     )}
                     {step === 3 && (
-                      <Card className="mt-6">
-                        <ObserveForm />
-                        <div className="mt-4 flex justify-end">
-                          <SaveButton />
-                        </div>
-                      </Card>
+                      <div>
+                        <Card className="mt-6">
+                          <Deadline />
+                        </Card>
+                        <Card className="mt-6">
+                          <ObserveForm />
+                        </Card>
+                      </div>
                     )}
                   </>
                 </CSSTransition>
               </SwitchTransition>
             </div>
             <div className="flex mt-5">
-              {step > 1 && <StyledButton variant='secondary' onClick={prevStep}>Passo Anterior</StyledButton>}
-              {step < 3 && <StyledButton variant='secondary' className="ml-auto" onClick={nextStep}>Próximo Passo</StyledButton>}
+              {step > 1 && <StyledButton variant='secondary' onClick={prevStep}>Voltar</StyledButton>}
+              {step < 3 && <StyledButton variant='secondary' className="ml-auto" onClick={nextStep}>Próximo</StyledButton>}
+              {step === 3 && <SaveButton />}
             </div>
           </main>
         </SelectedClientProvider>

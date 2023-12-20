@@ -92,7 +92,7 @@ export default function ObservationModal({ observation }: ObservationModalProps)
                 </StyledText>
 
                 <div className="mt-4 flex justify-end">
-                  <StyledButton variant='secondary' type="button" onClick={closeModal}>
+                  <StyledButton size='xs' variant='secondary' type="button" onClick={closeModal}>
                     Fechar
                   </StyledButton>
                 </div>

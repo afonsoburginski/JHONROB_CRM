@@ -100,8 +100,8 @@ const SelectedClients: React.FC = () => {
           <TableRow>
             <TableHeaderCell className="w-1/4 py-1">Cidade</TableHeaderCell>
             <TableHeaderCell className="w-1/4 py-1">Estado</TableHeaderCell>
-            <TableHeaderCell className="w-1/4 py-1">CEP</TableHeaderCell>
-            <TableHeaderCell className="w-1/4 py-1">CPF/CNPJ</TableHeaderCell>
+            <TableHeaderCell className="w-1/4 py-1">Cep</TableHeaderCell>
+            <TableHeaderCell className="w-1/4 py-1">Cpf/Cnpj</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>

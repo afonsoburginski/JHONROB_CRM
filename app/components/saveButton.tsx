@@ -5,21 +5,21 @@ import { Button } from '@tremor/react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
 import { useObservation } from '../contexts/observationContext';
-import { showToastSuccess, showToastError } from './toastfy'; // importe as funções do toast
+import { showToastSuccess, showToastError } from './toastfy';
 
 const SaveButton: React.FC = () => {
-  const { selectedProducts, resetSelectedProducts } = useSelectedProduct(); // Adicione resetSelectedProducts
-  const { selectedClient, resetSelectedClient } = useSelectedClient(); // Adicione resetSelectedClient
-  const { observation, resetObservation } = useObservation(); // Adicione resetObservation
+  const { selectedProducts, resetSelectedProducts } = useSelectedProduct();
+  const { selectedClient, resetSelectedClient } = useSelectedClient();
+  const { observation, resetObservation } = useObservation();
 
   const handleSubmit = async () => {
     if (!selectedProducts || selectedProducts.length === 0) {
-      showToastError('Nenhum produto selecionado'); // mostre um toast de erro
+      showToastError('Nenhum produto selecionado');
       return;
     }
     
     if (!selectedClient) {
-      showToastError('Nenhum cliente selecionado'); // mostre um toast de erro
+      showToastError('Nenhum cliente selecionado');
       return;
     }
     
@@ -36,8 +36,8 @@ const SaveButton: React.FC = () => {
     }));
 
     const data = {
-      title: `Proposta ${selectedClient.name}`, // Use the actual title value
-      content: '', // Use the actual content value
+      title: `Proposta ${selectedClient.name}`,
+      content: '',
       observation: observation,
       clientId: selectedClient.id,
       productSelections,
@@ -52,7 +52,7 @@ const SaveButton: React.FC = () => {
     });
   
     if (!response.ok) {
-      showToastError(`Erro ao salvar: ${response.status}`); // mostre um toast de erro
+      showToastError(`Erro ao salvar: ${response.status}`);
       throw new Error(`HTTP error! status: ${response.status}`);
     } else {
       const responseData = await response.json();
@@ -61,12 +61,12 @@ const SaveButton: React.FC = () => {
       resetSelectedClient();
       resetObservation();
 
-      showToastSuccess('Proposta salva com sucesso'); // mostre um toast de sucesso
+      showToastSuccess('Proposta salva com sucesso');
     }
   };
 
   return (
-    <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={handleSubmit}>
+    <Button className='ml-auto' style={{ borderRadius: '5px' }} variant='secondary' onClick={handleSubmit}>
       Salvar
     </Button>
   );

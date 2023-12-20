@@ -28,7 +28,7 @@ const SelectedProducts: React.FC = () => {
   return (
     <>
       <Title>Itens da Venda</Title> 
-      <div className='h-80 overflow-auto'>
+      <div className='h-80'>
         <Table>
           <TableHead>
             <TableRow>

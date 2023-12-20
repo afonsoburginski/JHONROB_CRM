@@ -43,23 +43,23 @@ type Kpi = {
 
 const kpiData: Kpi[] = [
   {
-    title: "Vendas",
-    metric: "R$ 12,699",
+    title: "Sales",
+    metric: "$ 12,699",
     progress: 15.9,
-    target: "R$ 80,000",
+    target: "$ 80,000",
     delta: "13.2%",
     deltaType: "moderateIncrease",
   },
   {
-    title: "Lucro",
-    metric: "R$ 45,564",
+    title: "Profit",
+    metric: "$ 45,564",
     progress: 36.5,
-    target: "R$ 125,000",
+    target: "$ 125,000",
     delta: "23.9%",
     deltaType: "increase",
   },
   {
-    title: "Clientes",
+    title: "Customers",
     metric: "1,072",
     progress: 53.6,
     target: "2,000",
@@ -214,15 +214,14 @@ export default function FinalDashboard() {
   return (
     <main className="p-4 md:p-10 mx-auto max-w-screen-2xl" >
       <Title>Dashboard</Title>
-      <Text>Tenha uma ampla visão sobre os resultados de Venda e Faturamento.</Text>
+      <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</Text>
 
       <TabGroup className="mt-6">
         <TabList>
-          <Tab>Visão Geral</Tab>
-          <Tab>Detalhes</Tab>
+          <Tab>Overview</Tab>
+          <Tab>Detail</Tab>
         </TabList>
         <TabPanels>
-          
           <TabPanel>
             <Grid numItemsMd={2} numItemsLg={3} className="mt-6 gap-6">
               {kpiData.map((item) => (
@@ -248,21 +247,21 @@ export default function FinalDashboard() {
                   <div className="md:flex justify-between">
                     <div>
                       <Flex className="space-x-0.5" justifyContent="start" alignItems="center">
-                        <Title> Histórico de Performance </Title>
+                        <Title> Performance History </Title>
                         <Icon
                           icon={HiInformationCircle}
                           variant="simple"
-                          tooltip="Exibe o aumento ou diminuição diária de um dado específico"
+                          tooltip="Shows daily increase or decrease of particular domain"
                         />
                       </Flex>
-                      <Text> Atualizações diárias </Text>
+                      <Text> Daily change per domain </Text>
                     </div>
                     <div>
                       <TabGroup index={selectedIndex} onIndexChange={setSelectedIndex}>
                         <TabList color="gray" variant="solid">
-                          <Tab>Vendas</Tab>
-                          <Tab>Lucro</Tab>
-                          <Tab>Clientes</Tab>
+                          <Tab>Sales</Tab>
+                          <Tab>Profit</Tab>
+                          <Tab>Customers</Tab>
                         </TabList>
                       </TabGroup>
                     </div>
@@ -284,18 +283,17 @@ export default function FinalDashboard() {
               </Card>
             </div>
           </TabPanel>
-
           <TabPanel>
             <div className="mt-6">
               <Card>
                 <>
                   <div>
                     <Flex className="space-x-0.5" justifyContent="start" alignItems="center">
-                      <Title> Histórico de Performance </Title>
+                      <Title> Performance History </Title>
                       <Icon
                         icon={HiInformationCircle}
                         variant="simple"
-                        tooltip="Exibe o desempenho de vendas por funcionário"
+                        tooltip="Shows sales performance per employee"
                       />
                     </Flex>
                   </div>
@@ -316,21 +314,21 @@ export default function FinalDashboard() {
                       defaultValue="all"
                       onValueChange={setSelectedStatus}
                     >
-                      <SelectItem value="all">Todas Performances</SelectItem>
-                      <SelectItem value="overperforming">Desempenho superior</SelectItem>
-                      <SelectItem value="average">Desempenho na média</SelectItem>
-                      <SelectItem value="underperforming">Desempenho insatisfatório</SelectItem>
+                      <SelectItem value="all">All Performances</SelectItem>
+                      <SelectItem value="overperforming">Overperforming</SelectItem>
+                      <SelectItem value="average">Average</SelectItem>
+                      <SelectItem value="underperforming">Underperforming</SelectItem>
                     </Select>
                   </div>
                   <Table className="mt-6">
                     <TableHead>
                       <TableRow>
-                        <TableHeaderCell>Nome</TableHeaderCell>
+                        <TableHeaderCell>Name</TableHeaderCell>
                         <TableHeaderCell className="text-right">Leads</TableHeaderCell>
-                        <TableHeaderCell className="text-right">Vendas (R$)</TableHeaderCell>
-                        <TableHeaderCell className="text-right">Lucro (R$)</TableHeaderCell>
-                        <TableHeaderCell className="text-right">Variação</TableHeaderCell>
-                        <TableHeaderCell className="text-right">Região</TableHeaderCell>
+                        <TableHeaderCell className="text-right">Sales ($)</TableHeaderCell>
+                        <TableHeaderCell className="text-right">Quota ($)</TableHeaderCell>
+                        <TableHeaderCell className="text-right">Variance</TableHeaderCell>
+                        <TableHeaderCell className="text-right">Region</TableHeaderCell>
                         <TableHeaderCell className="text-right">Status</TableHeaderCell>
                       </TableRow>
                     </TableHead>
@@ -359,7 +357,6 @@ export default function FinalDashboard() {
               </Card>
             </div>
           </TabPanel>
-
         </TabPanels>
       </TabGroup>
     </main>
