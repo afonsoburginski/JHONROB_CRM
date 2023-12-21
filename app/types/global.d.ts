@@ -1,4 +1,5 @@
 declare global {
+
   type Power = {
     id: string;
     title: string;
@@ -30,6 +31,7 @@ declare global {
   };
 
   type Product = {
+    [x: string]: number;
     id: string;
     title: string;
     models: Model[];
@@ -54,6 +56,46 @@ declare global {
     input: string;
     output: string;
   }
+
+  // selectedClientContex.tsx
+  interface Propose {
+    id: number;
+    title: string;
+    content: string;
+    createdAt: Date;
+    observation: string | null;
+    groups: string;
+    product: string;
+    type: string;
+    model: string;
+    capacity: string;
+    height: string;
+    power: string;
+    input: string;
+    output: string;
+    clientId: number | null;
+  }
+
+  interface Client {
+    id: number;
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    cpfCnpj: string;
+    ie: string;
+    proposes: Propose[];
+  }
+
+  interface SelectedClientContextData {
+    selectedClient: Client | null;
+    setSelectedClient: (client: Client | null) => void;
+    resetSelectedClient: () => void;
+  }
+
 }
 
 export {};

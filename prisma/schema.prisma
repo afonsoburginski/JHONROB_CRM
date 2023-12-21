@@ -8,33 +8,58 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// schema.prisma
-model User {
-  id       Int     @id @default(autoincrement())
-  name     String?
-  email    String   @unique
-  password String
-  image    String?
-  role     Role     @default(USER)
-}
-
 enum Role {
   ADMIN
   USER
 }
+// schema.prisma
+model User {
+  id            Int            @id @default(autoincrement())
+  name          String?
+  email         String         @unique
+  password      String
+  image         String?
+  role          Role           @default(USER)
+}
 
 model Client {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String
-  phone     String
-  address   String
-  city      String
-  state     String
-  zip       String
-  cpfCnpj   String
-  ie        String
-  proposes  Propose[]
+  id              Int            @id @default(autoincrement())
+  name            String
+  email           String
+  phone           String
+  address         String
+  city            String
+  state           String
+  zip             String
+  cpfCnpj         String
+  ie              String
+  proposes        Propose[]
+}
+
+model Company {
+  id              Int            @id @default(autoincrement())
+  name            String
+}
+
+model Installment {
+  id              Int            @id @default(autoincrement())
+  numberOfInstallments Int
+  interestRate    Float
+  paymentMethodId Int
+  PaymentMethod   PaymentMethod @relation(fields: [paymentMethodId], references: [id])
+}
+
+model PaymentMethod {
+  id              Int            @id @default(autoincrement())
+  title           String
+  Installments    Installment[]
+}
+
+model Bank {
+  id              Int            @id @default(autoincrement())
+  title           String
+  agency          String
+  account         String
 }
 
 model Group {

@@ -30,6 +30,42 @@ CREATE TABLE "Client" (
 );
 
 -- CreateTable
+CREATE TABLE "Company" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+
+    CONSTRAINT "Company_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Installment" (
+    "id" SERIAL NOT NULL,
+    "numberOfInstallments" INTEGER NOT NULL,
+    "interestRate" DOUBLE PRECISION NOT NULL,
+    "paymentMethodId" INTEGER NOT NULL,
+
+    CONSTRAINT "Installment_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "PaymentMethod" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+
+    CONSTRAINT "PaymentMethod_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Bank" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "agency" TEXT NOT NULL,
+    "account" TEXT NOT NULL,
+
+    CONSTRAINT "Bank_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Group" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
@@ -47,21 +83,21 @@ CREATE TABLE "Product" (
 );
 
 -- CreateTable
-CREATE TABLE "Model" (
-    "id" SERIAL NOT NULL,
-    "title" TEXT NOT NULL,
-    "productId" INTEGER NOT NULL,
-
-    CONSTRAINT "Model_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Type" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "productId" INTEGER NOT NULL,
 
     CONSTRAINT "Type_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Model" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "productId" INTEGER NOT NULL,
+
+    CONSTRAINT "Model_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -141,13 +177,16 @@ CREATE UNIQUE INDEX "Group_title_key" ON "Group"("title");
 CREATE UNIQUE INDEX "Product_title_key" ON "Product"("title");
 
 -- AddForeignKey
+ALTER TABLE "Installment" ADD CONSTRAINT "Installment_paymentMethodId_fkey" FOREIGN KEY ("paymentMethodId") REFERENCES "PaymentMethod"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Product" ADD CONSTRAINT "Product_groupId_fkey" FOREIGN KEY ("groupId") REFERENCES "Group"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Model" ADD CONSTRAINT "Model_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Type" ADD CONSTRAINT "Type_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Type" ADD CONSTRAINT "Type_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Model" ADD CONSTRAINT "Model_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Capacity" ADD CONSTRAINT "Capacity_modelId_fkey" FOREIGN KEY ("modelId") REFERENCES "Model"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

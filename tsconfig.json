@@ -21,6 +21,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/data.jsx", "app/components/selectForm.tsx", "app/server.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/data.jsx", "app/components/selectForm.tsx", "app/server.js", "global.d.ts"],
   "exclude": ["node_modules"]
 }
