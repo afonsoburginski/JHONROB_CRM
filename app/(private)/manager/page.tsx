@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createGlobalStyle } from 'styled-components';
-import { Card, Title, Text, Button } from '@tremor/react';
+import { Card, Title, Button } from '@tremor/react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
-import CombinedProvider from '../../contexts/combinedProvider'; // Importe o CombinedProvider
+import CombinedProvider from '../../contexts/combinedProvider';
 
 import Timeline from 'app/components/timeline';
 import SelectFormClient from '../../components/selectForm';
