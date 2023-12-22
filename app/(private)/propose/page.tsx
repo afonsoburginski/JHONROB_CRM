@@ -5,32 +5,6 @@ import { Card, Title, Text } from '@tremor/react';
 import Search from '../../components/search';
 import ProposeTable from './proposeTable';
 
-export interface Propose {
-  id: number;
-  title: string;
-  content: string;
-  observation: string;
-  groups: string;
-  product: string;
-  type: string;
-  model: string;
-  capacity: string;
-  height: string;
-  power: string;
-  input: string;
-  output: string;
-  clientName: string;
-  address: string;
-  city: string;
-  state: string;
-  cpfCnpj: string;
-  ie: string;
-  contact: string;
-  phone: string;
-  email: string;
-  inputOutputs: string;
-}
-
 export default function ProposePage({ searchParams }: { searchParams: { q: string }; }) {
   const [proposes, setProposes] = useState<Propose[]>([]);
   const search = searchParams.q ?? '';

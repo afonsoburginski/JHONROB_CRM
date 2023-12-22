@@ -3,9 +3,20 @@
 import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
 import { signOut, getSession } from 'next-auth/react';
+import { Session } from 'next-auth';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+
+interface User {
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+}
+
+interface AuthStatusProps {
+  user?: User;
+}
 
 const navigation = [
   { name: 'Dashboard', href: '/' },
@@ -18,9 +29,9 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function AuthStatus() {
+export default function AuthStatus({ user }: AuthStatusProps) {
   const pathname = usePathname();
-  const [session, setSession] = useState(null);
+  const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
     const fetchSession = async () => {

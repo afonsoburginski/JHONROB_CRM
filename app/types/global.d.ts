@@ -57,13 +57,16 @@ declare global {
     output: string;
   }
 
-  // selectedClientContex.tsx
-  interface Propose {
+  
+  export interface Propose {
     id: number;
     title: string;
     content: string;
-    createdAt: Date;
-    observation: string | null;
+    createdAt: string;
+    observation: string;
+    clientId: string;
+    client: Client;
+    productSelections: any[];
     groups: string;
     product: string;
     type: string;
@@ -73,10 +76,33 @@ declare global {
     power: string;
     input: string;
     output: string;
-    clientId: number | null;
+    clientName: string;
+    address: string;
+    city: string;
+    state: string;
+    cpfCnpj: string;
+    ie: string;
+    contact: string;
+    phone: string;
+    email: string;
+    inputOutputs: string;
   }
 
-  interface Client {
+  export interface ProductSelection {
+    id: number;
+    groups: string;
+    product: string;
+    type: string;
+    model: string;
+    capacity: string;
+    height: string;
+    power: string;
+    input: string;
+    output: string;
+    proposeId: number;
+  }
+
+  export interface Client {
     id: number;
     name: string;
     email: string;

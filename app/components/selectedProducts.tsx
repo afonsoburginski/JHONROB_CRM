@@ -47,7 +47,7 @@ const SelectedProducts: React.FC = () => {
           <TableBody>
             {selectedProducts.map((product, index) => (
               <TableRow key={index}>
-                <TableCell><div style={{ lineHeight: '1.0' }}>{product.group}</div></TableCell>
+                <TableCell><div style={{ lineHeight: '1.0' }}>{product.group.name}</div></TableCell>
                 <TableCell><div style={{ lineHeight: '1.0' }}>{product.product}</div></TableCell>
                 <TableCell><div style={{ lineHeight: '1.0' }}>{product.type}</div></TableCell>
                 <TableCell><div style={{ lineHeight: '1.0' }}>{product.model}</div></TableCell>
@@ -57,7 +57,7 @@ const SelectedProducts: React.FC = () => {
                 <TableCell><div style={{ lineHeight: '1.0' }}>{product.input}</div></TableCell>
                 <TableCell><div style={{ lineHeight: '1.0' }}>{product.output}</div></TableCell>
                 <TableCell style={{ padding: '0'}}>
-                  <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={() => handleRemoveProduct(product.tempId)}>
+                  <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={() => product.tempId !== undefined && handleRemoveProduct(product.tempId)}>
                     <HiXMark />
                   </Button>
                 </TableCell>

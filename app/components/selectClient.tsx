@@ -16,6 +16,7 @@ interface Client {
   zip: string;
   cpfCnpj: string;
   ie: string;
+  proposes: any; // 'proposes' é agora obrigatório
 }
 
 export default function SelectClient() {
@@ -37,14 +38,13 @@ export default function SelectClient() {
     setSearchTerm(term);
     const matchedClient = clients.find(client => client.name.includes(term));
     if (matchedClient) {
-      if (!matchedClient.id || !matchedClient.name || !matchedClient.email || !matchedClient.phone || !matchedClient.address || !matchedClient.city || !matchedClient.state || !matchedClient.zip || !matchedClient.cpfCnpj || !matchedClient.ie) {
+      if (!matchedClient.id || !matchedClient.name || !matchedClient.email || !matchedClient.phone || !matchedClient.address || !matchedClient.city || !matchedClient.state || !matchedClient.zip || !matchedClient.cpfCnpj || !matchedClient.ie || !matchedClient.proposes) {
         console.error('Client is missing required properties');
         return;
       }
       setSelectedClient(matchedClient);
     }
   }
-
 
   return (
     <div 
@@ -57,7 +57,7 @@ export default function SelectClient() {
           id="search"
           icon={HiMagnifyingGlass}
           placeholder="Pesquisar por nome..."
-          onChange={(value) => handleSearch(value)}
+          onChange={(event) => handleSearch((event.target as HTMLInputElement).value)} // Atualizado para usar a asserção de tipo
           className="w-full"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}

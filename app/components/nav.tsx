@@ -1,9 +1,25 @@
 // nav.tsx
-import { useSession } from 'next-auth/react'
+import { getSession, SessionProvider } from 'next-auth/react'
 import Navbar from './navbar';
+import { Session } from 'next-auth';
+import { GetServerSidePropsContext } from 'next';
 
-export default function Nav() {
-  const { data: session } = useSession()
+interface User {
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+}
+interface NavProps {
+  session: Session | null;
+}
 
+export default function Nav({ session }: NavProps) {
   return <Navbar user={session?.user} />;
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getSession(context);
+  return {
+    props: { session }
+  }
 }

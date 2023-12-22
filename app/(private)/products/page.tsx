@@ -8,6 +8,21 @@ import Search from 'app/components/search';
 import Dropzone from 'app/components/dropzone';
 import Export from 'app/components/export';
 
+interface Product {
+  id: string; 
+  models: any; 
+  types: any; 
+  title: string;
+}
+
+interface Product {
+  id: string; 
+  models: any; 
+  types: any; 
+  title: string;
+  [key: string]: any;
+}
+
 const ProductPage = () => {
   const [groups, setGroups] = useState<Group[] | undefined>();
   const [searchFilter, setSearchFilter] = useState('');
@@ -33,8 +48,9 @@ const ProductPage = () => {
     setSearchFilter(value);
   };
 
-  const isNumeric = (str) => {
-    return !isNaN(str) && !isNaN(parseFloat(str));
+  const isNumeric = (str: string) => {
+    const num = Number(str);
+    return !isNaN(num) && !isNaN(parseFloat(str));
   }
 
   const filteredGroups = groups?.filter(group => 

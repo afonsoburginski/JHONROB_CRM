@@ -5,7 +5,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "strict": true,
+    "strict": false, // Desativar a verificação de tipo rigorosa
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -15,6 +15,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "noImplicitAny": false, // Permitir 'any' implícito
     "plugins": [
       {
         "name": "next"

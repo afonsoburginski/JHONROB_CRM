@@ -4,56 +4,55 @@ import React, { useState } from 'react';
 import { Title, Table, TableHead, TableRow, TableHeaderCell, TableBody, TableCell, Button } from '@tremor/react';
 import EditProductsModal from './editProductModal';
 
-const ProductTable: React.FC<ProductTableProps> = ({ groups }) => {
-  const [openRows, setOpenRows] = useState([]);
-  const [selectedProducts, setSelectedProducts] = useState([]);
+const ProductTable: React.FC<ProductTableProps> = ({ groups = [] }) => {
+  const [openRows, setOpenRows] = useState<string[]>([]);
+  const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [isEditing, setIsEditing] = useState(false);
 
-  const toggleRow = (id) => {
+  const toggleRow = (id: string) => {
     const currentOpenRows = [...openRows];
     const index = currentOpenRows.indexOf(id);
-
+  
     if (index !== -1) {
       currentOpenRows.splice(index, 1);
     } else {
       currentOpenRows.push(id);
     }
-
+  
     setOpenRows(currentOpenRows);
   }
 
-  const toggleProductSelection = (id) => {
+  const toggleProductSelection = (id: string) => {
     const currentSelectedProducts = [...selectedProducts];
     const index = currentSelectedProducts.indexOf(id);
-
+  
     if (index !== -1) {
       currentSelectedProducts.splice(index, 1);
     } else {
       currentSelectedProducts.push(id);
     }
-
+  
     setSelectedProducts(currentSelectedProducts);
   }
 
   const handleEditSelected = () => {
-    // Mapeia os IDs dos produtos selecionados de volta para os produtos reais
-    const selectedProductObjects = groups.flatMap(group => 
-      group.products.filter(product => selectedProducts.includes(product.id))
+    const selectedProductIds = groups.flatMap(group => 
+      group.products.filter(product => selectedProducts.includes(product.id)).map(product => product.id)
     );
-
-    setSelectedProducts(selectedProductObjects);
+  
+    setSelectedProducts(selectedProductIds);
     setIsEditing(true);
   }
 
-  const countVariations = (product) => {
+  const countVariations = (product: Product) => {
     let count = 0;
     if (product.types && product.models) {
-      product.types.forEach((type) => {
-        product.models.forEach((model) => {
+      product.types.forEach((type: Type) => {
+        product.models.forEach((model: Model) => {
           if (model.capacities) {
-            model.capacities.forEach((capacity) => {
+            model.capacities.forEach((capacity: Capacity) => {
               if (capacity.heights) {
-                capacity.heights.forEach((height) => {
+                capacity.heights.forEach((height: Height) => {
                   if (height.powers) {
                     count += height.powers.length;
                   }
@@ -115,26 +114,3 @@ const ProductTable: React.FC<ProductTableProps> = ({ groups }) => {
 };
 
 export default ProductTable;
-
-
-{/* {openRows.includes(product.id) && product.types.map((type) =>
-  product.models.map((model) =>
-    model.capacities.map((capacity) =>
-      capacity.heights.map((height) =>
-        height.powers.map((power) => (
-          <TableRow 
-            key={`${group.id}-${product.id}-${type.id}-${model.id}-${capacity.id}-${height.id}-${power.id}`}
-            style={{ lineHeight: '1.0' }}
-          >
-            <TableCell colSpan={4}></TableCell>
-            <TableCell>{"└─ " + type.title}</TableCell>
-            <TableCell>{model.title}</TableCell>
-            <TableCell>{capacity.title}</TableCell>
-            <TableCell>{height.title}</TableCell>
-            <TableCell>{power.title}</TableCell>
-          </TableRow>
-        ))
-      )
-    )
-  )
-)} */}

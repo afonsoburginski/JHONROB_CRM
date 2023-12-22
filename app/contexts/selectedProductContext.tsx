@@ -15,6 +15,7 @@ interface InputOutput {
 }
 
 interface Product {
+  [x: string]: any;
   id: number;
   title: string;
   group: Group;

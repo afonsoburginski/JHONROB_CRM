@@ -4,16 +4,16 @@ import { Dialog, Transition } from '@headlessui/react';
 import { HiOutlineCloudArrowDown } from "react-icons/hi2";
 import { Card, Flex, Icon, Metric, Text, Title } from "@tremor/react";
 
-const createCsvBlob = async (data, headers) => {
+const createCsvBlob = async (data: any[], headers: string[]) => {
   let csv = headers.join(',') + '\n';
-  data.forEach(row => {
-    csv += headers.map(header => row[header]).join(',') + '\n';
+  data.forEach((row: {[key: string]: any}) => {
+    csv += headers.map((header: string) => row[header]).join(',') + '\n';
   });
   const blob = new Blob([csv], { type: 'text/csv' });
   return blob;
 };
 
-const downloadBlob = (blob, filename) => {
+const downloadBlob = (blob: Blob, filename: string) => {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;

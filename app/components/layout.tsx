@@ -3,44 +3,6 @@ import React, { forwardRef, Ref } from 'react';
 import { styled } from '@mui/system';
 import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typography, Grid, Box, Divider } from '@mui/material';
 
-interface Client {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  city: string;
-  state: string;
-  zip: string;
-  cpfCnpj: string;
-  ie: string;
-}
-
-interface ProductSelection {
-  id: number;
-  groups: string;
-  product: string;
-  type: string;
-  model: string;
-  capacity: string;
-  height: string;
-  power: string;
-  input: string;
-  output: string;
-  proposeId: number;
-}
-
-interface Propose {
-  id: number;
-  title: string;
-  content: string;
-  createdAt: string;
-  observation: string;
-  clientId: number;
-  client: Client;
-  productSelections: ProductSelection[];
-}
-
 interface LayoutProps {
   propose: Propose;
 }

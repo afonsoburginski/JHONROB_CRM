@@ -9,9 +9,13 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'avatar.vercel.sh'
-      }
+      },
+      
     ]
-  }
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;

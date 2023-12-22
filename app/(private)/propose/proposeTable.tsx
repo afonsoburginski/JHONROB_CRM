@@ -9,37 +9,6 @@ interface ProposeTableProps {
   proposes: Propose[];
 }
 
-interface Propose {
-  id: number;
-  title: string;
-  content: string;
-  observation: string;
-  groups: string;
-  product: string;
-  type: string;
-  model: string;
-  capacity: string;
-  height: string;
-  power: string;
-  input: string;
-  output: string;
-  createdAt: Date; // Adicione esta linha
-  clientId: number; // Adicione esta linha
-  client: { 
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    address: string;
-    city: string;
-    state: string;
-    zip: string;
-    cpfCnpj: string;
-    ie: string;
-  };
-  productSelections: any[];
-}
-
 const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
   <Table>
     <TableHead>
@@ -55,7 +24,7 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
       {proposes && proposes.map((propose, index) => (
         <TableRow key={index}>
           <TableCell>{propose.id}</TableCell>
-          <TableCell>{`Proposta ${propose.client.name}`}</TableCell> 
+          <TableCell>{`Proposta ${propose.clientName}`}</TableCell> 
           <TableCell>
             <ObservationModal observation={propose.observation} />
           </TableCell>

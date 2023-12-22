@@ -9,7 +9,7 @@ const Dropzone = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
 
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
     setIsUploading(true);
     const file = acceptedFiles[0];
     const formData = new FormData();

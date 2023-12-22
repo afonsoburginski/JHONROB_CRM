@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { HiMagnifyingGlass, HiOutlineCurrencyDollar } from "react-icons/hi2";
 import { CgMathPercent } from "react-icons/cg";
 import { Grid, Flex, SearchSelect, SearchSelectItem, NumberInput, Title, TextInput, Text } from "@tremor/react";
-import { usePaymentInfo } from '../contexts/paymentInfoContext'; // Importe o usePaymentInfo
+import { PaymentInfoType, usePaymentInfo } from '../contexts/paymentInfoContext';
 
 export type SalesPerson = {
   name: string;
@@ -19,9 +19,17 @@ export default function PaymentInfoForm() {
   const [bankAgency, setBankAgency] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [company, setCompany] = useState("");
-  const { setPaymentInfo } = usePaymentInfo();
+  
+  const paymentInfoContext = usePaymentInfo();
+  const setPaymentInfo = paymentInfoContext?.setPaymentInfo;
 
-  const [data, setData] = useState({
+  const [data, setData] = useState<{
+    salesPeople: { name: string }[];
+    companies: { name: string }[];
+    paymentMethods: { title: string }[];
+    banks: { title: string }[];
+    installments: { numberOfInstallments: number, interestRate: number }[];
+  }>({
     salesPeople: [],
     companies: [],
     paymentMethods: [],
@@ -29,36 +37,11 @@ export default function PaymentInfoForm() {
     installments: [],
   });
 
-  useEffect(() => {
-    axios.get('http://localhost:3000/api/payment')
-      .then(response => {
-        console.log(response.data);
-        setData(response.data);
-      })
-      .catch(error => console.error(error));
-  }, []);
-
-  useEffect(() => {
-    if (bank) {
-      const selectedBank = data.banks.find(b => b.title === bank);
-      if (selectedBank) {
-        setBankAgency(selectedBank.agency);
-        setAccountNumber(selectedBank.account);
-      }
+  const updatePaymentInfo = (field: keyof PaymentInfoType, value: string) => {
+    if (setPaymentInfo) {
+      setPaymentInfo(prevState => prevState);
     }
-  }, [bank]);
-
-  useEffect(() => {
-    setPaymentInfo({
-      paymentMethod,
-      salesPerson,
-      installment,
-      bank,
-      bankAgency,
-      accountNumber,
-      company
-    });
-  }, [paymentMethod, salesPerson, installment, bank, bankAgency, accountNumber, company]);
+  };
 
   return (
     <>
@@ -68,13 +51,13 @@ export default function PaymentInfoForm() {
         <Flex className="space-x-10 w-full mt-4">
           <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/2">
             <Text>Empresa</Text>
-              <SearchSelect
-                onValueChange={(value) => {
-                  setCompany(value);
-                  setPaymentInfo(prevState => ({ ...prevState, company: value }));
-                }}
-                placeholder="Selecione a Empresa..."
-              >
+            <SearchSelect
+              onValueChange={(value) => {
+                setCompany(value);
+                updatePaymentInfo('company', value);
+              }}
+              placeholder="Selecione a Empresa..."
+            >
               {data.companies && data.companies.map((company, index) => (
                 company && company.name ? (
                   <SearchSelectItem key={index} value={company.name}>
@@ -86,13 +69,13 @@ export default function PaymentInfoForm() {
           </Flex>
           <Flex flexDirection="col" alignItems="start" className="space-y-2 w-full md:w-1/2">
             <Text>Método de Pagamento</Text>
-            <SearchSelect
-              onValueChange={(value) => {
-                setPaymentMethod(value);
-                setPaymentInfo(prevState => ({ ...prevState, paymentMethod: value }));
-              }}
-              placeholder="Selecione o método de pagamento..."
-            >
+              <SearchSelect
+                onValueChange={(value) => {
+                  setPaymentMethod(value);
+                  updatePaymentInfo('paymentMethod', value);
+                }}
+                placeholder="Selecione o método de pagamento..."
+              >
               {data.paymentMethods && data.paymentMethods.map((method, index) => (
                 method && method.title ? (
                   <SearchSelectItem key={index} value={method.title}>
@@ -110,14 +93,14 @@ export default function PaymentInfoForm() {
             <SearchSelect
               onValueChange={(value) => {
                 setInstallment(value);
-                setPaymentInfo(prevState => ({ ...prevState, installment: value }));
+                updatePaymentInfo('installment', value);
               }}
               placeholder="Selecione o Parcelamento..."
             >
               {data.installments && data.installments.map((installment, index) => (
                 installment ? (
-                  <SearchSelectItem key={index} value={installment.numberOfInstallments}>
-                    {`${installment.numberOfInstallments} parcelas - taxa de juros: ${installment.interestRate}%`}
+                  <SearchSelectItem key={index} value={installment.numberOfInstallments.toString()}>
+                    {`Parcelas: ${installment.numberOfInstallments}, Taxa de juros: ${installment.interestRate}`}
                   </SearchSelectItem>
                 ) : null
               ))}
@@ -128,13 +111,13 @@ export default function PaymentInfoForm() {
             <SearchSelect
               onValueChange={(value) => {
                 setSalesPerson(value);
-                setPaymentInfo(prevState => ({ ...prevState, salesPerson: value }));
+                updatePaymentInfo('salesPerson', value);
               }}
               placeholder="Selecione o Vendedor..."
             >
-              {data.salesPeople?.map((person) => (
-                person && person.name ? (
-                  <SearchSelectItem key={person.name} value={person.name}>
+              {data.salesPeople?.map((person, index) => (
+                person ? (
+                  <SearchSelectItem key={index} value={person.name}>
                     {person.name}
                   </SearchSelectItem>
                 ) : null
@@ -149,12 +132,12 @@ export default function PaymentInfoForm() {
             <SearchSelect
               onValueChange={(value) => {
                 setBank(value);
-                setPaymentInfo(prevState => ({ ...prevState, bank: value }));
+                updatePaymentInfo('bank', value);
               }}
               placeholder="Selecione o Banco..."
             >
               {data.banks?.map((bank, index) => (
-                bank && bank.title ? (
+                bank ? (
                   <SearchSelectItem key={index} value={bank.title}>
                     {bank.title}
                   </SearchSelectItem>
@@ -168,7 +151,7 @@ export default function PaymentInfoForm() {
               value={bankAgency}
               onValueChange={(value) => {
                 setBankAgency(value);
-                setPaymentInfo(prevState => ({ ...prevState, bankAgency: value }));
+                updatePaymentInfo('bankAgency', value);
               }}
               placeholder="Insira a agência do banco..."
             />
@@ -179,7 +162,7 @@ export default function PaymentInfoForm() {
               value={accountNumber}
               onValueChange={(value) => {
                 setAccountNumber(value);
-                setPaymentInfo(prevState => ({ ...prevState, accountNumber: value }));
+                updatePaymentInfo('accountNumber', value);
               }}
               placeholder="Insira o número da conta..."
             />
