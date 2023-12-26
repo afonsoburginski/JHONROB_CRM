@@ -25,7 +25,7 @@ function RootLayout({
       <body className="h-full">
         <Suspense fallback="Loading...">
           <Navbar />
-          <AuthStatus />
+          {/* <AuthStatus /> */}
           <SelectedProductProvider>
             {children}
           </SelectedProductProvider>

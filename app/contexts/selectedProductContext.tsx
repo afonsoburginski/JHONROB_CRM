@@ -1,30 +1,6 @@
 // selectedProductContext.tsx
 'use client'
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-
-interface Group {
-  id: number;
-  name: string;
-}
-
-interface InputOutput {
-  id: number;
-  name: string;
-  power: string;
-  height: string;
-}
-
-interface Product {
-  [x: string]: any;
-  id: number;
-  title: string;
-  group: Group;
-  inputOutput: InputOutput;
-  height: string;
-  power: string;
-  tempId?: number;
-}
-
 interface SelectedProductContextData {
   selectedProduct: Product | null;
   selectProduct: (product: Product | null) => void;

@@ -140,9 +140,9 @@ export default function SelectFormClient() {
             <Select
               styles={customStyles}
               isMulti
-              value={selectedInput}
+              value={selectedInput ? selectedInput.map(input => ({ value: input.input, label: input.input })) : []}
               onChange={handleInputChange}
-              options={inputsAndOutputs.map((item) => ({ value: item.input, label: item.input }))}
+              options={inputsAndOutputs.map(item => ({ value: item.input, label: item.input }))}
               isDisabled={!selectedPower}
               placeholder='Selecione a entrada...'
             />
@@ -152,9 +152,9 @@ export default function SelectFormClient() {
             <Select
               styles={customStyles}
               isMulti
-              value={selectedOutput}
+              value={selectedOutput ? selectedOutput.map(output => ({ value: output.output, label: output.output })) : []}
               onChange={handleOutputChange}
-              options={inputsAndOutputs.map((item) => ({ value: item.output, label: item.output }))}
+              options={inputsAndOutputs.map(item => ({ value: item.output, label: item.output }))}
               isDisabled={!selectedPower}
               placeholder='Selecione a saída...'
             />

@@ -135,23 +135,25 @@ export default function useSelectFormLogic() {
   };
   
   const handleProductChange = (selectedOption: any) => {
-    const selectedProduct = selectedGroup.products.find((product) => product && product.id === selectedOption?.value);
-    if (selectedProduct) {
-      setSelectedProduct(selectedProduct);
-      setTypes(selectedProduct.types);
-      setSelectedType(null);
-      setSelectedModel(null);
-      setSelectedCapacity(null);
-      setSelectedHeight(null);
-      setSelectedPower(null);
-    } else {
-      setSelectedProduct(null);
-      setTypes([]);
-      setSelectedType(null);
-      setSelectedModel(null);
-      setSelectedCapacity(null);
-      setSelectedHeight(null);
-      setSelectedPower(null);
+    if (selectedGroup) { // Adicione esta linha
+      const selectedProduct = selectedGroup.products.find((product) => product && product.id === selectedOption?.value);
+      if (selectedProduct) {
+        setSelectedProduct(selectedProduct);
+        setTypes(selectedProduct.types);
+        setSelectedType(null);
+        setSelectedModel(null);
+        setSelectedCapacity(null);
+        setSelectedHeight(null);
+        setSelectedPower(null);
+      } else {
+        setSelectedProduct(null);
+        setTypes([]);
+        setSelectedType(null);
+        setSelectedModel(null);
+        setSelectedCapacity(null);
+        setSelectedHeight(null);
+        setSelectedPower(null);
+      }
     }
   };
 
@@ -199,12 +201,12 @@ export default function useSelectFormLogic() {
     setSelectedPower(selectedPower || null);
   };
 
-  const handleInputChange = (selectedOption: InputOutput[] | null) => {
-    setSelectedInput(selectedOption);
+  const handleInputChange = (selectedOption) => {
+    setSelectedInput(selectedOption.map(option => ({ input: option.value, label: option.value })));
   };
-
-  const handleOutputChange = (selectedOption: InputOutput[] | null) => {
-    setSelectedOutput(selectedOption);
+  
+  const handleOutputChange = (selectedOption) => {
+    setSelectedOutput(selectedOption.map(option => ({ output: option.value, label: option.value })));
   };
 
   const handleSave = async (event: React.FormEvent) => {
@@ -224,16 +226,31 @@ export default function useSelectFormLogic() {
       return;
     }
 
+    // const savedProduct = {
+    //   group: selectedGroup?.title,
+    //   product: selectedProduct?.title,
+    //   type: selectedType?.title,
+    //   model: selectedModel?.title,
+    //   capacity: selectedCapacity?.title,
+    //   height: selectedHeight?.title,
+    //   power: selectedPower?.title,
+    //   input: selectedInput?.map((io) => io.value), // Modificado para mapear para io.value
+    //   output: selectedOutput?.map((io) => io.value), // Modificado para mapear para io.value
+    // };
     const savedProduct = {
-      group: selectedGroup?.title,
-      product: selectedProduct?.title,
-      type: selectedType?.title,
-      model: selectedModel?.title,
-      capacity: selectedCapacity?.title,
-      height: selectedHeight?.title,
-      power: selectedPower?.title,
-      input: selectedInput?.map((io) => io.value), // Modificado para mapear para io.value
-      output: selectedOutput?.map((io) => io.value), // Modificado para mapear para io.value
+      product: 'some-product', // você precisa definir um produto
+      id: 'some-id', // você precisa gerar ou obter um id
+      title: 'some-title', // você precisa definir um título
+      group: selectedGroup ? selectedGroup.title : '', // alterado para ser uma string
+      types: [], // você precisa definir os tipos
+      models: [], // você precisa definir os modelos
+      capacity: selectedCapacity?.title || '',
+      height: selectedHeight?.title || '',
+      power: selectedPower?.title || '',
+      input: selectedInput?.map((io) => io.value) || [],
+      output: selectedOutput?.map((io) => io.value) || [],
+      inputOutput: 'some-input-output', // você precisa definir inputOutput
+      tempId: Date.now(), // tempId é gerado automaticamente
     };
     addProductToTable(savedProduct);
     setSelectedGroup(null);

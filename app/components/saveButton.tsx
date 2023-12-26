@@ -41,8 +41,8 @@ const SaveButton: React.FC = () => {
     
     const productSelections = selectedProducts.map(product => ({
       groups: product.group,
-      type: product.type,
-      model: product.model,
+      type: product.types, // altere 'type' para 'types'
+      model: product.models,
       capacity: product.capacity,
       height: product.height,
       power: product.power,

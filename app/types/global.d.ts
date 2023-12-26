@@ -1,55 +1,66 @@
+// global.d.ts
 declare global {
 
-  type Power = {
+  export interface Power {
     id: string;
     title: string;
     recommended: boolean;
   };
 
-  type Height = {
+  export interface Height {
     id: string;
     title: string;
     powers: Power[];
     recommended: boolean;
   };
 
-  type Capacity = {
+  export interface Capacity {
     id: string;
     title: string;
     heights: Height[];
   };
 
-  type Model = {
+  export interface Model {
     id: string;
     title: string;
     capacities: Capacity[];
   };
 
-  type Type = {
+  export interface Type {
     id: string;
     title: string;
+    products: Product[]; // Adicione esta linha
   };
-
-  type Product = {
-    [x: string]: number;
+  export interface Product {
+    group: string;
+    product: string;
     id: string;
     title: string;
-    models: Model[];
     types: Type[];
+    models: Model[];
+    capacity: string;
+    height: string;
+    power: string;
+    input: string[];
+    output: string[];
+    inputOutput?: string;
+    tempId?: number;
   };
 
-  type Group = {
+  export interface Group{
     id: string;
+    name: string;
     title: string;
     products: Product[];
     inputOutput: string[];
   };
 
-  interface ProductTableProps {
+  export interface  ProductTableProps {
     groups: Group[] | undefined;
   }
 
-  interface InputOutput {
+  export interface  InputOutput {
+    [x: string]: any;
     id: string;
     title: string;
     type: string;
@@ -57,7 +68,6 @@ declare global {
     output: string;
   }
 
-  
   export interface Propose {
     id: number;
     title: string;
