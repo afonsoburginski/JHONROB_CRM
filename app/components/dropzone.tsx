@@ -15,7 +15,7 @@ const Dropzone = () => {
     const formData = new FormData();
     formData.append('file', file);
 
-    fetch('/api/upload', {
+    fetch('api/upload', {
       method: 'POST',
       body: formData,
     })

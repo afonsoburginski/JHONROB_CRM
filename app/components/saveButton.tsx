@@ -70,7 +70,7 @@ const SaveButton: React.FC = () => {
 
     console.log(data);
 
-    const response = await fetch('http://localhost:3000/api/savePropose', {
+    const response = await fetch('api/savePropose', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

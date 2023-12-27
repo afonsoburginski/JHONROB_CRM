@@ -17,7 +17,7 @@ const EditProductsModal: React.FC<{ open: boolean, onClose: () => void, products
     // Por exemplo, você pode fazer uma chamada API para atualizar os produtos no servidor
     try {
       // Substitua esta URL pela URL do seu servidor
-      const response = await fetch('https://my-server.com/api/products', {
+      const response = await fetch('api/products', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

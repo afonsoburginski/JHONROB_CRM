@@ -12,7 +12,7 @@ export default function ProposePage({ searchParams }: { searchParams: { q: strin
   useEffect(() => {
     const fetchProposes = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/propose?search=${search}`);
+        const response = await fetch(`api/propose?search=${search}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

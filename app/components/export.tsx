@@ -27,7 +27,7 @@ const Export = () => {
 
   const handleExport = async () => {
     try {
-      const response = await axios.get('/api/products');
+      const response = await axios.get('api/products');
       const data = response.data;
       const blob = await createCsvBlob(data, headers);
       downloadBlob(blob, 'data.csv');

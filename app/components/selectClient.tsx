@@ -27,7 +27,7 @@ export default function SelectClient() {
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
-    fetch('/api/clients')
+    fetch('api/clients')
       .then(response => response.json())
       .then(data => {
         setClients(data);
