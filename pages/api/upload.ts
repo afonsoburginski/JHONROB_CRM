@@ -5,6 +5,19 @@ import { Readable } from 'stream';
 import { PrismaClient } from '@prisma/client';
 const csvParser = require('csv-parse');
 
+interface DataRow {
+  groupTitle: string;
+  productTitle: string;
+  modelTitle: string;
+  typeTitle: string;
+  capacityTitle: string;
+  heightTitle: string;
+  recommendedHeight: string;
+  powerTitle: string;
+  recommendedPower: string;
+  // Adicione mais campos conforme necessário
+}
+
 const upload = multer({ dest: '/tmp' });
 const prisma = new PrismaClient();
 
@@ -16,7 +29,7 @@ export const config = {
 
 const uploadMiddleware = multer().single('file');
 
-async function processRow(row) {
+async function processRow(row: DataRow) {
   let group = await prisma.group.upsert({
     where: { title: row.groupTitle },
     update: {},
@@ -81,11 +94,11 @@ const apiRoute = (req, res) => {
       bufferStream.push(req.file.buffer);
       bufferStream.push(null);
 
-      const results = [];
+      const results: DataRow[] = [];
 
       bufferStream
         .pipe(csvParser.parse({ columns: true, delimiter: ',', relax: true }))
-        .on('data', (data) => results.push(data))
+        .on('data', (data: DataRow) => results.push(data))
         .on('end', async () => {
           try {
             for (const row of results) {

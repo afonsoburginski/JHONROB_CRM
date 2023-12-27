@@ -26,7 +26,7 @@ const Timeline: React.FC<TimelineProps> = ({ step }) => {
           Passo 3: prazos, montagem e observações gerais
         </Text>
       </Grid>
-      <ProgressBar className="transition-all duration-500" value={progress} max={100} />
+      <ProgressBar className="transition-all duration-500" value={progress} />
     </Grid>
   );
 };
