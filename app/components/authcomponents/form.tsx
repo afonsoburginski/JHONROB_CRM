@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 import LoadingDots from "./loading-dots";
 import toast from "react-hot-toast";
 import Link from "next/link";
@@ -22,13 +22,20 @@ export default function Form({ type }: { type: "login" | "register" }) {
             email: e.currentTarget.email.value,
             password: e.currentTarget.password.value,
             // @ts-ignore
-          }).then(({ error }) => {
+          }).then(async ({ error }) => {
             if (error) {
               setLoading(false);
               toast.error(error);
             } else {
-              router.refresh();
-              router.push("/");
+              toast.success("Login bem sucedido! Redirecionando...");
+              setTimeout(async () => {
+                const session = await getSession();
+                if (session) {
+                  window.location.href = "/";
+                } else {
+                  router.refresh();
+                }
+              }, 500);
             }
           });
         } else {
@@ -44,24 +51,23 @@ export default function Form({ type }: { type: "login" | "register" }) {
           }).then(async (res) => {
             setLoading(false);
             if (res.status === 200) {
-              toast.success("Account created! Redirecting to login...");
+              toast.success("Conta criada! Redirecionando para o login...");
               setTimeout(() => {
                 router.push("/login");
-              }, 2000);
+              }, 500);
             } else {
               const text = await res.text();
               try {
                 const { error } = JSON.parse(text);
                 toast.error(error);
               } catch {
-                toast.error("An error occurred");
+                toast.error("Ocorreu um erro");
               }
             }
           });
         }
       }}
-      className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
->
+      className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16">
       <div>
         <label
           htmlFor="email"

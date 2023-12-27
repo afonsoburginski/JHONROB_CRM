@@ -31,7 +31,7 @@ function RootLayout({
           </SelectedProductProvider>
         </Suspense>
         <Analytics />
-        <Toast />
+        {/* <Toast /> */}
       </body>
     </html>
   );
