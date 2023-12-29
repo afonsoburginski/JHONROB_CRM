@@ -34,21 +34,21 @@ const SelectedProducts: React.FC = () => {
           <TableBody>
           {selectedProducts.map((product, index) => (
             <TableRow key={index}>
-              <TableCell><div style={{ lineHeight: '1.0' }}>{product.group}</div></TableCell>
-                <TableCell><div style={{ lineHeight: '1.0' }}>{product.product}</div></TableCell>
-                <TableCell><div style={{ lineHeight: '1.0' }}>{product.types.map(type => type.title).join(', ')}</div></TableCell>
-                <TableCell><div style={{ lineHeight: '1.0' }}>{product.models.map(model => model.title).join(', ')}</div></TableCell>
-                <TableCell><div style={{ lineHeight: '1.0' }}>{product.capacity}</div></TableCell>
-                <TableCell><div style={{ lineHeight: '1.0' }}>{product.height}</div></TableCell>
-                <TableCell><div style={{ lineHeight: '1.0' }}>{product.power}</div></TableCell>
-                <TableCell><div style={{ lineHeight: '1.0' }}>{product.input.join(', ')}</div></TableCell>
-                <TableCell><div style={{ lineHeight: '1.0' }}>{product.output.join(', ')}</div></TableCell>
-                <TableCell style={{ padding: '0'}}>
-                  <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={() => product.tempId !== undefined && handleRemoveProduct(product.tempId)}>
-                    <HiXMark />
-                  </Button>
-                </TableCell>
-              </TableRow>
+              <TableCell><div style={{ lineHeight: '1.0' }}>{product.group.title}</div></TableCell>
+              <TableCell><div style={{ lineHeight: '1.0' }}>{product.product.title}</div></TableCell>
+              <TableCell><div style={{ lineHeight: '1.0' }}>{product.type.title}</div></TableCell>
+              <TableCell><div style={{ lineHeight: '1.0' }}>{product.model.title}</div></TableCell>
+              <TableCell><div style={{ lineHeight: '1.0' }}>{product.capacity.title}</div></TableCell>
+              <TableCell><div style={{ lineHeight: '1.0' }}>{product.height.title}</div></TableCell>
+              <TableCell><div style={{ lineHeight: '1.0' }}>{product.power.title}</div></TableCell>
+              <TableCell><div style={{ lineHeight: '1.0' }}>{Array.isArray(product.input) ? product.input.map(input => input.title).join(', ') : product.input.title}</div></TableCell>
+              <TableCell><div style={{ lineHeight: '1.0' }}>{Array.isArray(product.output) ? product.output.map(output => output.title).join(', ') : product.output.title}</div></TableCell>
+              <TableCell style={{ padding: '0'}}>
+                <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={() => product.tempId !== undefined && handleRemoveProduct(product.tempId)}>
+                  <HiXMark />
+                </Button>
+              </TableCell>
+            </TableRow>
             ))}
             {Array.from({ length: 6 - selectedProducts.length }).map((_, index) => (
               <TableRow key={index + selectedProducts.length}>

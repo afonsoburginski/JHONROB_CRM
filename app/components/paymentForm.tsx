@@ -1,9 +1,6 @@
 // paymentForm.tsx
 'use client'
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { HiMagnifyingGlass, HiOutlineCurrencyDollar } from "react-icons/hi2";
-import { CgMathPercent } from "react-icons/cg";
 import { Grid, Flex, SearchSelect, SearchSelectItem, NumberInput, Title, TextInput, Text } from "@tremor/react";
 import { PaymentInfoType, usePaymentInfo } from '../contexts/paymentInfoContext';
 
