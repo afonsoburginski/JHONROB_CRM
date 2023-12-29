@@ -63,7 +63,7 @@ export default function SelectFormClient() {
               key={`${field}-${key}`} // Adiciona a chave ao componente de seleção
               value={selections[field]?.id}
               onValueChange={value => handleChange(field, value)}
-              disabled={!selections[fields[fields.findIndex(f => f === field) - 1]]} // Melhorado
+              disabled={index !== 0 && !selections[fields[fields.findIndex(f => f === field) - 1]]} // Melhorado
               placeholder={`Selecione o ${fieldNames[field]}...`}
             >
               {data[field]?.map((option, optionIndex) => (
