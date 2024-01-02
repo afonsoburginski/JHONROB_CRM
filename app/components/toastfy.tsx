@@ -1,3 +1,4 @@
+// toastfy.tsx
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -20,6 +21,14 @@ export function checkFieldsAndShowError(
     !selectedOutput
   ) {
     toast.error('Todos os campos devem ser preenchidos antes de salvar o produto');
+    return true;
+  }
+  return false;
+}
+
+export function checkFieldAndShowError(fieldName, fieldValue) {
+  if (!fieldValue) {
+    toast.error(`O campo ${fieldName} deve ser preenchido antes de salvar o produto`);
     return true;
   }
   return false;

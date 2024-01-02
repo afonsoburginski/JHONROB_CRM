@@ -18,7 +18,7 @@ const transitionStyles = {
   entered:  { opacity: 1 },
   exiting:  { opacity: 0 },
   exited:  { opacity: 0 },
-  unmounted: { opacity: 0 }, // Adicione esta linha
+  unmounted: { opacity: 0 },
 };
 
 const SelectedClients: React.FC = () => {

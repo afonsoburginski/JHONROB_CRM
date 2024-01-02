@@ -41,8 +41,8 @@ const SelectedProducts: React.FC = () => {
               <TableCell><div style={{ lineHeight: '1.0' }}>{product.capacity.title}</div></TableCell>
               <TableCell><div style={{ lineHeight: '1.0' }}>{product.height.title}</div></TableCell>
               <TableCell><div style={{ lineHeight: '1.0' }}>{product.power.title}</div></TableCell>
-              <TableCell><div style={{ lineHeight: '1.0' }}>{Array.isArray(product.input) ? product.input.map(input => input.title).join(', ') : product.input.title}</div></TableCell>
-              <TableCell><div style={{ lineHeight: '1.0' }}>{Array.isArray(product.output) ? product.output.map(output => output.title).join(', ') : product.output.title}</div></TableCell>
+              <TableCell><div style={{ lineHeight: '1.0' }}>{product.input.title}</div></TableCell>
+              <TableCell><div style={{ lineHeight: '1.0' }}>{product.output.title}</div></TableCell>
               <TableCell style={{ padding: '0'}}>
                 <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={() => product.tempId !== undefined && handleRemoveProduct(product.tempId)}>
                   <HiXMark />

@@ -16,7 +16,7 @@ interface Client {
   zip: string;
   cpfCnpj: string;
   ie: string;
-  proposes: any; // 'proposes' é agora obrigatório
+  proposes: any;
 }
 
 export default function SelectClient() {
@@ -34,14 +34,10 @@ export default function SelectClient() {
       });
   }, []);
 
-  function handleSearch(term: string) {
-    setSearchTerm(term);
-    const matchedClient = clients.find(client => client.name.includes(term));
+  function handleSearch(value: string) {
+    setSearchTerm(value);
+    const matchedClient = clients.find(client => client.name.includes(value));
     if (matchedClient) {
-      if (!matchedClient.id || !matchedClient.name || !matchedClient.email || !matchedClient.phone || !matchedClient.address || !matchedClient.city || !matchedClient.state || !matchedClient.zip || !matchedClient.cpfCnpj || !matchedClient.ie || !matchedClient.proposes) {
-        console.error('Client is missing required properties');
-        return;
-      }
       setSelectedClient(matchedClient);
     }
   }
@@ -57,7 +53,7 @@ export default function SelectClient() {
           id="search"
           icon={HiMagnifyingGlass}
           placeholder="Pesquisar por nome..."
-          onChange={(event) => handleSearch((event.target as HTMLInputElement).value)} // Atualizado para usar a asserção de tipo
+          onValueChange={handleSearch}
           className="w-full"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}

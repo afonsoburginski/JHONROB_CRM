@@ -23,37 +23,44 @@ const useSelectFormLogic = (initialData = {}) => {
   const { addProductToTable } = useSelectedProduct(); 
 
   useEffect(() => {
+    const cachedData = localStorage.getItem('apiData');
+    if (cachedData) {
+      const apiData = JSON.parse(cachedData);
+      processData(apiData);
+      return;
+    }
+
     fetch('api/products')
       .then(response => response.json())
       .then(apiData => {
-        console.log('Dados recebidos da API:', apiData);
-  
-        setApiData(apiData);
-  
-        if (apiData) {
-          const formData = {
-            group: apiData.groups.map(group => ({ id: group.id, title: group.title })),
-            product: [],
-            type: [],
-            model: [],
-            capacity: [],
-            height: [],
-            power: [],
-            input: apiData.inputOutputs.map(io => ({ id: io.id, title: io.input })),
-            output: apiData.inputOutputs.map(io => ({ id: io.id, title: io.output })),
-          };
-          
-          console.log('Dados mapeados para o formulário:', formData);
-  
-          setData(formData);
-          setInitialDataState(formData);
-        }
+        localStorage.setItem('apiData', JSON.stringify(apiData));
+        processData(apiData);
       })
       .catch(error => console.error('Error:', error));
   }, []);
 
+  const processData = (apiData) => {
+    setApiData(apiData);
+
+    if (apiData) {
+      const formData = {
+        group: apiData.groups.map(group => ({ id: group.id, title: group.title })),
+        product: [],
+        type: [],
+        model: [],
+        capacity: [],
+        height: [],
+        power: [],
+        input: apiData.inputOutputs.map(io => ({ id: io.id, title: io.input })),
+        output: apiData.inputOutputs.map(io => ({ id: io.id, title: io.output })),
+      };
+
+      setData(formData);
+      setInitialDataState(formData);
+    }
+  };
+
   const handleChange = (field, value) => {
-    console.log(`handleChange chamado com campo ${field} e valor ${value}`);
     if (value === null || value === undefined) {
       setSelections(prevSelections => {
         const newSelections = { ...prevSelections };
@@ -63,7 +70,6 @@ const useSelectFormLogic = (initialData = {}) => {
     } else if (value !== null && data[field]) {
       const selectedItem = data[field].find(item => item.id === value);
       if (selectedItem) {
-        console.log(`Item selecionado para o campo ${field}:`, selectedItem);
         setSelections(prevSelections => ({
           ...prevSelections,
           [field]: selectedItem,
@@ -128,15 +134,13 @@ const useSelectFormLogic = (initialData = {}) => {
   };
 
   const resetSelections = () => {
-    console.log('resetSelections chamado');
     setSelections(fields.reduce((obj, field) => ({ ...obj, [field]: null }), {}));
     setData({...initialDataState});
   };
 
   const handleSave = (event) => {
     event.preventDefault();
-    console.log('handleSave chamado');
-  
+
     const hasError = checkFieldsAndShowError(
       selections['product'],
       selections['model'],
@@ -146,18 +150,16 @@ const useSelectFormLogic = (initialData = {}) => {
       selections['input'],
       selections['output']
     );
-  
+
     if (hasError) {
-      console.log(`Erro: todos os campos devem ser preenchidos corretamente.`);
       return;
     }
-  
+
     const savedProduct: Product = fields.reduce((obj, field) => ({
       ...obj,
       [field]: selections[field] ? selections[field] : null,
     }), {} as Product);
-  
-    console.log('Produto salvo:', savedProduct);
+
     addProductToTable(savedProduct);
     resetSelections();
   };

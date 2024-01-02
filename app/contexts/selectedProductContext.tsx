@@ -9,7 +9,7 @@ interface SelectedProductContextData {
   addProductToTable: (product: Product) => void;
   removeProduct: (tempId: number) => void;
   resetSelectedProducts: () => void;
-  resetFields: () => void; // Adicione esta linha
+  resetFields: () => void;
 }
 
 export const SelectedProductContext = createContext<SelectedProductContextData>({} as SelectedProductContextData);
