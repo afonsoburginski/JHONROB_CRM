@@ -1,6 +1,7 @@
 // paymentForm.tsx
 'use client'
-import { Grid, Flex, Select, SelectItem, Text, Title } from "@tremor/react";
+import { Grid, Flex, Select, SelectItem, Text, Title, TextInput } from "@tremor/react";
+import { useEffect } from 'react';
 import usePaymentFormLogic from './paymentFormLogic';
 
 export default function PaymentInfoForm() {
@@ -12,6 +13,14 @@ export default function PaymentInfoForm() {
     handleValueChange,
   } = usePaymentFormLogic();
 
+  useEffect(() => {
+    if (paymentInfo?.banks) {
+      const selectedBank = data.banks[paymentInfo.banks];
+      handleValueChange('bankAgency', selectedBank?.agency || '');
+      handleValueChange('accountNumber', selectedBank?.account || '');
+    }
+  }, [paymentInfo?.banks]);
+
   return (
     <>
       <Title>Informações de Pagamento</Title>
@@ -19,17 +28,25 @@ export default function PaymentInfoForm() {
         {fields.map((field, index) => (
           <Flex key={index} flexDirection="col" alignItems="start" className="space-y-2 w-full">
             <Text>{fieldNames[field]}</Text>
-            <Select
-              value={paymentInfo?.[field] || ''}
-              onValueChange={(value) => handleValueChange(field, value)}
-              placeholder={`Selecione o ${fieldNames[field]}...`}
-            >
-              {data[field]?.map((option, optionIndex) => (
-                <SelectItem key={optionIndex} value={optionIndex.toString()}>
-                  {option?.name || option?.title || `Parcelas: ${option?.numberOfInstallments}, Taxa de juros: ${option?.interestRate}`}
-                </SelectItem>
-              ))}
-            </Select>
+            {field === 'bankAgency' || field === 'accountNumber' ? (
+              <TextInput
+                value={paymentInfo?.[field] || ''}
+                onValueChange={(value) => handleValueChange(field, value)}
+                placeholder={`Digite o ${fieldNames[field]}...`}
+              />
+            ) : (
+              <Select
+                value={paymentInfo?.[field] || ''}
+                onValueChange={(value) => handleValueChange(field, value)}
+                placeholder={`Selecione o ${fieldNames[field]}...`}
+              >
+                {data[field]?.map((option, optionIndex) => (
+                  <SelectItem key={optionIndex} value={optionIndex.toString()}>
+                    {option?.name || option?.title || `Parcelas: ${option?.numberOfInstallments}, Taxa de juros: ${option?.interestRate}`}
+                  </SelectItem>
+                ))}
+              </Select>
+            )}
           </Flex>
         ))}
       </Grid>

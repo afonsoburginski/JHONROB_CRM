@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 export type PaymentInfoType = {
+  [x: string]: any;
   paymentMethod: string;
   salesPerson: string;
   installment: string;
