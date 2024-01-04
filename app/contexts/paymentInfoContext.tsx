@@ -1,30 +1,44 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 export type PaymentInfoType = {
-  [x: string]: any;
-  companies: string | null;
-  paymentMethods: string | null;
-  installments: string | null;
-  salesPeople: string | null;
-  banks: string | null;
-  bankAgency: string | null;
-  accountNumber: string | null;
+  companies?: string;
+  paymentMethods?: string;
+  installments?: string;
+  salesPeople?: string;
+  banks?: string;
+  bankAgency?: string;
+  accountNumber?: string
+  // suas definições de tipo aqui
 };
 
-const PaymentInfoContext = createContext<{ paymentInfo: PaymentInfoType | null, setPaymentInfo: React.Dispatch<React.SetStateAction<PaymentInfoType | null>> } | undefined>(undefined);
+type PaymentInfoContextType = {
+  paymentInfo: PaymentInfoType | null;
+  setPaymentInfo: (info: PaymentInfoType) => void;
+  isSaved: boolean;
+  savePaymentInfo: () => void;
+};
 
-interface PaymentInfoProviderProps {
-  children: ReactNode;
-}
+const PaymentInfoContext = createContext<PaymentInfoContextType | undefined>(undefined);
 
-export const PaymentInfoProvider: React.FC<PaymentInfoProviderProps> = ({ children }) => {
+export const usePaymentInfo = () => {
+  const context = useContext(PaymentInfoContext);
+  if (!context) {
+    throw new Error('usePaymentInfo must be used within a PaymentInfoProvider');
+  }
+  return context;
+};
+
+export const PaymentInfoProvider: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfoType | null>(null);
+  const [isSaved, setIsSaved] = useState(false);
+
+  const savePaymentInfo = () => {
+    setIsSaved(true);
+  };
 
   return (
-    <PaymentInfoContext.Provider value={{ paymentInfo, setPaymentInfo }}>
+    <PaymentInfoContext.Provider value={{ paymentInfo, setPaymentInfo, isSaved, savePaymentInfo }}>
       {children}
     </PaymentInfoContext.Provider>
   );
 };
-
-export const usePaymentInfo = () => useContext(PaymentInfoContext);

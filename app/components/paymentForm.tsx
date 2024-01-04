@@ -1,8 +1,8 @@
 // paymentForm.tsx
-'use client'
 import { Grid, Flex, Select, SelectItem, Text, Title, TextInput } from "@tremor/react";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import usePaymentFormLogic from './paymentFormLogic';
+import { PaymentInfoType, usePaymentInfo } from '../contexts/paymentInfoContext';
 
 export default function PaymentInfoForm() {
   const {
@@ -12,14 +12,23 @@ export default function PaymentInfoForm() {
     fieldNames,
     handleValueChange,
   } = usePaymentFormLogic();
+  const { isSaved, savePaymentInfo } = usePaymentInfo();
+
+  const prevBanksRef = useRef();
+  useEffect(() => {
+    prevBanksRef.current = paymentInfo?.banks;
+  });
+  const prevBanks = prevBanksRef.current;
 
   useEffect(() => {
-    if (paymentInfo?.banks) {
+    if (paymentInfo && paymentInfo.banks && data.banks && prevBanks !== paymentInfo.banks) {
       const selectedBank = data.banks[paymentInfo.banks];
-      handleValueChange('bankAgency', selectedBank?.agency || '');
-      handleValueChange('accountNumber', selectedBank?.account || '');
+      if (selectedBank) {
+        handleValueChange('bankAgency' as keyof PaymentInfoType, selectedBank?.agency || '');
+        handleValueChange('accountNumber' as keyof PaymentInfoType, selectedBank?.account || '');
+      }
     }
-  }, [paymentInfo?.banks]);
+  }, [paymentInfo?.banks, data.banks]);
 
   return (
     <>
@@ -31,14 +40,16 @@ export default function PaymentInfoForm() {
             {field === 'bankAgency' || field === 'accountNumber' ? (
               <TextInput
                 value={paymentInfo?.[field] || ''}
-                onValueChange={(value) => handleValueChange(field, value)}
+                onValueChange={(value) => handleValueChange(field as keyof PaymentInfoType, value)}
                 placeholder={`Digite o ${fieldNames[field]}...`}
+                disabled={isSaved}
               />
             ) : (
               <Select
                 value={paymentInfo?.[field] || ''}
-                onValueChange={(value) => handleValueChange(field, value)}
+                onValueChange={(value) => handleValueChange(field as keyof PaymentInfoType, value)}
                 placeholder={`Selecione o ${fieldNames[field]}...`}
+                disabled={isSaved}
               >
                 {data[field]?.map((option, optionIndex) => (
                   <SelectItem key={optionIndex} value={optionIndex.toString()}>
@@ -49,6 +60,7 @@ export default function PaymentInfoForm() {
             )}
           </Flex>
         ))}
+        <button onClick={savePaymentInfo}>Salvar</button>
       </Grid>
     </>
   );

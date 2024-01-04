@@ -1,9 +1,11 @@
+// paymentFormLogic.ts
 import { useState, useEffect } from 'react';
 import { PaymentInfoType } from '../contexts/paymentInfoContext';
+import { usePaymentInfo } from '../contexts/paymentInfoContext';
 
 export default function usePaymentFormLogic() {
-  const [data, setData] = useState<any>({}); 
-  const [paymentInfo, setPaymentInfo] = useState<PaymentInfoType>({}); 
+  const [data, setData] = useState<any>({});
+  const { paymentInfo, setPaymentInfo } = usePaymentInfo();
 
   useEffect(() => {
     const cachedData = localStorage.getItem('paymentData');
@@ -35,8 +37,8 @@ export default function usePaymentFormLogic() {
     accountNumber: 'Número da Conta',
   };
 
-  const handleValueChange = (field: keyof PaymentInfoType, value: string) => {
-    setPaymentInfo(prevState => ({ ...prevState, [field]: value }));
+  const handleValueChange = (field: string, value: string) => {
+    setPaymentInfo(prevState => ({ ...prevState, [field as keyof PaymentInfoType]: value }));
   };
 
   return {
