@@ -57,6 +57,7 @@ export default function SelectClient() {
           className="w-full"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
+          value={searchTerm}
         >
           {clients.map((client) => (
             <SearchSelectItem key={client.id} value={client.name} onClick={() => setSelectedClient(client)}>

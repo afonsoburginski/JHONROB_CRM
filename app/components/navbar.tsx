@@ -50,7 +50,7 @@ export default function AuthStatus({ user }: AuthStatusProps) {
             <div className="flex h-16 justify-between">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  <Image src="/logo.png" alt="Logo" width={130} height={40} />
+                  <Image src="/logo.png" alt="Logo" width={130} height={40} priority />
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                   {navigation.map((item) => (
@@ -81,6 +81,7 @@ export default function AuthStatus({ user }: AuthStatusProps) {
                         width={32}
                         alt={`${session.user?.name || 'placeholder'} avatar`}
                         className="h-8 w-8 rounded-full"
+                        priority
                       />
                     </Menu.Button>
                     <Transition

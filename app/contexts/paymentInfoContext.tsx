@@ -2,13 +2,13 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 
 export type PaymentInfoType = {
   [x: string]: any;
-  paymentMethod: string;
-  salesPerson: string;
-  installment: string;
-  bank: string;
-  bankAgency: string;
-  accountNumber: string;
-  company: string;
+  companies: string | null;
+  paymentMethods: string | null;
+  installments: string | null;
+  salesPeople: string | null;
+  banks: string | null;
+  bankAgency: string | null;
+  accountNumber: string | null;
 };
 
 const PaymentInfoContext = createContext<{ paymentInfo: PaymentInfoType | null, setPaymentInfo: React.Dispatch<React.SetStateAction<PaymentInfoType | null>> } | undefined>(undefined);

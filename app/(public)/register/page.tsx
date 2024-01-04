@@ -1,3 +1,4 @@
+// app/pages/register/page.tsx
 import Image from "next/image";
 import Form from "../../components/authcomponents/form";
 import Link from "next/link";

@@ -41,7 +41,7 @@ export default function SelectFormClient() {
             <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">{fieldNames[field]}</Text>
             <Select
               key={`${field}-${key}`}
-              value={selections[field]?.id}
+              value={selections[field]?.id || ''}
               onValueChange={value => handleChange(field, value)}
               disabled={index !== 0 && !selections[fields[fields.findIndex(f => f === field) - 1]]}
               placeholder={`Selecione o ${fieldNames[field]}...`}
@@ -62,9 +62,9 @@ export default function SelectFormClient() {
             <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">{fieldNames[field]}</Text>
             <Select
               key={`${field}-${key}`}
-              value={selections[field]?.id}
+              value={selections[field]?.id || ''}
               onValueChange={value => handleChange(field, value)}
-              disabled={index !== 0 && !selections[fields[fields.findIndex(f => f === field) - 1]]} // Melhorado
+              disabled={index !== 0 && !selections[fields[fields.findIndex(f => f === field) - 1]]}
               placeholder={`Selecione o ${fieldNames[field]}...`}
               enableClear
             >
