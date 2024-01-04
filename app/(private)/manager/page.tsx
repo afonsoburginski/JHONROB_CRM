@@ -45,6 +45,7 @@ const StyledButton = styled(Button)`
 
 const ManagerPage: React.FC = () => {
   const [step, setStep] = useState(1);
+  const nodeRef = React.useRef(null); // Adicione esta linha
 
   const nextStep = () => {
     if (step < 3) {
@@ -67,8 +68,8 @@ const ManagerPage: React.FC = () => {
         <ToastContainer />
         <div className="w-full">
           <SwitchTransition>
-            <CSSTransition key={step} timeout={150} classNames="fade">
-              <>
+            <CSSTransition nodeRef={nodeRef} key={step} timeout={150} classNames="fade">
+              <div ref={nodeRef}>
                 {step === 1 && (
                   <div>
                     <Card className="mt-6">
@@ -99,7 +100,7 @@ const ManagerPage: React.FC = () => {
                     </Card>
                   </div>
                 )}
-              </>
+              </div>
             </CSSTransition>
           </SwitchTransition>
         </div>

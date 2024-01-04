@@ -1,4 +1,3 @@
-// paymentFormLogic.ts
 import { useState, useEffect } from 'react';
 import { PaymentInfoType } from '../contexts/paymentInfoContext';
 
@@ -7,10 +6,18 @@ export default function usePaymentFormLogic() {
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfoType>({}); 
 
   useEffect(() => {
+    const cachedData = localStorage.getItem('paymentData');
+    if (cachedData) {
+      const data = JSON.parse(cachedData);
+      setData(data);
+      return;
+    }
+
     fetch('/api/payment')
       .then(response => response.json())
       .then(data => {
         console.log('Data received from API:', data);
+        localStorage.setItem('paymentData', JSON.stringify(data));
         setData(data);
       })
       .catch(error => console.error('Error:', error));
