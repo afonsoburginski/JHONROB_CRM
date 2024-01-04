@@ -16,6 +16,7 @@
     "@headlessui/react": "^1.7.17",
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.19",
+    "@mui/system": "^5.15.3",
     "@prisma/client": "^4.16.2",
     "@tremor/react": "^3.10.0",
     "@types/js-cookie": "^3.0.5",
