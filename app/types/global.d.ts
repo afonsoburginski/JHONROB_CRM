@@ -1,6 +1,5 @@
 // global.d.ts
 declare global {
-
   export interface Power {
     id: string;
     title: string;
@@ -33,8 +32,8 @@ declare global {
   };
 
   export interface Product {
-    type: any;
-    model: any;
+    type: Type;
+    model: Model;
     group: string;
     product: string;
     id: string;
@@ -58,11 +57,11 @@ declare global {
     inputOutput: string[];
   };
 
-  export interface  ProductTableProps {
+  export interface ProductTableProps {
     groups: Group[] | undefined;
   }
 
-  export interface  InputOutput {
+  export interface InputOutput {
     [x: string]: any;
     id: string;
     title: string;
@@ -79,7 +78,7 @@ declare global {
     observation: string;
     clientId: string;
     client: Client;
-    productSelections: any[];
+    productSelections: ProductSelection[];
     groups: string;
     product: string;
     type: string;
@@ -129,12 +128,51 @@ declare global {
     proposes: Propose[];
   }
 
-  interface SelectedClientContextData {
+  export interface PaymentMethod {
+    id: string;
+    title: string;
+  };
+
+  export interface SalesPerson {
+    id: string;
+    name: string;
+  };
+
+  export interface Installment {
+    id: string;
+    number: number;
+  };
+
+  export interface Bank {
+    id: string;
+    name: string;
+  };
+
+  export interface Company {
+    id: string;
+    name: string;
+  };
+
+  export interface PaymentInfo {
+    paymentMethod: PaymentMethod;
+    salesPerson: SalesPerson;
+    installment: Installment;
+    bank: Bank;
+    company: Company;
+  };
+
+  export interface PaymentInfoContextData {
+    paymentInfo: PaymentInfo | null;
+    setPaymentInfo: (info: PaymentInfo | null) => void;
+    isSaved: boolean;
+    savePaymentInfo: () => void;
+  };
+
+  export interface SelectedClientContextData {
     selectedClient: Client | null;
     setSelectedClient: (client: Client | null) => void;
     resetSelectedClient: () => void;
   }
-
 }
 
 export {};

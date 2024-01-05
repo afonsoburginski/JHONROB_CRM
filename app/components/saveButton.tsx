@@ -5,7 +5,7 @@ import { Button } from '@tremor/react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
 import { useObservation } from '../contexts/observationContext';
-import { usePaymentInfo } from '../contexts/paymentInfoContext';
+import { usePaymentInfo, PaymentInfoType } from '../contexts/paymentInfoContext';
 import { showToastSuccess, showToastError } from './toastfy';
 
 const SaveButton: React.FC = () => {
@@ -37,7 +37,7 @@ const SaveButton: React.FC = () => {
       return;
     }
     
-    const { paymentMethod, salesPerson, installment, bank, bankAgency, accountNumber, company } = paymentInfo;
+    const { paymentMethods, salesPeople, installments, banks, bankAgency, accountNumber, companies } = paymentInfo;
     
     const productSelections = selectedProducts.map(product => ({
       groups: product.group ? product.group.title : '',
@@ -58,13 +58,13 @@ const SaveButton: React.FC = () => {
       clientId: selectedClient.id,
       productSelections,
       paymentInfo: {
-        paymentMethod,
-        salesPerson,
-        installment,
-        bank,
+        paymentMethods,
+        salesPeople,
+        installments,
+        banks,
         bankAgency,
         accountNumber,
-        company,
+        companies,
       },
     };
 
