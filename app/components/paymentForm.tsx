@@ -67,7 +67,11 @@ export default function PaymentInfoForm() {
             </Flex>
           );
         })}
-        <Button onClick={savePaymentInfo}>Salvar</Button>
+        <Flex className="justify-end items-end flex-grow">
+        </Flex>
+        <Flex className="justify-end items-end flex-grow">
+          <Button onClick={savePaymentInfo}>Salvar</Button>
+        </Flex>
       </Grid>
     </>
   );
