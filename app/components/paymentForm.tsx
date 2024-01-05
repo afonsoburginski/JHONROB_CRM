@@ -26,7 +26,7 @@ export default function PaymentInfoForm() {
         }
       }
     }
-  }, [paymentInfo?.banks, data?.banks, handleValueChaange]);
+  }, [paymentInfo?.banks, data?.banks, handleValueChange, paymentInfo?.bankAgency, paymentInfo?.accountNumber]);
 
   const fieldComponents = {
     bankAgency: TextInput,
