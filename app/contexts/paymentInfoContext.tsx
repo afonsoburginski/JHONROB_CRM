@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from 'react';
+// paymentInfoContext.tsx
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 export type PaymentInfoType = {
   companies?: string;
@@ -7,18 +8,27 @@ export type PaymentInfoType = {
   salesPeople?: string;
   banks?: string;
   bankAgency?: string;
-  accountNumber?: string
-  // suas definições de tipo aqui
+  accountNumber?: string;
 };
 
 type PaymentInfoContextType = {
-  paymentInfo: PaymentInfoType | null;
+  paymentInfo: PaymentInfoType;
   setPaymentInfo: (info: PaymentInfoType) => void;
   isSaved: boolean;
   savePaymentInfo: () => void;
 };
 
-const PaymentInfoContext = createContext<PaymentInfoContextType | undefined>(undefined);
+const defaultPaymentInfo: PaymentInfoType = {
+  companies: '',
+  paymentMethods: '',
+  installments: '',
+  salesPeople: '',
+  banks: '',
+  bankAgency: '',
+  accountNumber: '',
+};
+
+const PaymentInfoContext = createContext<PaymentInfoContextType>({ paymentInfo: defaultPaymentInfo, setPaymentInfo: () => {}, isSaved: false, savePaymentInfo: () => {} });
 
 export const usePaymentInfo = () => {
   const context = useContext(PaymentInfoContext);
@@ -29,7 +39,7 @@ export const usePaymentInfo = () => {
 };
 
 export const PaymentInfoProvider: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
-  const [paymentInfo, setPaymentInfo] = useState<PaymentInfoType | null>(null);
+  const [paymentInfo, setPaymentInfo] = useState<PaymentInfoType>(defaultPaymentInfo);
   const [isSaved, setIsSaved] = useState(false);
 
   const savePaymentInfo = () => {

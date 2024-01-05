@@ -1,3 +1,4 @@
+// search.tsx
 'use client';
 import { useTransition } from 'react';
 import { HiMagnifyingGlass  } from "react-icons/hi2";
@@ -71,7 +72,7 @@ export default function Search({ disabled, onChange }: SearchProps) {
               cy="12"
               r="10"
               stroke="currentColor"
-              stroke-width="4"
+              strokeWidth="4"
             />
             <path
               className="opacity-75"

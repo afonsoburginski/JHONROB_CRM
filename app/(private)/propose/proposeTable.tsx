@@ -21,10 +21,10 @@ const ProposeTable: React.FC<ProposeTableProps> = ({ proposes }) => (
       </TableRow>
     </TableHead>
     <TableBody>
-      {proposes && proposes.map((propose, index) => (
-        <TableRow key={index}>
+      {proposes && proposes.map((propose) => (
+        <TableRow key={propose.id}>
           <TableCell>{propose.id}</TableCell>
-          <TableCell>{`Proposta ${propose.clientName}`}</TableCell> 
+          <TableCell>{`Proposta ${propose.clientName}`}</TableCell>
           <TableCell>
             <ObservationModal observation={propose.observation} />
           </TableCell>

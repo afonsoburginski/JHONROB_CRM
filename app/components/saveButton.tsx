@@ -40,15 +40,15 @@ const SaveButton: React.FC = () => {
     const { paymentMethod, salesPerson, installment, bank, bankAgency, accountNumber, company } = paymentInfo;
     
     const productSelections = selectedProducts.map(product => ({
-      groups: product.group,
-      type: product.types, // altere 'type' para 'types'
-      model: product.models,
-      capacity: product.capacity,
-      height: product.height,
-      power: product.power,
-      product: product.product,
-      input: product.input.join(', '),
-      output: product.output.join(', '),
+      groups: product.group ? product.group.title : '',
+      type: product.type ? product.type.title : '',
+      model: product.model ? product.model.title : '',
+      capacity: product.capacity ? product.capacity.title : '',
+      height: product.height ? product.height.title : '',
+      power: product.power ? product.power.title : '',
+      product: product.product ? product.product.title : '',
+      input: Array.isArray(product.input) ? product.input.map(input => input.title).join(', ') : product.input.title,
+      output: Array.isArray(product.output) ? product.output.map(output => output.title).join(', ') : product.output.title,
     }));
 
     const data = {
@@ -70,7 +70,7 @@ const SaveButton: React.FC = () => {
 
     console.log(data);
 
-    const response = await fetch('api/savePropose', {
+    const response = await fetch('http://localhost:3000/api/savePropose', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -18,8 +18,8 @@ export default function SelectFormClient() {
 
   const fieldNames = {
     group: 'Grupo',
-    product: 'Produto',
-    type: 'Tipo',
+    product: 'Equipamento',
+    type: 'Produto',
     model: 'Modelo',
     capacity: 'Capacidade',
     height: 'Altura',

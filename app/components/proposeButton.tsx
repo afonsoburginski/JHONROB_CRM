@@ -18,7 +18,7 @@ const ProposeButton: React.FC<ProposeButtonProps> = ({ propose }) => {
   }, [propose]);
 
   return (
-    <div>
+    <>
       <ReactToPrint
         trigger={() => <IconButton color="primary"><SaveAltIcon /></IconButton>}
         content={() => componentRef.current}
@@ -27,7 +27,7 @@ const ProposeButton: React.FC<ProposeButtonProps> = ({ propose }) => {
       <div style={{ position: 'absolute', display: 'none' }}>
         <Layout ref={componentRef} propose={propose} />
       </div>
-    </div>
+    </>
   );
 };
 

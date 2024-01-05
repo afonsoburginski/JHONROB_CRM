@@ -1,6 +1,6 @@
 // selectedClients.tsx
 'use client'
-import React from 'react';
+import React, { useRef } from 'react';
 import { Table, Title, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
 import SelectClient from './selectClient';
@@ -20,6 +20,24 @@ const transitionStyles = {
   exited:  { opacity: 0 },
   unmounted: { opacity: 0 },
 };
+
+const TransitionCell: React.FC<{value: string | null}> = ({ value }) => {
+  const nodeRef = useRef(null);
+  return (
+    <TableCell className={`w-1/4 py-0`}>
+      <Transition in={value !== null} timeout={duration} nodeRef={nodeRef}>
+        {state => (
+          <div ref={nodeRef} style={{
+            ...defaultStyle,
+            ...transitionStyles[state]
+          }}>
+            {value || '-'}
+          </div>
+        )}
+      </Transition>
+    </TableCell>
+  );
+}
 
 const SelectedClients: React.FC = () => {
   const { selectedClient } = useSelectedClient();
@@ -43,54 +61,10 @@ const SelectedClients: React.FC = () => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell className={`w-1/4 py-0`}>
-              <Transition in={selectedClient !== null} timeout={duration}>
-                {state => (
-                  <div style={{
-                    ...defaultStyle,
-                    ...transitionStyles[state]
-                  }}>
-                    {selectedClient ? selectedClient.name : '-'}
-                  </div>
-                )}
-              </Transition>
-            </TableCell>
-            <TableCell className={`w-1/4 py-0`}>
-              <Transition in={selectedClient !== null} timeout={duration}>
-                {state => (
-                  <div style={{
-                    ...defaultStyle,
-                    ...transitionStyles[state]
-                  }}>
-                    {selectedClient ? selectedClient.email : '-'}
-                  </div>
-                )}
-              </Transition>
-            </TableCell>
-            <TableCell className={`w-1/4 py-0`}>
-              <Transition in={selectedClient !== null} timeout={duration}>
-                {state => (
-                  <div style={{
-                    ...defaultStyle,
-                    ...transitionStyles[state]
-                  }}>
-                    {selectedClient ? selectedClient.phone : '-'}
-                  </div>
-                )}
-              </Transition>
-            </TableCell>
-            <TableCell className={`w-1/4 py-0`}>
-              <Transition in={selectedClient !== null} timeout={duration}>
-                {state => (
-                  <div style={{
-                    ...defaultStyle,
-                    ...transitionStyles[state]
-                  }}>
-                    {selectedClient ? selectedClient.address : '-'}
-                  </div>
-                )}
-              </Transition>
-            </TableCell>
+            <TransitionCell value={selectedClient?.name || null} />
+            <TransitionCell value={selectedClient?.email || null} />
+            <TransitionCell value={selectedClient?.phone || null} />
+            <TransitionCell value={selectedClient?.address || null} />
           </TableRow>
         </TableBody>
       </Table>
@@ -106,54 +80,10 @@ const SelectedClients: React.FC = () => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell className={`w-1/4 py-0`}>
-              <Transition in={selectedClient !== null} timeout={duration}>
-                {state => (
-                  <div style={{
-                    ...defaultStyle,
-                    ...transitionStyles[state]
-                  }}>
-                    {selectedClient ? selectedClient.city : '-'}
-                  </div>
-                )}
-              </Transition>
-            </TableCell>
-            <TableCell className={`w-1/4 py-0`}>
-              <Transition in={selectedClient !== null} timeout={duration}>
-                {state => (
-                  <div style={{
-                    ...defaultStyle,
-                    ...transitionStyles[state]
-                  }}>
-                    {selectedClient ? selectedClient.state : '-'}
-                  </div>
-                )}
-              </Transition>
-            </TableCell>
-            <TableCell className={`w-1/4 py-0`}>
-              <Transition in={selectedClient !== null} timeout={duration}>
-                {state => (
-                  <div style={{
-                    ...defaultStyle,
-                    ...transitionStyles[state]
-                  }}>
-                    {selectedClient ? selectedClient.zip : '-'}
-                  </div>
-                )}
-              </Transition>
-            </TableCell>
-            <TableCell className={`w-1/4 py-0`}>
-              <Transition in={selectedClient !== null} timeout={duration}>
-                {state => (
-                  <div style={{
-                    ...defaultStyle,
-                    ...transitionStyles[state]
-                  }}>
-                    {selectedClient ? selectedClient.cpfCnpj : '-'}
-                  </div>
-                )}
-              </Transition>
-            </TableCell>
+            <TransitionCell value={selectedClient?.city || null} />
+            <TransitionCell value={selectedClient?.state || null} />
+            <TransitionCell value={selectedClient?.zip || null} />
+            <TransitionCell value={selectedClient?.cpfCnpj || null} />
           </TableRow>
         </TableBody>
       </Table>

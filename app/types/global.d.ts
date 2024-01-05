@@ -29,19 +29,21 @@ declare global {
   export interface Type {
     id: string;
     title: string;
-    models: Model[]; // Adicione esta linha
+    models: Model[];
   };
 
   export interface Product {
+    type: any;
+    model: any;
     group: string;
     product: string;
     id: string;
     title: string;
     types: Type[];
     models: Model[];
-    capacity: Capacity; // Altere para o tipo Capacity
-    height: Height; // Altere para o tipo Height
-    power: Power; // Altere para o tipo Power
+    capacity: Capacity;
+    height: Height;
+    power: Power;
     input: string[];
     output: string[];
     inputOutput?: string;

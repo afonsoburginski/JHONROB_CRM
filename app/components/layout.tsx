@@ -91,7 +91,7 @@ const FooterTypography = styled(Typography)({
 
 const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
   if (!propose) {
-    return null; // ou renderize algum tipo de componente de carregamento ou placeholder
+    return null;
   }
   
   return (
@@ -236,12 +236,26 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
         </Grid>
 
         <Grid container mt={4}>
+
+          <Grid container>
+            <Grid item xs={2}></Grid>
+            <Grid item xs={8}>
+              <TitleTypography>OBSERVAÇÕES GERAIS:</TitleTypography>
+              <ObservationTypography>
+                Não estão inclusos neste orçamento: vedações de telhados, fechamento de poços externos, túneis, 		
+                construções civis, instalações elétricas, termometria, sensores em transportadores, inversores de 		
+                frequência, taxas e tarifas bancárias decorrentes de financiamento.
+              </ObservationTypography>
+            </Grid>
+            <Grid item xs={2}></Grid>
+          </Grid>
+
           <Grid container>
             <Grid item xs={2}>
             </Grid>
             <Grid item xs={8}>
+              <TitleTypography>OBSERVAÇÕES:</TitleTypography>
               <ObservationTypography>
-                <TitleTypography>OBSERVAÇÕES:</TitleTypography>
                 {propose.observation.split('\n').map((line, index) => (
                   <React.Fragment key={index}>
                     <p>{line}</p>

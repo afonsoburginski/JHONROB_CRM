@@ -17,7 +17,12 @@ export default function ProposePage({ searchParams }: { searchParams: { q: strin
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setProposes(data);
+        // Adicione o nome do cliente aos dados da proposta
+        const updatedProposes = data.map((propose: Propose) => ({
+          ...propose,
+          clientName: propose.client.name,
+        }));
+        setProposes(updatedProposes);
       } catch (error) {
         console.error('Error fetching proposes:', error);
       }

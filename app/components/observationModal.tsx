@@ -85,11 +85,13 @@ export default function ObservationModal({ observation }: ObservationModalProps)
                 <StyledText>
                   {groupedLines.map((group, index) => (
                     <Fragment key={index}>
-                      <p>{group}</p>
-                      {(index + 1) % 4 === 0 && <p>{'\n'}</p>}
+                      <div>{group}</div>
+                      {(index + 1) % 4 === 0 && <div>{'\n'}</div>}
                     </Fragment>
                   ))}
                 </StyledText>
+
+
 
                 <div className="mt-4 flex justify-end">
                   <StyledButton size='xs' variant='secondary' type="button" onClick={closeModal}>
