@@ -8,7 +8,7 @@ export type PaymentInfoType = {
   salesPeople?: string;
   banks?: string;
   bankAgency?: string;
-  accountNumber?: string;
+  accountNumber?: string
 };
 
 type PaymentInfoContextType = {

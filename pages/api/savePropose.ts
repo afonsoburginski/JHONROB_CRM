@@ -8,8 +8,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
   if (req.method === 'POST') {
     console.log('Request body', req.body);
 
-    const { title, content, observation, productSelections, clientId } = req.body;
-
+    const { title, content, observation, productSelections, clientId, paymentInfo } = req.body;
     const proposeData = {
       title: title || "",
       content: content || "",
@@ -36,9 +35,17 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
               output: selection.output || "",
             })),
           },
+          paymentInfo: {
+            create: paymentInfo.map((info: any) => ({
+              company: info.company || "",
+              bank: info.bank || "",
+              paymentMethod: info.paymentMethod || "",
+            })),
+          },
         },
         include: {
           productSelections: true,
+          paymentInfo: true,
         },
       });
 

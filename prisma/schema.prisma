@@ -132,6 +132,16 @@ model Propose {
   clientId      Int?           
   client        Client?        @relation(fields: [clientId], references: [id])
   productSelections ProductSelection[]
+  paymentInfo  PaymentInfo[]
+}
+
+model PaymentInfo {
+  id            Int            @id @default(autoincrement())
+  company       String
+  bank          String
+  paymentMethod String
+  proposeId     Int
+  propose       Propose        @relation(fields: [proposeId], references: [id])
 }
 
 model ProductSelection {

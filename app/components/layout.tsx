@@ -327,24 +327,24 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                 </Grid>
 
                 <Grid container direction="row" alignItems="flex-start" justifyContent="space-between">
-                  <Grid item>
-                    <TitleTypography>DADOS BANCÁRIOS:</TitleTypography>
-                  </Grid>
-                  <Grid item mt={1}>
-                    <Grid container direction="column" alignItems="flex-end">
-                      <Grid item>
-                        <TitleTypography>Banco do Brasil</TitleTypography>
-                      </Grid>
-                      <Grid item>
-                        <TitleTypography>Agência:</TitleTypography>
-                        <TextTypography>4205-6</TextTypography>
-                      </Grid>
-                      <Grid item>
-                        <TitleTypography>Conta:</TitleTypography>
-                        <TextTypography>114.278-X</TextTypography>
-                      </Grid>
+                <Grid item>
+                  <Typography variant="h6">DADOS BANCÁRIOS:</Typography>
+                </Grid>
+                <Grid item mt={1}>
+                  <Grid container direction="column" alignItems="flex-end">
+                    <Grid item>
+                      <Typography variant="h6">{paymentInfo.banks}</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="subtitle1">Agência:</Typography>
+                      <Typography variant="body1">{paymentInfo.bankAgency}</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="subtitle1">Conta:</Typography>
+                      <Typography variant="body1">{paymentInfo.accountNumber}</Typography>
                     </Grid>
                   </Grid>
+                </Grid>
 
                   <Grid item mt={2}>
                     <Grid container direction="column">
