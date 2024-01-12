@@ -57,38 +57,34 @@ const SaveButton: React.FC = () => {
       observation: observation,
       clientId: selectedClient.id,
       productSelections,
-      paymentInfo: {
-        paymentMethods,
-        salesPeople,
-        installments,
-        banks,
-        bankAgency,
-        accountNumber,
-        companies,
-      },
+      paymentInfo,
     };
 
     console.log(data);
 
-    const response = await fetch('http://localhost:3000/api/savePropose', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-  
-    if (!response.ok) {
-      showToastError(`Erro ao salvar: ${response.status}`);
-      throw new Error(`HTTP error! status: ${response.status}`);
-    } else {
-      const responseData = await response.json();
+    try {
+      const response = await fetch('http://localhost:3000/api/savePropose', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
     
-      showToastSuccess('Proposta salva com sucesso'); // Mova esta linha para cima
-    
-      resetSelectedProducts();
-      resetSelectedClient();
-      resetObservation();
+      if (!response.ok) {
+        showToastError(`Erro ao salvar: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      } else {
+        const responseData = await response.json();
+      
+        showToastSuccess('Proposta salva com sucesso');
+      
+        resetSelectedProducts();
+        resetSelectedClient();
+        resetObservation();
+      }
+    } catch (error) {
+      showToastError(`Erro ao salvar: ${error.message}`);
     }
   };
 

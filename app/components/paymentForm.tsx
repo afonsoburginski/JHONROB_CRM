@@ -16,7 +16,7 @@ export default function PaymentInfoForm() {
 
   useEffect(() => {
     if (paymentInfo?.banks && data?.banks) {
-      const selectedBank = data.banks[paymentInfo.banks];
+      const selectedBank = data.banks.find(bank => bank.title === paymentInfo.banks);
       if (selectedBank) {
         if (paymentInfo.bankAgency !== selectedBank.agency) {
           handleValueChange('bankAgency' as keyof PaymentInfoType, selectedBank?.agency || '');
@@ -51,7 +51,7 @@ export default function PaymentInfoForm() {
                   disabled={isSaved}
                 >
                   {data?.[field]?.map((option, optionIndex) => (
-                    <SelectItem key={optionIndex} value={optionIndex.toString()}>
+                    <SelectItem key={optionIndex} value={Object.values(option).join(', ')}>
                       {option?.name || option?.title || `Parcelas: ${option?.numberOfInstallments}, Taxa de juros: ${option?.interestRate}`}
                     </SelectItem>
                   ))}

@@ -10,7 +10,9 @@ export default function usePaymentFormLogic() {
     const fetchData = async () => {
       const cachedData = localStorage.getItem('paymentData');
       if (cachedData) {
-        setData(JSON.parse(cachedData));
+        const parsedData = JSON.parse(cachedData);
+        setData(parsedData);
+        setPaymentInfo(parsedData);
         return;
       }
 
@@ -20,28 +22,35 @@ export default function usePaymentFormLogic() {
         console.log('Data received from API:', data);
         localStorage.setItem('paymentData', JSON.stringify(data));
         setData(data);
+        setPaymentInfo(data);
       } catch (error) {
         console.error('Error:', error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [setPaymentInfo]);
 
-  const fields = ['companies', 'paymentMethods', 'installments', 'salesPeople', 'banks', 'bankAgency', 'accountNumber'];
+  const fields = ['company', 'paymentMethod', 'installment', 'salesPeople', 'bank', 'bankAgency', 'accountNumber'];
 
   const fieldNames = {
-    companies: 'Empresa',
-    paymentMethods: 'Método de Pagamento',
-    installments: 'Parcelamento',
+    company: 'Empresa',
+    paymentMethod: 'Método de Pagamento',
+    installment: 'Parcelamento',
     salesPeople: 'Vendedor',
-    banks: 'Banco',
+    bank: 'Banco',
     bankAgency: 'Agência',
     accountNumber: 'Número da Conta',
   };
 
-  const handleValueChange = (field: keyof PaymentInfoType, value: string) => {
-    setPaymentInfo({ ...paymentInfo, [field]: value });
+  const handleValueChange = (field: keyof PaymentInfoType, value: any) => {
+    let stringValue;
+    if (Array.isArray(value)) {
+      stringValue = value.map(item => Object.values(item).join(', ')).join('; ');
+    } else {
+      stringValue = value;
+    }
+    setPaymentInfo({ ...paymentInfo, [field]: stringValue });
   };
 
   return {

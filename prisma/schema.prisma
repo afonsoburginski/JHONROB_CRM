@@ -8,6 +8,7 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
+
 enum Role {
   ADMIN
   USER
@@ -138,8 +139,12 @@ model Propose {
 model PaymentInfo {
   id            Int            @id @default(autoincrement())
   company       String
-  bank          String
   paymentMethod String
+  installments  String
+  salesPeople   String
+  bank          String
+  bankAgency    String
+  accountNumber String
   proposeId     Int
   propose       Propose        @relation(fields: [proposeId], references: [id])
 }

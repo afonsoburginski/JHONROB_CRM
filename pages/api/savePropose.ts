@@ -18,6 +18,9 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
     console.log('Data to create proposal', proposeData);
 
+    // Verifica se paymentInfo é um array. Se não for, converte em um array com um único elemento.
+    const paymentInfoArray = Array.isArray(paymentInfo) ? paymentInfo : [paymentInfo];
+
     try {
       const proposal = await prisma.propose.create({
         data: {
@@ -36,10 +39,14 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             })),
           },
           paymentInfo: {
-            create: paymentInfo.map((info: any) => ({
-              company: info.company || "",
-              bank: info.bank || "",
+            create: paymentInfoArray.map((info: any) => ({
+              company: info.salesPeople || "",
               paymentMethod: info.paymentMethod || "",
+              installments: paymentInfo.installments || "",
+              salesPeople: paymentInfo.salesPeople || "",
+              bank: info.bank || "",
+              bankAgency: info.bankAgency || "",
+              accountNumber: info.accountNumber || "",
             })),
           },
         },

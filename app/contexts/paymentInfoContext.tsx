@@ -1,29 +1,29 @@
 // paymentInfoContext.tsx
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 
 export type PaymentInfoType = {
-  companies?: string;
-  paymentMethods?: string;
-  installments?: string;
+  company?: string;
+  paymentMethod?: string;
+  installment?: string;
   salesPeople?: string;
-  banks?: string;
+  bank?: string;
   bankAgency?: string;
   accountNumber?: string
 };
 
 type PaymentInfoContextType = {
   paymentInfo: PaymentInfoType;
-  setPaymentInfo: (info: PaymentInfoType) => void;
+  setPaymentInfo: (info: Partial<PaymentInfoType>) => void;
   isSaved: boolean;
   savePaymentInfo: () => void;
 };
 
 const defaultPaymentInfo: PaymentInfoType = {
-  companies: '',
-  paymentMethods: '',
-  installments: '',
+  company: '',
+  paymentMethod: '',
+  installment: '',
   salesPeople: '',
-  banks: '',
+  bank: '',
   bankAgency: '',
   accountNumber: '',
 };
@@ -39,8 +39,12 @@ export const usePaymentInfo = () => {
 };
 
 export const PaymentInfoProvider: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
-  const [paymentInfo, setPaymentInfo] = useState<PaymentInfoType>(defaultPaymentInfo);
+  const [paymentInfo, setPaymentInfoState] = useState<PaymentInfoType>(defaultPaymentInfo);
   const [isSaved, setIsSaved] = useState(false);
+
+  const setPaymentInfo = useCallback((info: Partial<PaymentInfoType>) => {
+    setPaymentInfoState(prevState => ({ ...prevState, ...info }));
+  }, []);
 
   const savePaymentInfo = () => {
     setIsSaved(true);
