@@ -1,63 +1,83 @@
-// paymentFormLogic.ts
+// usePaymentFormLogic.ts
 import { useState, useEffect } from 'react';
-import { PaymentInfoType, usePaymentInfo } from '../contexts/paymentInfoContext';
+import { usePaymentInfo } from '../contexts/paymentInfoContext';
 
-export default function usePaymentFormLogic() {
-  const [data, setData] = useState<any>(null);
-  const { paymentInfo, setPaymentInfo } = usePaymentInfo();
+const fields = ['company', 'paymentMethod', 'installment', 'salesPeople', 'bank'];
+
+const usePaymentFormLogic = (initialData = {}) => {
+  const { setPaymentInfo, paymentInfo, isSaved } = usePaymentInfo();
+  const [data, setData] = useState(initialData);
+  const [newFormData, setNewFormData] = useState({
+    company: [],
+    paymentMethod: [],
+    installment: [],
+    salesPeople: [],
+    bank: [],
+  });
 
   useEffect(() => {
-    const fetchData = async () => {
-      const cachedData = localStorage.getItem('paymentData');
-      if (cachedData) {
-        const parsedData = JSON.parse(cachedData);
-        setData(parsedData);
-        setPaymentInfo(parsedData);
-        return;
+    fetch('/api/payment')
+      .then(response => response.json())
+      .then(apiData => {
+        const formData = {
+          company: apiData.company?.map(company => ({
+            id: company.id,
+            title: company.name,
+            cnpj: company.cnpj || "",   // Adicione CNPJ aqui
+            ie: company.ie || "",       // Adicione IE aqui
+            address: company.address || "" // Adicione ADDRESS aqui
+          })) || [],
+          paymentMethod: apiData.paymentMethod?.map(method => ({ id: method.id, title: method.title })) || [],
+          installment: apiData.installment?.map(installment => ({
+            id: installment.id,
+            title: `${installment.numberOfInstallments} parcelas`,
+            paymentMethodId: installment.paymentMethodId
+          })) || [],
+          salesPeople: apiData.salesPeople?.map(salesPerson => ({ id: salesPerson.id, title: salesPerson.name })) || [],
+          bank: apiData.bank?.map(bank => ({
+            id: bank.id,
+            title: bank.title,
+            agency: bank.agency,
+            account: bank.account
+          })) || [],
+        };
+
+        setNewFormData(formData);
+        setData(formData);
+      })
+      .catch(error => console.error('Error:', error));
+  }, []);
+
+  const handleChange = (field, value) => {
+    const selectedItem = data[field]?.find(item => item.id === value);
+    if (selectedItem) {
+      if (field === 'bank') {
+        setPaymentInfo({ ...paymentInfo, [field]: { ...selectedItem, agency: selectedItem.agency, account: selectedItem.account } });
+      } else if (field === 'company') {
+        // Se o campo for 'company', inclua as informações adicionais no estado 'paymentInfo'
+        setPaymentInfo({
+          ...paymentInfo,
+          [field]: { ...selectedItem, cnpj: selectedItem.cnpj || "", ie: selectedItem.ie || "", address: selectedItem.address || "" },
+        });
+      } else {
+        setPaymentInfo({ ...paymentInfo, [field]: selectedItem });
       }
 
-      try {
-        const response = await fetch('/api/payment');
-        const data = await response.json();
-        console.log('Data received from API:', data);
-        localStorage.setItem('paymentData', JSON.stringify(data));
-        setData(data);
-        setPaymentInfo(data);
-      } catch (error) {
-        console.error('Error:', error);
+      if (field === 'paymentMethod') {
+        setData(prevData => ({
+          ...prevData,
+          installment: newFormData.installment.filter(installment => installment.paymentMethodId === selectedItem.id),
+        }));
       }
-    };
-
-    fetchData();
-  }, [setPaymentInfo]);
-
-  const fields = ['company', 'paymentMethod', 'installment', 'salesPeople', 'bank', 'bankAgency', 'accountNumber'];
-
-  const fieldNames = {
-    company: 'Empresa',
-    paymentMethod: 'Método de Pagamento',
-    installment: 'Parcelamento',
-    salesPeople: 'Vendedor',
-    bank: 'Banco',
-    bankAgency: 'Agência',
-    accountNumber: 'Número da Conta',
-  };
-
-  const handleValueChange = (field: keyof PaymentInfoType, value: any) => {
-    let stringValue;
-    if (Array.isArray(value)) {
-      stringValue = value.map(item => Object.values(item).join(', ')).join('; ');
-    } else {
-      stringValue = value;
     }
-    setPaymentInfo({ ...paymentInfo, [field]: stringValue });
   };
 
   return {
+    handleChange,
     data,
     paymentInfo,
-    fields,
-    fieldNames,
-    handleValueChange,
+    isSaved,
   };
-}
+};
+
+export default usePaymentFormLogic;

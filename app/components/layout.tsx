@@ -258,7 +258,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
               <ObservationTypography>
                 {propose.observation.split('\n').map((line, index) => (
                   <React.Fragment key={index}>
-                    <p>{line}</p>
+                    <div>{line}</div>
                     {index % 4 === 3 && <br />}
                   </React.Fragment>
                 ))}
@@ -326,25 +326,27 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                   </DeliveryTypography>
                 </Grid>
 
-                <Grid container direction="row" alignItems="flex-start" justifyContent="space-between">
+                {propose.paymentInfo && propose.paymentInfo.map((payment, index) => (
+                <Grid container direction="row" alignItems="flex-start" justifyContent="space-between" key={index}>
                   <Grid item>
                     <TitleTypography>DADOS BANCÁRIOS:</TitleTypography>
                   </Grid>
                   <Grid item mt={1}>
                     <Grid container direction="column" alignItems="flex-end">
                       <Grid item>
-                        <TitleTypography>Banco do Brasil</TitleTypography>
+                        <TitleTypography>{payment.bank ? payment.bank : 'Banco não definido'}</TitleTypography>
                       </Grid>
                       <Grid item>
                         <TitleTypography>Agência:</TitleTypography>
-                        <TextTypography>4205-6</TextTypography>
+                        <TextTypography>{payment.bankAgency ? payment.bankAgency : 'Agência não definida'}</TextTypography>
                       </Grid>
                       <Grid item>
                         <TitleTypography>Conta:</TitleTypography>
-                        <TextTypography>114.278-X</TextTypography>
+                        <TextTypography>{payment.accountNumber ? payment.accountNumber : 'Conta não definida'}</TextTypography>
                       </Grid>
                     </Grid>
                   </Grid>
+
 
                   <Grid item mt={2}>
                     <Grid container direction="column">
@@ -353,11 +355,11 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                       </Grid>
                       <Grid item>
                         <TitleTypography>CNPJ:</TitleTypography>
-                        <TextTypography>{propose.client.cpfCnpj}</TextTypography>
+                        <TextTypography>{payment.accountNumber ? payment.accountNumber : 'Conta não definida'}</TextTypography>
                       </Grid>
                       <Grid item>
                         <TitleTypography>I.E.:</TitleTypography>
-                        <TextTypography>{propose.client.ie}</TextTypography>
+                        <TextTypography>{payment.accountNumber ? payment.accountNumber : 'Conta não definida'}</TextTypography>
                       </Grid>
                       <Grid item>
                         <SubtitleTypography>{propose.client.address} <br /> {propose.client.city}, {propose.client.state}</SubtitleTypography>
@@ -366,6 +368,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                   </Grid>
 
                 </Grid>
+              ))}
               </Grid>
             </Grid>
 
@@ -377,13 +380,14 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
             <Grid container direction="row" justifyContent="space-between" mt={4} mb={4}>
               <Grid item xs={2}></Grid>
               <Grid item xs={8}>
-                <Grid container direction="row" justifyContent="space-between">
+                {propose.paymentInfo && propose.paymentInfo.map((payment, index) => (
+                <Grid container direction="row" justifyContent="space-between" key={index}>
                   <Grid item xs={5}>
                     <FooterTypography>
                       <TitleTypography>_________________________</TitleTypography>
                       <Grid container direction="column" alignItems="flex-start">
-                        <TitleTypography>Thiago Azevedo</TitleTypography>
-                        <TitleTypography>Jhonrob Silos e Secadores</TitleTypography>
+                        <TitleTypography>{payment.salesPeople ? payment.salesPeople : 'Empresa não definida'}</TitleTypography>
+                        <TitleTypography>{payment.company ? payment.company : 'Empresa não definida'}</TitleTypography>
                         <TitleTypography>Fabricante</TitleTypography>
                       </Grid>
                     </FooterTypography>
@@ -398,6 +402,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                     </FooterTypography>
                   </Grid>
                 </Grid>
+                ))}
               </Grid>
               <Grid item xs={2}></Grid>
             </Grid>

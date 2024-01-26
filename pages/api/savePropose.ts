@@ -15,39 +15,40 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       observation: observation || "",
       clientId,
     };
-
+    
     console.log('Data to create proposal', proposeData);
-
-    // Verifica se paymentInfo é um array. Se não for, converte em um array com um único elemento.
-    const paymentInfoArray = Array.isArray(paymentInfo) ? paymentInfo : [paymentInfo];
+    
 
     try {
       const proposal = await prisma.propose.create({
         data: {
           ...proposeData,
           productSelections: {
-            create: productSelections.map((selection: any) => ({
-              groups: selection.groups || "",
-              product: selection.product || "",
-              type: selection.type || "",
-              model: selection.model || "",
-              capacity: selection.capacity || "",
-              height: selection.height || "",
-              power: selection.power || "",
-              input: selection.input || "",
-              output: selection.output || "",
-            })),
+            create: {
+              groups: productSelections.groups || "",
+              product: productSelections.product || "",
+              type: productSelections.type || "",
+              model: productSelections.model || "",
+              capacity: productSelections.capacity || "",
+              height: productSelections.height || "",
+              power: productSelections.power || "",
+              input: productSelections.input || "",
+              output: productSelections.output || "",
+            },
           },
           paymentInfo: {
-            create: paymentInfoArray.map((info: any) => ({
-              company: info.salesPeople || "",
-              paymentMethod: info.paymentMethod || "",
+            create: {
+              company: paymentInfo.company || "",
+              cnpj: paymentInfo.cnpj || "",
+              ie: paymentInfo.ie || "",
+              address: paymentInfo.address || "",
+              paymentMethod: paymentInfo.paymentMethod || "",
               installments: paymentInfo.installments || "",
               salesPeople: paymentInfo.salesPeople || "",
-              bank: info.bank || "",
-              bankAgency: info.bankAgency || "",
-              accountNumber: info.accountNumber || "",
-            })),
+              bank: paymentInfo.bank || "",
+              bankAgency: paymentInfo.bankAgency || "",
+              accountNumber: paymentInfo.accountNumber || "",
+            },
           },
         },
         include: {

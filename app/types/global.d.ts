@@ -78,6 +78,7 @@ declare global {
     observation: string;
     clientId: string;
     client: Client;
+    paymentInfo: paymentInfo[];
     productSelections: ProductSelection[];
     groups: string;
     product: string;

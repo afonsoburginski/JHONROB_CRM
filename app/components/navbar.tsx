@@ -5,8 +5,9 @@ import { usePathname } from 'next/navigation';
 import { signOut, getSession } from 'next-auth/react';
 import { Session } from 'next-auth';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface User {
   name?: string | null;
@@ -54,7 +55,7 @@ export default function AuthStatus({ user }: AuthStatusProps) {
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                   {navigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
                       href={item.href}
                       className={classNames(
@@ -66,7 +67,7 @@ export default function AuthStatus({ user }: AuthStatusProps) {
                       aria-current={pathname === item.href ? 'page' : undefined}
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -97,19 +98,19 @@ export default function AuthStatus({ user }: AuthStatusProps) {
                         <div className="py-1">
                           <Menu.Item>
                             {({ active }) => (
-                              <a
+                              <Link
                                 href="#"
                                 className={`${
                                   active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
                                 } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
                               >
                                 {session.user?.email}
-                              </a>
+                              </Link>
                             )}
                           </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
-                              <a
+                              <Link
                                 href="#"
                                 className={`${
                                   active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
@@ -117,7 +118,7 @@ export default function AuthStatus({ user }: AuthStatusProps) {
                                 onClick={() => signOut()}
                               >
                                 Sair
-                              </a>
+                              </Link>
                             )}
                           </Menu.Item>
                         </div>

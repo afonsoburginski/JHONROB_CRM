@@ -9,6 +9,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         include: {
           client: true, 
           productSelections: true,
+          paymentInfo: true,
         },
       });
       res.status(200).json(proposals);

@@ -4,8 +4,10 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL")
+  url      = env("POSTGRES_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
+  // url = env("POSTGRES_PRISMA_URL")
+  // directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 
@@ -40,6 +42,9 @@ model Client {
 model Company {
   id              Int            @id @default(autoincrement())
   name            String
+  cnpj            String
+  ie              String
+  address         String
 }
 
 model Installment {
@@ -139,6 +144,9 @@ model Propose {
 model PaymentInfo {
   id            Int            @id @default(autoincrement())
   company       String
+  cnpj          String
+  ie            String
+  address       String
   paymentMethod String
   installments  String
   salesPeople   String

@@ -59,7 +59,7 @@ const SaveButton: React.FC = () => {
       productSelections,
       paymentInfo,
     };
-
+    
     console.log(data);
 
     try {
@@ -70,6 +70,8 @@ const SaveButton: React.FC = () => {
         },
         body: JSON.stringify(data),
       });
+
+      console.log('Response from server:', response);
     
       if (!response.ok) {
         showToastError(`Erro ao salvar: ${response.status}`);
@@ -84,6 +86,7 @@ const SaveButton: React.FC = () => {
         resetObservation();
       }
     } catch (error) {
+      console.error('Erro ao salvar:', error);
       showToastError(`Erro ao salvar: ${error.message}`);
     }
   };

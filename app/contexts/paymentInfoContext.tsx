@@ -1,5 +1,5 @@
 // paymentInfoContext.tsx
-import { createContext, useContext, useState, ReactNode, useCallback } from 'react';
+import { createContext, useContext, useState, ReactNode, useCallback, useEffect } from 'react';
 
 export type PaymentInfoType = {
   company?: string;
@@ -45,6 +45,10 @@ export const PaymentInfoProvider: React.FC = ({ children }: React.PropsWithChild
   const setPaymentInfo = useCallback((info: Partial<PaymentInfoType>) => {
     setPaymentInfoState(prevState => ({ ...prevState, ...info }));
   }, []);
+
+  useEffect(() => {
+    console.log(paymentInfo); // Adicione esta linha
+  }, [paymentInfo]);
 
   const savePaymentInfo = () => {
     setIsSaved(true);
