@@ -19,7 +19,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
         if (type === "login") {
           signIn("credentials", {
             redirect: false,
-            email: e.currentTarget.email.value,
+            username: e.currentTarget.username.value,
             password: e.currentTarget.password.value,
             // @ts-ignore
           }).then(async ({ error }) => {
@@ -45,7 +45,8 @@ export default function Form({ type }: { type: "login" | "register" }) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              email: e.currentTarget.email.value,
+              name: e.currentTarget.name.value,
+              email: e.currentTarget.username.value,
               password: e.currentTarget.password.value,
             }),
           }).then(async (res) => {
@@ -67,20 +68,39 @@ export default function Form({ type }: { type: "login" | "register" }) {
           });
         }
       }}
-      className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16">
+      className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
+    >
+      {type === "register" && (
+        <div>
+          <label
+            htmlFor="name"
+            className="block text-xs text-gray-600 uppercase"
+          >
+            Nome
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Insira seu nome"
+            required
+            className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
+          />
+        </div>
+      )}
       <div>
         <label
-          htmlFor="email"
+          htmlFor="username"
           className="block text-xs text-gray-600 uppercase"
         >
-          Email Address
+          Email ou Nome
         </label>
         <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="Insira seu email"
-          autoComplete="email"
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Insira seu email ou nome"
+          autoComplete="username"
           required
           className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
         />

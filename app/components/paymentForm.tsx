@@ -5,7 +5,7 @@ import usePaymentFormLogic from './paymentFormLogic';
 import { usePaymentInfo } from '../contexts/paymentInfoContext';
 
 export default function PaymentForm() {
-  const { handleChange, data, paymentInfo } = usePaymentFormLogic();
+  const { handleChange, data, paymentInfo, fieldTitles } = usePaymentFormLogic();
   const { isSaved, savePaymentInfo } = usePaymentInfo();
 
   return (
@@ -14,12 +14,12 @@ export default function PaymentForm() {
       <Grid className='grid-cols-2 gap-5'>
         {Object.keys(data).map((field, index) => (
           <Grid key={index} className='grid-cols-1 w-full'>
-            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">{field}</Text>
+            <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">{fieldTitles[field]}</Text>
             <Select
               key={`${field}-${index}`}
               value={paymentInfo[field]?.id || ''}
               onValueChange={value => handleChange(field, value)}
-              placeholder={`Selecione o ${field}...`}
+              placeholder={`Selecione o ${fieldTitles[field]}...`}
               enableClear
               disabled={isSaved}
             >
@@ -36,7 +36,7 @@ export default function PaymentForm() {
             <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Agência</Text>
             <TextInput
               value={paymentInfo['bank']?.agency || ''}
-              placeholder="Agência"
+              placeholder="Informe o número da agência"
               disabled={isSaved}
             />
           </Grid>
@@ -44,7 +44,7 @@ export default function PaymentForm() {
             <Text className="sticky whitespace-nowrap text-left font-semibold text-tremor-content dark:text-dark-tremor-content top-0 py-1">Conta</Text>
             <TextInput
               value={paymentInfo['bank']?.account || ''}
-              placeholder="Conta"
+              placeholder="Informe o número da conta"
               disabled={isSaved}
             />
           </Grid>

@@ -1,41 +1,13 @@
 // selectedClients.tsx
 'use client'
-import React, { useRef } from 'react';
-import { Table, Title, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from '@tremor/react';
+import React from 'react';
+import { Table, Title, TableHead, TableRow, TableHeaderCell, TableBody, TableCell, TextInput } from '@tremor/react';
 import { useSelectedClient } from '../contexts/selectedClientContext';
 import SelectClient from './selectClient';
-import { Transition } from 'react-transition-group';
 
-const duration = 150;
-
-const defaultStyle = {
-  transition: `opacity ${duration}ms ease-in-out`,
-  opacity: 0,
-}
-
-const transitionStyles = {
-  entering: { opacity: 0 },
-  entered:  { opacity: 1 },
-  exiting:  { opacity: 0 },
-  exited:  { opacity: 0 },
-  unmounted: { opacity: 0 },
-};
-
-const TransitionCell: React.FC<{value: string | null}> = ({ value }) => {
-  const nodeRef = useRef(null);
+const TextInputCell: React.FC<{value: string | null, placeholder: string}> = ({ value, placeholder }) => {
   return (
-    <TableCell className={`w-1/4 py-0`}>
-      <Transition in={value !== null} timeout={duration} nodeRef={nodeRef}>
-        {state => (
-          <div ref={nodeRef} style={{
-            ...defaultStyle,
-            ...transitionStyles[state]
-          }}>
-            {value || '-'}
-          </div>
-        )}
-      </Transition>
-    </TableCell>
+    <TextInput value={value || ''} disabled placeholder={placeholder} style={{width: '100%'}} />
   );
 }
 
@@ -50,7 +22,7 @@ const SelectedClients: React.FC = () => {
           <SelectClient />
         </div>
       </div>
-      <Table className="bg-grey-lighter text-grey-darker mt-5 mb-5">
+      <Table className="bg-grey-lighter text-grey-darker mt-1 mb-4">
         <TableHead>
           <TableRow>
             <TableHeaderCell className="w-1/4 py-1">Nome</TableHeaderCell>
@@ -61,10 +33,10 @@ const SelectedClients: React.FC = () => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TransitionCell value={selectedClient?.name || null} />
-            <TransitionCell value={selectedClient?.email || null} />
-            <TransitionCell value={selectedClient?.phone || null} />
-            <TransitionCell value={selectedClient?.address || null} />
+            <TableCell className={`w-1/4 py-0`}><TextInputCell value={selectedClient?.name || null} placeholder="Nome" /></TableCell>
+            <TableCell className={`w-1/4 py-0`}><TextInputCell value={selectedClient?.email || null} placeholder="Email" /></TableCell>
+            <TableCell className={`w-1/4 py-0`}><TextInputCell value={selectedClient?.phone || null} placeholder="Telefone" /></TableCell>
+            <TableCell className={`w-1/4 py-0`}><TextInputCell value={selectedClient?.address || null} placeholder="Endereço" /></TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -80,10 +52,10 @@ const SelectedClients: React.FC = () => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TransitionCell value={selectedClient?.city || null} />
-            <TransitionCell value={selectedClient?.state || null} />
-            <TransitionCell value={selectedClient?.zip || null} />
-            <TransitionCell value={selectedClient?.cpfCnpj || null} />
+            <TableCell className={`w-1/4 py-0`}><TextInputCell value={selectedClient?.city || null} placeholder="Cidade" /></TableCell>
+            <TableCell className={`w-1/4 py-0`}><TextInputCell value={selectedClient?.state || null} placeholder="Estado" /></TableCell>
+            <TableCell className={`w-1/4 py-0`}><TextInputCell value={selectedClient?.zip || null} placeholder="Cep" /></TableCell>
+            <TableCell className={`w-1/4 py-0`}><TextInputCell value={selectedClient?.cpfCnpj || null} placeholder="Cpf/Cnpj" /></TableCell>
           </TableRow>
         </TableBody>
       </Table>

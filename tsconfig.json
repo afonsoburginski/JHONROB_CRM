@@ -36,7 +36,7 @@
     "app/components/selectForm.tsx",
     "app/server.js",
     "global.d.ts"
-  ],
+, "upload.js"  ],
   "exclude": [
     "node_modules"
   ]

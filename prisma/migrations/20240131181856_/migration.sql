@@ -8,6 +8,9 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "image" TEXT,
+    "department" TEXT,
+    "phone" TEXT,
+    "city" TEXT,
     "role" "Role" NOT NULL DEFAULT 'USER',
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
@@ -80,6 +83,7 @@ CREATE TABLE "Group" (
 CREATE TABLE "Product" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
+    "tag" TEXT NOT NULL,
     "groupId" INTEGER NOT NULL,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
@@ -89,7 +93,6 @@ CREATE TABLE "Product" (
 CREATE TABLE "Type" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
-    "productId" INTEGER NOT NULL,
 
     CONSTRAINT "Type_pkey" PRIMARY KEY ("id")
 );
@@ -98,7 +101,6 @@ CREATE TABLE "Type" (
 CREATE TABLE "Model" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
-    "productId" INTEGER NOT NULL,
 
     CONSTRAINT "Model_pkey" PRIMARY KEY ("id")
 );
@@ -176,6 +178,7 @@ CREATE TABLE "ProductSelection" (
     "id" SERIAL NOT NULL,
     "groups" TEXT NOT NULL,
     "product" TEXT NOT NULL,
+    "tag" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "model" TEXT NOT NULL,
     "capacity" TEXT NOT NULL,
@@ -183,9 +186,22 @@ CREATE TABLE "ProductSelection" (
     "power" TEXT NOT NULL,
     "input" TEXT NOT NULL,
     "output" TEXT NOT NULL,
+    "observation" TEXT,
     "proposeId" INTEGER NOT NULL,
 
     CONSTRAINT "ProductSelection_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "_ProductToType" (
+    "A" INTEGER NOT NULL,
+    "B" INTEGER NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_ModelToProduct" (
+    "A" INTEGER NOT NULL,
+    "B" INTEGER NOT NULL
 );
 
 -- CreateIndex
@@ -197,17 +213,38 @@ CREATE UNIQUE INDEX "Group_title_key" ON "Group"("title");
 -- CreateIndex
 CREATE UNIQUE INDEX "Product_title_key" ON "Product"("title");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "Type_title_key" ON "Type"("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Model_title_key" ON "Model"("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Capacity_title_key" ON "Capacity"("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Height_title_key" ON "Height"("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Power_title_key" ON "Power"("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_ProductToType_AB_unique" ON "_ProductToType"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_ProductToType_B_index" ON "_ProductToType"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_ModelToProduct_AB_unique" ON "_ModelToProduct"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_ModelToProduct_B_index" ON "_ModelToProduct"("B");
+
 -- AddForeignKey
 ALTER TABLE "Installment" ADD CONSTRAINT "Installment_paymentMethodId_fkey" FOREIGN KEY ("paymentMethodId") REFERENCES "PaymentMethod"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Product" ADD CONSTRAINT "Product_groupId_fkey" FOREIGN KEY ("groupId") REFERENCES "Group"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Type" ADD CONSTRAINT "Type_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Model" ADD CONSTRAINT "Model_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Capacity" ADD CONSTRAINT "Capacity_modelId_fkey" FOREIGN KEY ("modelId") REFERENCES "Model"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -226,3 +263,15 @@ ALTER TABLE "PaymentInfo" ADD CONSTRAINT "PaymentInfo_proposeId_fkey" FOREIGN KE
 
 -- AddForeignKey
 ALTER TABLE "ProductSelection" ADD CONSTRAINT "ProductSelection_proposeId_fkey" FOREIGN KEY ("proposeId") REFERENCES "Propose"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ProductToType" ADD CONSTRAINT "_ProductToType_A_fkey" FOREIGN KEY ("A") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ProductToType" ADD CONSTRAINT "_ProductToType_B_fkey" FOREIGN KEY ("B") REFERENCES "Type"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ModelToProduct" ADD CONSTRAINT "_ModelToProduct_A_fkey" FOREIGN KEY ("A") REFERENCES "Model"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ModelToProduct" ADD CONSTRAINT "_ModelToProduct_B_fkey" FOREIGN KEY ("B") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;

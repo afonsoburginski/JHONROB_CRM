@@ -49,6 +49,7 @@ const SaveButton: React.FC = () => {
       product: product.product ? product.product.title : '',
       input: Array.isArray(product.input) ? product.input.map(input => input.title).join(', ') : product.input.title,
       output: Array.isArray(product.output) ? product.output.map(output => output.title).join(', ') : product.output.title,
+      observation: product.observation || "", // Use a observação do produto aqui
     }));
 
     const data = {

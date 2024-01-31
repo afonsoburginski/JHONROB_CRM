@@ -8,18 +8,21 @@ export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       credentials: {
-        email: { label: "Email", type: "email" },
+        username: { label: "Username", type: "text" }, // campo de nome ou email
         password: { label: "Password", type: "password" }
       },
       // @ts-ignore
       async authorize(credentials) {
-        const { email, password } = credentials ?? {}
-        if (!email || !password) {
+        const { username, password } = credentials ?? {}
+        if (!username || !password) {
           throw new Error("Missing username or password");
         }
-        const user = await prisma.user.findUnique({
+        const user = await prisma.user.findFirst({
           where: {
-            email,
+            OR: [
+              { email: username },
+              { name: username },
+            ],
           },
         });
         if (!user || !(await compare(password, user.password))) {
@@ -29,6 +32,11 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  session: {
+    // Update the session every 10 seconds
+    maxAge: 10,
+    updateAge: 10,
+  },
 };
 
 const handler = NextAuth(authOptions);

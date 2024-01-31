@@ -5,10 +5,13 @@ import { hash } from "bcrypt";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { email, password } = await req.json();
-  const exists = await prisma.user.findUnique({
+  const { name, email, password } = await req.json();
+  const exists = await prisma.user.findFirst({
     where: {
-      email,
+      OR: [
+        { email },
+        { name },
+      ],
     },
   });
   if (exists) {
@@ -16,6 +19,7 @@ export async function POST(req: Request) {
   } else {
     const user = await prisma.user.create({
       data: {
+        name,
         email,
         password: await hash(password, 10),
       },

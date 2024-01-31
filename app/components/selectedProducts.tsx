@@ -4,6 +4,7 @@ import React from 'react';
 import { HiXMark } from "react-icons/hi2";
 import { Table, Title, TableHead, TableRow, TableHeaderCell, TableBody, TableCell, Button } from '@tremor/react';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
+import ProductModal from './productModal';
 
 const SelectedProducts: React.FC = () => {
   const { selectedProducts, removeProduct } = useSelectedProduct();
@@ -28,7 +29,8 @@ const SelectedProducts: React.FC = () => {
               <TableHeaderCell>Potência</TableHeaderCell>
               <TableHeaderCell>Entrada</TableHeaderCell>
               <TableHeaderCell>Saída</TableHeaderCell>
-              <TableHeaderCell style={{ padding: '0'}}>Remover</TableHeaderCell>
+              <TableHeaderCell style={{ padding: '0'}}>Obs</TableHeaderCell>
+              <TableHeaderCell style={{ padding: '0'}}>Excluir</TableHeaderCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -44,6 +46,9 @@ const SelectedProducts: React.FC = () => {
               <TableCell><div style={{ lineHeight: '1.0' }}>{product.input.title}</div></TableCell>
               <TableCell><div style={{ lineHeight: '1.0' }}>{product.output.title}</div></TableCell>
               <TableCell style={{ padding: '0'}}>
+                <ProductModal product={product} />
+              </TableCell>
+              <TableCell style={{ padding: '0'}}>
                 <Button style={{ borderRadius: '5px' }} variant='secondary' onClick={() => product.tempId !== undefined && handleRemoveProduct(product.tempId)}>
                   <HiXMark />
                 </Button>
@@ -52,7 +57,7 @@ const SelectedProducts: React.FC = () => {
             ))}
             {Array.from({ length: 6 - selectedProducts.length }).map((_, index) => (
               <TableRow key={index + selectedProducts.length}>
-                <TableCell colSpan={10}>
+                <TableCell colSpan={11}>
                   <div style={{ visibility: 'hidden', lineHeight: '1.0'}}>Placeholder</div>
                 </TableCell>
               </TableRow>

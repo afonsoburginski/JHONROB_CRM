@@ -185,10 +185,13 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
               
               <Grid container justifyContent="space-between">
                 <Grid item xs={2}>
-                  <TitleTypography>{product.product ? product.product : 'Produto não definido'}</TitleTypography>
+                  <TitleTypography>{product.tag ? product.tag : 'Nome abreviado não definido'}</TitleTypography>
                 </Grid>
-                <Grid item xs={10}>
-                  <TitleTypography>ELEVADOR DE CAÇAMBA</TitleTypography>
+                <Grid item xs={8}>
+                  <TitleTypography>{product.product ? product.product : 'Título não definido'}</TitleTypography>
+                </Grid>
+                <Grid item xs={2}>
+                  <TitleTypography>Observação:</TitleTypography>
                 </Grid>
               </Grid>
 
@@ -196,7 +199,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                 <Grid item xs={2} mt={1}>
                   {/* <TitleTypography>{product.product ? product.product : 'Produto não definido'}</TitleTypography> */}
                 </Grid>
-                <Grid item xs={7} mt={1}>
+                <Grid item xs={8} mt={1}>
                   <DescriptionTypography>
                     <TitleTypography>Modelo............................................:</TitleTypography>
                     <TextTypography>{product.model ? product.model : 'Modelo não definido'}</TextTypography>
@@ -226,10 +229,13 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                     <TitleTypography>Impureza saída...............................:</TitleTypography>
                     <TextTypography>1%</TextTypography>
                   </DescriptionTypography>
-
-
                   <Divider style={{borderTop: '0.5px dotted'}}/>
                 </Grid>
+
+                <Grid item xs={2} mt={1}>
+                  <ObservationTypography>{product.observation ? product.observation : 'Sem observações'}</ObservationTypography>
+                </Grid>
+
               </Grid>
             </Grid>
           ))}
@@ -355,14 +361,14 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                       </Grid>
                       <Grid item>
                         <TitleTypography>CNPJ:</TitleTypography>
-                        <TextTypography>{payment.accountNumber ? payment.accountNumber : 'Conta não definida'}</TextTypography>
+                        <TextTypography>{payment.cpnj ? payment.cpnj : 'Conta não definida'}</TextTypography>
                       </Grid>
                       <Grid item>
                         <TitleTypography>I.E.:</TitleTypography>
-                        <TextTypography>{payment.accountNumber ? payment.accountNumber : 'Conta não definida'}</TextTypography>
+                        <TextTypography>{payment.ie ? payment.ie : 'Conta não definida'}</TextTypography>
                       </Grid>
                       <Grid item>
-                        <SubtitleTypography>{propose.client.address} <br /> {propose.client.city}, {propose.client.state}</SubtitleTypography>
+                        <SubtitleTypography>{payment.address}</SubtitleTypography>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -382,17 +388,17 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
               <Grid item xs={8}>
                 {propose.paymentInfo && propose.paymentInfo.map((payment, index) => (
                 <Grid container direction="row" justifyContent="space-between" key={index}>
-                  <Grid item xs={5}>
+                  <Grid item xs={6}>
                     <FooterTypography>
                       <TitleTypography>_________________________</TitleTypography>
                       <Grid container direction="column" alignItems="flex-start">
-                        <TitleTypography>{payment.salesPeople ? payment.salesPeople : 'Empresa não definida'}</TitleTypography>
+                        <TitleTypography>{payment.salesPeople ? payment.salesPeople : 'Vendedor definida'}</TitleTypography>
                         <TitleTypography>{payment.company ? payment.company : 'Empresa não definida'}</TitleTypography>
                         <TitleTypography>Fabricante</TitleTypography>
                       </Grid>
                     </FooterTypography>
                   </Grid>
-                  <Grid item xs={5}>
+                  <Grid item xs={6}>
                     <FooterTypography>
                       <TitleTypography>_________________________</TitleTypography>
                       <Grid container direction="column" alignItems="flex-start">

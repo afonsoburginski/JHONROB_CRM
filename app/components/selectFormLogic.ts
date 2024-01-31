@@ -23,17 +23,9 @@ const useSelectFormLogic = (initialData = {}) => {
   const { addProductToTable } = useSelectedProduct(); 
 
   useEffect(() => {
-    const cachedData = localStorage.getItem('apiData');
-    if (cachedData) {
-      const apiData = JSON.parse(cachedData);
-      processData(apiData);
-      return;
-    }
-
     fetch('api/products')
       .then(response => response.json())
       .then(apiData => {
-        localStorage.setItem('apiData', JSON.stringify(apiData));
         processData(apiData);
       })
       .catch(error => console.error('Error:', error));
@@ -119,12 +111,13 @@ const useSelectFormLogic = (initialData = {}) => {
                 height: selectedCapacity.heights.map(height => ({ id: height.id, title: height.title })),
               }));
             }
-          } else if (field === 'height') {
+          } if (field === 'height') {
             const selectedHeight = apiData.groups.flatMap(group => group.products.flatMap(product => product.models.flatMap(model => model.capacities.flatMap(capacity => capacity.heights)))).find(height => height.id === value);
             if (selectedHeight) {
+              const allPowers = apiData.groups.flatMap(group => group.products.flatMap(product => product.models.flatMap(model => model.capacities.flatMap(capacity => capacity.heights.flatMap(height => height.powers)))));
               setData(prevData => ({
                 ...prevData,
-                power: selectedHeight.powers.map(power => ({ id: power.id, title: power.title })),
+                power: allPowers.map(power => ({ id: power.id, title: power.id === selectedHeight.powers.find(p => p.recommended)?.id ? `${power.title} (recomendado)` : power.title })),
               }));
             }
           }
@@ -140,7 +133,7 @@ const useSelectFormLogic = (initialData = {}) => {
 
   const handleSave = (event) => {
     event.preventDefault();
-
+  
     const hasError = checkFieldsAndShowError(
       selections['product'],
       selections['model'],
@@ -150,16 +143,16 @@ const useSelectFormLogic = (initialData = {}) => {
       selections['input'],
       selections['output']
     );
-
+  
     if (hasError) {
       return;
     }
-
+  
     const savedProduct: Product = fields.reduce((obj, field) => ({
       ...obj,
-      [field]: selections[field] ? selections[field] : null,
+      [field]: selections[field] ? { ...selections[field], title: selections[field]?.title.replace(' (recomendado)', '') } : null,
     }), {} as Product);
-
+  
     addProductToTable(savedProduct);
     resetSelections();
   };
@@ -167,7 +160,7 @@ const useSelectFormLogic = (initialData = {}) => {
   return {
     ...selections,
     handleChange,
-    handleSave,
+    handleSave, 
     data,
   };
 };

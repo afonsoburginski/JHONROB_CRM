@@ -4,6 +4,14 @@ import { usePaymentInfo } from '../contexts/paymentInfoContext';
 
 const fields = ['company', 'paymentMethod', 'installment', 'salesPeople', 'bank'];
 
+const fieldTitles = {
+  company: 'Empresa',
+  paymentMethod: 'Método de Pagamento',
+  installment: 'Parcelas',
+  salesPeople: 'Vendedor',
+  bank: 'Banco',
+};
+
 const usePaymentFormLogic = (initialData = {}) => {
   const { setPaymentInfo, paymentInfo, isSaved } = usePaymentInfo();
   const [data, setData] = useState(initialData);
@@ -23,9 +31,9 @@ const usePaymentFormLogic = (initialData = {}) => {
           company: apiData.company?.map(company => ({
             id: company.id,
             title: company.name,
-            cnpj: company.cnpj || "",   // Adicione CNPJ aqui
-            ie: company.ie || "",       // Adicione IE aqui
-            address: company.address || "" // Adicione ADDRESS aqui
+            cnpj: company.cnpj || "",
+            ie: company.ie || "",
+            address: company.address || ""
           })) || [],
           paymentMethod: apiData.paymentMethod?.map(method => ({ id: method.id, title: method.title })) || [],
           installment: apiData.installment?.map(installment => ({
@@ -54,7 +62,6 @@ const usePaymentFormLogic = (initialData = {}) => {
       if (field === 'bank') {
         setPaymentInfo({ ...paymentInfo, [field]: { ...selectedItem, agency: selectedItem.agency, account: selectedItem.account } });
       } else if (field === 'company') {
-        // Se o campo for 'company', inclua as informações adicionais no estado 'paymentInfo'
         setPaymentInfo({
           ...paymentInfo,
           [field]: { ...selectedItem, cnpj: selectedItem.cnpj || "", ie: selectedItem.ie || "", address: selectedItem.address || "" },
@@ -62,7 +69,6 @@ const usePaymentFormLogic = (initialData = {}) => {
       } else {
         setPaymentInfo({ ...paymentInfo, [field]: selectedItem });
       }
-
       if (field === 'paymentMethod') {
         setData(prevData => ({
           ...prevData,
@@ -77,6 +83,7 @@ const usePaymentFormLogic = (initialData = {}) => {
     data,
     paymentInfo,
     isSaved,
+    fieldTitles,
   };
 };
 
