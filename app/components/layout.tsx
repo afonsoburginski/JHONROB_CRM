@@ -201,10 +201,6 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                 </Grid>
                 <Grid item xs={8} mt={1}>
                   <DescriptionTypography>
-                  <DescriptionTypography>
-                    <TitleTypography>Produto...........................................:</TitleTypography>
-                    <TextTypography>{product.type ? product.type : 'Produto não definido'}</TextTypography>
-                  </DescriptionTypography>
                     <TitleTypography>Modelo............................................:</TitleTypography>
                     <TextTypography>{product.model ? product.model : 'Modelo não definido'}</TextTypography>
                   </DescriptionTypography>
@@ -213,12 +209,16 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                     <TextTypography>{product.capacity ? product.capacity : 'Capacidade não definida'}</TextTypography>
                   </DescriptionTypography>
                   <DescriptionTypography>
-                    <TitleTypography>Altura..........................................:</TitleTypography>
+                    <TitleTypography>Altura..............................................:</TitleTypography>
                     <TextTypography>{product.height ? product.height : 'Capacidade não definida'}</TextTypography>
                   </DescriptionTypography>
                   <DescriptionTypography>
-                    <TitleTypography>Potência.....................................:</TitleTypography>
-                    <TextTypography>{product.power ? product.capacity : 'Capacidade não definida'}</TextTypography>
+                    <TitleTypography>Altura..............................................:</TitleTypography>
+                    <TextTypography>{product.power ? product.power : 'Capacidade não definida'}</TextTypography>
+                  </DescriptionTypography>
+                  <DescriptionTypography>
+                    <TitleTypography>Produto...........................................:</TitleTypography>
+                    <TextTypography>{product.type ? product.type : 'Produto não definido'}</TextTypography>
                   </DescriptionTypography>
 
                   <DescriptionTypography>
@@ -226,16 +226,12 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                     <TextTypography>...</TextTypography>
                   </DescriptionTypography>
                   <DescriptionTypography>
-                    <TitleTypography>Umidade.........................................:</TitleTypography>
-                    <TextTypography>...</TextTypography>
-                  </DescriptionTypography>
-                  <DescriptionTypography>
                     <TitleTypography>Impureza entrada...........................:</TitleTypography>
-                    <TextTypography>...</TextTypography>
+                    <TextTypography>{product.input ? product.input : 'Produto não definido'}</TextTypography>
                   </DescriptionTypography>
                   <DescriptionTypography>
                     <TitleTypography>Impureza saída...............................:</TitleTypography>
-                    <TextTypography>...</TextTypography>
+                    <TextTypography>{product.output ? product.output : 'Produto não definido'}</TextTypography>
                   </DescriptionTypography>
                   <Divider style={{borderTop: '0.5px dotted'}}/>
                 </Grid>
@@ -286,7 +282,8 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
             <Grid item xs={2}>
             </Grid>
 
-            <Grid item xs={8}>
+            {propose.productSelections && propose.productSelections.map((product, index) => (
+            <Grid key={index} item xs={8}>
               <Grid container direction="column" alignItems="flex-start">
                 <Grid item>
                   <TitleTypography>VÁLIDO COMO PEDIDO FINAL</TitleTypography>
@@ -300,16 +297,8 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                   <Grid item mt={1}>
                     <Grid container direction="column" alignItems="flex-end">
                       <Grid item>
-                        <TitleTypography>Secador:</TitleTypography>
-                        <TextTypography>10/11/2023</TextTypography>
-                      </Grid>
-                      <Grid item>
-                        <TitleTypography>Pré-Limpeza:</TitleTypography>
-                        <TextTypography>10/11/2023</TextTypography>
-                      </Grid>
-                      <Grid item>
-                        <TitleTypography>Silos:</TitleTypography>
-                        <TextTypography>08/12/2023</TextTypography>
+                        <TitleTypography>{product.product ? product.product : 'Título não definido'}</TitleTypography>
+                        <TextTypography>{product.manufacturingTime ? product.manufacturingTime : 'Título não definido'}</TextTypography>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -322,11 +311,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                   <Grid item mt={1}>
                     <Grid container direction="column" alignItems="flex-end">
                       <Grid item>
-                        <TitleTypography>Secador:</TitleTypography>
-                        <TextTypography>Até 20/01/2024</TextTypography>
-                      </Grid>
-                      <Grid item>
-                        <TitleTypography>Pré-Limpeza:</TitleTypography>
+                        <TitleTypography>{product.product ? product.product : 'Título não definido'}</TitleTypography>
                         <TextTypography>Até 20/01/2024</TextTypography>
                       </Grid>
                     </Grid>
@@ -385,6 +370,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
               ))}
               </Grid>
             </Grid>
+            ))}
 
             <Grid item xs={2}>
             </Grid>
