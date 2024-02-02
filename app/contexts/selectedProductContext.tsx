@@ -28,15 +28,19 @@ export const SelectedProductProvider: React.FC<SelectedProductProviderProps> = (
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
   const [isObservationModalOpen, setIsObservationModalOpen] = useState(false);
-
+  
   const selectProduct = (product: Product | null) => {
+    console.log('selectProduct:', product?.tag, product?.description); // Adicione este log
     setSelectedProduct(product);
+    addProductToTable(product);
   };
-
+  
   const addProductToTable = (product: Product) => {
+    console.log('Produto sendo adicionado à tabela:', product); // Adicione este log
     const productWithTempId = { ...product, tempId: Date.now(), observation: product.observation || '' };
     setSelectedProducts(prevProducts => [...prevProducts, productWithTempId]);
   };
+  
 
   const removeProduct = (tempId: number) => {
     setSelectedProducts(prevProducts => prevProducts.filter(product => product.tempId !== tempId));

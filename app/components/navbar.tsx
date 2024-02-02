@@ -96,18 +96,30 @@ export default function AuthStatus({ user }: AuthStatusProps) {
                     >
                       <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                         <div className="py-1">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Link
-                              href="/profile"
-                              className={`${
-                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
-                              } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
-                            >
-                              Perfil
-                            </Link>
-                          )}
-                        </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                href="/profile"
+                                className={`${
+                                  active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                                } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                              >
+                                Perfil
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                href="/users"
+                                className={`${
+                                  active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                                } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                              >
+                                Usuários
+                              </Link>
+                            )}
+                          </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
                               <Link

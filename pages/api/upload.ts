@@ -9,7 +9,8 @@ const csvParser = require('csv-parse');
 interface DataRow {
   groupTitle: string;
   productTitle: string;
-  tag: string; // tag agora está associada ao produto
+  description: string;
+  tag: string;
   modelTitle: string;
   typeTitle: string;
   capacityTitle: string;
@@ -47,7 +48,8 @@ async function processRow(row: DataRow) {
     update: {},
     create: {
       title: row.productTitle,
-      tag: row.tag, // tag agora está associada ao produto
+      description: row.description,
+      tag: row.tag,
       group: { connect: { id: group.id } },
     },
   });

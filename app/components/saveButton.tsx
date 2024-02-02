@@ -41,16 +41,22 @@ const SaveButton: React.FC = () => {
     
     const productSelections = selectedProducts.map(product => ({
       groups: product.group ? product.group.title : '',
+      product: product.product ? product.product.title : '',
+      description: product.product && product.product.description ? product.product.description : '',
+      tag: product.product && product.product.tag ? product.product.tag : '',
       type: product.type ? product.type.title : '',
       model: product.model ? product.model.title : '',
       capacity: product.capacity ? product.capacity.title : '',
       height: product.height ? product.height.title : '',
       power: product.power ? product.power.title : '',
-      product: product.product ? product.product.title : '',
       input: Array.isArray(product.input) ? product.input.map(input => input.title).join(', ') : product.input.title,
       output: Array.isArray(product.output) ? product.output.map(output => output.title).join(', ') : product.output.title,
-      observation: product.observation || "", // Use a observação do produto aqui
+      observation: product.observation || "",
+      manufacturingTime: product.manufacturingTime,
+      assemblyTime: product.assemblyTime,
     }));
+
+    console.log(productSelections);
 
     const data = {
       title: `Proposta ${selectedClient.name}`,

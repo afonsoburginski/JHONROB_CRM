@@ -75,13 +75,14 @@ model Group {
 }
 
 model Product {
-  id         Int       @id @default(autoincrement())
-  title      String    @unique
-  tag        String
-  groupId    Int
-  group      Group     @relation(fields: [groupId], references: [id])
-  models     Model[]   // Muitos-para-muitos relação com Model
-  types      Type[]    // Muitos-para-muitos relação com Type
+  id          Int       @id @default(autoincrement())
+  title       String    @unique
+  description String?
+  tag         String
+  groupId     Int
+  group       Group     @relation(fields: [groupId], references: [id])
+  models      Model[]   // Muitos-para-muitos relação com Model
+  types       Type[]    // Muitos-para-muitos relação com Type
 }
 model Type {
   id           Int       @id @default(autoincrement())
@@ -157,18 +158,21 @@ model PaymentInfo {
 }
 
 model ProductSelection {
-  id            Int            @id @default(autoincrement())
-  groups        String
-  product       String
-  tag     String
-  type          String
-  model         String
-  capacity      String
-  height        String
-  power         String
-  input         String
-  output        String
-  observation   String?
-  proposeId     Int
-  propose       Propose        @relation(fields: [proposeId], references: [id])
+  id                Int            @id @default(autoincrement())
+  groups            String
+  product           String
+  description       String?
+  tag               String
+  type              String
+  model             String
+  capacity          String
+  height            String
+  power             String
+  input             String
+  output            String
+  observation       String?
+  manufacturingTime DateTime?
+  assemblyTime      DateTime?
+  proposeId         Int
+  propose           Propose        @relation(fields: [proposeId], references: [id])
 }

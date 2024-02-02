@@ -32,11 +32,6 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  session: {
-    // Update the session every 10 seconds
-    maxAge: 10,
-    updateAge: 10,
-  },
 };
 
 const handler = NextAuth(authOptions);

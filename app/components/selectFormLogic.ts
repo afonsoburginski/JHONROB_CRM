@@ -32,12 +32,13 @@ const useSelectFormLogic = (initialData = {}) => {
   }, []);
 
   const processData = (apiData) => {
+    console.log(apiData);
     setApiData(apiData);
-
+  
     if (apiData) {
       const formData = {
         group: apiData.groups.map(group => ({ id: group.id, title: group.title })),
-        product: [],
+        product: apiData.groups.flatMap(group => group.products.map(product => ({ ...product }))),
         type: [],
         model: [],
         capacity: [],
@@ -46,7 +47,7 @@ const useSelectFormLogic = (initialData = {}) => {
         input: apiData.inputOutputs.map(io => ({ id: io.id, title: io.input })),
         output: apiData.inputOutputs.map(io => ({ id: io.id, title: io.output })),
       };
-
+  
       setData(formData);
       setInitialDataState(formData);
     }
@@ -66,7 +67,7 @@ const useSelectFormLogic = (initialData = {}) => {
           ...prevSelections,
           [field]: selectedItem,
         }));
-
+  
         const fieldIndex = fields.indexOf(field);
         const subsequentFields = fields.slice(fieldIndex + 1);
         setSelections(prevSelections => {
@@ -83,16 +84,27 @@ const useSelectFormLogic = (initialData = {}) => {
             if (selectedGroup) {
               setData(prevData => ({
                 ...prevData,
-                product: selectedGroup.products.map(product => ({ id: product.id, title: product.title })),
+                product: selectedGroup.products.map(product => ({ 
+                  id: product.id, 
+                  title: product.title,
+                  tag: product.tag, // Adicione a tag
+                  description: product.description // Adicione a descrição
+                })),
               }));
             }
-          } else if (field === 'product') {
-            const selectedProduct = apiData.groups.flatMap(group => group.products).find(product => product.id === value);
+          } if (field === 'product') {
+            const selectedProduct = apiData.groups.flatMap(group => group.products.map(product => ({ ...product }))).find(product => product.id === value);
             if (selectedProduct) {
               setData(prevData => ({
                 ...prevData,
                 type: selectedProduct.types.map(type => ({ id: type.id, title: type.title })),
                 model: selectedProduct.models.map(model => ({ id: model.id, title: model.title })),
+              }));
+          
+              // Inclua tag e description nas seleções
+              setSelections(prevSelections => ({
+                ...prevSelections,
+                product: { ...selectedProduct },
               }));
             }
           } else if (field === 'model') {
@@ -152,10 +164,17 @@ const useSelectFormLogic = (initialData = {}) => {
       ...obj,
       [field]: selections[field] ? { ...selections[field], title: selections[field]?.title.replace(' (recomendado)', '') } : null,
     }), {} as Product);
-  
-    addProductToTable(savedProduct);
-    resetSelections();
-  };
+
+  // Log the saved product
+  console.log('Saved product: ', savedProduct); 
+
+  // Log the saved product details
+  console.log(`Saved product tag: ${savedProduct.product?.tag}`); 
+  console.log(`Saved product description: ${savedProduct.product?.description}`);
+
+  addProductToTable(savedProduct);
+  resetSelections();
+};
 
   return {
     ...selections,

@@ -188,10 +188,10 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                   <TitleTypography>{product.tag ? product.tag : 'Nome abreviado não definido'}</TitleTypography>
                 </Grid>
                 <Grid item xs={8}>
-                  <TitleTypography>{product.product ? product.product : 'Título não definido'}</TitleTypography>
+                  <TitleTypography>{product.description ? product.description : 'Título não definido'} - {product.product ? product.product : 'Título não definido'}</TitleTypography>
                 </Grid>
                 <Grid item xs={2}>
-                  <TitleTypography>Observação:</TitleTypography>
+                  <TitleTypography>OBSERVAÇÃO:</TitleTypography>
                 </Grid>
               </Grid>
 
@@ -201,6 +201,10 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                 </Grid>
                 <Grid item xs={8} mt={1}>
                   <DescriptionTypography>
+                  <DescriptionTypography>
+                    <TitleTypography>Produto...........................................:</TitleTypography>
+                    <TextTypography>{product.type ? product.type : 'Produto não definido'}</TextTypography>
+                  </DescriptionTypography>
                     <TitleTypography>Modelo............................................:</TitleTypography>
                     <TextTypography>{product.model ? product.model : 'Modelo não definido'}</TextTypography>
                   </DescriptionTypography>
@@ -209,25 +213,29 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                     <TextTypography>{product.capacity ? product.capacity : 'Capacidade não definida'}</TextTypography>
                   </DescriptionTypography>
                   <DescriptionTypography>
-                    <TitleTypography>Produto...........................................:</TitleTypography>
-                    <TextTypography>{product.product ? product.product : 'Produto não definido'}</TextTypography>
+                    <TitleTypography>Altura..........................................:</TitleTypography>
+                    <TextTypography>{product.height ? product.height : 'Capacidade não definida'}</TextTypography>
+                  </DescriptionTypography>
+                  <DescriptionTypography>
+                    <TitleTypography>Potência.....................................:</TitleTypography>
+                    <TextTypography>{product.power ? product.capacity : 'Capacidade não definida'}</TextTypography>
                   </DescriptionTypography>
 
                   <DescriptionTypography>
                     <TitleTypography>Peso específico do produto..........:</TitleTypography>
-                    <TextTypography>750 kg/m³</TextTypography>
+                    <TextTypography>...</TextTypography>
                   </DescriptionTypography>
                   <DescriptionTypography>
                     <TitleTypography>Umidade.........................................:</TitleTypography>
-                    <TextTypography>18%</TextTypography>
+                    <TextTypography>...</TextTypography>
                   </DescriptionTypography>
                   <DescriptionTypography>
                     <TitleTypography>Impureza entrada...........................:</TitleTypography>
-                    <TextTypography>4%</TextTypography>
+                    <TextTypography>...</TextTypography>
                   </DescriptionTypography>
                   <DescriptionTypography>
                     <TitleTypography>Impureza saída...............................:</TitleTypography>
-                    <TextTypography>1%</TextTypography>
+                    <TextTypography>...</TextTypography>
                   </DescriptionTypography>
                   <Divider style={{borderTop: '0.5px dotted'}}/>
                 </Grid>
@@ -361,7 +369,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(({ propose }, ref) => {
                       </Grid>
                       <Grid item>
                         <TitleTypography>CNPJ:</TitleTypography>
-                        <TextTypography>{payment.cpnj ? payment.cpnj : 'Conta não definida'}</TextTypography>
+                        <TextTypography>{payment.cnpj ? payment.cnpj : 'Conta não definida'}</TextTypography>
                       </Grid>
                       <Grid item>
                         <TitleTypography>I.E.:</TitleTypography>

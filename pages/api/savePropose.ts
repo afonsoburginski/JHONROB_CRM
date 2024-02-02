@@ -27,6 +27,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             create: productSelections.map(productSelection => ({
               groups: productSelection.groups || "",
               product: productSelection.product || "",
+              description: productSelection.description || "",
               tag: productSelection.tag || "",
               type: productSelection.type || "",
               model: productSelection.model || "",
@@ -36,6 +37,8 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
               input: productSelection.input || "",
               output: productSelection.output || "",
               observation: productSelection.observation ? productSelection.observation : null,
+              manufacturingTime: productSelection.manufacturingTime,
+              assemblyTime: productSelection.assemblyTime,
             })),
           },
           paymentInfo: {

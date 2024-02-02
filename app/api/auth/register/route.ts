@@ -5,7 +5,7 @@ import { hash } from "bcrypt";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { name, email, password } = await req.json();
+  const { name, email, password, role } = await req.json();
   const exists = await prisma.user.findFirst({
     where: {
       OR: [
@@ -22,6 +22,7 @@ export async function POST(req: Request) {
         name,
         email,
         password: await hash(password, 10),
+        role, // Include role in user creation
       },
     });
     return NextResponse.json(user);
