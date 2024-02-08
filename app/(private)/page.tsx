@@ -95,6 +95,7 @@ export default function FinalDashboard() {
     valueFormatter: formatters[selectedKpi],
     yAxisWidth: 60,
   };
+  
   return (
     <main className="p-4 md:p-10 mx-auto max-w-screen-2xl" >
       <Title>Dashboard</Title>

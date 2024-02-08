@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")
+  url       = env("POSTGRES_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
@@ -79,19 +79,19 @@ model Product {
   tag         String
   groupId     Int
   group       Group     @relation(fields: [groupId], references: [id])
-  models      Model[]   // Muitos-para-muitos relação com Model
-  types       Type[]    // Muitos-para-muitos relação com Type
+  models      Model[]
+  types       Type[]
 }
 model Type {
   id           Int       @id @default(autoincrement())
   title        String    @unique
-  products     Product[] // Muitos-para-muitos relação com Product
+  products     Product[]
 }
 
 model Model {
   id           Int       @id @default(autoincrement())
   title        String    @unique
-  products     Product[] // Muitos-para-muitos relação com Product
+  products     Product[]
   capacities   Capacity[]
 }
 

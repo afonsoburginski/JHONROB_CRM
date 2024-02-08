@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { checkFieldsAndShowError } from './toastfy';
+import { showToastSuccess, showToastError } from './toastfy';
 import { useSelectedProduct } from '../contexts/selectedProductContext';
 
 interface Selection {
@@ -100,8 +100,6 @@ const useSelectFormLogic = (initialData = {}) => {
                 type: selectedProduct.types.map(type => ({ id: type.id, title: type.title })),
                 model: selectedProduct.models.map(model => ({ id: model.id, title: model.title })),
               }));
-          
-              // Inclua tag e description nas seleções
               setSelections(prevSelections => ({
                 ...prevSelections,
                 product: { ...selectedProduct },
@@ -126,10 +124,10 @@ const useSelectFormLogic = (initialData = {}) => {
           } if (field === 'height') {
             const selectedHeight = apiData.groups.flatMap(group => group.products.flatMap(product => product.models.flatMap(model => model.capacities.flatMap(capacity => capacity.heights)))).find(height => height.id === value);
             if (selectedHeight) {
-              const allPowers = apiData.groups.flatMap(group => group.products.flatMap(product => product.models.flatMap(model => model.capacities.flatMap(capacity => capacity.heights.flatMap(height => height.powers)))));
+              const recommendedPowers = selectedHeight.powers.filter(p => p.recommended);
               setData(prevData => ({
                 ...prevData,
-                power: allPowers.map(power => ({ id: power.id, title: power.id === selectedHeight.powers.find(p => p.recommended)?.id ? `${power.title} (recomendado)` : power.title })),
+                power: recommendedPowers.map(power => ({ id: power.id, title: power.title })),
               }));
             }
           }
@@ -169,12 +167,36 @@ const useSelectFormLogic = (initialData = {}) => {
   console.log('Saved product: ', savedProduct); 
 
   // Log the saved product details
-  console.log(`Saved product tag: ${savedProduct.product?.tag}`); 
-  console.log(`Saved product description: ${savedProduct.product?.description}`);
+  // console.log(`Saved product tag: ${savedProduct.product?.tag}`); 
+  // console.log(`Saved product description: ${savedProduct.product?.description}`);
 
   addProductToTable(savedProduct);
   resetSelections();
 };
+
+  const checkFieldsAndShowError = (
+    selectedProduct,
+    selectedModel,
+    selectedCapacity,
+    selectedHeight,
+    selectedPower,
+    selectedInput,
+    selectedOutput
+  ) => {
+    if (
+      !selectedProduct ||
+      !selectedModel ||
+      !selectedCapacity ||
+      !selectedHeight ||
+      !selectedPower ||
+      !selectedInput ||
+      !selectedOutput
+    ) {
+      showToastError('Todos os campos devem ser preenchidos antes de salvar o produto');
+      return true;
+    }
+    return false;
+  };
 
   return {
     ...selections,

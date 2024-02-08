@@ -4,6 +4,7 @@ import { SelectedProductProvider } from './selectedProductContext';
 import { SelectedClientProvider } from './selectedClientContext';
 import { ObservationProvider } from './observationContext';
 import { PaymentInfoProvider } from './paymentInfoContext';
+import { ExpeditionProvider } from './expeditionContext';
 
 type CombinedProviderProps = {
   children: ReactNode;
@@ -15,7 +16,9 @@ const CombinedProvider: React.FC<CombinedProviderProps> = ({ children }) => {
       <SelectedProductProvider>
         <SelectedClientProvider>
           <PaymentInfoProvider>
-            {children}
+            <ExpeditionProvider>
+              {children}
+            </ExpeditionProvider>
           </PaymentInfoProvider>
         </SelectedClientProvider>
       </SelectedProductProvider>
