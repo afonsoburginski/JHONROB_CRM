@@ -1,48 +1,27 @@
 // expeditionLayout.tsx
-import React, { useState } from 'react';
-import { Grid, Col, Flex, Button, Title, Text, TextInput } from '@tremor/react';
-import { useExpeditionContext } from '../../contexts/expeditionContext';
-import { Checkbox } from '@mui/material';
+import * as React from 'react';
+import Image from 'next/image';
+import { Card, Flex, Title, Text, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Divider } from '@tremor/react';
+import BodyOF from './bodyOF';
 
-export default function ExpeditionLayout({ onBack }: { onBack: () => void; }) {
-  const { ofs, savedItems } = useExpeditionContext();
-  const [selectedOfs, setSelectedOfs] = useState<Array<OF>>([]);
-
-  const handleSelectOf = (of: OF) => {
-    if (selectedOfs.includes(of)) {
-      setSelectedOfs(selectedOfs.filter(selectedOf => selectedOf !== of));
-    } else {
-      setSelectedOfs([...selectedOfs, of]);
-    }
-  };
-
+export default function ExpeditionLayout({ selectedOF, attachedItems, savedItems, setSavedItems }) {
   return (
-    <main>
-      <Grid numItemsMd={2} numItemsLg={2} className='h-[100vh]' >
-        <Col className='bg-white p-4'>
-          <Title>Expedição</Title>
-          <Checkbox/>
-          <Checkbox/>
-          <Checkbox/>
-          <Checkbox/>
-          <Checkbox/>
-          <Flex className='flex mt-5 mb-5'>
-            <TextInput/>
-            <TextInput/>
-          </Flex>
-          <Flex className='flex mt-5 mb-5'>
-            <TextInput/>
-            <TextInput/>
-          </Flex>
-          
-          <Button onClick={onBack}>
-            Voltar
-          </Button>
-        </Col>
-        <Col className='bg-gray-200'>
-          {/* Aqui vai ficar o componente referente ao Layout de uma NF, que é composto por uma ou várias OF */}
-        </Col>
-      </Grid>
-    </main>
+    <Card className="bg-white shadow-md rounded px-8 pt-6 pb-8">
+      <Divider className="border-b-0 border-gray-200 mb-2" />
+      <Flex alignItems='center' className="h-10">
+        <Flex className='flex flex-col items-start'>
+          <Image src="/logo.png" alt="Logo" width={180} height={50}/>
+        </Flex>
+        <Flex className="flex flex-col items-center">
+          <Title className="text-2xl font-bold">Nome da Empresa</Title>
+          <Text>Relação Item Embarque</Text>
+        </Flex>
+        <Flex className="flex flex-col items-end">
+          <Text>CNPJ: 00.000.000/0000-00</Text>
+        </Flex>
+      </Flex>
+      <Divider className="border-b-0 border-gray-200 mt-2" />
+      <BodyOF info={selectedOF[0]} />
+    </Card>
   );
 }

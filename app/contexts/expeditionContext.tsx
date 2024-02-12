@@ -26,8 +26,12 @@ type ExpeditionContextType = {
   setAttachedItems: (items: Item[]) => void;
   selectedOF: string;
   setSelectedOF: (of: string) => void;
-  savedItems: Item[]; // Adicione esta linha
-  setSavedItems: (items: Item[]) => void; // Adicione esta linha
+  savedItems: Item[];
+  setSavedItems: (items: Item[]) => void;
+  savedOFs: string[];
+  setSavedOFs: React.Dispatch<React.SetStateAction<string[]>>;
+  ofInfos: OF[];
+  setOfInfos: React.Dispatch<React.SetStateAction<OF[]>>;
 };
 
 const ExpeditionContext = createContext<ExpeditionContextType | undefined>(undefined);
@@ -36,10 +40,12 @@ export const ExpeditionProvider: React.FC = ({ children }) => {
   const [ofs, setOfs] = useState<OF[]>([]);
   const [attachedItems, setAttachedItems] = useState<Item[]>([]);
   const [selectedOF, setSelectedOF] = useState<string>('');
-  const [savedItems, setSavedItems] = useState<Item[]>([]); // Inicialize savedItems com um array vazio
+  const [savedItems, setSavedItems] = useState<Item[]>([]);
+  const [savedOFs, setSavedOFs] = useState<string[]>([]);
+  const [ofInfos, setOfInfos] = useState<OF[]>([]);
 
   return (
-    <ExpeditionContext.Provider value={{ ofs, setOfs, attachedItems, setAttachedItems, selectedOF, setSelectedOF, savedItems, setSavedItems }}>
+    <ExpeditionContext.Provider value={{ ofs, setOfs, attachedItems, setAttachedItems, selectedOF, setSelectedOF, savedItems, setSavedItems, savedOFs, setSavedOFs, ofInfos, setOfInfos }}>
       {children}
     </ExpeditionContext.Provider>
   );

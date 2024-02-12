@@ -2,14 +2,14 @@
 'use client'
 import React, { useState } from 'react';
 import ExpeditionTable from './expeditionTable';
-import ExpeditionLayout from './expeditionLayout';
+import ExpeditionLayout from './expedition';
 import CombinedProvider from 'app/contexts/combinedProvider';
 
 export default function ExpeditionPage() {
   const [step, setStep] = useState('table');
   const [selectedOF, setSelectedOF] = useState(null);
   const [attachedItems, setAttachedItems] = useState([]);
-  const [savedItems, setSavedItems] = useState([]); // Adicione esta linha
+  const [savedItems, setSavedItems] = useState([]);
 
   return (
     <CombinedProvider>
