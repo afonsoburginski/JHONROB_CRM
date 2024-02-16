@@ -23,7 +23,7 @@ export default function bodyOF({ info }) {
         </div>
       </Flex>
       
-      <Flex className="mt-2 border-2 px-10 grid grid-cols-5 gap-4 items-start">
+      <Flex className="mt-2 border-2 border-gray-400 px-10 grid grid-cols-5 gap-4 items-start">
         <div className="col-span-4 space-y-1 pr-10">
           <Flex className="flex flex-row flex-wrap">
             <Text className="mr-2"><b>O.F:</b> {info?.of ?? '-'}</Text>
@@ -39,7 +39,7 @@ export default function bodyOF({ info }) {
           </Flex>
         </div>
         <div className="col-span-1 flex items-center justify-center">
-          <Title className="mr-2"><b>Tag:</b> {info?.tag ?? '-'}</Title>
+          <Title className="text-2xl font-bold mr-2">Tag: {info?.tag ?? '-'}</Title>
         </div>
       </Flex>
 
@@ -50,27 +50,25 @@ export default function bodyOF({ info }) {
       <Table className="table-auto w-full">
         <TableHead>
           <TableRow>
-            <TableHeaderCell className="w-[8%] text-right px-0 py-2'">Qdt</TableHeaderCell>
-            <TableHeaderCell className="w-[8%] text-right px-0 py-2'">Saldo</TableHeaderCell>
-            <TableHeaderCell className="w-[10%] text-right px-0 py-2'">Código</TableHeaderCell>
-            <TableHeaderCell className="w-[4%] text-center px-0 py-2'">RD</TableHeaderCell>
-            <TableHeaderCell className="w-[30%] text-start px-0 py-2'">Produto</TableHeaderCell>
-            <TableHeaderCell className="w-[4%] text-center px-0 py-2'">UN</TableHeaderCell>
+            <TableHeaderCell className="w-[7.5%] text-right px-0 py-2'">Qdt</TableHeaderCell>
+            <TableHeaderCell className="w-[7.5%] text-right px-0 py-2'">Saldo</TableHeaderCell>
+            <TableHeaderCell className="w-[9%] text-right px-0 py-2'">Código</TableHeaderCell>
+            <TableHeaderCell className="w-[6%] text-center px-0 py-2'">RD</TableHeaderCell>
+            <TableHeaderCell className="w-[27%] text-start px-0 py-2'">Produto</TableHeaderCell>
+            <TableHeaderCell className="w-[5%] text-start px-0 py-2'">UN</TableHeaderCell>
             <TableHeaderCell className="w-[8%] text-start px-0 py-2'">Cor</TableHeaderCell>
-            <TableHeaderCell className="w-[8%] text-right px-0 py-2'">Material</TableHeaderCell>
-            <TableHeaderCell className="w-[12%] text-center px-0 py-2'">(AxLxC)</TableHeaderCell>
-            <TableHeaderCell className="w-[8%] text-right px-0 py-2'">Peso tot</TableHeaderCell>
+            <TableHeaderCell className="w-[10%] text-start px-0 py-2'">Material</TableHeaderCell>
+            <TableHeaderCell className="w-[11%] text-start px-0 py-2'">(AxLxC)</TableHeaderCell>
+            <TableHeaderCell className="w-[8%] text-start px-0 py-2'">Peso tot</TableHeaderCell>
           </TableRow>
         </TableHead>
       </Table>
-      <Divider className="border-b-2 border-gray-200 mb-2 mt-0" />
+      <Divider className="border-b-2 border-gray-400 mb-2 mt-0" />
       <Flex className="bg-gray-200 py-1 my-2 flex justify-center"justifyContent="center">
-        <b>Local: Expedição</b>
+        <Title className="text-2xl font-bold">Local: Expedição</Title>
       </Flex>
       <Flex className="bg-gray-200 py-1 my-2 pl-2 flex justify-start"justifyContent="start">
-        {info?.items?.map((item, index) => (
-          <Text key={index}>{item.product ?? 'Nome do produto padrão'}</Text>
-        ))}
+        <Title className="text-2xl font-bold">{info?.product}</Title>
       </Flex>
       <Table className="table-auto w-full">
         <TableBody>

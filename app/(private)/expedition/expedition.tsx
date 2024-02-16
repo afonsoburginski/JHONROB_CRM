@@ -1,8 +1,8 @@
-// Expedition.tsx
+// expedition.tsx
+'use client'
 import React, { useState } from 'react';
-import { List, ListItem, Grid, Col, Flex, Button, Title, Text, Accordion, AccordionBody, AccordionHeader, AccordionList } from '@tremor/react';
+import { List, ListItem, Button, Title, Accordion, AccordionBody, AccordionHeader, AccordionList, Checkbox } from '@tremor/react';
 import { useExpeditionContext } from '../../contexts/expeditionContext';
-import { Checkbox } from '@mui/material';
 import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
 import ExpeditionLayout from './expeditionLayout';
 
@@ -23,11 +23,10 @@ type OFInfo = {
 };
 
 export default function Expedition({ onBack }: { onBack: () => void; }) {
-  const { ofs, savedItems, savedOFs, ofInfos, attachedItems, setSavedItems } = useExpeditionContext();
+  const { savedOFs, ofInfos, attachedItems, savedItems, setSavedItems } = useExpeditionContext();
   const [selectedOFInfos, setSelectedOFInfos] = useState<OFInfo[]>([]);
   const [selectedOfs, setSelectedOfs] = useState<string[]>([]);
   const [ofsToSend, setOfsToSend] = useState<OFInfo[]>([]);
-
   const [showMore, setShowMore] = useState<{ [key: number]: boolean }>({});
 
   const handleSend = () => {
@@ -57,16 +56,20 @@ export default function Expedition({ onBack }: { onBack: () => void; }) {
         <div>
           <Title className="mb-4">Expedição</Title>
           <div className="grid grid-cols-3 gap-2 justify-items-start mb-4">
-          {savedOFs.map((of, index) => (
-            <div key={index}>
-              <Checkbox checked={selectedOfs.includes(of)} onChange={() => handleSelectOf(of)}/>
-              <span>{of}</span>
-            </div>
-          ))}
+            {savedOFs.map((of, index) => (
+              <div key={index}>
+                <input 
+                  type="checkbox" 
+                  checked={selectedOfs.includes(of)} 
+                  onChange={() => handleSelectOf(of)}
+                />
+                <span>{of}</span>
+              </div>
+            ))}
           </div>
           <AccordionList>
             <Accordion>
-              <AccordionHeader>Teste</AccordionHeader>
+              <AccordionHeader>Produtos Selecionados</AccordionHeader>
               <AccordionBody>
                 <List>
                   {selectedOFInfos.map((ofInfo, index) => (
@@ -80,13 +83,7 @@ export default function Expedition({ onBack }: { onBack: () => void; }) {
                               <strong>Quantidade:</strong> {item.quantity}
                               {showMore[itemIndex] && (
                                 <>
-                                  , <strong>Saldo:</strong> {item.balance}
                                   , <strong>Código:</strong> {item.code}
-                                  , <strong>Produto RD:</strong> {item.rdProduct}
-                                  , <strong>Unidade:</strong> {item.unit}
-                                  , <strong>Cor:</strong> {item.color}
-                                  , <strong>Material:</strong> {item.material}
-                                  , <strong>Dimensões:</strong> {item.dimensions}
                                   , <strong>Peso:</strong> {item.weight}
                                 </>
                               )}
@@ -104,13 +101,14 @@ export default function Expedition({ onBack }: { onBack: () => void; }) {
             </Accordion>
           </AccordionList>
         </div>
-        <Button onClick={handleSend}>
-          Enviar
-        </Button>
-        
-        <Button onClick={onBack}>
-          Voltar
-        </Button>
+        <div>
+          <Button onClick={onBack}>
+            Voltar
+          </Button>
+          <Button onClick={handleSend}>
+            Enviar
+          </Button>
+        </div>
       </div>
       <div className="col-span-3 bg-gray-200 p-4">
         <ExpeditionLayout 
