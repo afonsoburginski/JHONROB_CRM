@@ -1,8 +1,7 @@
 // expedition/page.tsx
 'use client'
 import React, { useState } from 'react';
-import ExpeditionTable from './expeditionTable';
-import ExpeditionLayout from './expedition';
+import ExpeditionLayout from './expedition/expedition';
 import CombinedProvider from 'app/contexts/combinedProvider';
 
 export default function ExpeditionPage() {
@@ -13,12 +12,8 @@ export default function ExpeditionPage() {
 
   return (
     <CombinedProvider>
-      <main className="p-4 md:p-10 mx-auto max-w-screen-2xl">
-        {step === 'table' ? (
-          <ExpeditionTable searchParams={{ q: '' }} onNext={() => setStep('layout')} selectedOF={selectedOF} setSelectedOF={setSelectedOF} attachedItems={attachedItems} setAttachedItems={setAttachedItems} savedItems={savedItems} setSavedItems={setSavedItems} /> // Adicione savedItems e setSavedItems aqui
-        ) : (
-          <ExpeditionLayout onBack={() => setStep('table')} selectedOF={selectedOF} attachedItems={attachedItems} savedItems={savedItems} setSavedItems={setSavedItems} /> // Adicione savedItems e setSavedItems aqui
-        )}
+      <main className="p-4 md:p-10 mx-auto max-w-3x1">
+        <ExpeditionLayout onBack={() => setStep('table')} selectedOF={selectedOF} attachedItems={attachedItems} savedItems={savedItems} setSavedItems={setSavedItems} />
       </main>
     </CombinedProvider>
   );

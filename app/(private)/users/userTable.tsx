@@ -5,7 +5,9 @@ import { Table, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } fro
 
 enum Role {
   ADMIN = 'ADMIN',
-  USER = 'USER'
+  MANAGER = 'MANAGER',
+  SELLER = 'SELLER',
+  SHIPPER = 'SHIPPER'
 }
 
 interface User {
@@ -100,8 +102,10 @@ const UserTable: React.FC<UserTableProps> = ({ users, editingUserId, onEditUser 
             <TableCell>
               {editingUserId === user.id ? (
                 <select defaultValue={user.role} onChange={(e) => setEditedUser({ ...user, role: e.target.value as Role })}>
-                  <option value={Role.ADMIN}>ADMIN</option>
-                  <option value={Role.USER}>USER</option>
+                  <option value={Role.ADMIN}>Admin</option>
+                  <option value={Role.MANAGER}>Manager</option>
+                  <option value={Role.SELLER}>Seller</option>
+                  <option value={Role.SHIPPER}>Shipper</option>
                 </select>
               ) : (
                 user.role

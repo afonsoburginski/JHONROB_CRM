@@ -7,7 +7,7 @@ interface UserFormInputs {
   email: string;
   password: string;
   image: string;
-  role: 'USER' | 'ADMIN';
+  role: 'ADMIN' | 'MANAGER' | 'SELLER' | 'SHIPPER';
 }
 
 interface UserFormProps {
@@ -24,15 +24,17 @@ export default function UserForm({ onSubmit }: UserFormProps) {
 
   return (
     <form onSubmit={handleSubmit(submitForm)}>
-      <input {...register('name')} placeholder="Nome" required />
+      <input {...register('name')} placeholder="Name" required />
       <input {...register('email')} placeholder="Email" required />
-      <input {...register('password')} placeholder="Senha" required />
-      <input {...register('image')} placeholder="Imagem" />
+      <input {...register('password')} placeholder="Password" required />
+      <input {...register('image')} placeholder="Image" />
       <select {...register('role')} required>
-        <option value="USER">Usuário</option>
         <option value="ADMIN">Admin</option>
+        <option value="MANAGER">Manager</option>
+        <option value="SELLER">Seller</option>
+        <option value="SHIPPER">Shipper</option>
       </select>
-      <Button variant='secondary' type="submit">Adicionar Usuário</Button>
+      <Button variant='secondary' type="submit">Add User</Button>
     </form>
   );
 }

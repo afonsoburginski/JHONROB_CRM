@@ -11,7 +11,7 @@ export default async function middleware(req: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
   
-  const privateRoutes = ["/", "/manager", "/propose", "/products"];
+  const privateRoutes = ["/", "/manager", "/propose", "/products", "/expedition"];
 
   if (privateRoutes.includes(path) && !session) {
     return NextResponse.redirect(new URL("/login", req.url));
