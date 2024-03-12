@@ -1,79 +1,34 @@
-// expeditionContext.tsx
 import React, { createContext, useState, useContext } from 'react';
 
-type Item = {
-  name: string;
-  quantity: number;
-  balance: number;
-  code: string;
-  rdProduct: string;
-  unit: string;
-  color: string;
-  material: string;
-  dimensions: string;
-  weight: string;
-};
-
-type OF = {
-  of: string;
-  items: Item[];
-};
-
-type ExpeditionContextType = {
-  ofs: OF[];
-  setOfs: (ofs: OF[]) => void;
-  attachedItems: Item[];
-  setAttachedItems: (items: Item[]) => void;
+interface ExpeditionContextData {
+  ofs: any[];
+  setOfs: React.Dispatch<React.SetStateAction<any[]>>;
+  attachedItems: any[];
+  setAttachedItems: React.Dispatch<React.SetStateAction<any[]>>;
   selectedOF: string;
-  setSelectedOF: (of: string) => void;
-  selectedProduct: string;
-  setSelectedProduct: (product: string) => void;
-  savedItems: Item[];
-  setSavedItems: (items: Item[]) => void;
-  savedOFs: string[];
-  setSavedOFs: React.Dispatch<React.SetStateAction<string[]>>;
-  ofInfos: OF[];
-  setOfInfos: React.Dispatch<React.SetStateAction<OF[]>>;
-};
+  setSelectedOF: React.Dispatch<React.SetStateAction<string>>;
+  savedItems: any[];
+  setSavedItems: React.Dispatch<React.SetStateAction<any[]>>;
+}
 
-const ExpeditionContext = createContext<ExpeditionContextType | undefined>(undefined);
+const ExpeditionContext = createContext<ExpeditionContextData | undefined>(undefined);
 
-export const ExpeditionProvider: React.FC = ({ children }) => {
-  const [ofs, setOfs] = useState<OF[]>([]);
-  const [attachedItems, setAttachedItems] = useState<Item[]>([]);
-  const [selectedOF, setSelectedOF] = useState<string>('');
-  const [selectedProduct, setSelectedProduct] = useState<string>('');
-  const [savedItems, setSavedItems] = useState<Item[]>([]);
-  const [savedOFs, setSavedOFs] = useState<string[]>([]);
-  const [ofInfos, setOfInfos] = useState<OF[]>([]);
+export const ExpeditionProvider = ({ children }) => {
+  const [ofs, setOfs] = useState([]);
+  const [attachedItems, setAttachedItems] = useState([]);
+  const [selectedOF, setSelectedOF] = useState('');
+  const [savedItems, setSavedItems] = useState([]);
 
   return (
-    <ExpeditionContext.Provider
-      value={{
-        ofs,
-        setOfs,
-        attachedItems,
-        setAttachedItems,
-        selectedOF,
-        setSelectedOF,
-        selectedProduct,
-        setSelectedProduct,
-        savedItems,
-        setSavedItems,
-        savedOFs,
-        setSavedOFs,
-        ofInfos,
-        setOfInfos,
-      }}
-    >
+    <ExpeditionContext.Provider value={{ ofs, setOfs, attachedItems, setAttachedItems, selectedOF, setSelectedOF, savedItems, setSavedItems }}>
       {children}
     </ExpeditionContext.Provider>
   );
 };
 
-export const useExpeditionContext = () => {
+export const useExpeditionContext = (): ExpeditionContextData => {
   const context = useContext(ExpeditionContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useExpeditionContext must be used within a ExpeditionProvider');
   }
   return context;

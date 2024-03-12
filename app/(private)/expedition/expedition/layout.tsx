@@ -1,10 +1,18 @@
 // Layout.tsx
-import * as React from 'react';
+'use client'
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { Card, Flex, Title, Text, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Divider } from '@tremor/react';
-import BodyOF from './layoutBody';
+import LayoutBody from './layoutBody';
 
-export default function Layout({ selectedOF, attachedItems, savedItems, setSavedItems, info }) {
+export default function Layout({ savedItems }) {
+
+  useEffect(() => {
+    savedItems.forEach((item, index) => {
+      console.log(`Dados recebidos ${index}`, item);
+    });
+  }, [savedItems]);
+
   return (
     <Card className="bg-white shadow-md rounded px-8 pt-6 pb-8">
       <Divider className="border-b-2 border-gray-400 mb-1" />
@@ -23,22 +31,24 @@ export default function Layout({ selectedOF, attachedItems, savedItems, setSaved
       <Divider className="border-b-2 border-gray-400 mt-1 mb-1" />
       <Flex className="flex-col items-start mb-5">
         <div className="flex flex-row flex-wrap">
-          <Text className="mr-2"><b>Status:</b> {info?.status ?? 'Pendentes'}</Text>
-          <Text className="mr-2"><b>Local:</b> {info?.location ?? 'Expedição'}</Text>
-          <Text className="mr-2"><b>Tipo:</b> {info?.type ?? 'Não Retirado'}</Text>
+          <Text className="mr-2"><b>Status:</b> {savedItems?.of ?? 'Pendentes'}</Text>
+          <Text className="mr-2"><b>Local:</b> {savedItems?.location ?? 'Expedição'}</Text>
+          <Text className="mr-2"><b>Tipo:</b> {savedItems?.type ?? 'Não Retirado'}</Text>
         </div>
         <div className="flex flex-row flex-wrap">
-          <Text className="mr-2"><b>Ordem de Fabricação:</b> {info?.manufacturingOrder ?? 'Multipla Seleção, 5 Itens Selecionados'}</Text>
-          <Text className="mr-2"><b>Formato:</b> {info?.format ?? 'Retrato'}</Text>
-          <Text className="mr-2"><b>Ordenação:</b> {info?.sorting ?? 'Código'}</Text>
+          <Text className="mr-2"><b>Ordem de Fabricação:</b> {savedItems?.manufacturingOrder ?? 'Multipla Seleção, 5 Itens Selecionados'}</Text>
+          <Text className="mr-2"><b>Formato:</b> {savedItems?.format ?? 'Retrato'}</Text>
+          <Text className="mr-2"><b>Ordenação:</b> {savedItems?.sorting ?? 'Código'}</Text>
         </div>
         <div className="flex flex-row flex-wrap">
-          <Text className="mr-2"><b>Listar Apenas Sem Estoque:</b> {info?.listOnlyWithoutStock ?? 'Não'}</Text>
-          <Text className="mr-2"><b>Tipo Período:</b> {info?.periodType ?? 'Dt.Cadastro'}</Text>
-          <Text className="mr-2"><b>Período:</b> {info?.period ?? 'Todos'}</Text>
+          <Text className="mr-2"><b>Listar Apenas Sem Estoque:</b> {savedItems?.listOnlyWithoutStock ?? 'Não'}</Text>
+          <Text className="mr-2"><b>Tipo Período:</b> {savedItems?.periodType ?? 'Dt.Cadastro'}</Text>
+          <Text className="mr-2"><b>Período:</b> {savedItems?.period ?? 'Todos'}</Text>
         </div>
       </Flex>
-      {Array.isArray(selectedOF) && selectedOF.map((info, index) => <BodyOF key={index} info={info} />)}
+      {Array.isArray(savedItems) && savedItems.length > 0 && savedItems.map((item, index) => (
+        <LayoutBody key={index} item={item} />
+      ))}
     </Card>
   );
 }

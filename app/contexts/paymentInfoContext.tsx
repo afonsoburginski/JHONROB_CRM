@@ -47,7 +47,6 @@ export const PaymentInfoProvider: React.FC = ({ children }: React.PropsWithChild
   }, []);
 
   useEffect(() => {
-    console.log(paymentInfo); // Adicione esta linha
   }, [paymentInfo]);
 
   const savePaymentInfo = () => {
