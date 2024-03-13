@@ -14,10 +14,10 @@ export const of = [
 ];
 
 export const product = [
-  { id: 'Produto 1', pieces: ['Peça 1', 'Peça 2'] },
-  { id: 'Produto 2', pieces: ['Peça 3'] },
-  { id: 'Produto 3', pieces: ['Peça 4', 'Peça 5'] },
-  { id: 'Produto 4', pieces: ['Peça 6'] }
+  { id: '(16000411)', name: 'FIXDR LONG TC', },
+  { id: '(16000415)', name: 'BICA DSC CHUTE TC', },
+  { id: '(160001754)', name: 'PONT ESQ ACION TC', },
+  { id: '(16000366)', name: 'TAMBOR PE TC', },
 ];
 
 export const piece = [
@@ -84,7 +84,7 @@ export default function Expedition() {
           <div>
             <Text>Produto</Text>
             <SearchSelect value={selectedProduct?.id} onChange={(id) => setSelectedProduct(product.find(item => item.id === id))}>
-              {product.map((item) => <SearchSelectItem key={item.id} value={item.id}>{item.id}</SearchSelectItem>)}
+              {product.map((item) => <SearchSelectItem key={item.id} value={item.id}>{`${item.id} - ${item.name}`}</SearchSelectItem>)}
             </SearchSelect>
           </div>
         </Grid>
@@ -117,10 +117,10 @@ export default function Expedition() {
           {savedItems.map((item, productIndex) => (
             <Card key={productIndex}>
               <Text className="font-bold">OF: {item.of.id}</Text>
-              <Text className="font-semibold">Produto: {item.product.id}</Text>
+              <Text className="font-semibold">Produto: {item.product.id} - {item.product.name}</Text>
               {item.pieces.map((pieceItem, pieceIndex) => (
                 <Flex key={pieceIndex}>
-                  <Text>Peça: {pieceItem.piece.id}</Text>
+                  <Text>PÇ: {pieceItem.piece.id}</Text>
                   <div className="flex">
                     <Text className="mr-2">Qtd: {pieceItem.piece.quantity}</Text>
                     <Button variant="light" onClick={() => handleRemove(productIndex, pieceIndex)}>

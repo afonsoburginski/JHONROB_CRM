@@ -55,7 +55,7 @@ export default function layoutBody({ item }) {
         <Title className="text-2xl font-bold">Local: Expedição</Title>
       </Flex>
       <Flex className="bg-gray-200 py-1 my-2 pl-2 flex justify-start"justifyContent="start">
-        <Title className="text-2xl font-bold">{item?.product?.id}</Title>
+        <Title className="text-2xl font-bold">{item?.product?.id} - {item?.product?.name}</Title>
       </Flex>
       <Table className="table-auto w-full">
         <TableBody>
@@ -77,20 +77,20 @@ export default function layoutBody({ item }) {
       </Table>
       <div className="flex justify-between mb-5">
         <div className="w-52">
-          <Flex className="justify-end py-2 px-2 gap-20">
+          <Flex className="justify-end py-2 px-2.5 gap-[88px]">
             <Text>{totalQuantity}</Text>
             <Text>{totalBalance}</Text>
           </Flex>
         </div>
         <div className="w-72 ml-auto">
           <Divider className="border-b-2 border-gray-400 mt-2 mb-1" />
-          <Flex className="justify-end px-2 gap-16">
-            <Text className="font-bold pr-1">Total: </Text>
+          <Flex className="justify-end px-2.5 gap-16">
+            <Text className="font-bold">Total: </Text>
             <Text>{totalWeight}</Text>
           </Flex>
           <Divider className="border-b-2 border-gray-400 mt-5 mb-1" />
-          <Flex className="justify-end px-2 gap-16">
-            <Text className="font-bold pr-1">Total Geral: </Text>
+          <Flex className="justify-end px-2.5 gap-16">
+            <Text className="font-bold">Total Geral: </Text>
             <Text>{totalWeight}</Text>
           </Flex>
         </div>

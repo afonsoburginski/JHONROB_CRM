@@ -1,65 +1,57 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/9113740/201498864-2a900c64-d88f-4ed4-b5cf-770bcb57e1f5.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/9113740/201498152-b171abb8-9225-487a-821c-6ff49ee48579.png">
-  <img alt="Shows all of the tools in the stack for this template, also listed in the README file." src="https://user-images.githubusercontent.com/9113740/201498152-b171abb8-9225-487a-821c-6ff49ee48579.png">
-</picture>
 
-<div align="center"><strong>Next.js 13 Admin Dashboard Template</strong></div>
-<div align="center">Built with the Next.js App Router</div>
-<br />
-<div align="center">
-<a href="http://admin-dash-template.vercel.sh/">Demo</a>
-<span> · </span>
-<a href="https://vercel.com/templates/next.js/admin-dashboard-tailwind-planetscale-react-nextjs">Clone & Deploy</a>
-<span>
-</div>
+<h3 align= "center" fontSize="60px">
+  JHOONROB CRM
+</h3>
 
-## Overview
+<p align="center">
+    <img src="public/UI.png" alt="Logo" height=530>
+</p>
 
-This is a starter template using the following stack:
+## :rocket: Tecnologias
+-  Next.js 14
+-  Typescript
+-  @tremor/react
+-  @headlessui
+-  Tailwind.css
+-  Context API
+-  Prisma ORM
+-  PostgreSQL
+-  Vercel Analytics
 
-- Framework - [Next.js 13](https://nextjs.org/13)
-- Language - [TypeScript](https://www.typescriptlang.org)
-- Auth - [NextAuth.js](https://next-auth.js.org)
-- Database - [Vercel Postgres](https://vercel.com/postgres)
-- Deployment - [Vercel](https://vercel.com/docs/concepts/next.js/overview)
-- Styling - [Tailwind CSS](https://tailwindcss.com)
-- Components - [Tremor](https://www.tremor.so)
-- Analytics - [Vercel Analytics](https://vercel.com/analytics)
-- Linting - [ESLint](https://eslint.org)
-- Formatting - [Prettier](https://prettier.io)
+## 💻 Sobre o projeto
 
-This template uses the new Next.js App Router. This includes support for enhanced layouts, colocation of components, tests, and styles, component-level data fetching, and more.
+JHOONROB CRM é uma solução de gerenciamento de relacionamento com o cliente desenvolvida para ajudar as empresas a melhorar suas interações com os clientes, otimizar suas vendas e melhorar a lucratividade. Com uma interface de usuário intuitiva e recursos poderosos, o JHOONROB CRM oferece uma visão completa dos seus clientes, permitindo que você ofereça um serviço personalizado e melhore a satisfação do cliente.
 
-## Getting Started
+### Funcionalidades
 
-During the deployment, Vercel will prompt you to create a new Postgres database. This will add the necessary environment variables to your project.
+- [x] **Gerenciamento de Clientes**: Mantenha um registro detalhado de todos os seus clientes e interações com eles.
+- [x] **Cadastro, Edição e Remoção de Produtos**: Gerencie facilmente seus produtos diretamente do CRM.
+- [x] **Formulário de Steps**: Um formulário passo a passo para selecionar produtos, clientes, vendedores, definir prazos e gerar propostas comerciais.
+- [x] **Gráfico de Lucro Total**: Visualize o lucro total da empresa através de um gráfico intuitivo.
+- [x] **Tabela de Vendedores Destacados**: Veja quais vendedores estão se destacando, com informações sobre seus lucros e metas.
+- [x] **Uso da Context API**: Utilizamos a Context API para gerenciar o estado da aplicação e armazenar informações temporariamente.
 
-Inside the Vercel Postgres dashboard, create a table based on the schema defined in this repository.
+## :computer_mouse: Instalação e execução
 
-```
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  email VARCHAR(255) NOT NULL,
-  name VARCHAR(255),
-  username VARCHAR(255)
-);
+Faça um clone desse repositório e acesse o diretório.
+
+```bash
+$ git clone git@github.com:afonsoburginski/JHONROB_CRM.git && cd JHONROB_CRM
 ```
 
-Insert a row for testing:
+```bash
+# Instalando as dependências
+$ yarn install
 
-```
-INSERT INTO users (id, email, name, username) VALUES (1, 'me@site.com', 'Me', 'username');
-```
-
-Finally, run the following commands to start the development server:
-
-```
-pnpm install
-pnpm dev
+# Executanto aplicação
+$ yarn run dev
 ```
 
-You should now be able to access the application at http://localhost:3000.
-"# JHONROB_CRM"  
-# JHONROB_CRM
-# JHONROB_CRM
+## :speech_balloon: Autor
+-  [Github](https://github.com/afonsoburginski/)
+-  [Linkedin](https://www.linkedin.com/in/afonsoburginski/)
+-  [Email](mailto:afonsoburginski@gmail.com/)
+
+## 📝 Licença
+
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
