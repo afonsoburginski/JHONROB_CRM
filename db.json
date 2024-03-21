@@ -1,0 +1,120 @@
+{
+  "expedition": {
+    "of": [
+      {
+        "id": "100",
+        "amount": 10,
+        "client": "Cliente 1",
+        "emission": "2022-01-01",
+        "delivery": "2022-01-10",
+        "tag": "SP-1",
+        "products": ["16000411", "16000415"]
+      },
+      {
+        "id": "200",
+        "amount": 20,
+        "client": "Cliente 2",
+        "emission": "2022-02-01",
+        "delivery": "2022-02-10",
+        "tag": "RD-5",
+        "products": ["160001754", "16000366"]
+      }
+    ],
+    "product": [
+      {
+        "id": "16000411",
+        "name": "FIXDR LONG TC",
+        "pieces": ["CONE EXT TAMPA SL 07 CONJ SOLDA", "CONE INT TAMPA SL 05 A 09"]
+      },
+      {
+        "id": "16000415",
+        "name": "BICA DSC CHUTE TC",
+        "pieces": ["ESTRUT TAMPA ENTR SL 05 A 09", "TRIPE TAMPA SL 05 A 09"]
+      },
+      {
+        "id": "160001754",
+        "name": "PONT ESQ ACION TC",
+        "pieces": ["ENTR 0240 TAMPA SL 05 C/PORTA", "VENT RLS 630 C/ MTR 15CV"]
+      },
+      {
+        "id": "16000366",
+        "name": "TAMBOR PE TC",
+        "pieces": ["CONE EXT TAMPA SL 07 CONJ SOLDA", "CONE INT TAMPA SL 05 A 09"]
+      }
+    ],
+    "piece": [
+      {
+        "id": "CONE EXT TAMPA SL 07 CONJ SOLDA",
+        "quantity": 10,
+        "balance": 10,
+        "code": "100",
+        "rdProduct": "1",
+        "unit": "Pç",
+        "color": "red",
+        "material": "iron",
+        "dimensions": "10x20x30",
+        "weight": "20"
+      },
+      {
+        "id": "CONE INT TAMPA SL 05 A 09",
+        "quantity": 20,
+        "balance": 10,
+        "code": "200",
+        "rdProduct": "2",
+        "unit": "Pç",
+        "color": "blue",
+        "material": "iron",
+        "dimensions": "20x30x40",
+        "weight": "30"
+      },
+      {
+        "id": "ESTRUT TAMPA ENTR SL 05 A 09",
+        "quantity": 30,
+        "balance": 15,
+        "code": "300",
+        "rdProduct": "3",
+        "unit": "Pç",
+        "color": "green",
+        "material": "iron",
+        "dimensions": "30x40x50",
+        "weight": "40"
+      },
+      {
+        "id": "TRIPE TAMPA SL 05 A 09",
+        "quantity": 30,
+        "balance": 15,
+        "code": "400",
+        "rdProduct": "4",
+        "unit": "Pç",
+        "color": "green",
+        "material": "iron",
+        "dimensions": "30x40x50",
+        "weight": "40"
+      },
+      {
+        "id": "ENTR 0240 TAMPA SL 05 C/PORTA",
+        "quantity": 30,
+        "balance": 15,
+        "code": "500",
+        "rdProduct": "5",
+        "unit": "Pç",
+        "color": "green",
+        "material": "iron",
+        "dimensions": "30x40x50",
+        "weight": "40"
+      },
+      {
+        "id": "VENT RLS 630 C/ MTR 15CV",
+        "quantity": 30,
+        "balance": 15,
+        "code": "600",
+        "rdProduct": "6",
+        "unit": "Pç",
+        "color": "green",
+        "material": "iron",
+        "dimensions": "30x40x50",
+        "weight": "40"
+      }
+    ]
+  }
+}

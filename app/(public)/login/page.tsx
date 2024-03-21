@@ -14,9 +14,8 @@ export default function Login() {
               src="/logo.png"
               priority
               alt="Logo"
-              className="h-20 w-48"
               width={250}
-              height={50}
+              height={100}
             />
           </Link>
           <h3 className="text-xl font-semibold">Login</h3>

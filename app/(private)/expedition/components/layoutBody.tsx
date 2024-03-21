@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Card, Flex, Title, Text, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Divider } from '@tremor/react';
 
-export default function layoutBody({ item }) {
+export default function layoutBody({ item, counter }) {
   console.log(item);
   const totalWeight = item?.pieces?.reduce((total, pieceItem) => total + Number(pieceItem.piece.weight), 0) ?? 0;
   const totalQuantity = item?.pieces?.reduce((total, pieceItem) => total + Number(pieceItem.piece.quantity), 0) ?? 0;
@@ -13,7 +13,7 @@ export default function layoutBody({ item }) {
       <Flex className="mt-2 border-2 border-gray-400 px-5 grid grid-cols-5 gap-5 items-start">
         <div className="col-span-4 space-y-2 pr-44">
           <Flex className="flex flex-row flex-wrap">
-            <Text className="mr-2"><b>O.F:</b> {item?.of?.id ?? '-'}</Text>
+            <Text className="mr-2"><b>O.F:</b> {item?.of?.id ?? '-'} {counter}</Text>
             <Text className="mr-2"><b>Quantidade:</b> {item?.of?.amount ?? '-'}</Text>
             <Text className="mr-2"><b>Dt.Emissão:</b> {item?.of?.emission ?? '-'}</Text>
           </Flex>

@@ -1,7 +1,7 @@
 // expedition/page.tsx
 'use client'
 import React, { useState } from 'react';
-import ExpeditionLayout from './expedition/expedition';
+import ExpeditionLayout from './components/expedition';
 import CombinedProvider from 'app/contexts/combinedProvider';
 
 export default function ExpeditionPage() {

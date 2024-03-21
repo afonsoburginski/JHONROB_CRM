@@ -8,9 +8,11 @@ import LayoutBody from './layoutBody';
 export default function Layout({ savedItems }) {
 
   useEffect(() => {
-    savedItems.forEach((item, index) => {
-      console.log(`Dados recebidos ${index}`, item);
-    });
+    if (savedItems.length > 0) {
+      savedItems.forEach((item, index) => {
+        console.log(`Dados recebidos ${index}`, item);
+      });
+    }
   }, [savedItems]);
 
   return (
@@ -18,7 +20,7 @@ export default function Layout({ savedItems }) {
       <Divider className="border-b-2 border-gray-400 mb-1" />
       <Flex alignItems='center' className="h-10">
         <Flex className='flex flex-col items-start'>
-          <Image src="/logo.png" alt="Logo" width={180} height={50}/>
+          <Image src="/logo.png" alt="Logo" width={180} height={60} priority/>
         </Flex>
         <Flex className="flex flex-col items-center">
           <Title className="text-2xl font-bold tracking-widest">JHONROB</Title>
@@ -47,7 +49,7 @@ export default function Layout({ savedItems }) {
         </div>
       </Flex>
       {Array.isArray(savedItems) && savedItems.length > 0 && savedItems.map((item, index) => (
-        <LayoutBody key={index} item={item} />
+        <LayoutBody key={index} item={item} counter={index + 1} />
       ))}
     </Card>
   );
